@@ -1,10 +1,13 @@
-/* ehans-mart storefront styles — copied verbatim from design/ehans-mart/assets/css.
-   Order is the merged load order of all template pages; do not reorder. */
+/* ehans-mart storefront styles. Files shipped by the live ehansmart.com theme are copies of
+   the live assets (same owner); the rest are verbatim from design/ehans-mart/assets/css.
+   Order follows the live theme's load order; do not reorder. */
+@import './live-theme.css';
 @import './swiper-bundle.min.css';
 @import './app-menu-section.css';
 @import './sticky-add-to-cart-section.css';
 @import './footer.css';
 @import './card.css';
+@import './skeleton.css';
 @import './about-common.css';
 @import './about-hero-section.css';
 @import './about-story-section.css';
@@ -56,3 +59,4 @@
 @import './announcebar-section.css';
 @import './main.css';
 @import './cart-drawer.css';
+@import './custom.css';

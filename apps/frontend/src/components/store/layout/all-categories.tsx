@@ -1,15 +1,14 @@
 'use client';
 
-import type { CategoryNode } from '@ehans/shared';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { collectionUrl } from '@/lib/format';
+import type { CategoryGroup } from '@/lib/store-nav';
 import { ChevronDownIcon, ChevronRightIcon } from '../icons';
 
-/** "All Categories" button + panel (template all-categories megamenu). */
-export function AllCategories({ categories }: { categories: CategoryNode[] }) {
+/** "All Categories" button + menu (live theme markup: each panel sits in its tab's item). */
+export function AllCategories({ groups }: { groups: CategoryGroup[] }) {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(categories[0]?.slug ?? '');
+  const [active, setActive] = useState(groups[0]?.href ?? '');
   const wrapRef = useRef<HTMLLIElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
@@ -66,91 +65,88 @@ export function AllCategories({ categories }: { categories: CategoryNode[] }) {
       </button>
       <div className="all-categories-menu" id="all-categories-menu">
         <ul className="all-categories-list">
-          {categories.map((c) => (
-            <li key={c.id}>
+          {groups.map((g) => (
+            <li key={g.href} className="all-categories-item">
               <button
                 type="button"
-                className={`all-categories-tab${active === c.slug ? ' active' : ''}`}
-                data-all-cat={c.slug}
-                onMouseEnter={() => setActive(c.slug)}
-                onClick={() => setActive(c.slug)}
+                className={`all-categories-tab${active === g.href ? ' active' : ''}`}
+                data-all-cat={g.href}
+                onMouseEnter={() => setActive(g.href)}
+                onFocus={() => setActive(g.href)}
+                onClick={() => setActive(g.href)}
               >
-                <span>{c.name}</span> <ChevronRightIcon />
+                <span>{g.title}</span> <ChevronRightIcon />
               </button>
+              <div
+                className={`all-categories-panel${active === g.href ? ' active' : ''}`}
+                data-all-cat={g.href}
+              >
+                <div className="all-categories-content">
+                  <div className="all-categories-head">
+                    <p className="all-categories-title">{g.title}</p>
+                    <Link href={g.href} className="all-categories-view">
+                      View all <span aria-hidden="true">→</span>
+                    </Link>
+                  </div>
+                  {g.links.length ? (
+                    <ul className="all-categories-links">
+                      {g.links.map((l) => (
+                        <li key={l.href}>
+                          <Link href={l.href}>{l.label}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+                <Link href={g.href} className="all-categories-promo">
+                  {g.image ? (
+                    <img src={g.image} alt={g.title} width={560} height={560} loading="lazy" />
+                  ) : null}{' '}
+                  <span className="all-categories-promo-content">
+                    <span className="all-categories-promo-label">explore</span>{' '}
+                    <span className="all-categories-promo-title">{g.title}</span>
+                    <span className="all-categories-promo-btn">
+                      shop now <span aria-hidden="true">→</span>
+                    </span>
+                    <span className="all-categories-promo-features">
+                      <span>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
+                          <circle cx="12" cy="12" r="2.5"></circle>
+                        </svg>{' '}
+                        100% Cash on Delivery
+                      </span>
+                      <span>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path>
+                          <circle cx="7" cy="17.5" r="1.8"></circle>
+                          <circle cx="17" cy="17.5" r="1.8"></circle>
+                        </svg>{' '}
+                        Fast home delivery
+                      </span>
+                    </span>
+                  </span>
+                </Link>
+              </div>
             </li>
           ))}
         </ul>
-        <div className="all-categories-panels">
-          {categories.map((c) => (
-            <div
-              key={c.id}
-              className={`all-categories-panel${active === c.slug ? ' active' : ''}`}
-              data-all-cat={c.slug}
-            >
-              <div className="all-categories-content">
-                <div className="all-categories-head">
-                  <p className="all-categories-title">{c.name}</p>
-                  <Link href={collectionUrl(c.slug)} className="all-categories-view">
-                    view all <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-                <ul className="all-categories-links">
-                  {c.children.map((child) => (
-                    <li key={child.id}>
-                      <Link href={collectionUrl(child.slug)}>{child.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <Link href={collectionUrl(c.slug)} className="all-categories-promo">
-                {c.image ? <img src={c.image} alt={c.name} loading="lazy" /> : null}{' '}
-                <span className="all-categories-promo-content">
-                  <span className="all-categories-promo-label">explore</span>{' '}
-                  <span className="all-categories-promo-title">{c.name}</span>{' '}
-                  {c.description ? (
-                    <span className="all-categories-promo-text">{c.description}</span>
-                  ) : null}{' '}
-                  <span className="all-categories-promo-btn">
-                    shop now <span aria-hidden="true">→</span>
-                  </span>{' '}
-                  <span className="all-categories-promo-features">
-                    <span>
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <rect x="2.5" y="6" width="19" height="12" rx="2"></rect>
-                        <circle cx="12" cy="12" r="2.5"></circle>
-                      </svg>{' '}
-                      100% Cash on Delivery
-                    </span>{' '}
-                    <span>
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"></path>
-                        <circle cx="7" cy="17.5" r="1.8"></circle>
-                        <circle cx="17" cy="17.5" r="1.8"></circle>
-                      </svg>{' '}
-                      Fast home delivery
-                    </span>
-                  </span>
-                </span>
-              </Link>
-            </div>
-          ))}
-        </div>
       </div>
     </li>
   );

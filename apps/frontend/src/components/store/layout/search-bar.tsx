@@ -1,19 +1,19 @@
 'use client';
 
-import type { CategorySummary, ProductCard } from '@ehans/shared';
+import type { ProductCard } from '@ehans/shared';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Fragment, type KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getPublicEnv } from '@/lib/env';
-import { collectionUrl, formatPrice, productUrl } from '@/lib/format';
+import { formatPrice, productUrl } from '@/lib/format';
+import { POPULAR_SEARCHES, SEARCH_CATEGORIES } from '@/lib/store-nav';
 import { cartActions } from '../providers/cart-store';
 import { useStoreUi } from '../providers/store-ui';
 import { useIsClient } from '../hooks';
 import { CloseIcon } from '../icons';
 
 const RECENT_KEY = 'ehans-mart-recent-search';
-const POPULAR = ['apron', 'hair clip', 'fridge', 'baby safety', 'kitchen', 'face mask'];
 const MAX_RESULTS = 6;
 
 function getRecent(): string[] {
@@ -91,7 +91,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 type Results = { query: string; items: ProductCard[]; total: number } | null;
 
-export function SearchBar({ categories }: { categories: CategorySummary[] }) {
+export function SearchBar() {
   const { panel, closePanel, searchQuery } = useStoreUi();
   const open = panel === 'search';
   const router = useRouter();
@@ -269,7 +269,7 @@ export function SearchBar({ categories }: { categories: CategorySummary[] }) {
             <div className="search-block">
               <p className="search-block-title">popular searches</p>
               <div className="search-tags search-popular-tags">
-                {POPULAR.map((t) => (
+                {POPULAR_SEARCHES.map((t) => (
                   <button key={t} type="button" onClick={() => fill(t)}>
                     <TagIcon />
                     {t}
@@ -280,23 +280,15 @@ export function SearchBar({ categories }: { categories: CategorySummary[] }) {
             <div className="search-block">
               <p className="search-block-title">shop by category</p>
               <div className="search-categories">
-                {categories.map((c) => (
-                  <a
-                    key={c.id}
-                    href={collectionUrl(c.slug)}
-                    className="search-category"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      fill(c.name);
-                    }}
-                  >
+                {SEARCH_CATEGORIES.map((c) => (
+                  <Link key={c.href} href={c.href} className="search-category">
                     <div className="search-category-img">
-                      {c.image ? <img src={c.image} alt={c.name} loading="lazy" /> : null}
+                      {c.image ? <img src={c.image} alt="" loading="lazy" /> : null}
                     </div>
                     <div className="search-category-content">
-                      <p className="title">{c.name}</p>
+                      <p className="title">{c.label}</p>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -373,7 +365,7 @@ export function SearchBar({ categories }: { categories: CategorySummary[] }) {
               Try a different word, or browse a popular search below.
             </p>
             <div className="search-tags search-empty-tags">
-              {POPULAR.map((t) => (
+              {POPULAR_SEARCHES.map((t) => (
                 <button key={t} type="button" onClick={() => fill(t)}>
                   <TagIcon />
                   {t}

@@ -1,0 +1,265 @@
+/* Rules from the live ehansmart.com theme that the template CSS files don't carry:
+   utilities from assets/base.css, then section styles from compiled_assets/styles.css
+   (home "Trending Items" product grid). The :root colours are the live theme settings
+   (Shopify's inline color-scheme <style>), which main.css reads before its fallbacks.
+   The .cod-* rules are the live cash-on-delivery app's button (neo-cod-styles.css). */
+:root {
+  --color-background: #fcf7f5;
+  --color-brand: #ff5554;
+  --color-brand-rgb: 255 85 84;
+  --color-brand-secondary: #104698;
+  --color-foreground: #211913;
+  --color-foreground-muted: rgb(33 25 19 / 0.6);
+  --color-foreground-rgb: 33 25 19;
+  --color-green: #008000;
+  --color-secondary-button-background: rgb(0 0 0 / 0);
+  --color-secondary-button-text: rgb(33 25 19 / 1);
+}
+body {
+  color: var(--color-foreground);
+}
+.visually-hidden:not(:focus, :active) {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+a {
+  color: currentcolor;
+}
+.list-unstyled {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.product-card-grid {
+  padding: 24px 0;
+}
+.product-card-grid__items {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.product-card-grid__item {
+  display: flex;
+  min-width: 0;
+}
+.product-card-grid__item > .product-card {
+  width: 100%;
+}
+.product-card-grid__item--new {
+  animation: product-card-grid-in 0.45s ease-out both;
+}
+@keyframes product-card-grid-in {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+.product-card-grid__more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  text-align: center;
+}
+.product-card-grid__status {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.product-card-grid__progress {
+  display: none;
+  width: min(240px, 100%);
+  height: 4px;
+  overflow: hidden;
+  background-color: var(--border-color2);
+  border-radius: 4px;
+}
+.product-card-grid__progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--brand-color);
+  border-radius: inherit;
+  transform: scaleX(var(--product-grid-progress, 0));
+  transform-origin: left center;
+  transition: transform 0.5s ease;
+}
+[dir="rtl"] .product-card-grid__progress-bar {
+  transform-origin: right center;
+}
+.product-card-grid__more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--brand-color);
+}
+.product-card-grid__more-label {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  padding-bottom: 3px;
+  transition: background-size 0.3s ease;
+}
+[dir="rtl"] .product-card-grid__more-label {
+  background-position: right bottom;
+}
+.product-card-grid__more-btn:hover {
+  color: var(--brand-color);
+}
+.product-card-grid__more-btn:hover .product-card-grid__more-label {
+  background-size: 100% 2px;
+}
+.product-card-grid__more-btn:focus-visible {
+  outline: 2px solid var(--brand-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.product-card-grid__more-icon {
+  display: inline-flex;
+  animation: product-card-grid-nudge 1.6s ease-in-out infinite;
+}
+.product-card-grid__more-icon svg {
+  width: 20px;
+  height: 20px;
+}
+@keyframes product-card-grid-nudge {
+  0%,
+  to {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+.product-card-grid__more-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(var(--color-brand-rgb, 255 85 84) / 0.3);
+  border-top-color: var(--brand-color);
+  border-radius: 50%;
+  animation: product-card-grid-spin 0.7s linear infinite;
+}
+.product-card-grid__more-btn[aria-busy="true"] {
+  pointer-events: none;
+}
+.product-card-grid__more-btn[aria-busy="true"] .product-card-grid__more-icon {
+  display: none;
+}
+.product-card-grid__more-btn[aria-busy="true"]
+  .product-card-grid__more-spinner {
+  display: inline-block;
+}
+@keyframes product-card-grid-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product-card-grid__item--new,
+  .product-card-grid__more-icon,
+  .product-card-grid__more-spinner {
+    animation: none;
+  }
+  .product-card-grid__progress-bar,
+  .product-card-grid__more-label {
+    transition: none;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .product-card-grid__more-btn {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .product-card-grid__items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media only screen and (max-width: 767px) {
+  .product-card-grid__items {
+    row-gap: 24px;
+    column-gap: 5px;
+  }
+}
+.cod-btn-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+  clear: both;
+}
+.cod-buy-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 1.4;
+  text-align: center;
+}
+.cod-buy-btn:hover {
+  opacity: 0.9;
+}
+.cod-buy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.cod-buy-btn__content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cod-buy-btn svg {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+.cod-animate-shake {
+  animation: cod-shake 3s ease-in-out infinite;
+}
+@keyframes cod-shake {
+  0% { transform: translate(0); }
+  2% { transform: translate(-3px); }
+  4% { transform: translate(3px); }
+  6% { transform: translate(-3px); }
+  8% { transform: translate(3px); }
+  10% { transform: translate(0); }
+  12% { transform: translate(-2px); }
+  14% { transform: translate(2px); }
+  16% { transform: translate(-2px); }
+  18% { transform: translate(2px); }
+  20% { transform: translate(0); }
+  to { transform: translate(0); }
+}

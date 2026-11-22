@@ -2,11 +2,11 @@
 
 import type { ProductCard as ProductCardData } from '@ehans/shared';
 import Link from 'next/link';
-import { formatCardPrice, formatRatingCount, productUrl } from '@/lib/format';
+import { formatPrice, productUrl } from '@/lib/format';
 import { addButtonProps, useAddToCart } from './providers/use-add-to-cart';
 import { useStoreUi } from './providers/store-ui';
 import { useCart } from './providers/cart-store';
-import { StarIcon } from './icons';
+import { RevealMedia } from './reveal-media';
 
 export function toCartItem(p: ProductCardData) {
   return {
@@ -19,45 +19,36 @@ export function toCartItem(p: ProductCardData) {
   };
 }
 
-/** Template product card (`.product-card.card_hover`). Products with options open quick view. */
+/** Live ehansmart.com product card. Products with options open quick view. */
 export function ProductCard({ product }: { product: ProductCardData }) {
   const { state, add } = useAddToCart();
   const { openQuickView, openCart } = useStoreUi();
   const { items } = useCart();
   const href = productUrl(product.slug);
-  const hoverImage = product.hoverImage ?? product.image;
   const btn = addButtonProps(state, product.inStock ? 'Add to cart' : 'Sold out', 'btn');
   // once the product is in the cart the card offers "View cart" (after the "Added ✓" flash)
   const inCart = items.some((i) => i.productId === product.id);
   const showViewCart = inCart && state !== 'added';
 
   return (
-    <div className="product-card card_hover">
+    <div className="product-card">
       <div className="card-image-wrap">
         {product.discountPercent ? (
-          <span className="card-badge">- {product.discountPercent}%</span>
+          <span className="card-badge">-{product.discountPercent}%</span>
         ) : null}
-        {product.ratingAverage ? (
-          <div className="card-rattings">
-            <span className="icon">
-              <StarIcon />
-            </span>{' '}
-            <span className="rattings-count">{product.ratingAverage.toFixed(1)}</span>{' '}
-            <span className="rattings-number">{formatRatingCount(product.ratingCount)}</span>
-          </div>
-        ) : null}
-        <div className="card-img">
-          <Link className="main-img" href={href}>
-            {product.image ? (
-              <img className="card_img" src={product.image.url} alt={product.image.alt} />
-            ) : null}
-          </Link>{' '}
-          <Link className="hover-img" href={href}>
-            {hoverImage ? (
-              <img className="card_hover_img" src={hoverImage.url} alt={product.name} />
-            ) : null}
-          </Link>
-        </div>
+        <RevealMedia
+          className="card-img"
+          src={product.image?.url ?? null}
+          width={520}
+          height={520}
+          imgClassName="card_img"
+        >
+          {(img) => (
+            <Link className="main-img" href={href} tabIndex={-1} aria-hidden="true">
+              {img}
+            </Link>
+          )}
+        </RevealMedia>
       </div>
       <div className="card-content">
         <div className="card-title-wrap">
@@ -67,9 +58,15 @@ export function ProductCard({ product }: { product: ProductCardData }) {
         </div>
         <div className="card-price-wrap">
           {product.compareAtPrice && product.compareAtPrice > product.price ? (
-            <p className="previous-price">{formatCardPrice(product.compareAtPrice)}</p>
+            <p className="previous-price">
+              <span className="visually-hidden">Regular price</span>{' '}
+              <s>{formatPrice(product.compareAtPrice)}</s>
+            </p>
           ) : null}
-          <p className="latest-price">{formatCardPrice(product.price)}</p>
+          <p className="latest-price">
+            <span className="visually-hidden">Sale price</span>
+            {formatPrice(product.price)}
+          </p>
         </div>
         {/* live ehansmart.com card buttons: add (or options → quick view), then "View cart" */}
         <div className="card-btn">

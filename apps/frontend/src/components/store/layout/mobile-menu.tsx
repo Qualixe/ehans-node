@@ -1,22 +1,21 @@
 'use client';
 
-import type { CategoryNode } from '@ehans/shared';
 import Link from 'next/link';
 import { type MouseEvent, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { collectionUrl } from '@/lib/format';
+import { CATEGORY_GROUPS } from '@/lib/store-nav';
 import { useStoreUi } from '../providers/store-ui';
 import { useIsClient } from '../hooks';
 import { BackArrowIcon, SearchIcon } from '../icons';
 
-const GRID_SIZE = 6;
+const groups = CATEGORY_GROUPS.map((g) => ({ ...g, id: g.href.split('/').pop() ?? g.title }));
 
-/** Off-canvas category browser (template "mobile-menu"): tabs on the left, scroll-spy content. */
-export function MobileMenu({ categories }: { categories: CategoryNode[] }) {
+/** Off-canvas category browser (live "mobile-menu"): group tabs on the left, scroll-spy tiles. */
+export function MobileMenu() {
   const { panel, closePanel, openSearch } = useStoreUi();
   const open = panel === 'mobile-menu';
   const mounted = useIsClient();
-  const [active, setActive] = useState(categories[0]?.slug ?? '');
+  const [active, setActive] = useState(groups[0]?.id ?? '');
   const containerRef = useRef<HTMLDivElement>(null);
   const clickScroll = useRef(false);
   const tabsRef = useRef<Record<string, HTMLAnchorElement | null>>({});
@@ -37,7 +36,7 @@ export function MobileMenu({ categories }: { categories: CategoryNode[] }) {
     );
     container.querySelectorAll('.mobile-menu-tabs-content').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [mounted, categories]);
+  }, [mounted]);
 
   useEffect(() => {
     tabsRef.current[active]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -54,23 +53,24 @@ export function MobileMenu({ categories }: { categories: CategoryNode[] }) {
     window.setTimeout(() => (clickScroll.current = false), 2000);
   };
 
-  const chunks = (list: CategoryNode['children']) => {
-    const out: CategoryNode['children'][] = [];
-    for (let i = 0; i < list.length; i += GRID_SIZE - 1) out.push(list.slice(i, i + GRID_SIZE - 1));
-    return out.length ? out : [[]];
-  };
-
   const content = (
     <div className={`mobile-menu-wrap${open ? ' active' : ''}`}>
       <div className="mobile-menu-close-window-btn" onClick={closePanel}></div>
       <div className={`mobile-menu-container${open ? ' active' : ''}`}>
         <div className="mobile-menu-top">
-          <button className="mobile-menu-close-btn" type="button" onClick={closePanel}>
+          <button
+            className="mobile-menu-close-btn"
+            type="button"
+            aria-label="Close"
+            onClick={closePanel}
+          >
             <BackArrowIcon />
           </button>
           <p className="mobile-menu-title">all categories</p>
           <button
             className="mobile-menu-search navbar-search-open-btn"
+            type="button"
+            aria-label="Search"
             onClick={() => openSearch()}
           >
             <SearchIcon />
@@ -78,67 +78,53 @@ export function MobileMenu({ categories }: { categories: CategoryNode[] }) {
         </div>
         <div className="mobile-menu-inner">
           <div className="mobile-menu-tabs">
-            {categories.map((c) => (
+            {groups.map((g) => (
               <a
-                key={c.id}
+                key={g.id}
                 ref={(el) => {
-                  tabsRef.current[c.slug] = el;
+                  tabsRef.current[g.id] = el;
                 }}
-                href={`#mm-${c.slug}`}
-                className={`mobile-menu-tab${active === c.slug ? ' active' : ''}`}
-                onClick={(e) => onTab(e, c.slug)}
+                href={`#mm-${g.id}`}
+                className={`mobile-menu-tab${active === g.id ? ' active' : ''}`}
+                onClick={(e) => onTab(e, g.id)}
               >
                 <span className="mobile-menu-tab-img">
-                  {c.image ? <img src={c.image} alt={c.name} /> : null}
+                  {g.image ? <img src={g.image} alt="" width={60} height={60} /> : null}
                 </span>{' '}
-                <span className="mobile-menu-tab-title">{c.name}</span>
+                <span className="mobile-menu-tab-title">{g.title}</span>
               </a>
             ))}
           </div>
           <div className="mobile-menu-tabs-contents" ref={containerRef}>
-            {categories.map((c) => (
-              <div key={c.id} className="mobile-menu-tabs-content" id={`mm-${c.slug}`}>
+            {groups.map((g) => (
+              <div key={g.id} className="mobile-menu-tabs-content" id={`mm-${g.id}`}>
                 <div className="mobile-menu-tabs-content-heading">
-                  <p className="title">{c.name}</p>
+                  <p className="title">{g.title}</p>
                   <span className="line"></span>
                 </div>
                 <div className="mobile-menu-tabs-content-items">
-                  {chunks(c.children).map((group, gi) => (
-                    <div key={gi} className="mobile-menu-tabs-content-item">
-                      <p className="mobile-menu-tabs-content-item-title">
-                        {gi === 0 ? `Shop ${c.name}` : `More in ${c.name}`}
-                      </p>
+                  {g.links.length ? (
+                    <div className="mobile-menu-tabs-content-item">
                       <div className="mobile-menu-tabs-content-item-grids">
-                        {gi === 0 ? (
+                        {g.links.map((l) => (
                           <Link
-                            href={collectionUrl(c.slug)}
+                            key={l.href}
+                            href={l.href}
                             className="mobile-menu-tabs-content-item-grid"
                           >
                             <span className="mobile-menu-tabs-content-item-grid-img">
-                              {c.image ? <img src={c.image} alt={c.name} /> : null}
+                              {l.image ? (
+                                <img src={l.image} alt="" width={240} height={240} loading="lazy" />
+                              ) : null}
                             </span>{' '}
                             <span className="mobile-menu-tabs-content-item-grid-title">
-                              view all {c.name}
-                            </span>
-                          </Link>
-                        ) : null}
-                        {group.map((child) => (
-                          <Link
-                            key={child.id}
-                            href={collectionUrl(child.slug)}
-                            className="mobile-menu-tabs-content-item-grid"
-                          >
-                            <span className="mobile-menu-tabs-content-item-grid-img">
-                              {child.image ? <img src={child.image} alt={child.name} /> : null}
-                            </span>{' '}
-                            <span className="mobile-menu-tabs-content-item-grid-title">
-                              {child.name}
+                              {l.label}
                             </span>
                           </Link>
                         ))}
                       </div>
                     </div>
-                  ))}
+                  ) : null}
                 </div>
               </div>
             ))}

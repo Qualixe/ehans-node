@@ -14,6 +14,7 @@ import {
 } from 'class-validator';
 
 export const PRODUCT_SORTS: ProductSort[] = [
+  'manual',
   'featured',
   'newest',
   'price-asc',
@@ -33,7 +34,11 @@ export class ListProductsQueryDto {
   @MaxLength(100)
   q?: string;
 
-  @ApiPropertyOptional({ enum: PRODUCT_SORTS, default: 'featured' })
+  @ApiPropertyOptional({
+    enum: PRODUCT_SORTS,
+    default: 'featured',
+    description: "`manual` = the collection's own order (with `category`)",
+  })
   @IsOptional()
   @IsIn(PRODUCT_SORTS)
   sort?: ProductSort;

@@ -2,14 +2,12 @@ import type { HomeCatalog } from '@ehans/shared';
 import type { Metadata } from 'next';
 import { connection } from 'next/server';
 import { Suspense } from 'react';
-import { CategoryRowSkeleton, HomeSlidersSkeleton } from '@/components/store/loading/skeletons';
-import { CardSliderSection } from '@/components/store/card-slider-section';
+import { CategoryRowSkeleton, TrendingGridSkeleton } from '@/components/store/loading/skeletons';
 import { CategorySlider } from '@/components/store/category-slider';
-import { CommunityReviews } from '@/components/store/home/community-reviews';
 import { GridBannerSection } from '@/components/store/home/grid-banner-section';
 import { HeroSection } from '@/components/store/home/hero-section';
+import { TrendingGrid } from '@/components/store/home/trending-grid';
 import { getHomeCatalog } from '@/lib/catalog';
-import { collectionUrl } from '@/lib/format';
 
 export const metadata: Metadata = { title: 'Home' };
 
@@ -27,33 +25,17 @@ async function HomeCategories() {
   return home ? <CategorySlider categories={home.categories} /> : null;
 }
 
-async function HomeSliders() {
-  const home = await loadHome();
-  if (!home) return null;
-  return (
-    <>
-      {home.sliders.map((s) => (
-        <CardSliderSection
-          key={s.category.id}
-          title={s.title}
-          href={collectionUrl(s.category.slug)}
-          products={s.products}
-        />
-      ))}
-    </>
-  );
-}
-
 async function HomeBanners() {
   const home = await loadHome();
   return <GridBannerSection categorySlugs={home?.categories.map((c) => c.slug) ?? []} />;
 }
 
-async function HomeReviews() {
+async function HomeTrending() {
   const home = await loadHome();
-  return <CommunityReviews products={home?.popular.slice(0, 4) ?? []} />;
+  return home?.trending ? <TrendingGrid grid={home.trending} /> : null;
 }
 
+/** Same sections, in the same order, as the live ehansmart.com home page. */
 export default function HomePage() {
   return (
     <>
@@ -64,11 +46,8 @@ export default function HomePage() {
       <Suspense fallback={<GridBannerSection />}>
         <HomeBanners />
       </Suspense>
-      <Suspense fallback={<HomeSlidersSkeleton />}>
-        <HomeSliders />
-      </Suspense>
-      <Suspense fallback={<CommunityReviews products={[]} />}>
-        <HomeReviews />
+      <Suspense fallback={<TrendingGridSkeleton />}>
+        <HomeTrending />
       </Suspense>
     </>
   );

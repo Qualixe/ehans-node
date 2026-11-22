@@ -8,6 +8,20 @@ import { useStoreUi } from '../providers/store-ui';
 import { toCartItem } from '../product-card';
 import { useProduct } from './product-context';
 
+/** Inline styles the live cash-on-delivery app puts on its "ORDER NOW" button. */
+const COD_BUTTON_STYLE: React.CSSProperties = {
+  backgroundColor: 'rgb(255, 84, 84)',
+  color: 'rgb(255, 255, 255)',
+  fontSize: 16,
+  fontWeight: 700,
+  fontStyle: 'normal',
+  padding: '14px 28px',
+  border: 'none',
+  borderRadius: 4,
+  boxShadow: 'rgba(0, 0, 0, 0.125) 0px 1px 3px',
+  gap: 0,
+};
+
 const CaretIcon = () => (
   <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6">
     <path
@@ -275,14 +289,38 @@ export function ProductInfo() {
         >
           {btn.children}
         </button>{' '}
-        <button
-          className="btn product-buy-now-btn buy-now-popup-open"
-          type="button"
-          disabled={!product.inStock}
-          onClick={() => setBuyNowOpen(true)}
-        >
-          buy it now
-        </button>
+        {/* live ehansmart.com: the cash-on-delivery app's "ORDER NOW" button (its inline styles
+            are the app's settings); here it opens the buy-now popup */}
+        <div className="cod-btn-wrapper cod-btn-wrapper--product">
+          <button
+            type="button"
+            className="cod-buy-btn cod-animate-shake"
+            style={COD_BUTTON_STYLE}
+            disabled={!product.inStock}
+            onClick={() => setBuyNowOpen(true)}
+          >
+            <span className="cod-buy-btn__content">
+              <span style={{ width: 20, height: 20, display: 'inline-flex' }}>
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  <path d="M3.103 6.034h17.794"></path>
+                  <path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path>
+                </svg>
+              </span>
+              <span>ORDER NOW</span>
+            </span>
+          </button>
+        </div>
         <div className="product-contact-btn-wrap">
           <a href={`tel:${STORE.phone}`} className="btn product-call-btn">
             <svg

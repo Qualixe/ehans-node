@@ -46,7 +46,8 @@ function cardRecord(overrides: Partial<ProductCardRecord> = {}): ProductCardReco
 
 describe('catalog mapper', () => {
   it('computes rounded discount percentages only for real discounts', () => {
-    expect(discountPercent(290, 490)).toBe(41);
+    expect(discountPercent(290, 490)).toBe(40);
+    expect(discountPercent(120, 360)).toBe(66);
     expect(discountPercent(500, null)).toBeNull();
     expect(discountPercent(500, 500)).toBeNull();
     expect(discountPercent(500, 400)).toBeNull();
@@ -56,7 +57,7 @@ describe('catalog mapper', () => {
     const card = toProductCard(cardRecord());
     expect(card).toMatchObject({
       price: 290,
-      discountPercent: 41,
+      discountPercent: 40,
       image: { url: '/1.jpg', alt: 'Beewax' },
       hoverImage: { url: '/2.jpg', alt: 'second' },
       ratingAverage: 4.9,

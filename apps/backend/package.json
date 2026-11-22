@@ -21,7 +21,8 @@
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:migrate:status": "prisma migrate status",
     "prisma:studio": "prisma studio",
-    "db:seed": "prisma generate && nest build && node --enable-source-maps dist/database/seed/run-seed.js"
+    "db:seed": "prisma generate && nest build && node --enable-source-maps dist/database/seed/run-seed.js",
+    "admin:create": "nest build && node dist/database/create-admin.js"
   },
   "dependencies": {
     "@ehans/shared": "workspace:*",

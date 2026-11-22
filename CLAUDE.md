@@ -17,8 +17,10 @@ eCommerce **modular monolith** in a pnpm workspace:
 
 ## Current scope
 
-- **Dev data:** `pnpm db:seed` loads the live ehansmart.com catalog (25 collections, 36 products); home media
-  (hero, banners, logo, category/product images) are local copies in `public/assets/live` (`src/lib/home-media.ts`).
+- **Dev data:** `pnpm db:seed` loads the live ehansmart.com catalog (33 collections with group parents, 46 products,
+  collection memberships in live order); home media (hero, banners, logo, collection/product images) are local
+  copies in `public/assets/live` (`src/lib/home-media.ts`). The home page mirrors the live site: hero, category
+  row, grid banners, "Trending Items" grid (collection `trendy-items`, manual order, Show more).
 - **Built:** catalog backend (categories, products, images, options/variants, bundles, cross-sells;
   public `GET /api/v1/catalog/*`), and the full storefront design (home, collections, product,
   cart, about, contact, FAQ, policies, blog, 404) with a browser cart (localStorage).
@@ -102,8 +104,9 @@ Run the full verification line before saying a change is done.
 
 ### Storefront (`src/app/(store)`, `src/components/store`) — exact template design
 
-- Markup must match `design/ehans-mart/*.html` **class for class**; styling comes only from
-  `src/styles/store/*.css` (verbatim copies of the template CSS, loaded in a fixed order by
+- Markup must match the live ehansmart.com theme (same owner), else `design/ehans-mart/*.html`, **class for
+  class**; styling comes only from `src/styles/store/*.css` (verbatim copies of the live theme's CSS where it ships
+  the file, otherwise the template's; `live-theme.css` holds the extra live rules; loaded in a fixed order by
   `index.css`). Don't add Tailwind or new CSS to store components; don't edit/format the copied CSS.
   If a design change is needed, change it in the template CSS and re-copy (only `../fonts/` URLs are rewritten).
 - Template behaviours (`design/ehans-mart/assets/js/script.js`) are re-implemented in React; keep the
@@ -113,7 +116,9 @@ Run the full verification line before saying a change is done.
 - Data comes from the catalog API (`src/lib/catalog.ts`, `'use cache'` functions). Anything reading
   runtime data, `params`/`searchParams` or `usePathname()` must sit inside `<Suspense>` (Cache Components).
 - The browser cart is `components/store/providers/cart-store.ts` (localStorage key `ehans-mart-cart`).
-- Store contact details/shipping options: `src/lib/store-config.ts` (moves to admin Settings later).
+- Store contact details/shipping options: `src/lib/store-config.ts`; menus, search words and category groups:
+  `src/lib/store-nav.ts` (both move to admin Settings later).
+- Listings filter by collection **membership** (`product_categories`); `sort=manual` = the collection's own order.
 - `<img>` is used on purpose in store components (template markup); the lint rule is disabled there.
 
 ### Admin (`/admin`, planned) — Tailwind 4 + shadcn/ui

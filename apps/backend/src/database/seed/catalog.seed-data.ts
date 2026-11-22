@@ -1,5 +1,5 @@
 // Generated from the live ehansmart.com catalog (all 33 collections, 46 products), fetched
-// 2026-11-22. Images are local copies in apps/frontend/public/assets/live. Dev/demo data only.
+// 2026-11-22 (regular prices from the live product cards). Images are local copies in apps/frontend/public/assets/live. Dev/demo data only.
 
 export interface SeedCategory {
   slug: string;
@@ -44,3913 +44,3570 @@ export interface SeedProduct {
 
 /** Default "Bundle & Save" tiers from the template product page. */
 export const seedBundles = [
-  { quantity: 1, title: 'Single', discountPercent: 0, badge: null, freeDelivery: false, isDefault: false },
-  { quantity: 2, title: 'Buy 2', discountPercent: 10, badge: '⚡Most Popular', freeDelivery: false, isDefault: false },
-  { quantity: 3, title: 'Buy 3', discountPercent: 15, badge: '🔥Exclusive Deal', freeDelivery: true, isDefault: true },
+  {
+    quantity: 1,
+    title: 'Single',
+    discountPercent: 0,
+    badge: null,
+    freeDelivery: false,
+    isDefault: false,
+  },
+  {
+    quantity: 2,
+    title: 'Buy 2',
+    discountPercent: 10,
+    badge: '⚡Most Popular',
+    freeDelivery: false,
+    isDefault: false,
+  },
+  {
+    quantity: 3,
+    title: 'Buy 3',
+    discountPercent: 15,
+    badge: '🔥Exclusive Deal',
+    freeDelivery: true,
+    isDefault: true,
+  },
 ] as const;
 
 /** Home page category row order first, then the remaining collections. */
 export const seedCategories: SeedCategory[] = [
   {
-    "slug": "personal-care",
-    "name": "Personal Care",
-    "description": null,
-    "image": "/assets/live/collections/personal-care.webp",
-    "parent": "beauty-personal-care",
-    "position": 0,
-    "homePosition": 0,
-    "showInMenu": true
+    slug: 'personal-care',
+    name: 'Personal Care',
+    description: null,
+    image: '/assets/live/collections/personal-care.webp',
+    parent: 'beauty-personal-care',
+    position: 0,
+    homePosition: 0,
+    showInMenu: true,
   },
   {
-    "slug": "mother-care",
-    "name": "Mother Care",
-    "description": null,
-    "image": "/assets/live/collections/mother-care.webp",
-    "parent": "baby-mother",
-    "position": 1,
-    "homePosition": 1,
-    "showInMenu": true
+    slug: 'mother-care',
+    name: 'Mother Care',
+    description: null,
+    image: '/assets/live/collections/mother-care.webp',
+    parent: 'baby-mother',
+    position: 1,
+    homePosition: 1,
+    showInMenu: true,
   },
   {
-    "slug": "man-s-essentials",
-    "name": "Man’s Essentials",
-    "description": null,
-    "image": "/assets/live/collections/man-s-essentials.webp",
-    "parent": "fashion-accessories",
-    "position": 2,
-    "homePosition": 2,
-    "showInMenu": true
+    slug: 'man-s-essentials',
+    name: 'Man’s Essentials',
+    description: null,
+    image: '/assets/live/collections/man-s-essentials.webp',
+    parent: 'fashion-accessories',
+    position: 2,
+    homePosition: 2,
+    showInMenu: true,
   },
   {
-    "slug": "lifestyle-outdoor",
-    "name": "Lifestyle & Outdoor",
-    "description": null,
-    "image": "/assets/live/collections/lifestyle-outdoor.webp",
-    "parent": null,
-    "position": 3,
-    "homePosition": 3,
-    "showInMenu": true
+    slug: 'lifestyle-outdoor',
+    name: 'Lifestyle & Outdoor',
+    description: null,
+    image: '/assets/live/collections/lifestyle-outdoor.webp',
+    parent: null,
+    position: 3,
+    homePosition: 3,
+    showInMenu: true,
   },
   {
-    "slug": "lifestyle",
-    "name": "Lifestyle",
-    "description": null,
-    "image": "/assets/live/collections/lifestyle.webp",
-    "parent": "lifestyle-outdoor",
-    "position": 4,
-    "homePosition": 4,
-    "showInMenu": true
+    slug: 'lifestyle',
+    name: 'Lifestyle',
+    description: null,
+    image: '/assets/live/collections/lifestyle.webp',
+    parent: 'lifestyle-outdoor',
+    position: 4,
+    homePosition: 4,
+    showInMenu: true,
   },
   {
-    "slug": "kitchen-tools",
-    "name": "Kitchen Tools",
-    "description": null,
-    "image": "/assets/live/collections/kitchen-tools.webp",
-    "parent": "kitchen-dining",
-    "position": 5,
-    "homePosition": 5,
-    "showInMenu": true
+    slug: 'kitchen-tools',
+    name: 'Kitchen Tools',
+    description: null,
+    image: '/assets/live/collections/kitchen-tools.webp',
+    parent: 'kitchen-dining',
+    position: 5,
+    homePosition: 5,
+    showInMenu: true,
   },
   {
-    "slug": "kitchen-safety",
-    "name": "Kitchen Safety",
-    "description": null,
-    "image": "/assets/live/collections/kitchen-safety.webp",
-    "parent": "kitchen-dining",
-    "position": 6,
-    "homePosition": 6,
-    "showInMenu": true
+    slug: 'kitchen-safety',
+    name: 'Kitchen Safety',
+    description: null,
+    image: '/assets/live/collections/kitchen-safety.webp',
+    parent: 'kitchen-dining',
+    position: 6,
+    homePosition: 6,
+    showInMenu: true,
   },
   {
-    "slug": "school-essentials",
-    "name": "School Essentials",
-    "description": null,
-    "image": "/assets/live/collections/school-essentials.webp",
-    "parent": "baby-mother",
-    "position": 7,
-    "homePosition": 7,
-    "showInMenu": true
+    slug: 'school-essentials',
+    name: 'School Essentials',
+    description: null,
+    image: '/assets/live/collections/school-essentials.webp',
+    parent: 'baby-mother',
+    position: 7,
+    homePosition: 7,
+    showInMenu: true,
   },
   {
-    "slug": "tools-hardware",
-    "name": "Tools & Hardware",
-    "description": null,
-    "image": "/assets/live/collections/tools-hardware.webp",
-    "parent": null,
-    "position": 8,
-    "homePosition": 8,
-    "showInMenu": true
+    slug: 'tools-hardware',
+    name: 'Tools & Hardware',
+    description: null,
+    image: '/assets/live/collections/tools-hardware.webp',
+    parent: null,
+    position: 8,
+    homePosition: 8,
+    showInMenu: true,
   },
   {
-    "slug": "kitchen-cleaning",
-    "name": "Kitchen Cleaning",
-    "description": null,
-    "image": "/assets/live/collections/kitchen-cleaning.webp",
-    "parent": "kitchen-dining",
-    "position": 9,
-    "homePosition": 9,
-    "showInMenu": true
+    slug: 'kitchen-cleaning',
+    name: 'Kitchen Cleaning',
+    description: null,
+    image: '/assets/live/collections/kitchen-cleaning.webp',
+    parent: 'kitchen-dining',
+    position: 9,
+    homePosition: 9,
+    showInMenu: true,
   },
   {
-    "slug": "kids-fashion",
-    "name": "Kids' Fashion",
-    "description": null,
-    "image": "/assets/live/collections/kids-fashion.webp",
-    "parent": "baby-mother",
-    "position": 10,
-    "homePosition": 10,
-    "showInMenu": true
+    slug: 'kids-fashion',
+    name: "Kids' Fashion",
+    description: null,
+    image: '/assets/live/collections/kids-fashion.webp',
+    parent: 'baby-mother',
+    position: 10,
+    homePosition: 10,
+    showInMenu: true,
   },
   {
-    "slug": "jewelry",
-    "name": "Jewelry",
-    "description": null,
-    "image": "/assets/live/collections/jewelry.webp",
-    "parent": "fashion-accessories",
-    "position": 11,
-    "homePosition": 11,
-    "showInMenu": true
+    slug: 'jewelry',
+    name: 'Jewelry',
+    description: null,
+    image: '/assets/live/collections/jewelry.webp',
+    parent: 'fashion-accessories',
+    position: 11,
+    homePosition: 11,
+    showInMenu: true,
   },
   {
-    "slug": "home-organization",
-    "name": "Home Organization",
-    "description": null,
-    "image": "/assets/live/collections/home-organization.webp",
-    "parent": "home-living",
-    "position": 12,
-    "homePosition": 12,
-    "showInMenu": true
+    slug: 'home-organization',
+    name: 'Home Organization',
+    description: null,
+    image: '/assets/live/collections/home-organization.webp',
+    parent: 'home-living',
+    position: 12,
+    homePosition: 12,
+    showInMenu: true,
   },
   {
-    "slug": "pet-accessories",
-    "name": "Pet Accessories",
-    "description": null,
-    "image": "/assets/live/collections/pet-accessories.webp",
-    "parent": "lifestyle-outdoor",
-    "position": 13,
-    "homePosition": 13,
-    "showInMenu": true
+    slug: 'pet-accessories',
+    name: 'Pet Accessories',
+    description: null,
+    image: '/assets/live/collections/pet-accessories.webp',
+    parent: 'lifestyle-outdoor',
+    position: 13,
+    homePosition: 13,
+    showInMenu: true,
   },
   {
-    "slug": "home-improvement",
-    "name": "Home Improvement",
-    "description": null,
-    "image": "/assets/live/collections/home-improvement.webp",
-    "parent": "home-living",
-    "position": 14,
-    "homePosition": 14,
-    "showInMenu": true
+    slug: 'home-improvement',
+    name: 'Home Improvement',
+    description: null,
+    image: '/assets/live/collections/home-improvement.webp',
+    parent: 'home-living',
+    position: 14,
+    homePosition: 14,
+    showInMenu: true,
   },
   {
-    "slug": "health-wellness",
-    "name": "Health & Wellness",
-    "description": null,
-    "image": "/assets/live/collections/health-wellness.webp",
-    "parent": "beauty-personal-care",
-    "position": 15,
-    "homePosition": 15,
-    "showInMenu": true
+    slug: 'health-wellness',
+    name: 'Health & Wellness',
+    description: null,
+    image: '/assets/live/collections/health-wellness.webp',
+    parent: 'beauty-personal-care',
+    position: 15,
+    homePosition: 15,
+    showInMenu: true,
   },
   {
-    "slug": "hair-accessories",
-    "name": "Hair Accessories",
-    "description": null,
-    "image": "/assets/live/collections/hair-accessories.webp",
-    "parent": "beauty-personal-care",
-    "position": 16,
-    "homePosition": 16,
-    "showInMenu": true
+    slug: 'hair-accessories',
+    name: 'Hair Accessories',
+    description: null,
+    image: '/assets/live/collections/hair-accessories.webp',
+    parent: 'beauty-personal-care',
+    position: 16,
+    homePosition: 16,
+    showInMenu: true,
   },
   {
-    "slug": "garden-outdoor",
-    "name": "Garden & Outdoor",
-    "description": null,
-    "image": "/assets/live/collections/garden-outdoor.webp",
-    "parent": "lifestyle-outdoor",
-    "position": 17,
-    "homePosition": 17,
-    "showInMenu": true
+    slug: 'garden-outdoor',
+    name: 'Garden & Outdoor',
+    description: null,
+    image: '/assets/live/collections/garden-outdoor.webp',
+    parent: 'lifestyle-outdoor',
+    position: 17,
+    homePosition: 17,
+    showInMenu: true,
   },
   {
-    "slug": "fashion-accessories",
-    "name": "Fashion & Accessories",
-    "description": null,
-    "image": "/assets/live/collections/fashion-accessories.webp",
-    "parent": null,
-    "position": 18,
-    "homePosition": 18,
-    "showInMenu": true
+    slug: 'fashion-accessories',
+    name: 'Fashion & Accessories',
+    description: null,
+    image: '/assets/live/collections/fashion-accessories.webp',
+    parent: null,
+    position: 18,
+    homePosition: 18,
+    showInMenu: true,
   },
   {
-    "slug": "fashion",
-    "name": "Fashion",
-    "description": null,
-    "image": "/assets/live/collections/fashion.webp",
-    "parent": "fashion-accessories",
-    "position": 19,
-    "homePosition": 19,
-    "showInMenu": true
+    slug: 'fashion',
+    name: 'Fashion',
+    description: null,
+    image: '/assets/live/collections/fashion.webp',
+    parent: 'fashion-accessories',
+    position: 19,
+    homePosition: 19,
+    showInMenu: true,
   },
   {
-    "slug": "cleaning-supplies",
-    "name": "Cleaning Supplies",
-    "description": null,
-    "image": "/assets/live/collections/cleaning-supplies.webp",
-    "parent": "home-living",
-    "position": 20,
-    "homePosition": 20,
-    "showInMenu": true
+    slug: 'cleaning-supplies',
+    name: 'Cleaning Supplies',
+    description: null,
+    image: '/assets/live/collections/cleaning-supplies.webp',
+    parent: 'home-living',
+    position: 20,
+    homePosition: 20,
+    showInMenu: true,
   },
   {
-    "slug": "beauty-tools",
-    "name": "Beauty Tools",
-    "description": null,
-    "image": "/assets/live/collections/beauty-tools.webp",
-    "parent": "beauty-personal-care",
-    "position": 21,
-    "homePosition": 21,
-    "showInMenu": true
+    slug: 'beauty-tools',
+    name: 'Beauty Tools',
+    description: null,
+    image: '/assets/live/collections/beauty-tools.webp',
+    parent: 'beauty-personal-care',
+    position: 21,
+    homePosition: 21,
+    showInMenu: true,
   },
   {
-    "slug": "bathroom-essentials",
-    "name": "Bathroom Essentials",
-    "description": null,
-    "image": "/assets/live/collections/bathroom-essentials.webp",
-    "parent": "home-living",
-    "position": 22,
-    "homePosition": 22,
-    "showInMenu": true
+    slug: 'bathroom-essentials',
+    name: 'Bathroom Essentials',
+    description: null,
+    image: '/assets/live/collections/bathroom-essentials.webp',
+    parent: 'home-living',
+    position: 22,
+    homePosition: 22,
+    showInMenu: true,
   },
   {
-    "slug": "baby-safety",
-    "name": "Baby Safety",
-    "description": null,
-    "image": "/assets/live/collections/baby-safety.webp",
-    "parent": "baby-mother",
-    "position": 23,
-    "homePosition": 23,
-    "showInMenu": true
+    slug: 'baby-safety',
+    name: 'Baby Safety',
+    description: null,
+    image: '/assets/live/collections/baby-safety.webp',
+    parent: 'baby-mother',
+    position: 23,
+    homePosition: 23,
+    showInMenu: true,
   },
   {
-    "slug": "baby-mother",
-    "name": "Baby & Mother",
-    "description": null,
-    "image": "/assets/live/collections/baby-mother.webp",
-    "parent": null,
-    "position": 24,
-    "homePosition": 24,
-    "showInMenu": true
+    slug: 'baby-mother',
+    name: 'Baby & Mother',
+    description: null,
+    image: '/assets/live/collections/baby-mother.webp',
+    parent: null,
+    position: 24,
+    homePosition: 24,
+    showInMenu: true,
   },
   {
-    "slug": "baby-care",
-    "name": "Baby & Kids",
-    "description": null,
-    "image": "/assets/live/collections/baby-care.webp",
-    "parent": "baby-mother",
-    "position": 25,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'baby-care',
+    name: 'Baby & Kids',
+    description: null,
+    image: '/assets/live/collections/baby-care.webp',
+    parent: 'baby-mother',
+    position: 25,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "beauty-personal-care",
-    "name": "Beauty & Personal Care",
-    "description": null,
-    "image": "/assets/live/collections/beauty-personal-care.webp",
-    "parent": null,
-    "position": 26,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'beauty-personal-care',
+    name: 'Beauty & Personal Care',
+    description: null,
+    image: '/assets/live/collections/beauty-personal-care.webp',
+    parent: null,
+    position: 26,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "home-living",
-    "name": "Home & Living",
-    "description": null,
-    "image": "/assets/live/collections/home-living.webp",
-    "parent": null,
-    "position": 27,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'home-living',
+    name: 'Home & Living',
+    description: null,
+    image: '/assets/live/collections/home-living.webp',
+    parent: null,
+    position: 27,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "home-decor",
-    "name": "Home Decor",
-    "description": null,
-    "image": "/assets/live/collections/home-decor.webp",
-    "parent": "home-living",
-    "position": 28,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'home-decor',
+    name: 'Home Decor',
+    description: null,
+    image: '/assets/live/collections/home-decor.webp',
+    parent: 'home-living',
+    position: 28,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "kitchen-dining",
-    "name": "Kitchen & Dining",
-    "description": null,
-    "image": "/assets/live/collections/kitchen-dining.webp",
-    "parent": null,
-    "position": 29,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'kitchen-dining',
+    name: 'Kitchen & Dining',
+    description: null,
+    image: '/assets/live/collections/kitchen-dining.webp',
+    parent: null,
+    position: 29,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "travel-accessories",
-    "name": "Travel Accessories",
-    "description": null,
-    "image": "/assets/live/collections/travel-accessories.webp",
-    "parent": "fashion-accessories",
-    "position": 30,
-    "homePosition": null,
-    "showInMenu": true
+    slug: 'travel-accessories',
+    name: 'Travel Accessories',
+    description: null,
+    image: '/assets/live/collections/travel-accessories.webp',
+    parent: 'fashion-accessories',
+    position: 30,
+    homePosition: null,
+    showInMenu: true,
   },
   {
-    "slug": "trendy-items",
-    "name": "Trendy Items",
-    "description": null,
-    "image": null,
-    "parent": null,
-    "position": 31,
-    "homePosition": null,
-    "showInMenu": false
+    slug: 'trendy-items',
+    name: 'Trendy Items',
+    description: null,
+    image: null,
+    parent: null,
+    position: 31,
+    homePosition: null,
+    showInMenu: false,
   },
   {
-    "slug": "women-s-essentials",
-    "name": "Women’s Essentials",
-    "description": null,
-    "image": "/assets/live/collections/women-s-essentials.webp",
-    "parent": "fashion-accessories",
-    "position": 32,
-    "homePosition": null,
-    "showInMenu": true
-  }
+    slug: 'women-s-essentials',
+    name: 'Women’s Essentials',
+    description: null,
+    image: '/assets/live/collections/women-s-essentials.webp',
+    parent: 'fashion-accessories',
+    position: 32,
+    homePosition: null,
+    showInMenu: true,
+  },
 ];
 
 export const seedProducts: SeedProduct[] = [
   {
-    "ref": "10422107308287",
-    "name": "ইঁদুর ধরার মাউস ট্র্যাপ",
-    "slug": "ইঁদুর-ধরার-মাউস-ট্র্যাপ",
-    "sku": "EHM-10422107308287",
-    "category": "trendy-items",
-    "collections": [],
-    "brand": "Ehans Mart",
-    "tags": [],
-    "description": "<p dir=\"ltr\"><span>🐭 ইঁদুরের যন্ত্রণায় অতিষ্ঠ?</span></p>\n<p dir=\"ltr\"><span>খাবার নষ্ট, কাপড় কাটা আর রান্নাঘরে উৎপাত!</span><b></b></p>\n<p dir=\"ltr\"><span>সহজে ইঁদুর ধরতে ব্যবহার করুন এই Powerful Mouse Trap! 🪤</span><b></b></p>\n<p dir=\"ltr\"><span>✅ ব্যবহার করা সহজ</span></p>\n<p dir=\"ltr\"><span>✅ শক্ত ও টেকসই প্লাস্টিক</span></p>\n<p dir=\"ltr\"><span>✅ বারবার ব্যবহার করা যায়</span><b></b></p>\n<p dir=\"ltr\"><span>👉 ইঁদুরের উৎপাত কমাতে এখনই অর্ডার করুন!</span></p>",
-    "price": 190,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/ইঁদুর-ধরার-মাউস-ট্র্যাপ-1.webp"
-    ],
-    "options": [],
-    "variants": []
+    ref: '10422107308287',
+    name: 'ইঁদুর ধরার মাউস ট্র্যাপ',
+    slug: 'ইঁদুর-ধরার-মাউস-ট্র্যাপ',
+    sku: 'EHM-10422107308287',
+    category: 'trendy-items',
+    collections: [],
+    brand: 'Ehans Mart',
+    tags: [],
+    description:
+      '<p dir="ltr"><span>🐭 ইঁদুরের যন্ত্রণায় অতিষ্ঠ?</span></p>\n<p dir="ltr"><span>খাবার নষ্ট, কাপড় কাটা আর রান্নাঘরে উৎপাত!</span><b></b></p>\n<p dir="ltr"><span>সহজে ইঁদুর ধরতে ব্যবহার করুন এই Powerful Mouse Trap! 🪤</span><b></b></p>\n<p dir="ltr"><span>✅ ব্যবহার করা সহজ</span></p>\n<p dir="ltr"><span>✅ শক্ত ও টেকসই প্লাস্টিক</span></p>\n<p dir="ltr"><span>✅ বারবার ব্যবহার করা যায়</span><b></b></p>\n<p dir="ltr"><span>👉 ইঁদুরের উৎপাত কমাতে এখনই অর্ডার করুন!</span></p>',
+    price: 190,
+    compareAtPrice: null,
+    stock: 50,
+    images: ['/assets/live/products/ইঁদুর-ধরার-মাউস-ট্র্যাপ-1.webp'],
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10405975064831",
-    "name": "সাদা চুল ঢাকার হেয়ার কালার চিরুনি",
-    "slug": "grey-hair-cover-up-comb",
-    "sku": "EHM-10405975064831",
-    "category": "man-s-essentials",
-    "collections": [
+    ref: '10405975064831',
+    name: 'সাদা চুল ঢাকার হেয়ার কালার চিরুনি',
+    slug: 'grey-hair-cover-up-comb',
+    sku: 'EHM-10405975064831',
+    category: 'man-s-essentials',
+    collections: [
       {
-        "collection": "man-s-essentials",
-        "position": 1
+        collection: 'man-s-essentials',
+        position: 1,
       },
       {
-        "collection": "personal-care",
-        "position": 6
+        collection: 'personal-care',
+        position: 6,
       },
       {
-        "collection": "trendy-items",
-        "position": 30
-      }
+        collection: 'trendy-items',
+        position: 30,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Grey Hair Concealer Bangladesh",
-      "Grey Hair Cover Comb",
-      "Hair Color Comb",
-      "Hair Root Touch Up",
-      "White Hair Cover Up",
-      "সাদা চুল কালো করার চিরুনি",
-      "সাদা চুল ঢাকার চিরুনি",
-      "সাদা চুল ঢাকার সহজ উপায়",
-      "হেয়ার কালার চিরুনি",
-      "হেয়ার রুট টাচ আপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Grey Hair Concealer Bangladesh',
+      'Grey Hair Cover Comb',
+      'Hair Color Comb',
+      'Hair Root Touch Up',
+      'White Hair Cover Up',
+      'সাদা চুল কালো করার চিরুনি',
+      'সাদা চুল ঢাকার চিরুনি',
+      'সাদা চুল ঢাকার সহজ উপায়',
+      'হেয়ার কালার চিরুনি',
+      'হেয়ার রুট টাচ আপ',
     ],
-    "description": "<p><span>বাইরে যাওয়ার আগে মাথার সাদা চুল চোখে পড়ছে? 🖤</span></p>\n<p><strong><span>সাদা চুল ঢাকার হেয়ার কালার চিরুনি</span></strong><span> ব্যবহার করে অল্প সময়েই সাদা চুল সাময়িকভাবে কভার করুন। চিরুনির মতো সহজে ব্যবহার করা যায়, তাই অফিস, অনুষ্ঠান বা বাইরে যাওয়ার আগে দ্রুত চুলের লুক ঠিক করতে এটি বেশ সুবিধাজনক।</span></p>\n<p><span>✅ সাদা চুল সাময়িকভাবে ঢাকতে সাহায্য করে</span><br><span>✅ চিরুনির মতো সহজে ব্যবহার করা যায়</span><br><span>✅ চুলের গোড়ার সাদা অংশ কভার করতে উপযোগী</span><br><span>✅ অল্প জায়গায় প্রয়োজনমতো ব্যবহার করা যায়</span><br><span>✅ ছোট ও বহনযোগ্য ডিজাইন</span><br><span>✅ অফিস, অনুষ্ঠান ও বাইরে যাওয়ার আগে ব্যবহারের জন্য উপযোগী</span></p>\n<p><strong><span>সাদা চুল ঢেকে পরিপাটি লুক পেতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 450,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/grey-hair-cover-up-comb-1.jpg",
-      "/assets/live/products/grey-hair-cover-up-comb-2.jpg",
-      "/assets/live/products/grey-hair-cover-up-comb-3.jpg"
+    description:
+      '<p><span>বাইরে যাওয়ার আগে মাথার সাদা চুল চোখে পড়ছে? 🖤</span></p>\n<p><strong><span>সাদা চুল ঢাকার হেয়ার কালার চিরুনি</span></strong><span> ব্যবহার করে অল্প সময়েই সাদা চুল সাময়িকভাবে কভার করুন। চিরুনির মতো সহজে ব্যবহার করা যায়, তাই অফিস, অনুষ্ঠান বা বাইরে যাওয়ার আগে দ্রুত চুলের লুক ঠিক করতে এটি বেশ সুবিধাজনক।</span></p>\n<p><span>✅ সাদা চুল সাময়িকভাবে ঢাকতে সাহায্য করে</span><br><span>✅ চিরুনির মতো সহজে ব্যবহার করা যায়</span><br><span>✅ চুলের গোড়ার সাদা অংশ কভার করতে উপযোগী</span><br><span>✅ অল্প জায়গায় প্রয়োজনমতো ব্যবহার করা যায়</span><br><span>✅ ছোট ও বহনযোগ্য ডিজাইন</span><br><span>✅ অফিস, অনুষ্ঠান ও বাইরে যাওয়ার আগে ব্যবহারের জন্য উপযোগী</span></p>\n<p><strong><span>সাদা চুল ঢেকে পরিপাটি লুক পেতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 450,
+    compareAtPrice: null,
+    stock: 50,
+    images: [
+      '/assets/live/products/grey-hair-cover-up-comb-1.jpg',
+      '/assets/live/products/grey-hair-cover-up-comb-2.jpg',
+      '/assets/live/products/grey-hair-cover-up-comb-3.jpg',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10405955469567",
-    "name": "মায়েদের জন্য সফট সিলিকন নিপল শিল্ড",
-    "slug": "silicone-nipple-shield",
-    "sku": "EHM-10405955469567",
-    "category": "health-wellness",
-    "collections": [
+    ref: '10405955469567',
+    name: 'মায়েদের জন্য সফট সিলিকন নিপল শিল্ড',
+    slug: 'silicone-nipple-shield',
+    sku: 'EHM-10405955469567',
+    category: 'health-wellness',
+    collections: [
       {
-        "collection": "baby-mother",
-        "position": 0
+        collection: 'baby-mother',
+        position: 0,
       },
       {
-        "collection": "health-wellness",
-        "position": 0
+        collection: 'health-wellness',
+        position: 0,
       },
       {
-        "collection": "mother-care",
-        "position": 0
+        collection: 'mother-care',
+        position: 0,
       },
       {
-        "collection": "personal-care",
-        "position": 4
+        collection: 'personal-care',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 20
+        collection: 'trendy-items',
+        position: 20,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 6
-      }
+        collection: 'women-s-essentials',
+        position: 6,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Breastfeeding Nipple Shield",
-      "Nipple Shield Bangladesh",
-      "Nursing Nipple Protector",
-      "Silicone Nipple Shield",
-      "Soft Silicone Nipple Shield",
-      "বুকের দুধ খাওয়ানোর নিপল প্রটেক্টর",
-      "ব্রেস্টফিডিং নিপল শিল্ড",
-      "মায়েদের নিপল শিল্ড",
-      "সফট সিলিকন নিপল কভার",
-      "সিলিকন নিপল শিল্ড"
+    brand: 'Ehans Mart',
+    tags: [
+      'Breastfeeding Nipple Shield',
+      'Nipple Shield Bangladesh',
+      'Nursing Nipple Protector',
+      'Silicone Nipple Shield',
+      'Soft Silicone Nipple Shield',
+      'বুকের দুধ খাওয়ানোর নিপল প্রটেক্টর',
+      'ব্রেস্টফিডিং নিপল শিল্ড',
+      'মায়েদের নিপল শিল্ড',
+      'সফট সিলিকন নিপল কভার',
+      'সিলিকন নিপল শিল্ড',
     ],
-    "description": "<p><span>বাচ্চাকে বুকের দুধ খাওয়ানোর সময় নিপলে ব্যথা বা অস্বস্তি হচ্ছে? 🤱</span></p>\n<p><strong><span>সফট সিলিকন নিপল শিল্ড</span></strong><span> বুকের দুধ খাওয়ানোর সময় নিপল ও শিশুর মুখের মাঝে একটি নরম আবরণ তৈরি করে। এটি ঘর্ষণজনিত অস্বস্তি কমাতে সাহায্য করতে পারে।</span></p>\n<p><span>✅ নরম ও নমনীয় সিলিকন ম্যাটেরিয়াল</span><br><span>✅ বুকের দুধ খাওয়ানোর সময় ব্যবহারযোগ্য</span><br><span>✅ নিপলে সরাসরি ঘর্ষণ কমাতে সহায়ক</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য ডিজাইন</span><br><span>✅ পরিষ্কার করে পুনরায় ব্যবহার করা যায়</span><br><span>✅ সংরক্ষণের জন্য সুবিধাজনক বক্সসহ</span></p>\n<p><strong><span>মায়ের আরাম ও শিশুকে বুকের দুধ খাওয়ানোর সুবিধার জন্য অর্ডার করুন।</span></strong></p>",
-    "price": 450,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/silicone-nipple-shield-1.webp",
-      "/assets/live/products/silicone-nipple-shield-2.webp",
-      "/assets/live/products/silicone-nipple-shield-3.webp"
+    description:
+      '<p><span>বাচ্চাকে বুকের দুধ খাওয়ানোর সময় নিপলে ব্যথা বা অস্বস্তি হচ্ছে? 🤱</span></p>\n<p><strong><span>সফট সিলিকন নিপল শিল্ড</span></strong><span> বুকের দুধ খাওয়ানোর সময় নিপল ও শিশুর মুখের মাঝে একটি নরম আবরণ তৈরি করে। এটি ঘর্ষণজনিত অস্বস্তি কমাতে সাহায্য করতে পারে।</span></p>\n<p><span>✅ নরম ও নমনীয় সিলিকন ম্যাটেরিয়াল</span><br><span>✅ বুকের দুধ খাওয়ানোর সময় ব্যবহারযোগ্য</span><br><span>✅ নিপলে সরাসরি ঘর্ষণ কমাতে সহায়ক</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য ডিজাইন</span><br><span>✅ পরিষ্কার করে পুনরায় ব্যবহার করা যায়</span><br><span>✅ সংরক্ষণের জন্য সুবিধাজনক বক্সসহ</span></p>\n<p><strong><span>মায়ের আরাম ও শিশুকে বুকের দুধ খাওয়ানোর সুবিধার জন্য অর্ডার করুন।</span></strong></p>',
+    price: 450,
+    compareAtPrice: 900,
+    stock: 50,
+    images: [
+      '/assets/live/products/silicone-nipple-shield-1.webp',
+      '/assets/live/products/silicone-nipple-shield-2.webp',
+      '/assets/live/products/silicone-nipple-shield-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ]
-      }
+        name: 'quantity',
+        values: ['1 Pcs', '2 Pcs', '4 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 450,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 450,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 850,
-        "compareAtPrice": 900,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 850,
+        compareAtPrice: 900,
+        stock: 50,
       },
       {
-        "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
-        "price": 1600,
-        "compareAtPrice": 1800,
-        "stock": 50
-      }
-    ]
+        title: '4 Pcs',
+        options: ['4 Pcs'],
+        price: 1600,
+        compareAtPrice: 1800,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10405704368383",
-    "name": "ড্রয়ার গুছানোর অ্যাডজাস্টেবল স্টোরেজ পার্টিশন",
-    "slug": "adjustable-drawer-storage-divider",
-    "sku": "EHM-10405704368383",
-    "category": "home-decor",
-    "collections": [
+    ref: '10405704368383',
+    name: 'ড্রয়ার গুছানোর অ্যাডজাস্টেবল স্টোরেজ পার্টিশন',
+    slug: 'adjustable-drawer-storage-divider',
+    sku: 'EHM-10405704368383',
+    category: 'home-decor',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 8
+        collection: 'home-living',
+        position: 8,
       },
       {
-        "collection": "home-decor",
-        "position": 3
+        collection: 'home-decor',
+        position: 3,
       },
       {
-        "collection": "home-improvement",
-        "position": 9
+        collection: 'home-improvement',
+        position: 9,
       },
       {
-        "collection": "home-organization",
-        "position": 6
+        collection: 'home-organization',
+        position: 6,
       },
       {
-        "collection": "trendy-items",
-        "position": 31
-      }
+        collection: 'trendy-items',
+        position: 31,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Adjustable Drawer Organizer",
-      "Drawer Divider Organizer",
-      "Drawer Organizer Bangladesh",
-      "Drawer Storage Divider",
-      "Plastic Drawer Partition",
-      "আলমারি গুছানোর অর্গানাইজার",
-      "ড্রয়ার অর্গানাইজার",
-      "ড্রয়ার গুছানোর পার্টিশন",
-      "ড্রয়ার ভাগ করার প্লাস্টিক পার্টিশন",
-      "ড্রয়ার স্টোরেজ পার্টিশন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Adjustable Drawer Organizer',
+      'Drawer Divider Organizer',
+      'Drawer Organizer Bangladesh',
+      'Drawer Storage Divider',
+      'Plastic Drawer Partition',
+      'আলমারি গুছানোর অর্গানাইজার',
+      'ড্রয়ার অর্গানাইজার',
+      'ড্রয়ার গুছানোর পার্টিশন',
+      'ড্রয়ার ভাগ করার প্লাস্টিক পার্টিশন',
+      'ড্রয়ার স্টোরেজ পার্টিশন',
     ],
-    "description": "<p><span>ড্রয়ার খুললেই সবকিছু এলোমেলো হয়ে থাকে? 😩</span></p>\n<p><strong><span>ড্রয়ার স্টোরেজ পার্টিশন</span></strong><span> ব্যবহার করে মোজা, অন্তর্বাস, জামাকাপড় ও ছোটখাটো জিনিস সুন্দরভাবে আলাদা করে গুছিয়ে রাখুন। প্রয়োজন অনুযায়ী পার্টিশন সাজিয়ে ড্রয়ারের ভেতরে তৈরি করুন আলাদা আলাদা জায়গা।</span></p>\n<p><span>✅ ড্রয়ারের জিনিসপত্র সুন্দরভাবে গুছিয়ে রাখা যায়</span><br><span>✅ প্রয়োজনমতো পার্টিশন সাজানোর সুবিধা</span><br><span>✅ মজবুত প্লাস্টিক ম্যাটেরিয়াল</span><br><span>✅ মোজা, অন্তর্বাস ও ছোট জিনিস রাখার জন্য উপযোগী</span><br><span>✅ সহজে সেটআপ ও প্রয়োজনমতো পরিবর্তন করা যায়</span><br><span>✅ ড্রয়ার ও আলমারির জায়গা গুছিয়ে ব্যবহার করতে সাহায্য করে</span></p>\n<p><strong><span>অগোছালো ড্রয়ারকে পরিপাটি করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/adjustable-drawer-storage-divider-1.webp",
-      "/assets/live/products/adjustable-drawer-storage-divider-2.webp",
-      "/assets/live/products/adjustable-drawer-storage-divider-3.jpg",
-      "/assets/live/products/adjustable-drawer-storage-divider-4.jpg",
-      "/assets/live/products/adjustable-drawer-storage-divider-5.jpg"
+    description:
+      '<p><span>ড্রয়ার খুললেই সবকিছু এলোমেলো হয়ে থাকে? 😩</span></p>\n<p><strong><span>ড্রয়ার স্টোরেজ পার্টিশন</span></strong><span> ব্যবহার করে মোজা, অন্তর্বাস, জামাকাপড় ও ছোটখাটো জিনিস সুন্দরভাবে আলাদা করে গুছিয়ে রাখুন। প্রয়োজন অনুযায়ী পার্টিশন সাজিয়ে ড্রয়ারের ভেতরে তৈরি করুন আলাদা আলাদা জায়গা।</span></p>\n<p><span>✅ ড্রয়ারের জিনিসপত্র সুন্দরভাবে গুছিয়ে রাখা যায়</span><br><span>✅ প্রয়োজনমতো পার্টিশন সাজানোর সুবিধা</span><br><span>✅ মজবুত প্লাস্টিক ম্যাটেরিয়াল</span><br><span>✅ মোজা, অন্তর্বাস ও ছোট জিনিস রাখার জন্য উপযোগী</span><br><span>✅ সহজে সেটআপ ও প্রয়োজনমতো পরিবর্তন করা যায়</span><br><span>✅ ড্রয়ার ও আলমারির জায়গা গুছিয়ে ব্যবহার করতে সাহায্য করে</span></p>\n<p><strong><span>অগোছালো ড্রয়ারকে পরিপাটি করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 960,
+    stock: 50,
+    images: [
+      '/assets/live/products/adjustable-drawer-storage-divider-1.webp',
+      '/assets/live/products/adjustable-drawer-storage-divider-2.webp',
+      '/assets/live/products/adjustable-drawer-storage-divider-3.jpg',
+      '/assets/live/products/adjustable-drawer-storage-divider-4.jpg',
+      '/assets/live/products/adjustable-drawer-storage-divider-5.jpg',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "6 Pcs",
-          "12 Pcs",
-          "18 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['6 Pcs', '12 Pcs', '18 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "6 Pcs",
-        "options": [
-          "6 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '6 Pcs',
+        options: ['6 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
-        "price": 850,
-        "compareAtPrice": 960,
-        "stock": 50
+        title: '12 Pcs',
+        options: ['12 Pcs'],
+        price: 850,
+        compareAtPrice: 960,
+        stock: 50,
       },
       {
-        "title": "18 Pcs",
-        "options": [
-          "18 Pcs"
-        ],
-        "price": 1200,
-        "compareAtPrice": 1440,
-        "stock": 50
-      }
-    ]
+        title: '18 Pcs',
+        options: ['18 Pcs'],
+        price: 1200,
+        compareAtPrice: 1440,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10405657903359",
-    "name": "কিচেনের তেল ও দাগ পরিষ্কারের ফোম স্প্রে",
-    "slug": "kitchen-foam-cleaner-spray",
-    "sku": "EHM-10405657903359",
-    "category": "cleaning-supplies",
-    "collections": [
+    ref: '10405657903359',
+    name: 'কিচেনের তেল ও দাগ পরিষ্কারের ফোম স্প্রে',
+    slug: 'kitchen-foam-cleaner-spray',
+    sku: 'EHM-10405657903359',
+    category: 'cleaning-supplies',
+    collections: [
       {
-        "collection": "cleaning-supplies",
-        "position": 3
+        collection: 'cleaning-supplies',
+        position: 3,
       },
       {
-        "collection": "home-improvement",
-        "position": 7
+        collection: 'home-improvement',
+        position: 7,
       },
       {
-        "collection": "kitchen-dining",
-        "position": 2
+        collection: 'kitchen-dining',
+        position: 2,
       },
       {
-        "collection": "kitchen-cleaning",
-        "position": 1
+        collection: 'kitchen-cleaning',
+        position: 1,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 4
+        collection: 'kitchen-tools',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 21
-      }
+        collection: 'trendy-items',
+        position: 21,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Grease Remover Spray",
-      "Kitchen Cleaner Bangladesh",
-      "Kitchen Cleaning Foam",
-      "Kitchen Degreaser Spray",
-      "Kitchen Foam Cleaner",
-      "কিচেন ক্লিনিং স্প্রে",
-      "কিচেন ফোম ক্লিনার",
-      "চুলার তেল পরিষ্কারের ক্লিনার",
-      "তেল ও দাগ পরিষ্কারের স্প্রে",
-      "রান্নাঘরের তেল পরিষ্কারের স্প্রে"
+    brand: 'Ehans Mart',
+    tags: [
+      'Grease Remover Spray',
+      'Kitchen Cleaner Bangladesh',
+      'Kitchen Cleaning Foam',
+      'Kitchen Degreaser Spray',
+      'Kitchen Foam Cleaner',
+      'কিচেন ক্লিনিং স্প্রে',
+      'কিচেন ফোম ক্লিনার',
+      'চুলার তেল পরিষ্কারের ক্লিনার',
+      'তেল ও দাগ পরিষ্কারের স্প্রে',
+      'রান্নাঘরের তেল পরিষ্কারের স্প্রে',
     ],
-    "description": "<p><span>রান্নাঘরের চুলা, টাইলস বা অন্যান্য জায়গায় জমে থাকা তেল ও ময়লার দাগ পরিষ্কার করতে কষ্ট হচ্ছে? 🧽✨</span></p>\n<p><strong><span>কিচেন ফোম ক্লিনিং স্প্রে</span></strong><span> ব্যবহার করে রান্নাঘরের জমে থাকা তেল, চিটচিটে ময়লা ও দাগ পরিষ্কার করুন আরও সহজে।</span></p>\n<p><span>✅ জমে থাকা তেল ও চিটচিটে ময়লা পরিষ্কারে সহায়ক</span><br><span>✅ ফোম স্প্রে হওয়ায় সহজে প্রয়োগ করা যায়</span><br><span>✅ রান্নাঘরের উপযুক্ত সারফেস পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ চুলার আশপাশ ও কিচেন টাইলস পরিষ্কারে সহায়ক</span><br><span>✅ নিয়মিত কিচেন পরিষ্কারের ঝামেলা কমায়</span><br><span>✅ ঘরের রান্নাঘর পরিষ্কার-পরিচ্ছন্ন রাখতে সাহায্য করে</span></p>\n<p><strong><span>রান্নাঘর পরিষ্কার রাখার ঝামেলা কমাতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 520,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/kitchen-foam-cleaner-spray-1.webp"
-    ],
-    "options": [
+    description:
+      '<p><span>রান্নাঘরের চুলা, টাইলস বা অন্যান্য জায়গায় জমে থাকা তেল ও ময়লার দাগ পরিষ্কার করতে কষ্ট হচ্ছে? 🧽✨</span></p>\n<p><strong><span>কিচেন ফোম ক্লিনিং স্প্রে</span></strong><span> ব্যবহার করে রান্নাঘরের জমে থাকা তেল, চিটচিটে ময়লা ও দাগ পরিষ্কার করুন আরও সহজে।</span></p>\n<p><span>✅ জমে থাকা তেল ও চিটচিটে ময়লা পরিষ্কারে সহায়ক</span><br><span>✅ ফোম স্প্রে হওয়ায় সহজে প্রয়োগ করা যায়</span><br><span>✅ রান্নাঘরের উপযুক্ত সারফেস পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ চুলার আশপাশ ও কিচেন টাইলস পরিষ্কারে সহায়ক</span><br><span>✅ নিয়মিত কিচেন পরিষ্কারের ঝামেলা কমায়</span><br><span>✅ ঘরের রান্নাঘর পরিষ্কার-পরিচ্ছন্ন রাখতে সাহায্য করে</span></p>\n<p><strong><span>রান্নাঘর পরিষ্কার রাখার ঝামেলা কমাতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 520,
+    compareAtPrice: 1040,
+    stock: 50,
+    images: ['/assets/live/products/kitchen-foam-cleaner-spray-1.webp'],
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 520,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 520,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 950,
-        "compareAtPrice": 1040,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 950,
+        compareAtPrice: 1040,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1300,
-        "compareAtPrice": 1560,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1300,
+        compareAtPrice: 1560,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10405633818879",
-    "name": "2-in-1 স্মার্ট অয়েল ডিসপেনসার বোতল",
-    "slug": "2-in-1-smart-oil-dispenser",
-    "sku": "EHM-10405633818879",
-    "category": "kitchen-tools",
-    "collections": [
+    ref: '10405633818879',
+    name: '2-in-1 স্মার্ট অয়েল ডিসপেনসার বোতল',
+    slug: '2-in-1-smart-oil-dispenser',
+    sku: 'EHM-10405633818879',
+    category: 'kitchen-tools',
+    collections: [
       {
-        "collection": "kitchen-dining",
-        "position": 3
+        collection: 'kitchen-dining',
+        position: 3,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 3
+        collection: 'kitchen-tools',
+        position: 3,
       },
       {
-        "collection": "trendy-items",
-        "position": 22
-      }
+        collection: 'trendy-items',
+        position: 22,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "2 in 1 Oil Dispenser",
-      "470ml Oil Dispenser",
-      "Oil Dispenser Bangladesh",
-      "Oil Spray Bottle",
-      "Oil Sprayer for Cooking",
-      "গ্লাস অয়েল ডিসপেনসার",
-      "তেল স্প্রে করার বোতল",
-      "রান্নার তেলের স্প্রে বোতল",
-      "স্মার্ট অয়েল ডিসপেনসার বোতল",
-      "২ ইন ১ অয়েল ডিসপেনসার"
+    brand: 'Ehans Mart',
+    tags: [
+      '2 in 1 Oil Dispenser',
+      '470ml Oil Dispenser',
+      'Oil Dispenser Bangladesh',
+      'Oil Spray Bottle',
+      'Oil Sprayer for Cooking',
+      'গ্লাস অয়েল ডিসপেনসার',
+      'তেল স্প্রে করার বোতল',
+      'রান্নার তেলের স্প্রে বোতল',
+      'স্মার্ট অয়েল ডিসপেনসার বোতল',
+      '২ ইন ১ অয়েল ডিসপেনসার',
     ],
-    "description": "<p><span>রান্নার সময় তেল বেশি পড়ে যাচ্ছে বা চারপাশ তেলে মাখামাখি হয়ে যাচ্ছে? 🫒</span></p>\n<p><strong><span>২ ইন ১ স্মার্ট অয়েল ডিসপেনসার বোতল</span></strong><span> দিয়ে প্রয়োজনমতো তেল ঢালুন কিংবা স্প্রে করুন। একই বোতলে দুটি সুবিধা থাকায় রান্না হবে আরও সহজ ও ঝামেলামুক্ত।</span></p>\n<p><span>✅ একই বোতলে তেল স্প্রে ও ঢালার সুবিধা</span><br><span>✅ ৪৭০ মিলি ধারণক্ষমতা</span><br><span>✅ স্প্রে করে অল্প পরিমাণে তেল ব্যবহার করা যায়</span><br><span>✅ গ্লাস বডি ও ব্যবহারবান্ধব ডিজাইন</span><br><span>✅ রান্না, ফ্রাইং, গ্রিলিং ও সালাদ তৈরিতে উপযোগী</span><br><span>✅ সহজে ব্যবহার ও পরিষ্কার করা যায়</span></p>\n<p><strong><span>রান্নাঘরের কাজ আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 450,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/2-in-1-smart-oil-dispenser-1.webp",
-      "/assets/live/products/2-in-1-smart-oil-dispenser-2.jpg"
+    description:
+      '<p><span>রান্নার সময় তেল বেশি পড়ে যাচ্ছে বা চারপাশ তেলে মাখামাখি হয়ে যাচ্ছে? 🫒</span></p>\n<p><strong><span>২ ইন ১ স্মার্ট অয়েল ডিসপেনসার বোতল</span></strong><span> দিয়ে প্রয়োজনমতো তেল ঢালুন কিংবা স্প্রে করুন। একই বোতলে দুটি সুবিধা থাকায় রান্না হবে আরও সহজ ও ঝামেলামুক্ত।</span></p>\n<p><span>✅ একই বোতলে তেল স্প্রে ও ঢালার সুবিধা</span><br><span>✅ ৪৭০ মিলি ধারণক্ষমতা</span><br><span>✅ স্প্রে করে অল্প পরিমাণে তেল ব্যবহার করা যায়</span><br><span>✅ গ্লাস বডি ও ব্যবহারবান্ধব ডিজাইন</span><br><span>✅ রান্না, ফ্রাইং, গ্রিলিং ও সালাদ তৈরিতে উপযোগী</span><br><span>✅ সহজে ব্যবহার ও পরিষ্কার করা যায়</span></p>\n<p><strong><span>রান্নাঘরের কাজ আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 450,
+    compareAtPrice: 900,
+    stock: 50,
+    images: [
+      '/assets/live/products/2-in-1-smart-oil-dispenser-1.webp',
+      '/assets/live/products/2-in-1-smart-oil-dispenser-2.jpg',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 450,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 450,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 850,
-        "compareAtPrice": 900,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 850,
+        compareAtPrice: 900,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1200,
-        "compareAtPrice": 1350,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1200,
+        compareAtPrice: 1350,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10405604983039",
-    "name": "রেগুলার কিচেন এপ্রোন",
-    "slug": "regular-kitchen-apron",
-    "sku": "EHM-10405604983039",
-    "category": "kitchen-safety",
-    "collections": [
+    ref: '10405604983039',
+    name: 'রেগুলার কিচেন এপ্রোন',
+    slug: 'regular-kitchen-apron',
+    sku: 'EHM-10405604983039',
+    category: 'kitchen-safety',
+    collections: [
       {
-        "collection": "kitchen-dining",
-        "position": 0
+        collection: 'kitchen-dining',
+        position: 0,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 0
+        collection: 'kitchen-safety',
+        position: 0,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 0
+        collection: 'kitchen-tools',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 13
+        collection: 'trendy-items',
+        position: 13,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 3
-      }
+        collection: 'women-s-essentials',
+        position: 3,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Cooking Apron",
-      "Kitchen Apron Bangladesh",
-      "Kitchen Apron with Pocket",
-      "Printed Kitchen Apron",
-      "Regular Kitchen Apron",
-      "পকেটসহ রান্নার এপ্রোন",
-      "প্রিন্টেড কিচেন এপ্রোন",
-      "মেয়েদের কিচেন এপ্রোন",
-      "রান্নার এপ্রোন",
-      "রেগুলার কিচেন এপ্রোন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Cooking Apron',
+      'Kitchen Apron Bangladesh',
+      'Kitchen Apron with Pocket',
+      'Printed Kitchen Apron',
+      'Regular Kitchen Apron',
+      'পকেটসহ রান্নার এপ্রোন',
+      'প্রিন্টেড কিচেন এপ্রোন',
+      'মেয়েদের কিচেন এপ্রোন',
+      'রান্নার এপ্রোন',
+      'রেগুলার কিচেন এপ্রোন',
     ],
-    "description": "<p><span>রান্না করতে গিয়ে জামাকাপড়ে তেল-মসলা বা খাবারের দাগ লেগে যাচ্ছে? 👩🍳</span></p>\n<p><strong><span>রেগুলার কিচেন এপ্রোন</span></strong><span> ব্যবহার করে রান্নার সময় পোশাক রাখুন পরিষ্কার ও পরিপাটি। সুন্দর প্রিন্টেড ডিজাইন ও সামনের পকেটসহ এই এপ্রোনটি দৈনন্দিন রান্নার জন্য দারুণ উপযোগী।</span></p>\n<p><span>✅ রান্নার সময় তেল-মসলার ছিটা থেকে পোশাক বাঁচাতে সাহায্য করে</span><br><span>✅ সুন্দর ও আকর্ষণীয় প্রিন্টেড ডিজাইন</span><br><span>✅ প্রয়োজনীয় ছোট জিনিস রাখার জন্য সামনের পকেট</span><br><span>✅ গলায় ঝুলিয়ে সহজে পরা যায়</span><br><span>✅ রান্না, বেকিং ও কিচেনের বিভিন্ন কাজে ব্যবহারযোগ্য</span><br><span>✅ দৈনন্দিন ব্যবহারের জন্য উপযোগী</span></p>\n<p><strong><span>রান্নার সময় পোশাক পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 320,
-    "compareAtPrice": 480,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/regular-kitchen-apron-1.webp",
-      "/assets/live/products/regular-kitchen-apron-2.webp",
-      "/assets/live/products/regular-kitchen-apron-3.webp",
-      "/assets/live/products/regular-kitchen-apron-4.webp",
-      "/assets/live/products/regular-kitchen-apron-5.webp"
+    description:
+      '<p><span>রান্না করতে গিয়ে জামাকাপড়ে তেল-মসলা বা খাবারের দাগ লেগে যাচ্ছে? 👩🍳</span></p>\n<p><strong><span>রেগুলার কিচেন এপ্রোন</span></strong><span> ব্যবহার করে রান্নার সময় পোশাক রাখুন পরিষ্কার ও পরিপাটি। সুন্দর প্রিন্টেড ডিজাইন ও সামনের পকেটসহ এই এপ্রোনটি দৈনন্দিন রান্নার জন্য দারুণ উপযোগী।</span></p>\n<p><span>✅ রান্নার সময় তেল-মসলার ছিটা থেকে পোশাক বাঁচাতে সাহায্য করে</span><br><span>✅ সুন্দর ও আকর্ষণীয় প্রিন্টেড ডিজাইন</span><br><span>✅ প্রয়োজনীয় ছোট জিনিস রাখার জন্য সামনের পকেট</span><br><span>✅ গলায় ঝুলিয়ে সহজে পরা যায়</span><br><span>✅ রান্না, বেকিং ও কিচেনের বিভিন্ন কাজে ব্যবহারযোগ্য</span><br><span>✅ দৈনন্দিন ব্যবহারের জন্য উপযোগী</span></p>\n<p><strong><span>রান্নার সময় পোশাক পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 320,
+    compareAtPrice: 480,
+    stock: 50,
+    images: [
+      '/assets/live/products/regular-kitchen-apron-1.webp',
+      '/assets/live/products/regular-kitchen-apron-2.webp',
+      '/assets/live/products/regular-kitchen-apron-3.webp',
+      '/assets/live/products/regular-kitchen-apron-4.webp',
+      '/assets/live/products/regular-kitchen-apron-5.webp',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10405579423999",
-    "name": "ব্যাগ অর্গানাইজার হাংগ্যার",
-    "slug": "handbag-organizer-hanger",
-    "sku": "EHM-10405579423999",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10405579423999',
+    name: 'ব্যাগ অর্গানাইজার হাংগ্যার',
+    slug: 'handbag-organizer-hanger',
+    sku: 'EHM-10405579423999',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 9
+        collection: 'home-living',
+        position: 9,
       },
       {
-        "collection": "home-improvement",
-        "position": 10
+        collection: 'home-improvement',
+        position: 10,
       },
       {
-        "collection": "home-organization",
-        "position": 5
+        collection: 'home-organization',
+        position: 5,
       },
       {
-        "collection": "trendy-items",
-        "position": 32
-      }
+        collection: 'trendy-items',
+        position: 32,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Bag Storage Hanger",
-      "Handbag Hanger Bangladesh",
-      "Handbag Hanging Hook",
-      "Handbag Organizer Hanger",
-      "Wardrobe Bag Organizer",
-      "আলমারিতে ব্যাগ রাখার হ্যাঙ্গার",
-      "ব্যাগ অর্গানাইজার হ্যাঙ্গার",
-      "ব্যাগ ঝুলানোর হুক",
-      "হ্যান্ডব্যাগ রাখার অর্গানাইজার",
-      "হ্যান্ডব্যাগ হ্যাঙ্গার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Bag Storage Hanger',
+      'Handbag Hanger Bangladesh',
+      'Handbag Hanging Hook',
+      'Handbag Organizer Hanger',
+      'Wardrobe Bag Organizer',
+      'আলমারিতে ব্যাগ রাখার হ্যাঙ্গার',
+      'ব্যাগ অর্গানাইজার হ্যাঙ্গার',
+      'ব্যাগ ঝুলানোর হুক',
+      'হ্যান্ডব্যাগ রাখার অর্গানাইজার',
+      'হ্যান্ডব্যাগ হ্যাঙ্গার',
     ],
-    "description": "<p><span>হ্যান্ডব্যাগ রাখার জায়গা পাচ্ছেন না? 👜</span></p>\n<p><strong><span>ব্যাগ অর্গানাইজার হ্যাঙ্গার</span></strong><span> ব্যবহার করে আপনার পছন্দের হ্যান্ডব্যাগগুলো আলমারিতে সুন্দরভাবে গুছিয়ে রাখুন। জায়গা বাঁচানোর পাশাপাশি ব্যাগ খুঁজে পাওয়াও হবে আরও সহজ।</span></p>\n<p><span>✅ হ্যান্ডব্যাগ সুন্দরভাবে ঝুলিয়ে রাখা যায়</span><br><span>✅ আলমারির জায়গা গুছিয়ে ব্যবহার করতে সাহায্য করে</span><br><span>✅ ব্যাগের হাতল ঝুলিয়ে রাখার উপযোগী ডিজাইন</span><br><span>✅ আলমারির রডে সহজেই ঝুলানো যায়</span><br><span>✅ হ্যান্ডব্যাগ, পার্স ও ছোট ব্যাগ রাখার জন্য উপযোগী</span><br><span>✅ সহজে ব্যবহারযোগ্য ও পুনঃব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার পছন্দের ব্যাগগুলো সুন্দরভাবে গুছিয়ে রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/handbag-organizer-hanger-1.jpg",
-      "/assets/live/products/handbag-organizer-hanger-2.webp",
-      "/assets/live/products/handbag-organizer-hanger-3.webp",
-      "/assets/live/products/handbag-organizer-hanger-4.webp",
-      "/assets/live/products/handbag-organizer-hanger-5.webp"
+    description:
+      '<p><span>হ্যান্ডব্যাগ রাখার জায়গা পাচ্ছেন না? 👜</span></p>\n<p><strong><span>ব্যাগ অর্গানাইজার হ্যাঙ্গার</span></strong><span> ব্যবহার করে আপনার পছন্দের হ্যান্ডব্যাগগুলো আলমারিতে সুন্দরভাবে গুছিয়ে রাখুন। জায়গা বাঁচানোর পাশাপাশি ব্যাগ খুঁজে পাওয়াও হবে আরও সহজ।</span></p>\n<p><span>✅ হ্যান্ডব্যাগ সুন্দরভাবে ঝুলিয়ে রাখা যায়</span><br><span>✅ আলমারির জায়গা গুছিয়ে ব্যবহার করতে সাহায্য করে</span><br><span>✅ ব্যাগের হাতল ঝুলিয়ে রাখার উপযোগী ডিজাইন</span><br><span>✅ আলমারির রডে সহজেই ঝুলানো যায়</span><br><span>✅ হ্যান্ডব্যাগ, পার্স ও ছোট ব্যাগ রাখার জন্য উপযোগী</span><br><span>✅ সহজে ব্যবহারযোগ্য ও পুনঃব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার পছন্দের ব্যাগগুলো সুন্দরভাবে গুছিয়ে রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 960,
+    stock: 50,
+    images: [
+      '/assets/live/products/handbag-organizer-hanger-1.jpg',
+      '/assets/live/products/handbag-organizer-hanger-2.webp',
+      '/assets/live/products/handbag-organizer-hanger-3.webp',
+      '/assets/live/products/handbag-organizer-hanger-4.webp',
+      '/assets/live/products/handbag-organizer-hanger-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "5 Pcs",
-          "10 Pcs",
-          "20 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['5 Pcs', '10 Pcs', '20 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '5 Pcs',
+        options: ['5 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
-        "price": 850,
-        "compareAtPrice": 960,
-        "stock": 50
+        title: '10 Pcs',
+        options: ['10 Pcs'],
+        price: 850,
+        compareAtPrice: 960,
+        stock: 50,
       },
       {
-        "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
-        "price": 1500,
-        "compareAtPrice": 1920,
-        "stock": 50
-      }
-    ]
+        title: '20 Pcs',
+        options: ['20 Pcs'],
+        price: 1500,
+        compareAtPrice: 1920,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404478091519",
-    "name": "ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস",
-    "slug": "waterproof-kitchen-dishwashing-gloves",
-    "sku": "EHM-10404478091519",
-    "category": "kitchen-cleaning",
-    "collections": [
+    ref: '10404478091519',
+    name: 'ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস',
+    slug: 'waterproof-kitchen-dishwashing-gloves',
+    sku: 'EHM-10404478091519',
+    category: 'kitchen-cleaning',
+    collections: [
       {
-        "collection": "kitchen-dining",
-        "position": 1
+        collection: 'kitchen-dining',
+        position: 1,
       },
       {
-        "collection": "kitchen-cleaning",
-        "position": 0
+        collection: 'kitchen-cleaning',
+        position: 0,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 1
+        collection: 'kitchen-safety',
+        position: 1,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 1
+        collection: 'kitchen-tools',
+        position: 1,
       },
       {
-        "collection": "man-s-essentials",
-        "position": 0
+        collection: 'man-s-essentials',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 15
-      }
+        collection: 'trendy-items',
+        position: 15,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Dishwashing Gloves",
-      "Dishwashing Gloves Bangladesh",
-      "Long Sleeve Cleaning Gloves",
-      "PVC Rubber Gloves",
-      "Waterproof Kitchen Gloves",
-      "ওয়াটারপ্রুফ হাতের গ্লাভস",
-      "কিচেন ডিশ ওয়াশিং গ্লাভস",
-      "ঘর পরিষ্কারের গ্লাভস",
-      "বাসন ধোয়ার গ্লাভস",
-      "লম্বা কিচেন গ্লাভস"
+    brand: 'Ehans Mart',
+    tags: [
+      'Dishwashing Gloves',
+      'Dishwashing Gloves Bangladesh',
+      'Long Sleeve Cleaning Gloves',
+      'PVC Rubber Gloves',
+      'Waterproof Kitchen Gloves',
+      'ওয়াটারপ্রুফ হাতের গ্লাভস',
+      'কিচেন ডিশ ওয়াশিং গ্লাভস',
+      'ঘর পরিষ্কারের গ্লাভস',
+      'বাসন ধোয়ার গ্লাভস',
+      'লম্বা কিচেন গ্লাভস',
     ],
-    "description": "<p><span>বাসন ধোয়া বা ঘর পরিষ্কার করতে গিয়ে বারবার হাত ভিজে যাচ্ছে? 🧤💦</span></p>\n<p><strong><span>ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস</span></strong><span> ব্যবহার করে পানি, সাবান ও ডিটারজেন্ট থেকে হাতের বাড়তি সুরক্ষা নিশ্চিত করুন। লম্বা ডিজাইনের কারণে হাতের পাশাপাশি বাহুর কিছু অংশও ঢেকে রাখে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ PVC ও রাবার ম্যাটেরিয়াল</span><br><span>✅ লম্বা ডিজাইন হাত ও বাহু ঢেকে রাখে</span><br><span>✅ পানি ও ডিটারজেন্টের সরাসরি সংস্পর্শ কমায়</span><br><span>✅ বাসন ধোয়া, কাপড় ধোয়া ও ঘর পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ সহজে ধুয়ে বারবার ব্যবহার করা যায়</span><br><span>✅ আকর্ষণীয় প্রিন্টেড ডিজাইন</span></p>\n<p><strong><span>হাতের যত্ন নিয়ে ঘরের কাজ আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 290,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/waterproof-kitchen-dishwashing-gloves-1.webp",
-      "/assets/live/products/waterproof-kitchen-dishwashing-gloves-2.webp"
+    description:
+      '<p><span>বাসন ধোয়া বা ঘর পরিষ্কার করতে গিয়ে বারবার হাত ভিজে যাচ্ছে? 🧤💦</span></p>\n<p><strong><span>ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস</span></strong><span> ব্যবহার করে পানি, সাবান ও ডিটারজেন্ট থেকে হাতের বাড়তি সুরক্ষা নিশ্চিত করুন। লম্বা ডিজাইনের কারণে হাতের পাশাপাশি বাহুর কিছু অংশও ঢেকে রাখে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ PVC ও রাবার ম্যাটেরিয়াল</span><br><span>✅ লম্বা ডিজাইন হাত ও বাহু ঢেকে রাখে</span><br><span>✅ পানি ও ডিটারজেন্টের সরাসরি সংস্পর্শ কমায়</span><br><span>✅ বাসন ধোয়া, কাপড় ধোয়া ও ঘর পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ সহজে ধুয়ে বারবার ব্যবহার করা যায়</span><br><span>✅ আকর্ষণীয় প্রিন্টেড ডিজাইন</span></p>\n<p><strong><span>হাতের যত্ন নিয়ে ঘরের কাজ আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 290,
+    compareAtPrice: 580,
+    stock: 50,
+    images: [
+      '/assets/live/products/waterproof-kitchen-dishwashing-gloves-1.webp',
+      '/assets/live/products/waterproof-kitchen-dishwashing-gloves-2.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pair (2 Pcs)",
-          "2 Pair (4 Pcs)",
-          "3 Pair (6 Pcs)"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pair (2 Pcs)', '2 Pair (4 Pcs)', '3 Pair (6 Pcs)'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pair (2 Pcs)",
-        "options": [
-          "1 Pair (2 Pcs)"
-        ],
-        "price": 290,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pair (2 Pcs)',
+        options: ['1 Pair (2 Pcs)'],
+        price: 290,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pair (4 Pcs)",
-        "options": [
-          "2 Pair (4 Pcs)"
-        ],
-        "price": 550,
-        "compareAtPrice": 580,
-        "stock": 50
+        title: '2 Pair (4 Pcs)',
+        options: ['2 Pair (4 Pcs)'],
+        price: 550,
+        compareAtPrice: 580,
+        stock: 50,
       },
       {
-        "title": "3 Pair (6 Pcs)",
-        "options": [
-          "3 Pair (6 Pcs)"
-        ],
-        "price": 780,
-        "compareAtPrice": 870,
-        "stock": 50
-      }
-    ]
+        title: '3 Pair (6 Pcs)',
+        options: ['3 Pair (6 Pcs)'],
+        price: 780,
+        compareAtPrice: 870,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404431266047",
-    "name": "কী-লেস স্মার্ট ফিঙ্গারপ্রিন্ট লক",
-    "slug": "smart-fingerprint-padlock",
-    "sku": "EHM-10404431266047",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10404431266047',
+    name: 'কী-লেস স্মার্ট ফিঙ্গারপ্রিন্ট লক',
+    slug: 'smart-fingerprint-padlock',
+    sku: 'EHM-10404431266047',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 7
+        collection: 'home-living',
+        position: 7,
       },
       {
-        "collection": "home-improvement",
-        "position": 11
+        collection: 'home-improvement',
+        position: 11,
       },
       {
-        "collection": "home-organization",
-        "position": 4
+        collection: 'home-organization',
+        position: 4,
       },
       {
-        "collection": "tools-hardware",
-        "position": 3
+        collection: 'tools-hardware',
+        position: 3,
       },
       {
-        "collection": "trendy-items",
-        "position": 33
-      }
+        collection: 'trendy-items',
+        position: 33,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Biometric Padlock",
-      "Fingerprint Lock Bangladesh",
-      "Keyless Fingerprint Padlock",
-      "Rechargeable Fingerprint Lock",
-      "Smart Fingerprint Lock",
-      "USB চার্জিং স্মার্ট লক",
-      "আঙুলের ছাপের তালা",
-      "কী লেস ফিঙ্গারপ্রিন্ট লক",
-      "ফিঙ্গারপ্রিন্ট প্যাডলক",
-      "স্মার্ট ফিঙ্গারপ্রিন্ট লক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Biometric Padlock',
+      'Fingerprint Lock Bangladesh',
+      'Keyless Fingerprint Padlock',
+      'Rechargeable Fingerprint Lock',
+      'Smart Fingerprint Lock',
+      'USB চার্জিং স্মার্ট লক',
+      'আঙুলের ছাপের তালা',
+      'কী লেস ফিঙ্গারপ্রিন্ট লক',
+      'ফিঙ্গারপ্রিন্ট প্যাডলক',
+      'স্মার্ট ফিঙ্গারপ্রিন্ট লক',
     ],
-    "description": "<p><span>চাবি হারানোর চিন্তা ছাড়াই নিজের আঙুলের ছাপ দিয়ে লক খুলুন! 🔐</span></p>\n<p><strong><span>স্মার্ট ফিঙ্গারপ্রিন্ট লক</span></strong><span> ব্যবহার করে ব্যাগ, ক্যাবিনেট ও ড্রয়ারের নিরাপত্তা রাখুন আরও সহজ ও আধুনিক। চাবির পরিবর্তে ফিঙ্গারপ্রিন্ট দিয়ে আনলক করা যায়, আর USB চার্জিং সুবিধা থাকায় বারবার ব্যাটারি বদলানোর ঝামেলা নেই।</span></p>\n<p><span>✅ দ্রুত ফিঙ্গারপ্রিন্ট আনলক সুবিধা</span><br><span>✅ সর্বোচ্চ 30 টি ফিঙ্গারপ্রিন্ট সংরক্ষণ করা যায়</span><br><span>✅ মজবুত স্টেইনলেস স্টিল বডি</span><br><span>✅ চাবি ছাড়াই স্মার্ট লকিং সিস্টেম</span><br><span>✅ USB চার্জিংসহ রিচার্জেবল ব্যাটারি</span><br><span>✅ ট্রাভেল ব্যাগ, অফিস ক্যাবিনেট ও ড্রয়ারে ব্যবহারযোগ্য</span></p>\n<p><strong><span>চাবির ঝামেলা ছাড়াই স্মার্ট নিরাপত্তা পেতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 990,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/smart-fingerprint-padlock-1.webp"
-    ],
-    "options": [
+    description:
+      '<p><span>চাবি হারানোর চিন্তা ছাড়াই নিজের আঙুলের ছাপ দিয়ে লক খুলুন! 🔐</span></p>\n<p><strong><span>স্মার্ট ফিঙ্গারপ্রিন্ট লক</span></strong><span> ব্যবহার করে ব্যাগ, ক্যাবিনেট ও ড্রয়ারের নিরাপত্তা রাখুন আরও সহজ ও আধুনিক। চাবির পরিবর্তে ফিঙ্গারপ্রিন্ট দিয়ে আনলক করা যায়, আর USB চার্জিং সুবিধা থাকায় বারবার ব্যাটারি বদলানোর ঝামেলা নেই।</span></p>\n<p><span>✅ দ্রুত ফিঙ্গারপ্রিন্ট আনলক সুবিধা</span><br><span>✅ সর্বোচ্চ 30 টি ফিঙ্গারপ্রিন্ট সংরক্ষণ করা যায়</span><br><span>✅ মজবুত স্টেইনলেস স্টিল বডি</span><br><span>✅ চাবি ছাড়াই স্মার্ট লকিং সিস্টেম</span><br><span>✅ USB চার্জিংসহ রিচার্জেবল ব্যাটারি</span><br><span>✅ ট্রাভেল ব্যাগ, অফিস ক্যাবিনেট ও ড্রয়ারে ব্যবহারযোগ্য</span></p>\n<p><strong><span>চাবির ঝামেলা ছাড়াই স্মার্ট নিরাপত্তা পেতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 990,
+    compareAtPrice: 1980,
+    stock: 50,
+    images: ['/assets/live/products/smart-fingerprint-padlock-1.webp'],
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 990,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 990,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 1850,
-        "compareAtPrice": 1980,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 1850,
+        compareAtPrice: 1980,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 2600,
-        "compareAtPrice": 2940,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 2600,
+        compareAtPrice: 2940,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404308123903",
-    "name": "অটোমেটিক দরজা বন্ধ করার ডোর ক্লোজার",
-    "slug": "automatic-door-closer",
-    "sku": "EHM-10404308123903",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10404308123903',
+    name: 'অটোমেটিক দরজা বন্ধ করার ডোর ক্লোজার',
+    slug: 'automatic-door-closer',
+    sku: 'EHM-10404308123903',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 3
+        collection: 'home-living',
+        position: 3,
       },
       {
-        "collection": "home-improvement",
-        "position": 5
+        collection: 'home-improvement',
+        position: 5,
       },
       {
-        "collection": "tools-hardware",
-        "position": 0
+        collection: 'tools-hardware',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 11
-      }
+        collection: 'trendy-items',
+        position: 11,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Automatic Door Closer",
-      "Automatic Door Closer Bangladesh",
-      "Automatic Door Closing Device",
-      "Self Closing Door Device",
-      "Wire Door Closer",
-      "অটোমেটিক ডোর ক্লোজার",
-      "অটোমেটিক দরজা বন্ধ করার যন্ত্র",
-      "ডোর ক্লোজার বাংলাদেশ",
-      "দরজা অটো বন্ধ করার ডিভাইস",
-      "দরজা বন্ধ করার মেশিন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Automatic Door Closer',
+      'Automatic Door Closer Bangladesh',
+      'Automatic Door Closing Device',
+      'Self Closing Door Device',
+      'Wire Door Closer',
+      'অটোমেটিক ডোর ক্লোজার',
+      'অটোমেটিক দরজা বন্ধ করার যন্ত্র',
+      'ডোর ক্লোজার বাংলাদেশ',
+      'দরজা অটো বন্ধ করার ডিভাইস',
+      'দরজা বন্ধ করার মেশিন',
     ],
-    "description": "<p><span>বারবার দরজা বন্ধ করতে বিরক্ত লাগছে? 🚪</span></p>\n<p><strong><span>অটোমেটিক ডোর ক্লোজার</span></strong><span> ব্যবহার করে দরজা খোলার পর স্বয়ংক্রিয়ভাবে বন্ধ করার সুবিধা পান। ১.৫ মিটার স্টিল ওয়্যার ও গাম স্টিকারসহ এই ডিভাইসটি সহজেই ইনস্টল করা যায়।</span></p>\n<p><span>✅ দরজা খোলার পর স্বয়ংক্রিয়ভাবে বন্ধ করে</span><br><span>✅ ১.৫ মিটার লম্বা স্টিল ওয়্যার</span><br><span>✅ ABS প্লাস্টিক ও স্টিলের তৈরি</span><br><span>✅ গাম স্টিকার দিয়ে সহজে ইনস্টল করা যায়</span><br><span>✅ স্মুথ ও তুলনামূলক নীরব ক্লোজিং</span><br><span>✅ উপযুক্ত কাঠ, গ্লাস ও স্টিলের দরজায় ব্যবহারযোগ্য</span></p>\n<p><strong><span>বারবার দরজা বন্ধ করার ঝামেলা কমাতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/automatic-door-closer-1.webp",
-      "/assets/live/products/automatic-door-closer-2.webp",
-      "/assets/live/products/automatic-door-closer-3.webp",
-      "/assets/live/products/automatic-door-closer-4.webp",
-      "/assets/live/products/automatic-door-closer-5.webp",
-      "/assets/live/products/automatic-door-closer-6.webp",
-      "/assets/live/products/automatic-door-closer-7.webp"
+    description:
+      '<p><span>বারবার দরজা বন্ধ করতে বিরক্ত লাগছে? 🚪</span></p>\n<p><strong><span>অটোমেটিক ডোর ক্লোজার</span></strong><span> ব্যবহার করে দরজা খোলার পর স্বয়ংক্রিয়ভাবে বন্ধ করার সুবিধা পান। ১.৫ মিটার স্টিল ওয়্যার ও গাম স্টিকারসহ এই ডিভাইসটি সহজেই ইনস্টল করা যায়।</span></p>\n<p><span>✅ দরজা খোলার পর স্বয়ংক্রিয়ভাবে বন্ধ করে</span><br><span>✅ ১.৫ মিটার লম্বা স্টিল ওয়্যার</span><br><span>✅ ABS প্লাস্টিক ও স্টিলের তৈরি</span><br><span>✅ গাম স্টিকার দিয়ে সহজে ইনস্টল করা যায়</span><br><span>✅ স্মুথ ও তুলনামূলক নীরব ক্লোজিং</span><br><span>✅ উপযুক্ত কাঠ, গ্লাস ও স্টিলের দরজায় ব্যবহারযোগ্য</span></p>\n<p><strong><span>বারবার দরজা বন্ধ করার ঝামেলা কমাতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 1440,
+    stock: 50,
+    images: [
+      '/assets/live/products/automatic-door-closer-1.webp',
+      '/assets/live/products/automatic-door-closer-2.webp',
+      '/assets/live/products/automatic-door-closer-3.webp',
+      '/assets/live/products/automatic-door-closer-4.webp',
+      '/assets/live/products/automatic-door-closer-5.webp',
+      '/assets/live/products/automatic-door-closer-6.webp',
+      '/assets/live/products/automatic-door-closer-7.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "3 Pcs",
-          "5 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '3 Pcs', '5 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1280,
-        "compareAtPrice": 1440,
-        "stock": 50
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1280,
+        compareAtPrice: 1440,
+        stock: 50,
       },
       {
-        "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
-        "price": 1950,
-        "compareAtPrice": 2400,
-        "stock": 50
-      }
-    ]
+        title: '5 Pcs',
+        options: ['5 Pcs'],
+        price: 1950,
+        compareAtPrice: 2400,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404287774975",
-    "name": "প্রিমিয়াম কিচেন এপ্রোন",
-    "slug": "premium-kitchen-apron",
-    "sku": "EHM-10404287774975",
-    "category": "kitchen-cleaning",
-    "collections": [
+    ref: '10404287774975',
+    name: 'প্রিমিয়াম কিচেন এপ্রোন',
+    slug: 'premium-kitchen-apron',
+    sku: 'EHM-10404287774975',
+    category: 'kitchen-cleaning',
+    collections: [
       {
-        "collection": "kitchen-dining",
-        "position": 5
+        collection: 'kitchen-dining',
+        position: 5,
       },
       {
-        "collection": "kitchen-cleaning",
-        "position": 2
+        collection: 'kitchen-cleaning',
+        position: 2,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 5
+        collection: 'kitchen-safety',
+        position: 5,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 7
+        collection: 'kitchen-tools',
+        position: 7,
       },
       {
-        "collection": "trendy-items",
-        "position": 34
+        collection: 'trendy-items',
+        position: 34,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 9
-      }
+        collection: 'women-s-essentials',
+        position: 9,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Chef Apron",
-      "Cooking Apron",
-      "Kitchen Apron",
-      "Kitchen Apron Bangladesh",
-      "Premium Kitchen Apron",
-      "কিচেন এপ্রোন বাংলাদেশ",
-      "প্রিমিয়াম কিচেন এপ্রোন",
-      "মেয়েদের রান্নার এপ্রোন",
-      "রান্নার এপ্রোন",
-      "রান্নার সময় জামা বাঁচানোর এপ্রোন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Chef Apron',
+      'Cooking Apron',
+      'Kitchen Apron',
+      'Kitchen Apron Bangladesh',
+      'Premium Kitchen Apron',
+      'কিচেন এপ্রোন বাংলাদেশ',
+      'প্রিমিয়াম কিচেন এপ্রোন',
+      'মেয়েদের রান্নার এপ্রোন',
+      'রান্নার এপ্রোন',
+      'রান্নার সময় জামা বাঁচানোর এপ্রোন',
     ],
-    "description": "<p><span>রান্না করতে গিয়ে জামাকাপড়ে তেল, মসলা বা খাবারের দাগ লেগে যাচ্ছে? 👩🍳</span></p>\n<p><strong><span>প্রিমিয়াম কিচেন এপ্রোন</span></strong><span> ব্যবহার করে রান্নার সময় পোশাক রাখুন পরিষ্কার ও পরিপাটি। রান্না, বেকিং কিংবা রান্নাঘরের দৈনন্দিন কাজে এটি হতে পারে আপনার প্রয়োজনীয় সঙ্গী।</span></p>\n<p><span>✅ তেল-মসলার ছিটা ও খাবারের দাগ থেকে পোশাক বাঁচাতে সহায়ক</span><br><span>✅ রান্নার সময় পোশাক পরিষ্কার রাখতে সাহায্য করে</span><br><span>✅ সহজে পরা ও খোলা যায়</span><br><span>✅ রান্না, বেকিং ও কিচেনের বিভিন্ন কাজে ব্যবহারযোগ্য</span><br><span>✅ দৈনন্দিন ব্যবহারের জন্য উপযোগী</span><br><span>✅ ঘরের রান্নাঘর ও খাবার তৈরির কাজে ব্যবহারযোগ্য</span></p>\n<p><strong><span>রান্নার সময় পোশাক পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 500,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/premium-kitchen-apron-1.webp",
-      "/assets/live/products/premium-kitchen-apron-2.webp"
+    description:
+      '<p><span>রান্না করতে গিয়ে জামাকাপড়ে তেল, মসলা বা খাবারের দাগ লেগে যাচ্ছে? 👩🍳</span></p>\n<p><strong><span>প্রিমিয়াম কিচেন এপ্রোন</span></strong><span> ব্যবহার করে রান্নার সময় পোশাক রাখুন পরিষ্কার ও পরিপাটি। রান্না, বেকিং কিংবা রান্নাঘরের দৈনন্দিন কাজে এটি হতে পারে আপনার প্রয়োজনীয় সঙ্গী।</span></p>\n<p><span>✅ তেল-মসলার ছিটা ও খাবারের দাগ থেকে পোশাক বাঁচাতে সহায়ক</span><br><span>✅ রান্নার সময় পোশাক পরিষ্কার রাখতে সাহায্য করে</span><br><span>✅ সহজে পরা ও খোলা যায়</span><br><span>✅ রান্না, বেকিং ও কিচেনের বিভিন্ন কাজে ব্যবহারযোগ্য</span><br><span>✅ দৈনন্দিন ব্যবহারের জন্য উপযোগী</span><br><span>✅ ঘরের রান্নাঘর ও খাবার তৈরির কাজে ব্যবহারযোগ্য</span></p>\n<p><strong><span>রান্নার সময় পোশাক পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 500,
+    compareAtPrice: 1000,
+    stock: 50,
+    images: [
+      '/assets/live/products/premium-kitchen-apron-1.webp',
+      '/assets/live/products/premium-kitchen-apron-2.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 500,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 500,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 950,
-        "compareAtPrice": 1000,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 950,
+        compareAtPrice: 1000,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1350,
-        "compareAtPrice": 1500,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1350,
+        compareAtPrice: 1500,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404113252607",
-    "name": "ডোর ফোম - বাতাস ও পোকামাকড় প্রতিরোধক",
-    "slug": "door-bottom-sealing-strip",
-    "sku": "EHM-10404113252607",
-    "category": "home-decor",
-    "collections": [
+    ref: '10404113252607',
+    name: 'ডোর ফোম - বাতাস ও পোকামাকড় প্রতিরোধক',
+    slug: 'door-bottom-sealing-strip',
+    sku: 'EHM-10404113252607',
+    category: 'home-decor',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 2
+        collection: 'home-living',
+        position: 2,
       },
       {
-        "collection": "home-decor",
-        "position": 0
+        collection: 'home-decor',
+        position: 0,
       },
       {
-        "collection": "home-improvement",
-        "position": 3
+        collection: 'home-improvement',
+        position: 3,
       },
       {
-        "collection": "home-organization",
-        "position": 0
+        collection: 'home-organization',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 3
-      }
+        collection: 'trendy-items',
+        position: 3,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [],
-    "description": "<p><span>দরজার নিচ দিয়ে ধুলোবালি, ঠান্ডা বাতাস বা পোকামাকড় ঘরে ঢুকছে? 🚪</span></p>\n<p><strong><span>ডোর বটম সিলিং স্ট্রিপ (Door Bottom Sealing Strip)</span></strong><span> ব্যবহার করে দরজার নিচের ফাঁকা অংশ সহজেই বন্ধ করুন। এটি ধুলোবালি, বাতাস ও পোকামাকড়ের প্রবেশ কমাতে সাহায্য করে এবং ঘরকে আরও আরামদায়ক রাখে।</span></p>\n<p><span>✅ দরজার নিচ দিয়ে ধুলোবালি প্রবেশ কমায়</span><br><span>✅ ঠান্ডা বাতাস ও পোকামাকড় আটকাতে সহায়ক</span><br><span>✅ বাইরের শব্দ কিছুটা কমাতে সাহায্য করে</span><br><span>✅ এসি রুমের ঠান্ডা বাতাস ধরে রাখতে সহায়ক</span><br><span>✅ ৪২ ইঞ্চি লম্বা, প্রয়োজনমতো ব্যবহারযোগ্য</span><br><span>✅ ধুয়ে পরিষ্কার করে আবার ব্যবহার করা যায়</span></p>\n<p><strong><span>ঘরকে ধুলোবালি ও বাইরের বাতাস থেকে সুরক্ষিত রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 120,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/door-bottom-sealing-strip-1.webp",
-      "/assets/live/products/door-bottom-sealing-strip-2.webp",
-      "/assets/live/products/door-bottom-sealing-strip-3.webp"
+    brand: 'Ehans Mart',
+    tags: [],
+    description:
+      '<p><span>দরজার নিচ দিয়ে ধুলোবালি, ঠান্ডা বাতাস বা পোকামাকড় ঘরে ঢুকছে? 🚪</span></p>\n<p><strong><span>ডোর বটম সিলিং স্ট্রিপ (Door Bottom Sealing Strip)</span></strong><span> ব্যবহার করে দরজার নিচের ফাঁকা অংশ সহজেই বন্ধ করুন। এটি ধুলোবালি, বাতাস ও পোকামাকড়ের প্রবেশ কমাতে সাহায্য করে এবং ঘরকে আরও আরামদায়ক রাখে।</span></p>\n<p><span>✅ দরজার নিচ দিয়ে ধুলোবালি প্রবেশ কমায়</span><br><span>✅ ঠান্ডা বাতাস ও পোকামাকড় আটকাতে সহায়ক</span><br><span>✅ বাইরের শব্দ কিছুটা কমাতে সাহায্য করে</span><br><span>✅ এসি রুমের ঠান্ডা বাতাস ধরে রাখতে সহায়ক</span><br><span>✅ ৪২ ইঞ্চি লম্বা, প্রয়োজনমতো ব্যবহারযোগ্য</span><br><span>✅ ধুয়ে পরিষ্কার করে আবার ব্যবহার করা যায়</span></p>\n<p><strong><span>ঘরকে ধুলোবালি ও বাইরের বাতাস থেকে সুরক্ষিত রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 120,
+    compareAtPrice: 360,
+    stock: 50,
+    images: [
+      '/assets/live/products/door-bottom-sealing-strip-1.webp',
+      '/assets/live/products/door-bottom-sealing-strip-2.webp',
+      '/assets/live/products/door-bottom-sealing-strip-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "3 Pcs",
-          "5 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '3 Pcs', '5 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 120,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 120,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 330,
-        "compareAtPrice": 360,
-        "stock": 50
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 330,
+        compareAtPrice: 360,
+        stock: 50,
       },
       {
-        "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
-        "price": 490,
-        "compareAtPrice": 600,
-        "stock": 50
-      }
-    ]
+        title: '5 Pcs',
+        options: ['5 Pcs'],
+        price: 490,
+        compareAtPrice: 600,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10404017471743",
-    "name": "ফার্নিচার চকচকে করার বি-ওয়াক্স পলিশ",
-    "slug": "beeswax-furniture-polish",
-    "sku": "EHM-10404017471743",
-    "category": "cleaning-supplies",
-    "collections": [
+    ref: '10404017471743',
+    name: 'ফার্নিচার চকচকে করার বি-ওয়াক্স পলিশ',
+    slug: 'beeswax-furniture-polish',
+    sku: 'EHM-10404017471743',
+    category: 'cleaning-supplies',
+    collections: [
       {
-        "collection": "cleaning-supplies",
-        "position": 2
+        collection: 'cleaning-supplies',
+        position: 2,
       },
       {
-        "collection": "home-decor",
-        "position": 1
+        collection: 'home-decor',
+        position: 1,
       },
       {
-        "collection": "home-improvement",
-        "position": 4
+        collection: 'home-improvement',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 9
-      }
+        collection: 'trendy-items',
+        position: 9,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Beeswax Furniture Polish",
-      "Beeswax Polish Bangladesh",
-      "Furniture Wax Polish",
-      "Wood Furniture Polish",
-      "Wood Polish Wax",
-      "কাঠের আসবাবপত্রের পলিশ",
-      "কাঠের ফার্নিচার পলিশ",
-      "পুরোনো ফার্নিচার চকচকে করার উপায়",
-      "ফার্নিচার চকচকে করার পলিশ",
-      "বি ওয়াক্স ফার্নিচার পলিশ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Beeswax Furniture Polish',
+      'Beeswax Polish Bangladesh',
+      'Furniture Wax Polish',
+      'Wood Furniture Polish',
+      'Wood Polish Wax',
+      'কাঠের আসবাবপত্রের পলিশ',
+      'কাঠের ফার্নিচার পলিশ',
+      'পুরোনো ফার্নিচার চকচকে করার উপায়',
+      'ফার্নিচার চকচকে করার পলিশ',
+      'বি ওয়াক্স ফার্নিচার পলিশ',
     ],
-    "description": "<p><span>পুরোনো ফার্নিচার মলিন ও বিবর্ণ দেখাচ্ছে? 🪑✨</span></p>\n<p><strong><span>বি-ওয়াক্স ফার্নিচার পলিশ (Beewax Furniture Polish)</span></strong><span> ব্যবহার করে কাঠের আসবাবপত্রে ফিরিয়ে আনুন সুন্দর ও চকচকে লুক। টেবিল, চেয়ার, আলমারি ও অন্যান্য কাঠের ফার্নিচারের যত্নে এটি সহজেই ব্যবহার করতে পারবেন।</span></p>\n<p><span>✅ কাঠের ফার্নিচারে সুন্দর ও চকচকে ফিনিশিং দেয়</span><br><span>✅ মলিন আসবাবপত্রের সৌন্দর্য বাড়াতে সহায়ক</span><br><span>✅ কাঠের টেবিল, চেয়ার ও আলমারিতে ব্যবহারযোগ্য</span><br><span>✅ কাঠের পৃষ্ঠের যত্ন ও পালিশের কাজে উপযোগী</span><br><span>✅ নরম কাপড় দিয়ে সহজেই লাগানো যায়</span><br><span>✅ ঘরে বসেই ফার্নিচারের যত্ন নেওয়া যায়</span></p>\n<p><strong><span>পুরোনো ফার্নিচারে নতুনের মতো ঝলমলে লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/beeswax-furniture-polish-1.webp"
-    ],
-    "options": [
+    description:
+      '<p><span>পুরোনো ফার্নিচার মলিন ও বিবর্ণ দেখাচ্ছে? 🪑✨</span></p>\n<p><strong><span>বি-ওয়াক্স ফার্নিচার পলিশ (Beewax Furniture Polish)</span></strong><span> ব্যবহার করে কাঠের আসবাবপত্রে ফিরিয়ে আনুন সুন্দর ও চকচকে লুক। টেবিল, চেয়ার, আলমারি ও অন্যান্য কাঠের ফার্নিচারের যত্নে এটি সহজেই ব্যবহার করতে পারবেন।</span></p>\n<p><span>✅ কাঠের ফার্নিচারে সুন্দর ও চকচকে ফিনিশিং দেয়</span><br><span>✅ মলিন আসবাবপত্রের সৌন্দর্য বাড়াতে সহায়ক</span><br><span>✅ কাঠের টেবিল, চেয়ার ও আলমারিতে ব্যবহারযোগ্য</span><br><span>✅ কাঠের পৃষ্ঠের যত্ন ও পালিশের কাজে উপযোগী</span><br><span>✅ নরম কাপড় দিয়ে সহজেই লাগানো যায়</span><br><span>✅ ঘরে বসেই ফার্নিচারের যত্ন নেওয়া যায়</span></p>\n<p><strong><span>পুরোনো ফার্নিচারে নতুনের মতো ঝলমলে লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 800,
+    stock: 50,
+    images: ['/assets/live/products/beeswax-furniture-polish-1.webp'],
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "3 Pcs",
-          "5 Pcs",
-          "10 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['3 Pcs', '5 Pcs', '10 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
-        "price": 750,
-        "compareAtPrice": 800,
-        "stock": 50
+        title: '5 Pcs',
+        options: ['5 Pcs'],
+        price: 750,
+        compareAtPrice: 800,
+        stock: 50,
       },
       {
-        "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
-        "price": 1280,
-        "compareAtPrice": null,
-        "stock": 50
-      }
-    ]
+        title: '10 Pcs',
+        options: ['10 Pcs'],
+        price: 1280,
+        compareAtPrice: null,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10402099691775",
-    "name": "ইঁদুর ধরার প্রিমিয়াম মাউস ট্র্যাপ",
-    "slug": "premium-mouse-trap",
-    "sku": "EHM-10402099691775",
-    "category": "cleaning-supplies",
-    "collections": [
+    ref: '10402099691775',
+    name: 'ইঁদুর ধরার প্রিমিয়াম মাউস ট্র্যাপ',
+    slug: 'premium-mouse-trap',
+    sku: 'EHM-10402099691775',
+    category: 'cleaning-supplies',
+    collections: [
       {
-        "collection": "cleaning-supplies",
-        "position": 1
+        collection: 'cleaning-supplies',
+        position: 1,
       },
       {
-        "collection": "home-living",
-        "position": 1
+        collection: 'home-living',
+        position: 1,
       },
       {
-        "collection": "home-improvement",
-        "position": 2
+        collection: 'home-improvement',
+        position: 2,
       },
       {
-        "collection": "trendy-items",
-        "position": 2
-      }
+        collection: 'trendy-items',
+        position: 2,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Mouse Catcher Trap",
-      "Mouse Trap",
-      "Mouse Trap Bangladesh",
-      "Premium Mouse Trap",
-      "Rat Trap",
-      "ইঁদুর ধরার কল",
-      "ইঁদুর ধরার ফাঁদ",
-      "ইঁদুর ধরার যন্ত্র",
-      "ইঁদুরের ফাঁদ",
-      "প্রিমিয়াম মাউস ট্র্যাপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Mouse Catcher Trap',
+      'Mouse Trap',
+      'Mouse Trap Bangladesh',
+      'Premium Mouse Trap',
+      'Rat Trap',
+      'ইঁদুর ধরার কল',
+      'ইঁদুর ধরার ফাঁদ',
+      'ইঁদুর ধরার যন্ত্র',
+      'ইঁদুরের ফাঁদ',
+      'প্রিমিয়াম মাউস ট্র্যাপ',
     ],
-    "description": "<p><span>ইঁদুরের উপদ্রবে খাবার, কাপড় ও ঘরের জিনিসপত্র নষ্ট হচ্ছে? 🐭</span></p>\n<p><strong><span>প্রিমিয়াম মাউস ট্র্যাপ</span></strong><span> ব্যবহার করে ঘর, দোকান বা গুদামে ইঁদুরের উপদ্রব নিয়ন্ত্রণ করুন। মজবুত ও টেকসই ডিজাইনের এই ইঁদুর ধরার ফাঁদ সহজেই ব্যবহার করা যায়।</span></p>\n<p><span>✅ ইঁদুর ধরতে কার্যকর ফাঁদ হিসেবে ব্যবহারযোগ্য</span><br><span>✅ খাবার ও কাপড় নষ্ট হওয়ার ঝুঁকি কমাতে সহায়ক</span><br><span>✅ মজবুত ও টেকসই ডিজাইন</span><br><span>✅ সহজে সেটআপ ও ব্যবহার করা যায়</span><br><span>✅ ঘর, রান্নাঘর, দোকান ও গুদামের জন্য উপযোগী</span><br><span>✅ প্রয়োজন অনুযায়ী বিভিন্ন জায়গায় রাখা যায়</span></p>\n<p><strong><span>ইঁদুরের উপদ্রব কমাতে আজই অর্ডার করুন প্রিমিয়াম মাউস ট্র্যাপ!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/premium-mouse-trap-1.webp",
-      "/assets/live/products/premium-mouse-trap-2.webp"
+    description:
+      '<p><span>ইঁদুরের উপদ্রবে খাবার, কাপড় ও ঘরের জিনিসপত্র নষ্ট হচ্ছে? 🐭</span></p>\n<p><strong><span>প্রিমিয়াম মাউস ট্র্যাপ</span></strong><span> ব্যবহার করে ঘর, দোকান বা গুদামে ইঁদুরের উপদ্রব নিয়ন্ত্রণ করুন। মজবুত ও টেকসই ডিজাইনের এই ইঁদুর ধরার ফাঁদ সহজেই ব্যবহার করা যায়।</span></p>\n<p><span>✅ ইঁদুর ধরতে কার্যকর ফাঁদ হিসেবে ব্যবহারযোগ্য</span><br><span>✅ খাবার ও কাপড় নষ্ট হওয়ার ঝুঁকি কমাতে সহায়ক</span><br><span>✅ মজবুত ও টেকসই ডিজাইন</span><br><span>✅ সহজে সেটআপ ও ব্যবহার করা যায়</span><br><span>✅ ঘর, রান্নাঘর, দোকান ও গুদামের জন্য উপযোগী</span><br><span>✅ প্রয়োজন অনুযায়ী বিভিন্ন জায়গায় রাখা যায়</span></p>\n<p><strong><span>ইঁদুরের উপদ্রব কমাতে আজই অর্ডার করুন প্রিমিয়াম মাউস ট্র্যাপ!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 800,
+    stock: 50,
+    images: [
+      '/assets/live/products/premium-mouse-trap-1.webp',
+      '/assets/live/products/premium-mouse-trap-2.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "3 Pcs",
-          "5 Pcs",
-          "10 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['3 Pcs', '5 Pcs', '10 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
-        "price": 780,
-        "compareAtPrice": 800,
-        "stock": 50
+        title: '5 Pcs',
+        options: ['5 Pcs'],
+        price: 780,
+        compareAtPrice: 800,
+        stock: 50,
       },
       {
-        "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
-        "price": 1450,
-        "compareAtPrice": 1600,
-        "stock": 50
-      }
-    ]
+        title: '10 Pcs',
+        options: ['10 Pcs'],
+        price: 1450,
+        compareAtPrice: 1600,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10401802191103",
-    "name": "দেয়ালের দাগ পরিষ্কারের ন্যানো ম্যাজিক ইরেজার",
-    "slug": "nano-magic-eraser-wall-stain-remover",
-    "sku": "EHM-10401802191103",
-    "category": "cleaning-supplies",
-    "collections": [
+    ref: '10401802191103',
+    name: 'দেয়ালের দাগ পরিষ্কারের ন্যানো ম্যাজিক ইরেজার',
+    slug: 'nano-magic-eraser-wall-stain-remover',
+    sku: 'EHM-10401802191103',
+    category: 'cleaning-supplies',
+    collections: [
       {
-        "collection": "cleaning-supplies",
-        "position": 0
+        collection: 'cleaning-supplies',
+        position: 0,
       },
       {
-        "collection": "home-living",
-        "position": 0
+        collection: 'home-living',
+        position: 0,
       },
       {
-        "collection": "home-improvement",
-        "position": 0
+        collection: 'home-improvement',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 0
-      }
+        collection: 'trendy-items',
+        position: 0,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Magic Cleaning Sponge",
-      "Magic Eraser Bangladesh",
-      "Melamine Cleaning Sponge",
-      "Nano Magic Eraser",
-      "Wall Stain Remover",
-      "দেয়ালের আঁকাআঁকি পরিষ্কার",
-      "দেয়ালের দাগ তোলার স্পঞ্জ",
-      "দেয়ালের দাগ পরিষ্কারের ইরেজার",
-      "ন্যানো ম্যাজিক ইরেজার",
-      "ম্যাজিক ক্লিনিং স্পঞ্জ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Magic Cleaning Sponge',
+      'Magic Eraser Bangladesh',
+      'Melamine Cleaning Sponge',
+      'Nano Magic Eraser',
+      'Wall Stain Remover',
+      'দেয়ালের আঁকাআঁকি পরিষ্কার',
+      'দেয়ালের দাগ তোলার স্পঞ্জ',
+      'দেয়ালের দাগ পরিষ্কারের ইরেজার',
+      'ন্যানো ম্যাজিক ইরেজার',
+      'ম্যাজিক ক্লিনিং স্পঞ্জ',
     ],
-    "description": "<p><span>দেয়ালে বাচ্চাদের আঁকাআঁকি কিংবা কিচেন ও সুইচ বোর্ডে জেদি দাগ জমে গেছে? 🧽✨</span></p>\n<p><strong><span>ন্যানো ম্যাজিক ইরেজার</span></strong><span> ব্যবহার করে শুধু সামান্য পানির সাহায্যেই ঘরের বিভিন্ন দাগ ও ময়লা সহজে পরিষ্কার করুন। আলাদা ক্লিনিং কেমিক্যাল ছাড়াই পরিষ্কারের ঝামেলা কমান।</span></p>\n<p><span>✅ দেয়ালের পেন্সিল ও ক্রেয়নের দাগ পরিষ্কারে সহায়ক</span><br><span>✅ সুইচ বোর্ডের ময়লা ও হাতের দাগ তুলতে সাহায্য করে</span><br><span>✅ কিচেন ও বাথরুমের বিভিন্ন দাগ পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ শুধু সামান্য পানি দিয়েই ব্যবহার করা যায়</span><br><span>✅ আলাদা ডিটারজেন্ট বা ক্লিনিং কেমিক্যালের প্রয়োজন নেই</span><br><span>✅ সহজে ব্যবহারযোগ্য ও প্রয়োজনমতো কেটে নেওয়া যায়</span></p>\n<p><strong><span>ঘরের জেদি দাগ পরিষ্কার করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/nano-magic-eraser-wall-stain-remover-1.webp",
-      "/assets/live/products/nano-magic-eraser-wall-stain-remover-2.webp",
-      "/assets/live/products/nano-magic-eraser-wall-stain-remover-3.webp",
-      "/assets/live/products/nano-magic-eraser-wall-stain-remover-4.webp",
-      "/assets/live/products/nano-magic-eraser-wall-stain-remover-5.webp"
+    description:
+      '<p><span>দেয়ালে বাচ্চাদের আঁকাআঁকি কিংবা কিচেন ও সুইচ বোর্ডে জেদি দাগ জমে গেছে? 🧽✨</span></p>\n<p><strong><span>ন্যানো ম্যাজিক ইরেজার</span></strong><span> ব্যবহার করে শুধু সামান্য পানির সাহায্যেই ঘরের বিভিন্ন দাগ ও ময়লা সহজে পরিষ্কার করুন। আলাদা ক্লিনিং কেমিক্যাল ছাড়াই পরিষ্কারের ঝামেলা কমান।</span></p>\n<p><span>✅ দেয়ালের পেন্সিল ও ক্রেয়নের দাগ পরিষ্কারে সহায়ক</span><br><span>✅ সুইচ বোর্ডের ময়লা ও হাতের দাগ তুলতে সাহায্য করে</span><br><span>✅ কিচেন ও বাথরুমের বিভিন্ন দাগ পরিষ্কারে ব্যবহারযোগ্য</span><br><span>✅ শুধু সামান্য পানি দিয়েই ব্যবহার করা যায়</span><br><span>✅ আলাদা ডিটারজেন্ট বা ক্লিনিং কেমিক্যালের প্রয়োজন নেই</span><br><span>✅ সহজে ব্যবহারযোগ্য ও প্রয়োজনমতো কেটে নেওয়া যায়</span></p>\n<p><strong><span>ঘরের জেদি দাগ পরিষ্কার করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: 700,
+    stock: 50,
+    images: [
+      '/assets/live/products/nano-magic-eraser-wall-stain-remover-1.webp',
+      '/assets/live/products/nano-magic-eraser-wall-stain-remover-2.webp',
+      '/assets/live/products/nano-magic-eraser-wall-stain-remover-3.webp',
+      '/assets/live/products/nano-magic-eraser-wall-stain-remover-4.webp',
+      '/assets/live/products/nano-magic-eraser-wall-stain-remover-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pack (10 Pcs)', '2 Pack (20 Pcs)', '3 Pack (30 Pcs)'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pack (10 Pcs)',
+        options: ['1 Pack (10 Pcs)'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
-        "price": 650,
-        "compareAtPrice": 700,
-        "stock": 50
+        title: '2 Pack (20 Pcs)',
+        options: ['2 Pack (20 Pcs)'],
+        price: 650,
+        compareAtPrice: 700,
+        stock: 50,
       },
       {
-        "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
-        "price": 900,
-        "compareAtPrice": 1050,
-        "stock": 50
-      }
-    ]
+        title: '3 Pack (30 Pcs)',
+        options: ['3 Pack (30 Pcs)'],
+        price: 900,
+        compareAtPrice: 1050,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10400983679231",
-    "name": "পোষা প্রাণীর লোম পরিষ্কারের রোলার ব্রাশ",
-    "slug": "pet-hair-remover-roller-brush",
-    "sku": "EHM-10400983679231",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10400983679231',
+    name: 'পোষা প্রাণীর লোম পরিষ্কারের রোলার ব্রাশ',
+    slug: 'pet-hair-remover-roller-brush',
+    sku: 'EHM-10400983679231',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 5
+        collection: 'home-living',
+        position: 5,
       },
       {
-        "collection": "home-improvement",
-        "position": 6
+        collection: 'home-improvement',
+        position: 6,
       },
       {
-        "collection": "home-organization",
-        "position": 1
+        collection: 'home-organization',
+        position: 1,
       },
       {
-        "collection": "pet-accessories",
-        "position": 0
+        collection: 'pet-accessories',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 23
-      }
+        collection: 'trendy-items',
+        position: 23,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Pet Hair Cleaning Brush",
-      "Pet Hair Remover",
-      "Pet Hair Remover Bangladesh",
-      "Pet Hair Remover Roller",
-      "Reusable Lint Roller",
-      "কুকুরের লোম পরিষ্কারের রোলার",
-      "পেট হেয়ার রিমুভার",
-      "পোষা প্রাণীর লোম পরিষ্কারের ব্রাশ",
-      "বিড়ালের লোম পরিষ্কার করার ব্রাশ",
-      "সোফার লোম পরিষ্কারের ব্রাশ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Pet Hair Cleaning Brush',
+      'Pet Hair Remover',
+      'Pet Hair Remover Bangladesh',
+      'Pet Hair Remover Roller',
+      'Reusable Lint Roller',
+      'কুকুরের লোম পরিষ্কারের রোলার',
+      'পেট হেয়ার রিমুভার',
+      'পোষা প্রাণীর লোম পরিষ্কারের ব্রাশ',
+      'বিড়ালের লোম পরিষ্কার করার ব্রাশ',
+      'সোফার লোম পরিষ্কারের ব্রাশ',
     ],
-    "description": "<p><span>সোফা, বিছানা বা কাপড়ে পোষা প্রাণীর লোম জমে যাচ্ছে? 🐱🐶</span></p>\n<p><strong><span>পেট হেয়ার রিমুভার রোলার ব্রাশ</span></strong><span> ব্যবহার করে কাপড়, সোফা ও বিছানায় জমে থাকা লোম, ধুলো ও তুলা সহজেই পরিষ্কার করুন। দুই দিকের রোলার ডিজাইনের কারণে ব্যবহার করা আরও সহজ ও সুবিধাজনক।</span></p>\n<p><span>✅ পোষা প্রাণীর লোম, ধুলো ও তুলা পরিষ্কারে সহায়ক</span><br><span>✅ দুই দিকেই ব্যবহারযোগ্য রোলার ডিজাইন</span><br><span>✅ সোফা, বিছানা, কাপড় ও গাড়ির সিটে ব্যবহারযোগ্য</span><br><span>✅ ধুয়ে পরিষ্কার করে বারবার ব্যবহার করা যায়</span><br><span>✅ হালকা ও সহজে বহনযোগ্য</span><br><span>✅ আকর্ষণীয় কার্টুন ডিজাইন</span></p>\n<p><strong><span>ঘর ও কাপড় লোমমুক্ত রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 520,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/pet-hair-remover-roller-brush-1.webp",
-      "/assets/live/products/pet-hair-remover-roller-brush-2.jpg",
-      "/assets/live/products/pet-hair-remover-roller-brush-3.jpg"
+    description:
+      '<p><span>সোফা, বিছানা বা কাপড়ে পোষা প্রাণীর লোম জমে যাচ্ছে? 🐱🐶</span></p>\n<p><strong><span>পেট হেয়ার রিমুভার রোলার ব্রাশ</span></strong><span> ব্যবহার করে কাপড়, সোফা ও বিছানায় জমে থাকা লোম, ধুলো ও তুলা সহজেই পরিষ্কার করুন। দুই দিকের রোলার ডিজাইনের কারণে ব্যবহার করা আরও সহজ ও সুবিধাজনক।</span></p>\n<p><span>✅ পোষা প্রাণীর লোম, ধুলো ও তুলা পরিষ্কারে সহায়ক</span><br><span>✅ দুই দিকেই ব্যবহারযোগ্য রোলার ডিজাইন</span><br><span>✅ সোফা, বিছানা, কাপড় ও গাড়ির সিটে ব্যবহারযোগ্য</span><br><span>✅ ধুয়ে পরিষ্কার করে বারবার ব্যবহার করা যায়</span><br><span>✅ হালকা ও সহজে বহনযোগ্য</span><br><span>✅ আকর্ষণীয় কার্টুন ডিজাইন</span></p>\n<p><strong><span>ঘর ও কাপড় লোমমুক্ত রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 520,
+    compareAtPrice: 1040,
+    stock: 50,
+    images: [
+      '/assets/live/products/pet-hair-remover-roller-brush-1.webp',
+      '/assets/live/products/pet-hair-remover-roller-brush-2.jpg',
+      '/assets/live/products/pet-hair-remover-roller-brush-3.jpg',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 520,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 520,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 980,
-        "compareAtPrice": 1040,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 980,
+        compareAtPrice: 1040,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1350,
-        "compareAtPrice": 1560,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1350,
+        compareAtPrice: 1560,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10400950747391",
-    "name": "ফ্রিজ ধুলোমুক্ত রাখার কভার",
-    "slug": "fridge-washing-machine-dust-cover",
-    "sku": "EHM-10400950747391",
-    "category": "home-decor",
-    "collections": [
+    ref: '10400950747391',
+    name: 'ফ্রিজ ধুলোমুক্ত রাখার কভার',
+    slug: 'fridge-washing-machine-dust-cover',
+    sku: 'EHM-10400950747391',
+    category: 'home-decor',
+    collections: [
       {
-        "collection": "home-decor",
-        "position": 2
+        collection: 'home-decor',
+        position: 2,
       },
       {
-        "collection": "home-improvement",
-        "position": 12
+        collection: 'home-improvement',
+        position: 12,
       },
       {
-        "collection": "home-organization",
-        "position": 3
+        collection: 'home-organization',
+        position: 3,
       },
       {
-        "collection": "kitchen-dining",
-        "position": 6
+        collection: 'kitchen-dining',
+        position: 6,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 4
+        collection: 'kitchen-safety',
+        position: 4,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 6
+        collection: 'kitchen-tools',
+        position: 6,
       },
       {
-        "collection": "trendy-items",
-        "position": 35
-      }
+        collection: 'trendy-items',
+        position: 35,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Fridge Cover",
-      "Fridge Cover Bangladesh",
-      "Refrigerator Dust Cover",
-      "Washing Machine Cover",
-      "Waterproof Appliance Cover",
-      "ওয়াশিং মেশিন কভার",
-      "জলরোধী ফ্রিজ কভার",
-      "ফ্রিজ ধুলোমুক্ত রাখার কভার",
-      "ফ্রিজের কভার",
-      "মাইক্রোওয়েভ কভার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Fridge Cover',
+      'Fridge Cover Bangladesh',
+      'Refrigerator Dust Cover',
+      'Washing Machine Cover',
+      'Waterproof Appliance Cover',
+      'ওয়াশিং মেশিন কভার',
+      'জলরোধী ফ্রিজ কভার',
+      'ফ্রিজ ধুলোমুক্ত রাখার কভার',
+      'ফ্রিজের কভার',
+      'মাইক্রোওয়েভ কভার',
     ],
-    "description": "<p><span>ফ্রিজ বা ওয়াশিং মেশিনে বারবার ধুলো-ময়লা জমে যাচ্ছে? 🏠✨</span></p>\n<p><strong><span>ধুলোরোধী অ্যাপ্লায়েন্স কভার</span></strong><span> ব্যবহার করে আপনার ফ্রিজ, ওয়াশিং মেশিন ও মাইক্রোওয়েভ রাখুন পরিষ্কার ও সুন্দর। জলরোধী কাপড়ের তৈরি এই কভার ধুলো, ময়লা ও হালকা আঁচড় থেকে সুরক্ষা দিতে সাহায্য করে।</span></p>\n<p><span>✅ ধুলো ও ময়লা জমা কমাতে সহায়ক</span><br><span>✅ জলরোধী ও টেকসই কাপড়ের তৈরি</span><br><span>✅ হালকা আঁচড় থেকে বাড়তি সুরক্ষা দেয়</span><br><span>✅ সহজে পরিষ্কার ও পুনরায় ব্যবহার করা যায়</span><br><span>✅ আকর্ষণীয় ডিজাইন ঘরের সৌন্দর্য বাড়ায়</span><br><span>✅ ফ্রিজ, ওয়াশিং মেশিন ও মাইক্রোওয়েভের জন্য বিভিন্ন কভার</span></p>\n<p><strong><span>গৃহস্থালি যন্ত্রপাতি পরিষ্কার ও সুন্দর রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 250,
-    "compareAtPrice": 320,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/fridge-washing-machine-dust-cover-1.jpg",
-      "/assets/live/products/fridge-washing-machine-dust-cover-2.jpg",
-      "/assets/live/products/fridge-washing-machine-dust-cover-3.jpg"
+    description:
+      '<p><span>ফ্রিজ বা ওয়াশিং মেশিনে বারবার ধুলো-ময়লা জমে যাচ্ছে? 🏠✨</span></p>\n<p><strong><span>ধুলোরোধী অ্যাপ্লায়েন্স কভার</span></strong><span> ব্যবহার করে আপনার ফ্রিজ, ওয়াশিং মেশিন ও মাইক্রোওয়েভ রাখুন পরিষ্কার ও সুন্দর। জলরোধী কাপড়ের তৈরি এই কভার ধুলো, ময়লা ও হালকা আঁচড় থেকে সুরক্ষা দিতে সাহায্য করে।</span></p>\n<p><span>✅ ধুলো ও ময়লা জমা কমাতে সহায়ক</span><br><span>✅ জলরোধী ও টেকসই কাপড়ের তৈরি</span><br><span>✅ হালকা আঁচড় থেকে বাড়তি সুরক্ষা দেয়</span><br><span>✅ সহজে পরিষ্কার ও পুনরায় ব্যবহার করা যায়</span><br><span>✅ আকর্ষণীয় ডিজাইন ঘরের সৌন্দর্য বাড়ায়</span><br><span>✅ ফ্রিজ, ওয়াশিং মেশিন ও মাইক্রোওয়েভের জন্য বিভিন্ন কভার</span></p>\n<p><strong><span>গৃহস্থালি যন্ত্রপাতি পরিষ্কার ও সুন্দর রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 250,
+    compareAtPrice: 320,
+    stock: 50,
+    images: [
+      '/assets/live/products/fridge-washing-machine-dust-cover-1.jpg',
+      '/assets/live/products/fridge-washing-machine-dust-cover-2.jpg',
+      '/assets/live/products/fridge-washing-machine-dust-cover-3.jpg',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10400935379199",
-    "name": "প্রিমিয়াম রেফ্রিজারেটর চাইল্ড লক",
-    "slug": "premium-refrigerator-safety-lock",
-    "sku": "EHM-10400935379199",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10400935379199',
+    name: 'প্রিমিয়াম রেফ্রিজারেটর চাইল্ড লক',
+    slug: 'premium-refrigerator-safety-lock',
+    sku: 'EHM-10400935379199',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 4
+        collection: 'home-living',
+        position: 4,
       },
       {
-        "collection": "home-improvement",
-        "position": 8
+        collection: 'home-improvement',
+        position: 8,
       },
       {
-        "collection": "kitchen-dining",
-        "position": 4
+        collection: 'kitchen-dining',
+        position: 4,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 2
+        collection: 'kitchen-safety',
+        position: 2,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 2
+        collection: 'kitchen-tools',
+        position: 2,
       },
       {
-        "collection": "tools-hardware",
-        "position": 2
+        collection: 'tools-hardware',
+        position: 2,
       },
       {
-        "collection": "trendy-items",
-        "position": 24
-      }
+        collection: 'trendy-items',
+        position: 24,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Adhesive Refrigerator Lock",
-      "Child Safety Fridge Lock",
-      "Fridge Door Lock",
-      "Fridge Lock Bangladesh",
-      "Refrigerator Safety Lock",
-      "প্রিমিয়াম ফ্রিজ লক",
-      "ফ্রিজের দরজার লক",
-      "বাচ্চাদের ফ্রিজ সেফটি লক",
-      "রেফ্রিজারেটর সেফটি লক",
-      "স্টিকার ফ্রিজ লক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Adhesive Refrigerator Lock',
+      'Child Safety Fridge Lock',
+      'Fridge Door Lock',
+      'Fridge Lock Bangladesh',
+      'Refrigerator Safety Lock',
+      'প্রিমিয়াম ফ্রিজ লক',
+      'ফ্রিজের দরজার লক',
+      'বাচ্চাদের ফ্রিজ সেফটি লক',
+      'রেফ্রিজারেটর সেফটি লক',
+      'স্টিকার ফ্রিজ লক',
     ],
-    "description": "<p><span>ফ্রিজের দরজা ঠিকমতো বন্ধ থাকছে না কিংবা বাচ্চারা বারবার খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>প্রিমিয়াম রেফ্রিজারেটর সেফটি লক</span></strong><span> ব্যবহার করে ফ্রিজের দরজা নিরাপদে বন্ধ রাখুন। শক্তিশালী 3M স্টিকারের মাধ্যমে ড্রিল ছাড়াই সহজে লাগানো যায়। দরজা অনাকাঙ্ক্ষিতভাবে খুলে যাওয়া কমাতে সাহায্য করে।</span></p>\n<p><span>✅ ফ্রিজের দরজা বন্ধ রাখতে সহায়ক</span><br><span>✅ ছোট বাচ্চাদের সহজে ফ্রিজ খোলা আটকাতে সাহায্য করে</span><br><span>✅ শক্তিশালী 3M আঠাযুক্ত স্টিকার</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ ফ্রিজের দরজা অনাকাঙ্ক্ষিতভাবে খোলা থাকলে ঠান্ডা বাতাস বের হওয়া কমাতে সহায়ক</span></p>\n<p><strong><span>ফ্রিজের নিরাপত্তা ও পরিবারের সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/premium-refrigerator-safety-lock-1.webp"
-    ],
-    "options": [
+    description:
+      '<p><span>ফ্রিজের দরজা ঠিকমতো বন্ধ থাকছে না কিংবা বাচ্চারা বারবার খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>প্রিমিয়াম রেফ্রিজারেটর সেফটি লক</span></strong><span> ব্যবহার করে ফ্রিজের দরজা নিরাপদে বন্ধ রাখুন। শক্তিশালী 3M স্টিকারের মাধ্যমে ড্রিল ছাড়াই সহজে লাগানো যায়। দরজা অনাকাঙ্ক্ষিতভাবে খুলে যাওয়া কমাতে সাহায্য করে।</span></p>\n<p><span>✅ ফ্রিজের দরজা বন্ধ রাখতে সহায়ক</span><br><span>✅ ছোট বাচ্চাদের সহজে ফ্রিজ খোলা আটকাতে সাহায্য করে</span><br><span>✅ শক্তিশালী 3M আঠাযুক্ত স্টিকার</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ ফ্রিজের দরজা অনাকাঙ্ক্ষিতভাবে খোলা থাকলে ঠান্ডা বাতাস বের হওয়া কমাতে সহায়ক</span></p>\n<p><strong><span>ফ্রিজের নিরাপত্তা ও পরিবারের সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: null,
+    stock: 50,
+    images: ['/assets/live/products/premium-refrigerator-safety-lock-1.webp'],
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '4 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 650,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 650,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
-        "price": 1150,
-        "compareAtPrice": null,
-        "stock": 50
-      }
-    ]
+        title: '4 Pcs',
+        options: ['4 Pcs'],
+        price: 1150,
+        compareAtPrice: null,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10400871940351",
-    "name": "মাল্টি-ফাংশনাল ফ্রিজ সেফটি লক",
-    "slug": "multi-functional-fridge-lock",
-    "sku": "EHM-10400871940351",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10400871940351',
+    name: 'মাল্টি-ফাংশনাল ফ্রিজ সেফটি লক',
+    slug: 'multi-functional-fridge-lock',
+    sku: 'EHM-10400871940351',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-living",
-        "position": 6
+        collection: 'home-living',
+        position: 6,
       },
       {
-        "collection": "home-improvement",
-        "position": 13
+        collection: 'home-improvement',
+        position: 13,
       },
       {
-        "collection": "home-organization",
-        "position": 2
+        collection: 'home-organization',
+        position: 2,
       },
       {
-        "collection": "kitchen-dining",
-        "position": 7
+        collection: 'kitchen-dining',
+        position: 7,
       },
       {
-        "collection": "kitchen-safety",
-        "position": 3
+        collection: 'kitchen-safety',
+        position: 3,
       },
       {
-        "collection": "kitchen-tools",
-        "position": 5
+        collection: 'kitchen-tools',
+        position: 5,
       },
       {
-        "collection": "tools-hardware",
-        "position": 4
+        collection: 'tools-hardware',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 36
-      }
+        collection: 'trendy-items',
+        position: 36,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Proof Cabinet Lock",
-      "Cabinet Safety Lock",
-      "Child Safety Fridge Lock",
-      "Fridge Lock Bangladesh",
-      "Refrigerator Safety Lock",
-      "আলমারি ও ক্যাবিনেট লক",
-      "ক্যাবিনেট সেফটি লক",
-      "ফ্রিজ সেফটি লক",
-      "ফ্রিজের দরজার লক",
-      "বাচ্চাদের সেফটি লক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Proof Cabinet Lock',
+      'Cabinet Safety Lock',
+      'Child Safety Fridge Lock',
+      'Fridge Lock Bangladesh',
+      'Refrigerator Safety Lock',
+      'আলমারি ও ক্যাবিনেট লক',
+      'ক্যাবিনেট সেফটি লক',
+      'ফ্রিজ সেফটি লক',
+      'ফ্রিজের দরজার লক',
+      'বাচ্চাদের সেফটি লক',
     ],
-    "description": "<p><span>বাচ্চারা বারবার ফ্রিজ বা ক্যাবিনেটের দরজা খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>মাল্টি-ফাংশনাল ফ্রিজ ও ক্যাবিনেট সেফটি লক</span></strong><span> ব্যবহার করে ফ্রিজ, আলমারি ও ক্যাবিনেটের দরজা বন্ধ রাখতে সাহায্য করুন। গাম স্টিকারের মাধ্যমে ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়।</span></p>\n<p><span>✅ ফ্রিজ ও ক্যাবিনেটের দরজা বন্ধ রাখতে সহায়ক</span><br><span>✅ শিশুদের অনাকাঙ্ক্ষিতভাবে দরজা খোলা কমাতে সাহায্য করে</span><br><span>✅ শক্তিশালী আঠাযুক্ত স্টিকার দিয়ে লাগানো যায়</span><br><span>✅ ড্রিল বা স্ক্রু করার প্রয়োজন নেই</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ বাসা ও রান্নাঘরের বিভিন্ন ক্যাবিনেটে ব্যবহারযোগ্য</span></p>\n<p><strong><span>ঘরের নিরাপত্তা বাড়াতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/multi-functional-fridge-lock-1.webp",
-      "/assets/live/products/multi-functional-fridge-lock-2.webp",
-      "/assets/live/products/multi-functional-fridge-lock-3.webp",
-      "/assets/live/products/multi-functional-fridge-lock-4.webp",
-      "/assets/live/products/multi-functional-fridge-lock-5.webp"
+    description:
+      '<p><span>বাচ্চারা বারবার ফ্রিজ বা ক্যাবিনেটের দরজা খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>মাল্টি-ফাংশনাল ফ্রিজ ও ক্যাবিনেট সেফটি লক</span></strong><span> ব্যবহার করে ফ্রিজ, আলমারি ও ক্যাবিনেটের দরজা বন্ধ রাখতে সাহায্য করুন। গাম স্টিকারের মাধ্যমে ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়।</span></p>\n<p><span>✅ ফ্রিজ ও ক্যাবিনেটের দরজা বন্ধ রাখতে সহায়ক</span><br><span>✅ শিশুদের অনাকাঙ্ক্ষিতভাবে দরজা খোলা কমাতে সাহায্য করে</span><br><span>✅ শক্তিশালী আঠাযুক্ত স্টিকার দিয়ে লাগানো যায়</span><br><span>✅ ড্রিল বা স্ক্রু করার প্রয়োজন নেই</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ বাসা ও রান্নাঘরের বিভিন্ন ক্যাবিনেটে ব্যবহারযোগ্য</span></p>\n<p><strong><span>ঘরের নিরাপত্তা বাড়াতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: 700,
+    stock: 50,
+    images: [
+      '/assets/live/products/multi-functional-fridge-lock-1.webp',
+      '/assets/live/products/multi-functional-fridge-lock-2.webp',
+      '/assets/live/products/multi-functional-fridge-lock-3.webp',
+      '/assets/live/products/multi-functional-fridge-lock-4.webp',
+      '/assets/live/products/multi-functional-fridge-lock-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '4 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 650,
-        "compareAtPrice": 700,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 650,
+        compareAtPrice: 700,
+        stock: 50,
       },
       {
-        "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
-        "price": 1150,
-        "compareAtPrice": 1400,
-        "stock": 50
-      }
-    ]
+        title: '4 Pcs',
+        options: ['4 Pcs'],
+        price: 1150,
+        compareAtPrice: 1400,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10400773308671",
-    "name": "গাছের ডালপালা কাটিং টুল",
-    "slug": "garden-pruning-shears",
-    "sku": "EHM-10400773308671",
-    "category": "garden-outdoor",
-    "collections": [
+    ref: '10400773308671',
+    name: 'গাছের ডালপালা কাটিং টুল',
+    slug: 'garden-pruning-shears',
+    sku: 'EHM-10400773308671',
+    category: 'garden-outdoor',
+    collections: [
       {
-        "collection": "garden-outdoor",
-        "position": 1
+        collection: 'garden-outdoor',
+        position: 1,
       },
       {
-        "collection": "tools-hardware",
-        "position": 1
+        collection: 'tools-hardware',
+        position: 1,
       },
       {
-        "collection": "trendy-items",
-        "position": 17
-      }
+        collection: 'trendy-items',
+        position: 17,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Garden Pruning Cutter",
-      "Garden Pruning Shears",
-      "Pruning Shears Bangladesh",
-      "Tree Branch Cutter",
-      "Tree Cutting Scissors",
-      "গাছ কাটার কাঁচি",
-      "গাছ ছাঁটাই করার কাঁচি",
-      "গাছের ডাল কাটার কাঁচি",
-      "গাছের ডালপালা কাটিং টুল",
-      "বাগানের প্রুনিং শিয়ার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Garden Pruning Cutter',
+      'Garden Pruning Shears',
+      'Pruning Shears Bangladesh',
+      'Tree Branch Cutter',
+      'Tree Cutting Scissors',
+      'গাছ কাটার কাঁচি',
+      'গাছ ছাঁটাই করার কাঁচি',
+      'গাছের ডাল কাটার কাঁচি',
+      'গাছের ডালপালা কাটিং টুল',
+      'বাগানের প্রুনিং শিয়ার',
     ],
-    "description": "<p><span>গাছের ডালপালা ছাঁটাই করতে কষ্ট হচ্ছে? 🌳✂️</span></p>\n<p><strong><span>Tree Cutting Plus প্রুনিং শিয়ার</span></strong><span> ব্যবহার করে গাছের ডালপালা ছাঁটাই ও বাগানের পরিচর্যা করুন আরও সহজে। ধারালো স্টিল ব্লেড, আরামদায়ক গ্রিপ ও সেফটি লক থাকায় বাগানের বিভিন্ন কাটিং কাজে এটি বেশ উপযোগী।</span></p>\n<p><span>✅ ধারালো স্টিল ব্লেড দিয়ে ডালপালা সহজে কাটা যায়</span><br><span>✅ সেফটি লক থাকায় ব্যবহার শেষে নিরাপদে রাখা যায়</span><br><span>✅ স্প্রিং সিস্টেমের কারণে কাটিং করা আরও সহজ</span><br><span>✅ অ্যান্টি-স্লিপ রাবার গ্রিপসহ আরামদায়ক হ্যান্ডেল</span><br><span>✅ ফলের গাছ, ফুলের গাছ ও বনসাই ছাঁটাইয়ে ব্যবহারযোগ্য</span><br><span>✅ ৮ ইঞ্চি সাইজের মজবুত ও সহজে ব্যবহারযোগ্য ডিজাইন</span></p>\n<p><strong><span>বাগানের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 280,
-    "compareAtPrice": 450,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/garden-pruning-shears-1.webp"
-    ],
-    "options": [],
-    "variants": []
+    description:
+      '<p><span>গাছের ডালপালা ছাঁটাই করতে কষ্ট হচ্ছে? 🌳✂️</span></p>\n<p><strong><span>Tree Cutting Plus প্রুনিং শিয়ার</span></strong><span> ব্যবহার করে গাছের ডালপালা ছাঁটাই ও বাগানের পরিচর্যা করুন আরও সহজে। ধারালো স্টিল ব্লেড, আরামদায়ক গ্রিপ ও সেফটি লক থাকায় বাগানের বিভিন্ন কাটিং কাজে এটি বেশ উপযোগী।</span></p>\n<p><span>✅ ধারালো স্টিল ব্লেড দিয়ে ডালপালা সহজে কাটা যায়</span><br><span>✅ সেফটি লক থাকায় ব্যবহার শেষে নিরাপদে রাখা যায়</span><br><span>✅ স্প্রিং সিস্টেমের কারণে কাটিং করা আরও সহজ</span><br><span>✅ অ্যান্টি-স্লিপ রাবার গ্রিপসহ আরামদায়ক হ্যান্ডেল</span><br><span>✅ ফলের গাছ, ফুলের গাছ ও বনসাই ছাঁটাইয়ে ব্যবহারযোগ্য</span><br><span>✅ ৮ ইঞ্চি সাইজের মজবুত ও সহজে ব্যবহারযোগ্য ডিজাইন</span></p>\n<p><strong><span>বাগানের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 280,
+    compareAtPrice: 450,
+    stock: 50,
+    images: ['/assets/live/products/garden-pruning-shears-1.webp'],
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10398748377343",
-    "name": "গাছের যত্নে অ্যাডজাস্টেবল ওয়াটারিং স্পাইক",
-    "slug": "adjustable-plant-watering-spike",
-    "sku": "EHM-10398748377343",
-    "category": "garden-outdoor",
-    "collections": [
+    ref: '10398748377343',
+    name: 'গাছের যত্নে অ্যাডজাস্টেবল ওয়াটারিং স্পাইক',
+    slug: 'adjustable-plant-watering-spike',
+    sku: 'EHM-10398748377343',
+    category: 'garden-outdoor',
+    collections: [
       {
-        "collection": "garden-outdoor",
-        "position": 0
+        collection: 'garden-outdoor',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 10
-      }
+        collection: 'trendy-items',
+        position: 10,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Adjustable Watering Spike",
-      "Automatic Plant Watering Device",
-      "Plant Watering Spike Bangladesh",
-      "Plant Watering Spikes",
-      "Self Watering Spikes",
-      "অ্যাডজাস্টেবল ওয়াটারিং স্পাইক",
-      "গাছে পানি দেওয়ার যন্ত্র",
-      "গাছের অটো ওয়াটারিং সিস্টেম",
-      "গাছের পানি দেওয়ার ডিভাইস",
-      "টবের গাছে পানি দেওয়ার স্পাইক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Adjustable Watering Spike',
+      'Automatic Plant Watering Device',
+      'Plant Watering Spike Bangladesh',
+      'Plant Watering Spikes',
+      'Self Watering Spikes',
+      'অ্যাডজাস্টেবল ওয়াটারিং স্পাইক',
+      'গাছে পানি দেওয়ার যন্ত্র',
+      'গাছের অটো ওয়াটারিং সিস্টেম',
+      'গাছের পানি দেওয়ার ডিভাইস',
+      'টবের গাছে পানি দেওয়ার স্পাইক',
     ],
-    "description": "<p><span>ব্যস্ততার কারণে গাছে নিয়মিত পানি দিতে পারছেন না? 🌱💧</span></p>\n<p><strong><span>অ্যাডজাস্টেবল ওয়াটারিং স্পাইক</span></strong><span> ব্যবহার করে গাছের গোড়ায় ধীরে ধীরে পানি পৌঁছে দিন। পানির প্রবাহ নিয়ন্ত্রণ করার সুবিধা থাকায় আপনার প্রয়োজন অনুযায়ী গাছে পানি দেওয়া হবে আরও সহজ।</span></p>\n<p><span>✅ গাছের গোড়ায় ধীরে ধীরে পানি সরবরাহ করে</span><br><span>✅ প্রয়োজন অনুযায়ী পানির প্রবাহ নিয়ন্ত্রণ করা যায়</span><br><span>✅ সাধারণ পানির বোতলের সঙ্গে ব্যবহারযোগ্য</span><br><span>✅ টবের গাছ ও ইনডোর প্ল্যান্টের জন্য উপযোগী</span><br><span>✅ সহজে লাগানো ও ব্যবহার করা যায়</span><br><span>✅ ব্যস্ততা বা বাইরে থাকার সময় গাছের যত্নে সহায়ক</span></p>\n<p><strong><span>গাছের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/adjustable-plant-watering-spike-1.webp",
-      "/assets/live/products/adjustable-plant-watering-spike-2.webp",
-      "/assets/live/products/adjustable-plant-watering-spike-3.webp",
-      "/assets/live/products/adjustable-plant-watering-spike-4.webp",
-      "/assets/live/products/adjustable-plant-watering-spike-5.webp"
+    description:
+      '<p><span>ব্যস্ততার কারণে গাছে নিয়মিত পানি দিতে পারছেন না? 🌱💧</span></p>\n<p><strong><span>অ্যাডজাস্টেবল ওয়াটারিং স্পাইক</span></strong><span> ব্যবহার করে গাছের গোড়ায় ধীরে ধীরে পানি পৌঁছে দিন। পানির প্রবাহ নিয়ন্ত্রণ করার সুবিধা থাকায় আপনার প্রয়োজন অনুযায়ী গাছে পানি দেওয়া হবে আরও সহজ।</span></p>\n<p><span>✅ গাছের গোড়ায় ধীরে ধীরে পানি সরবরাহ করে</span><br><span>✅ প্রয়োজন অনুযায়ী পানির প্রবাহ নিয়ন্ত্রণ করা যায়</span><br><span>✅ সাধারণ পানির বোতলের সঙ্গে ব্যবহারযোগ্য</span><br><span>✅ টবের গাছ ও ইনডোর প্ল্যান্টের জন্য উপযোগী</span><br><span>✅ সহজে লাগানো ও ব্যবহার করা যায়</span><br><span>✅ ব্যস্ততা বা বাইরে থাকার সময় গাছের যত্নে সহায়ক</span></p>\n<p><strong><span>গাছের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 960,
+    stock: 50,
+    images: [
+      '/assets/live/products/adjustable-plant-watering-spike-1.webp',
+      '/assets/live/products/adjustable-plant-watering-spike-2.webp',
+      '/assets/live/products/adjustable-plant-watering-spike-3.webp',
+      '/assets/live/products/adjustable-plant-watering-spike-4.webp',
+      '/assets/live/products/adjustable-plant-watering-spike-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pack (10 Pcs)', '2 Pack (20 Pcs)', '3 Pack (30 Pcs)'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pack (10 Pcs)',
+        options: ['1 Pack (10 Pcs)'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
-        "price": 850,
-        "compareAtPrice": 960,
-        "stock": 50
+        title: '2 Pack (20 Pcs)',
+        options: ['2 Pack (20 Pcs)'],
+        price: 850,
+        compareAtPrice: 960,
+        stock: 50,
       },
       {
-        "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
-        "price": 1150,
-        "compareAtPrice": 1440,
-        "stock": 50
-      }
-    ]
+        title: '3 Pack (30 Pcs)',
+        options: ['3 Pack (30 Pcs)'],
+        price: 1150,
+        compareAtPrice: 1440,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10398706663679",
-    "name": "লাল টিউলিপ বো হেয়ার ক্লিপ",
-    "slug": "red-tulip-bow-hair-clip",
-    "sku": "EHM-10398706663679",
-    "category": "hair-accessories",
-    "collections": [
+    ref: '10398706663679',
+    name: 'লাল টিউলিপ বো হেয়ার ক্লিপ',
+    slug: 'red-tulip-bow-hair-clip',
+    sku: 'EHM-10398706663679',
+    category: 'hair-accessories',
+    collections: [
       {
-        "collection": "hair-accessories",
-        "position": 2
+        collection: 'hair-accessories',
+        position: 2,
       },
       {
-        "collection": "trendy-items",
-        "position": 18
+        collection: 'trendy-items',
+        position: 18,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 4
-      }
+        collection: 'women-s-essentials',
+        position: 4,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Red Hair Bow",
-      "Red Hair Bow Bangladesh",
-      "Red Tulip Bow Hair Clip",
-      "Ribbon Hair Clip for Girls",
-      "Velvet Bow Hair Clip",
-      "ভেলভেট বো হেয়ার ক্লিপ",
-      "মেয়েদের স্টাইলিশ হেয়ার ক্লিপ",
-      "লাল টিউলিপ বো হেয়ার ক্লিপ",
-      "লাল রিবন হেয়ার ক্লিপ",
-      "লাল হেয়ার বো"
+    brand: 'Ehans Mart',
+    tags: [
+      'Red Hair Bow',
+      'Red Hair Bow Bangladesh',
+      'Red Tulip Bow Hair Clip',
+      'Ribbon Hair Clip for Girls',
+      'Velvet Bow Hair Clip',
+      'ভেলভেট বো হেয়ার ক্লিপ',
+      'মেয়েদের স্টাইলিশ হেয়ার ক্লিপ',
+      'লাল টিউলিপ বো হেয়ার ক্লিপ',
+      'লাল রিবন হেয়ার ক্লিপ',
+      'লাল হেয়ার বো',
     ],
-    "description": "<p><span>চুলের সাজে আনুন আকর্ষণীয় ও স্টাইলিশ লুক! ❤️🎀</span></p>\n<p><strong><span>লাল টিউলিপ বো হেয়ার ক্লিপ</span></strong><span> এর সুন্দর ভেলভেট বো, ঝলমলে পাথর ও লম্বা রিবন ডিজাইন আপনার হেয়ারস্টাইলকে করে তুলবে আরও আকর্ষণীয়। বিয়ে, পার্টি, জন্মদিন কিংবা বিশেষ দিনের সাজে এটি হতে পারে দারুণ একটি হেয়ার অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় লাল টিউলিপ বো ডিজাইন</span><br><span>✅ সুন্দর ভেলভেট ফ্যাব্রিক ও ঝলমলে পাথরের সাজ</span><br><span>✅ লম্বা রিবন চুলের সাজে যোগ করে বাড়তি সৌন্দর্য</span><br><span>✅ স্প্রিং ক্লিপের মাধ্যমে সহজে চুলে লাগানো যায়</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ পার্টি, বিয়ে ও ফটোশুটের জন্য উপযোগী</span></p>\n<p><strong><span>চুলের সাজে সুন্দর ও নজরকাড়া লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 600,
-    "compareAtPrice": 650,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/red-tulip-bow-hair-clip-1.webp",
-      "/assets/live/products/red-tulip-bow-hair-clip-2.webp",
-      "/assets/live/products/red-tulip-bow-hair-clip-3.webp"
+    description:
+      '<p><span>চুলের সাজে আনুন আকর্ষণীয় ও স্টাইলিশ লুক! ❤️🎀</span></p>\n<p><strong><span>লাল টিউলিপ বো হেয়ার ক্লিপ</span></strong><span> এর সুন্দর ভেলভেট বো, ঝলমলে পাথর ও লম্বা রিবন ডিজাইন আপনার হেয়ারস্টাইলকে করে তুলবে আরও আকর্ষণীয়। বিয়ে, পার্টি, জন্মদিন কিংবা বিশেষ দিনের সাজে এটি হতে পারে দারুণ একটি হেয়ার অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় লাল টিউলিপ বো ডিজাইন</span><br><span>✅ সুন্দর ভেলভেট ফ্যাব্রিক ও ঝলমলে পাথরের সাজ</span><br><span>✅ লম্বা রিবন চুলের সাজে যোগ করে বাড়তি সৌন্দর্য</span><br><span>✅ স্প্রিং ক্লিপের মাধ্যমে সহজে চুলে লাগানো যায়</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ পার্টি, বিয়ে ও ফটোশুটের জন্য উপযোগী</span></p>\n<p><strong><span>চুলের সাজে সুন্দর ও নজরকাড়া লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 600,
+    compareAtPrice: 650,
+    stock: 50,
+    images: [
+      '/assets/live/products/red-tulip-bow-hair-clip-1.webp',
+      '/assets/live/products/red-tulip-bow-hair-clip-2.webp',
+      '/assets/live/products/red-tulip-bow-hair-clip-3.webp',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10398675665151",
-    "name": "স্টাইলিশ লাভ বো স্প্রিং হেয়ার ক্লিপ",
-    "slug": "স্টাইলিশ-লাভ-বো-স্প্রিং-হেয়ার-ক্লিপ",
-    "sku": "EHM-10398675665151",
-    "category": "hair-accessories",
-    "collections": [
+    ref: '10398675665151',
+    name: 'স্টাইলিশ লাভ বো স্প্রিং হেয়ার ক্লিপ',
+    slug: 'স্টাইলিশ-লাভ-বো-স্প্রিং-হেয়ার-ক্লিপ',
+    sku: 'EHM-10398675665151',
+    category: 'hair-accessories',
+    collections: [
       {
-        "collection": "hair-accessories",
-        "position": 4
+        collection: 'hair-accessories',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 25
+        collection: 'trendy-items',
+        position: 25,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 7
-      }
+        collection: 'women-s-essentials',
+        position: 7,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Bow Hair Clip Bangladesh",
-      "Bow Spring Hair Clip",
-      "Cute Bow Hair Clip",
-      "Girls Hair Accessories",
-      "Love Bow Hair Clip",
-      "মেয়েদের বো হেয়ার ক্লিপ",
-      "লাভ বো স্প্রিং ক্লিপ",
-      "লাভ বো হেয়ার ক্লিপ",
-      "স্টাইলিশ চুলের ক্লিপ",
-      "স্প্রিং হেয়ার ক্লিপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Bow Hair Clip Bangladesh',
+      'Bow Spring Hair Clip',
+      'Cute Bow Hair Clip',
+      'Girls Hair Accessories',
+      'Love Bow Hair Clip',
+      'মেয়েদের বো হেয়ার ক্লিপ',
+      'লাভ বো স্প্রিং ক্লিপ',
+      'লাভ বো হেয়ার ক্লিপ',
+      'স্টাইলিশ চুলের ক্লিপ',
+      'স্প্রিং হেয়ার ক্লিপ',
     ],
-    "description": "<p><span>চুলের সাজে আনুন মিষ্টি ও স্টাইলিশ লুক! 🎀💖</span></p>\n<p><strong><span>লাভ বো স্প্রিং হেয়ার ক্লিপ</span></strong><span> এর সুন্দর বো ডিজাইন আপনার সাধারণ হেয়ারস্টাইলকেও করে তুলবে আরও আকর্ষণীয়। স্প্রিং ক্লিপ ডিজাইনের কারণে সহজেই চুলে লাগানো যায়। দৈনন্দিন সাজ, পার্টি কিংবা বিশেষ অনুষ্ঠানে ব্যবহার করতে পারবেন।</span></p>\n<p><span>✅ আকর্ষণীয় লাভ বো ডিজাইন</span><br><span>✅ স্প্রিং ক্লিপের মাধ্যমে সহজে চুলে লাগানো যায়</span><br><span>✅ চুল সুন্দরভাবে আটকে রাখতে সাহায্য করে</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>চুলের সাজে মিষ্টি ও আকর্ষণীয় লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": 540,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/স্টাইলিশ-লাভ-বো-স্প্রিং-হেয়ার-ক্লিপ-1.webp"
-    ],
-    "options": [],
-    "variants": []
+    description:
+      '<p><span>চুলের সাজে আনুন মিষ্টি ও স্টাইলিশ লুক! 🎀💖</span></p>\n<p><strong><span>লাভ বো স্প্রিং হেয়ার ক্লিপ</span></strong><span> এর সুন্দর বো ডিজাইন আপনার সাধারণ হেয়ারস্টাইলকেও করে তুলবে আরও আকর্ষণীয়। স্প্রিং ক্লিপ ডিজাইনের কারণে সহজেই চুলে লাগানো যায়। দৈনন্দিন সাজ, পার্টি কিংবা বিশেষ অনুষ্ঠানে ব্যবহার করতে পারবেন।</span></p>\n<p><span>✅ আকর্ষণীয় লাভ বো ডিজাইন</span><br><span>✅ স্প্রিং ক্লিপের মাধ্যমে সহজে চুলে লাগানো যায়</span><br><span>✅ চুল সুন্দরভাবে আটকে রাখতে সাহায্য করে</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>চুলের সাজে মিষ্টি ও আকর্ষণীয় লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 540,
+    stock: 50,
+    images: ['/assets/live/products/স্টাইলিশ-লাভ-বো-স্প্রিং-হেয়ার-ক্লিপ-1.webp'],
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10398618419455",
-    "name": "লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ",
-    "slug": "lily-flower-princess-bow-hair-clip",
-    "sku": "EHM-10398618419455",
-    "category": "hair-accessories",
-    "collections": [
+    ref: '10398618419455',
+    name: 'লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ',
+    slug: 'lily-flower-princess-bow-hair-clip',
+    sku: 'EHM-10398618419455',
+    category: 'hair-accessories',
+    collections: [
       {
-        "collection": "hair-accessories",
-        "position": 0
+        collection: 'hair-accessories',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 6
-      }
+        collection: 'trendy-items',
+        position: 6,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Cute Hair Bow for Girls",
-      "Floral Bow Hair Clip",
-      "Lily Flower Hair Clip",
-      "Lily Hair Clip Bangladesh",
-      "Princess Bow Hair Clip",
-      "প্রিন্সেস বো হেয়ার ক্লিপ",
-      "ফুলের হেয়ার ক্লিপ",
-      "মেয়েদের স্টাইলিশ হেয়ার বো",
-      "লিলি ফুল হেয়ার অ্যাক্সেসরিজ",
-      "লিলি ফুল হেয়ার ক্লিপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Cute Hair Bow for Girls',
+      'Floral Bow Hair Clip',
+      'Lily Flower Hair Clip',
+      'Lily Hair Clip Bangladesh',
+      'Princess Bow Hair Clip',
+      'প্রিন্সেস বো হেয়ার ক্লিপ',
+      'ফুলের হেয়ার ক্লিপ',
+      'মেয়েদের স্টাইলিশ হেয়ার বো',
+      'লিলি ফুল হেয়ার অ্যাক্সেসরিজ',
+      'লিলি ফুল হেয়ার ক্লিপ',
     ],
-    "description": "<p><span>চুলের সাজে আনুন মিষ্টি ও রাজকীয় প্রিন্সেস লুক! 🌸🎀</span></p>\n<p><strong><span>লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ</span></strong><span> এর সুন্দর ফুল ও বো ডিজাইন আপনার সাধারণ হেয়ারস্টাইলকেও করে তুলবে আরও আকর্ষণীয়। পার্টি, জন্মদিন, বিয়ে কিংবা বিশেষ দিনের সাজে এটি হতে পারে দারুণ একটি হেয়ার অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় লিলি ফুল ও বো ডিজাইন</span><br><span>✅ চুলের সাজে যোগ করে মিষ্টি প্রিন্সেস লুক</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><span>*</span><em><span>চুলের সাজে সুন্দর ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></em></p>",
-    "price": 550,
-    "compareAtPrice": 620,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/lily-flower-princess-bow-hair-clip-1.webp",
-      "/assets/live/products/lily-flower-princess-bow-hair-clip-2.webp",
-      "/assets/live/products/lily-flower-princess-bow-hair-clip-3.webp",
-      "/assets/live/products/lily-flower-princess-bow-hair-clip-4.webp",
-      "/assets/live/products/lily-flower-princess-bow-hair-clip-5.webp"
+    description:
+      '<p><span>চুলের সাজে আনুন মিষ্টি ও রাজকীয় প্রিন্সেস লুক! 🌸🎀</span></p>\n<p><strong><span>লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ</span></strong><span> এর সুন্দর ফুল ও বো ডিজাইন আপনার সাধারণ হেয়ারস্টাইলকেও করে তুলবে আরও আকর্ষণীয়। পার্টি, জন্মদিন, বিয়ে কিংবা বিশেষ দিনের সাজে এটি হতে পারে দারুণ একটি হেয়ার অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় লিলি ফুল ও বো ডিজাইন</span><br><span>✅ চুলের সাজে যোগ করে মিষ্টি প্রিন্সেস লুক</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে মানানসই</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><span>*</span><em><span>চুলের সাজে সুন্দর ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></em></p>',
+    price: 550,
+    compareAtPrice: 620,
+    stock: 50,
+    images: [
+      '/assets/live/products/lily-flower-princess-bow-hair-clip-1.webp',
+      '/assets/live/products/lily-flower-princess-bow-hair-clip-2.webp',
+      '/assets/live/products/lily-flower-princess-bow-hair-clip-3.webp',
+      '/assets/live/products/lily-flower-princess-bow-hair-clip-4.webp',
+      '/assets/live/products/lily-flower-princess-bow-hair-clip-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Pink",
-          "Blue",
-          "Yellow",
-          "Purple"
-        ]
-      }
+        name: 'Color',
+        values: ['Pink', 'Blue', 'Yellow', 'Purple'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 550,
-        "compareAtPrice": 620,
-        "stock": 50
+        title: 'Pink',
+        options: ['Pink'],
+        price: 550,
+        compareAtPrice: 620,
+        stock: 50,
       },
       {
-        "title": "Blue",
-        "options": [
-          "Blue"
-        ],
-        "price": 550,
-        "compareAtPrice": 620,
-        "stock": 50
+        title: 'Blue',
+        options: ['Blue'],
+        price: 550,
+        compareAtPrice: 620,
+        stock: 50,
       },
       {
-        "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
-        "price": 550,
-        "compareAtPrice": 620,
-        "stock": 50
+        title: 'Yellow',
+        options: ['Yellow'],
+        price: 550,
+        compareAtPrice: 620,
+        stock: 50,
       },
       {
-        "title": "Purple",
-        "options": [
-          "Purple"
-        ],
-        "price": 550,
-        "compareAtPrice": 620,
-        "stock": 50
-      }
-    ]
+        title: 'Purple',
+        options: ['Purple'],
+        price: 550,
+        compareAtPrice: 620,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10398493278463",
-    "name": "ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন",
-    "slug": "crystal-butterfly-tassel-hairpin",
-    "sku": "EHM-10398493278463",
-    "category": "hair-accessories",
-    "collections": [
+    ref: '10398493278463',
+    name: 'ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন',
+    slug: 'crystal-butterfly-tassel-hairpin',
+    sku: 'EHM-10398493278463',
+    category: 'hair-accessories',
+    collections: [
       {
-        "collection": "hair-accessories",
-        "position": 1
+        collection: 'hair-accessories',
+        position: 1,
       },
       {
-        "collection": "trendy-items",
-        "position": 14
-      }
+        collection: 'trendy-items',
+        position: 14,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Butterfly Hair Clip",
-      "Butterfly Hairpin Bangladesh",
-      "Butterfly Tassel Hairpin",
-      "Crystal Butterfly Hairpin",
-      "Crystal Hair Accessories",
-      "ক্রিস্টাল বাটারফ্লাই হেয়ারপিন",
-      "ক্রিস্টাল হেয়ার অ্যাক্সেসরিজ",
-      "প্রজাপতি হেয়ারপিন",
-      "বাটারফ্লাই ট্যাসেল হেয়ার ক্লিপ",
-      "মেয়েদের স্টাইলিশ হেয়ারপিন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Butterfly Hair Clip',
+      'Butterfly Hairpin Bangladesh',
+      'Butterfly Tassel Hairpin',
+      'Crystal Butterfly Hairpin',
+      'Crystal Hair Accessories',
+      'ক্রিস্টাল বাটারফ্লাই হেয়ারপিন',
+      'ক্রিস্টাল হেয়ার অ্যাক্সেসরিজ',
+      'প্রজাপতি হেয়ারপিন',
+      'বাটারফ্লাই ট্যাসেল হেয়ার ক্লিপ',
+      'মেয়েদের স্টাইলিশ হেয়ারপিন',
     ],
-    "description": "<p><span>চুলের সাজে আনুন ঝলমলে ও আকর্ষণীয় লুক! 🦋✨</span></p>\n<p><strong><span>ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন</span></strong><span> এর সুন্দর প্রজাপতি ডিজাইন, ঝকঝকে ক্রিস্টাল ও ঝুলন্ত ট্যাসেল আপনার হেয়ারস্টাইলকে করে তুলবে আরও স্টাইলিশ। পার্টি, বিয়ে কিংবা বিশেষ অনুষ্ঠানের সাজে এটি হতে পারে দারুণ একটি অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় প্রজাপতি ও ক্রিস্টাল ডিজাইন</span><br><span>✅ ঝুলন্ত ট্যাসেল চুলের সাজে যোগ করে বাড়তি সৌন্দর্য</span><br><span>✅ খোলা চুল ও হাফ-আপ হেয়ারস্টাইলে মানানসই</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, বিয়ে, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>চুলের সাজে ঝলমলে ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 600,
-    "compareAtPrice": 750,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/crystal-butterfly-tassel-hairpin-1.webp",
-      "/assets/live/products/crystal-butterfly-tassel-hairpin-2.webp",
-      "/assets/live/products/crystal-butterfly-tassel-hairpin-3.webp"
+    description:
+      '<p><span>চুলের সাজে আনুন ঝলমলে ও আকর্ষণীয় লুক! 🦋✨</span></p>\n<p><strong><span>ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন</span></strong><span> এর সুন্দর প্রজাপতি ডিজাইন, ঝকঝকে ক্রিস্টাল ও ঝুলন্ত ট্যাসেল আপনার হেয়ারস্টাইলকে করে তুলবে আরও স্টাইলিশ। পার্টি, বিয়ে কিংবা বিশেষ অনুষ্ঠানের সাজে এটি হতে পারে দারুণ একটি অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় প্রজাপতি ও ক্রিস্টাল ডিজাইন</span><br><span>✅ ঝুলন্ত ট্যাসেল চুলের সাজে যোগ করে বাড়তি সৌন্দর্য</span><br><span>✅ খোলা চুল ও হাফ-আপ হেয়ারস্টাইলে মানানসই</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, বিয়ে, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>চুলের সাজে ঝলমলে ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 600,
+    compareAtPrice: 750,
+    stock: 50,
+    images: [
+      '/assets/live/products/crystal-butterfly-tassel-hairpin-1.webp',
+      '/assets/live/products/crystal-butterfly-tassel-hairpin-2.webp',
+      '/assets/live/products/crystal-butterfly-tassel-hairpin-3.webp',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10398474731775",
-    "name": "বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ",
-    "slug": "butterfly-fairy-hair-clip",
-    "sku": "EHM-10398474731775",
-    "category": "hair-accessories",
-    "collections": [
+    ref: '10398474731775',
+    name: 'বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ',
+    slug: 'butterfly-fairy-hair-clip',
+    sku: 'EHM-10398474731775',
+    category: 'hair-accessories',
+    collections: [
       {
-        "collection": "hair-accessories",
-        "position": 3
+        collection: 'hair-accessories',
+        position: 3,
       },
       {
-        "collection": "trendy-items",
-        "position": 26
-      }
+        collection: 'trendy-items',
+        position: 26,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Butterfly Fairy Hair Clip",
-      "Butterfly Hair Clip",
-      "Butterfly Hair Clip Bangladesh",
-      "Cute Hair Clip for Girls",
-      "Fairy Hair Accessories",
-      "প্রজাপতি হেয়ার ক্লিপ",
-      "বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ",
-      "বাটারফ্লাই হেয়ার অ্যাক্সেসরিজ",
-      "মেয়েদের চুলের ক্লিপ",
-      "মেয়েদের স্টাইলিশ হেয়ার ক্লিপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Butterfly Fairy Hair Clip',
+      'Butterfly Hair Clip',
+      'Butterfly Hair Clip Bangladesh',
+      'Cute Hair Clip for Girls',
+      'Fairy Hair Accessories',
+      'প্রজাপতি হেয়ার ক্লিপ',
+      'বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ',
+      'বাটারফ্লাই হেয়ার অ্যাক্সেসরিজ',
+      'মেয়েদের চুলের ক্লিপ',
+      'মেয়েদের স্টাইলিশ হেয়ার ক্লিপ',
     ],
-    "description": "<p><span>চুলের সাজে আনুন প্রজাপতির মতো মিষ্টি ও আকর্ষণীয় লুক! 🦋💖</span></p>\n<p><strong><span>বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ</span></strong><span> দিয়ে সাধারণ হেয়ারস্টাইলকেও করে তুলুন আরও সুন্দর ও স্টাইলিশ। প্রজাপতির আকর্ষণীয় ডিজাইনটি দৈনন্দিন সাজ থেকে শুরু করে পার্টি ও বিশেষ অনুষ্ঠানের জন্য দারুণ মানানসই।</span></p>\n<p><span>✅ সুন্দর ও আকর্ষণীয় প্রজাপতি ডিজাইন</span><br><span>✅ চুলের সাজে যোগ করে স্টাইলিশ লুক</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে ব্যবহারযোগ্য</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>পছন্দের হেয়ারস্টাইলে মিষ্টি ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 580,
-    "compareAtPrice": 650,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/butterfly-fairy-hair-clip-1.webp",
-      "/assets/live/products/butterfly-fairy-hair-clip-2.webp",
-      "/assets/live/products/butterfly-fairy-hair-clip-3.webp"
+    description:
+      '<p><span>চুলের সাজে আনুন প্রজাপতির মতো মিষ্টি ও আকর্ষণীয় লুক! 🦋💖</span></p>\n<p><strong><span>বাটারফ্লাই ফেয়ারি হেয়ার ক্লিপ</span></strong><span> দিয়ে সাধারণ হেয়ারস্টাইলকেও করে তুলুন আরও সুন্দর ও স্টাইলিশ। প্রজাপতির আকর্ষণীয় ডিজাইনটি দৈনন্দিন সাজ থেকে শুরু করে পার্টি ও বিশেষ অনুষ্ঠানের জন্য দারুণ মানানসই।</span></p>\n<p><span>✅ সুন্দর ও আকর্ষণীয় প্রজাপতি ডিজাইন</span><br><span>✅ চুলের সাজে যোগ করে স্টাইলিশ লুক</span><br><span>✅ খোলা চুল, পনিটেইল ও হাফ-আপ স্টাইলে ব্যবহারযোগ্য</span><br><span>✅ সহজে চুলে লাগানো ও খোলা যায়</span><br><span>✅ পার্টি, জন্মদিন ও ফটোশুটের জন্য উপযোগী</span><br><span>✅ নিজের ব্যবহার কিংবা উপহার দেওয়ার জন্য সুন্দর পছন্দ</span></p>\n<p><strong><span>পছন্দের হেয়ারস্টাইলে মিষ্টি ও স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 580,
+    compareAtPrice: 650,
+    stock: 50,
+    images: [
+      '/assets/live/products/butterfly-fairy-hair-clip-1.webp',
+      '/assets/live/products/butterfly-fairy-hair-clip-2.webp',
+      '/assets/live/products/butterfly-fairy-hair-clip-3.webp',
     ],
-    "options": [],
-    "variants": []
+    options: [],
+    variants: [],
   },
   {
-    "ref": "10397941858559",
-    "name": "হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি",
-    "slug": "hair-oil-applicator-comb",
-    "sku": "EHM-10397941858559",
-    "category": "personal-care",
-    "collections": [
+    ref: '10397941858559',
+    name: 'হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি',
+    slug: 'hair-oil-applicator-comb',
+    sku: 'EHM-10397941858559',
+    category: 'personal-care',
+    collections: [
       {
-        "collection": "personal-care",
-        "position": 3
+        collection: 'personal-care',
+        position: 3,
       },
       {
-        "collection": "trendy-items",
-        "position": 19
+        collection: 'trendy-items',
+        position: 19,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 5
-      }
+        collection: 'women-s-essentials',
+        position: 5,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Hair Oil Applicator",
-      "Hair Oil Applicator Comb",
-      "Hair Oil Comb Bangladesh",
-      "Oil Dispensing Comb",
-      "Scalp Oil Applicator",
-      "অয়েল অ্যাপ্লিকেটর কম্ব",
-      "চুলে তেল লাগানোর চিরুনি",
-      "তেল দেওয়ার চিরুনি",
-      "হেয়ার অয়েল অ্যাপ্লিকেটর",
-      "হেয়ার অয়েল চিরুনি"
+    brand: 'Ehans Mart',
+    tags: [
+      'Hair Oil Applicator',
+      'Hair Oil Applicator Comb',
+      'Hair Oil Comb Bangladesh',
+      'Oil Dispensing Comb',
+      'Scalp Oil Applicator',
+      'অয়েল অ্যাপ্লিকেটর কম্ব',
+      'চুলে তেল লাগানোর চিরুনি',
+      'তেল দেওয়ার চিরুনি',
+      'হেয়ার অয়েল অ্যাপ্লিকেটর',
+      'হেয়ার অয়েল চিরুনি',
     ],
-    "description": "<p><span>চুলে তেল দিতে গিয়ে হাতে তেল লেগে যাচ্ছে বা মাথার ত্বকে সমানভাবে তেল পৌঁছাচ্ছে না? 💆♀️</span></p>\n<p><strong><span>হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি</span></strong><span> ব্যবহার করে চুলের গোড়ায় সহজে ও সুন্দরভাবে তেল লাগান। বিশেষ ডিজাইনের এই অয়েল চিরুনি তেল লাগানোর পাশাপাশি চুল আঁচড়াতেও সাহায্য করে।</span></p>\n<p><span>✅ চুলের গোড়ায় সহজে তেল লাগানো যায়</span><br><span>✅ মাথার ত্বকে সমানভাবে তেল ছড়িয়ে দিতে সহায়ক</span><br><span>✅ হাতে তেল লাগার ঝামেলা কমায়</span><br><span>✅ তেল লাগানো ও চুল আঁচড়ানো যায় একই সঙ্গে</span><br><span>✅ সহজে ব্যবহার ও পরিষ্কার করা যায়</span><br><span>✅ ঘরে বসেই নিয়মিত হেয়ার কেয়ারে ব্যবহারযোগ্য</span></p>\n<p><span>চুলের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></p>",
-    "price": 380,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/hair-oil-applicator-comb-1.webp",
-      "/assets/live/products/hair-oil-applicator-comb-2.webp",
-      "/assets/live/products/hair-oil-applicator-comb-3.webp"
+    description:
+      '<p><span>চুলে তেল দিতে গিয়ে হাতে তেল লেগে যাচ্ছে বা মাথার ত্বকে সমানভাবে তেল পৌঁছাচ্ছে না? 💆♀️</span></p>\n<p><strong><span>হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি</span></strong><span> ব্যবহার করে চুলের গোড়ায় সহজে ও সুন্দরভাবে তেল লাগান। বিশেষ ডিজাইনের এই অয়েল চিরুনি তেল লাগানোর পাশাপাশি চুল আঁচড়াতেও সাহায্য করে।</span></p>\n<p><span>✅ চুলের গোড়ায় সহজে তেল লাগানো যায়</span><br><span>✅ মাথার ত্বকে সমানভাবে তেল ছড়িয়ে দিতে সহায়ক</span><br><span>✅ হাতে তেল লাগার ঝামেলা কমায়</span><br><span>✅ তেল লাগানো ও চুল আঁচড়ানো যায় একই সঙ্গে</span><br><span>✅ সহজে ব্যবহার ও পরিষ্কার করা যায়</span><br><span>✅ ঘরে বসেই নিয়মিত হেয়ার কেয়ারে ব্যবহারযোগ্য</span></p>\n<p><span>চুলের যত্ন আরও সহজ করতে আজই অর্ডার করুন!</span></p>',
+    price: 380,
+    compareAtPrice: 760,
+    stock: 50,
+    images: [
+      '/assets/live/products/hair-oil-applicator-comb-1.webp',
+      '/assets/live/products/hair-oil-applicator-comb-2.webp',
+      '/assets/live/products/hair-oil-applicator-comb-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 380,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 380,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 680,
-        "compareAtPrice": 760,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 680,
+        compareAtPrice: 760,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 950,
-        "compareAtPrice": 1140,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 950,
+        compareAtPrice: 1140,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10397916070143",
-    "name": "সেফটিপিন বিহীন প্রিমিয়াম কাপড় ক্লিপিং গান",
-    "slug": "mini-stitch-gun",
-    "sku": "EHM-10397916070143",
-    "category": "women-s-essentials",
-    "collections": [
+    ref: '10397916070143',
+    name: 'সেফটিপিন বিহীন প্রিমিয়াম কাপড় ক্লিপিং গান',
+    slug: 'mini-stitch-gun',
+    sku: 'EHM-10397916070143',
+    category: 'women-s-essentials',
+    collections: [
       {
-        "collection": "trendy-items",
-        "position": 37
+        collection: 'trendy-items',
+        position: 37,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 10
-      }
+        collection: 'women-s-essentials',
+        position: 10,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Clothing Stitch Gun",
-      "Fabric Tagging Gun",
-      "Mini Stitch Gun",
-      "Stitch Gun",
-      "Stitch Gun Bangladesh",
-      "কাপড় ক্লিপিং গান",
-      "শাড়ি সেট করার গান",
-      "সেফটি পিনের বিকল্প",
-      "স্টিচ গান",
-      "হিজাব ফিক্সিং গান"
+    brand: 'Ehans Mart',
+    tags: [
+      'Clothing Stitch Gun',
+      'Fabric Tagging Gun',
+      'Mini Stitch Gun',
+      'Stitch Gun',
+      'Stitch Gun Bangladesh',
+      'কাপড় ক্লিপিং গান',
+      'শাড়ি সেট করার গান',
+      'সেফটি পিনের বিকল্প',
+      'স্টিচ গান',
+      'হিজাব ফিক্সিং গান',
     ],
-    "description": "<p><span>শাড়ি, হিজাব বা কাপড় সেট করতে বারবার সেফটি পিন ব্যবহার করতে হচ্ছে? 👗</span></p>\n<p><strong><span>প্রিমিয়াম স্টিচ গান (Stitch Gun)</span></strong><span> ব্যবহার করে সেফটি পিনের ঝামেলা ছাড়াই কাপড় সহজে আটকে রাখুন। ছোট প্লাস্টিক ট্যাগের মাধ্যমে কয়েক সেকেন্ডেই কাপড় ফিক্স করা যায়, ফলে পোশাক সেট করা হয় আরও সহজ ও দ্রুত।</span></p>\n<p><span>✅ সেফটি পিনের বিকল্প স্মার্ট ক্লিপিং ডিভাইস</span><br><span>✅ ছোট প্লাস্টিক ট্যাগ দিয়ে কাপড় আটকে রাখে</span><br><span>✅ শাড়ি, হিজাব, ওড়না ও বিভিন্ন পোশাকে ব্যবহারযোগ্য</span><br><span>✅ কয়েক সেকেন্ডেই কাপড় ফিক্স করা যায়</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য ডিজাইন</span><br><span>✅ ঘরে বসেই পোশাক সুন্দরভাবে সেট করা যায়</span></p>\n<p><strong><span>সেফটি পিনের ঝামেলা কমাতে আজই অর্ডার করুন প্রিমিয়াম স্টিচ গান!</span></strong></p>",
-    "price": 850,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/mini-stitch-gun-1.webp"
-    ],
-    "options": [
+    description:
+      '<p><span>শাড়ি, হিজাব বা কাপড় সেট করতে বারবার সেফটি পিন ব্যবহার করতে হচ্ছে? 👗</span></p>\n<p><strong><span>প্রিমিয়াম স্টিচ গান (Stitch Gun)</span></strong><span> ব্যবহার করে সেফটি পিনের ঝামেলা ছাড়াই কাপড় সহজে আটকে রাখুন। ছোট প্লাস্টিক ট্যাগের মাধ্যমে কয়েক সেকেন্ডেই কাপড় ফিক্স করা যায়, ফলে পোশাক সেট করা হয় আরও সহজ ও দ্রুত।</span></p>\n<p><span>✅ সেফটি পিনের বিকল্প স্মার্ট ক্লিপিং ডিভাইস</span><br><span>✅ ছোট প্লাস্টিক ট্যাগ দিয়ে কাপড় আটকে রাখে</span><br><span>✅ শাড়ি, হিজাব, ওড়না ও বিভিন্ন পোশাকে ব্যবহারযোগ্য</span><br><span>✅ কয়েক সেকেন্ডেই কাপড় ফিক্স করা যায়</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য ডিজাইন</span><br><span>✅ ঘরে বসেই পোশাক সুন্দরভাবে সেট করা যায়</span></p>\n<p><strong><span>সেফটি পিনের ঝামেলা কমাতে আজই অর্ডার করুন প্রিমিয়াম স্টিচ গান!</span></strong></p>',
+    price: 850,
+    compareAtPrice: 1700,
+    stock: 50,
+    images: ['/assets/live/products/mini-stitch-gun-1.webp'],
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 850,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 850,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 1500,
-        "compareAtPrice": 1700,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 1500,
+        compareAtPrice: 1700,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1980,
-        "compareAtPrice": 2550,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1980,
+        compareAtPrice: 2550,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10397609984255",
-    "name": "কিচেন ফেস প্রোটেকশন মাস্ক",
-    "slug": "kitchen-face-protection-mask",
-    "sku": "EHM-10397609984255",
-    "category": "personal-care",
-    "collections": [
+    ref: '10397609984255',
+    name: 'কিচেন ফেস প্রোটেকশন মাস্ক',
+    slug: 'kitchen-face-protection-mask',
+    sku: 'EHM-10397609984255',
+    category: 'personal-care',
+    collections: [
       {
-        "collection": "personal-care",
-        "position": 2
+        collection: 'personal-care',
+        position: 2,
       },
       {
-        "collection": "trendy-items",
-        "position": 8
+        collection: 'trendy-items',
+        position: 8,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 2
-      }
+        collection: 'women-s-essentials',
+        position: 2,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Cooking Face Shield",
-      "Cooking Heat Protection Mask",
-      "Kitchen Face Mask",
-      "Kitchen Face Mask Bangladesh",
-      "Kitchen Face Protection Mask",
-      "কিচেন ফেস প্রোটেকশন মাস্ক",
-      "কিচেন সেফটি মাস্ক",
-      "চুলার তাপ থেকে মুখের সুরক্ষা",
-      "রান্নার ফেস মাস্ক",
-      "রান্নার সময় মুখের মাস্ক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Cooking Face Shield',
+      'Cooking Heat Protection Mask',
+      'Kitchen Face Mask',
+      'Kitchen Face Mask Bangladesh',
+      'Kitchen Face Protection Mask',
+      'কিচেন ফেস প্রোটেকশন মাস্ক',
+      'কিচেন সেফটি মাস্ক',
+      'চুলার তাপ থেকে মুখের সুরক্ষা',
+      'রান্নার ফেস মাস্ক',
+      'রান্নার সময় মুখের মাস্ক',
     ],
-    "description": "<p><span>রান্না করতে গিয়ে চুলার তীব্র তাপ ও গরম তেলের ছিটায় মুখে অস্বস্তি হচ্ছে? 🔥</span></p>\n<p><strong><span>কিচেন ফেস প্রোটেকশন মাস্ক</span></strong><span> ব্যবহার করে রান্নার সময় মুখে সরাসরি তাপ ও তেলের ছিটা লাগার ঝুঁকি কমাতে সাহায্য করুন। হালকা ও আরামদায়ক ডিজাইনের এই মাস্ক রান্নাঘরে বাড়তি সুরক্ষার জন্য ব্যবহারযোগ্য।</span></p>\n<p><span>✅ চুলার তাপের সরাসরি প্রভাব কমাতে সহায়ক</span><br><span>✅ গরম তেলের ছিটা থেকে মুখে বাড়তি সুরক্ষা দেয়</span><br><span>✅ হালকা ও আরামদায়ক ডিজাইন</span><br><span>✅ সহজে পরা ও খোলা যায়</span><br><span>✅ দৈনন্দিন রান্না ও ভাজাপোড়ার সময় ব্যবহারযোগ্য</span><br><span>✅ ঘরের রান্নাঘরে সহজে ব্যবহার করা যায়</span></p>\n<p><strong><span>রান্নার সময় মুখের বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/kitchen-face-protection-mask-1.webp",
-      "/assets/live/products/kitchen-face-protection-mask-2.webp",
-      "/assets/live/products/kitchen-face-protection-mask-3.webp"
+    description:
+      '<p><span>রান্না করতে গিয়ে চুলার তীব্র তাপ ও গরম তেলের ছিটায় মুখে অস্বস্তি হচ্ছে? 🔥</span></p>\n<p><strong><span>কিচেন ফেস প্রোটেকশন মাস্ক</span></strong><span> ব্যবহার করে রান্নার সময় মুখে সরাসরি তাপ ও তেলের ছিটা লাগার ঝুঁকি কমাতে সাহায্য করুন। হালকা ও আরামদায়ক ডিজাইনের এই মাস্ক রান্নাঘরে বাড়তি সুরক্ষার জন্য ব্যবহারযোগ্য।</span></p>\n<p><span>✅ চুলার তাপের সরাসরি প্রভাব কমাতে সহায়ক</span><br><span>✅ গরম তেলের ছিটা থেকে মুখে বাড়তি সুরক্ষা দেয়</span><br><span>✅ হালকা ও আরামদায়ক ডিজাইন</span><br><span>✅ সহজে পরা ও খোলা যায়</span><br><span>✅ দৈনন্দিন রান্না ও ভাজাপোড়ার সময় ব্যবহারযোগ্য</span><br><span>✅ ঘরের রান্নাঘরে সহজে ব্যবহার করা যায়</span></p>\n<p><strong><span>রান্নার সময় মুখের বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 960,
+    stock: 50,
+    images: [
+      '/assets/live/products/kitchen-face-protection-mask-1.webp',
+      '/assets/live/products/kitchen-face-protection-mask-2.webp',
+      '/assets/live/products/kitchen-face-protection-mask-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 900,
-        "compareAtPrice": 960,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 900,
+        compareAtPrice: 960,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1280,
-        "compareAtPrice": 1440,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1280,
+        compareAtPrice: 1440,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10397509714175",
-    "name": "সেফটি পিনের বিকল্প স্টাইলিশ ব্রোচ পিন",
-    "slug": "stylish-brooch-pin",
-    "sku": "EHM-10397509714175",
-    "category": "jewelry",
-    "collections": [
+    ref: '10397509714175',
+    name: 'সেফটি পিনের বিকল্প স্টাইলিশ ব্রোচ পিন',
+    slug: 'stylish-brooch-pin',
+    sku: 'EHM-10397509714175',
+    category: 'jewelry',
+    collections: [
       {
-        "collection": "jewelry",
-        "position": 0
+        collection: 'jewelry',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 27
+        collection: 'trendy-items',
+        position: 27,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 8
-      }
+        collection: 'women-s-essentials',
+        position: 8,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Anti Exposure Brooch Pin",
-      "Clothing Safety Pin Alternative",
-      "Decorative Clothing Pin",
-      "No Sew Brooch Pin",
-      "Stylish Brooch Pin",
-      "জামার ফাঁকা অংশ আটকানোর পিন",
-      "জামার ব্রোচ পিন",
-      "মেয়েদের জামার পিন",
-      "সেফটি পিনের বিকল্প",
-      "স্টাইলিশ ব্রোচ পিন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Anti Exposure Brooch Pin',
+      'Clothing Safety Pin Alternative',
+      'Decorative Clothing Pin',
+      'No Sew Brooch Pin',
+      'Stylish Brooch Pin',
+      'জামার ফাঁকা অংশ আটকানোর পিন',
+      'জামার ব্রোচ পিন',
+      'মেয়েদের জামার পিন',
+      'সেফটি পিনের বিকল্প',
+      'স্টাইলিশ ব্রোচ পিন',
     ],
-    "description": "<p><span>জামা বা শার্টের ফাঁকা অংশ নিয়ে অস্বস্তিতে পড়েন? 🌸</span></p>\n<p><strong><span>স্টাইলিশ ব্রোচ পিন</span></strong><span> ব্যবহার করে সেফটি পিন ছাড়াই পোশাকের ফাঁকা অংশ সুন্দরভাবে আটকে রাখুন। আকর্ষণীয় ডিজাইনের এই পিন পোশাক পরিপাটি রাখার পাশাপাশি আপনার সাজে যোগ করবে বাড়তি সৌন্দর্য।</span></p>\n<p><span>✅ সেফটি পিনের সুন্দর ও স্টাইলিশ বিকল্প</span><br><span>✅ জামা, শার্ট ও কার্ডিগানের ফাঁকা অংশ আটকাতে সহায়ক</span><br><span>✅ সেলাই ছাড়াই সহজে লাগানো ও খোলা যায়</span><br><span>✅ ফুল, বো, মুক্তা ও পাথরের আকর্ষণীয় ডিজাইন</span><br><span>✅ খুলে বারবার ব্যবহার করা যায়</span><br><span>✅ দৈনন্দিন ব্যবহার, পার্টি ও অনুষ্ঠানের জন্য উপযোগী</span></p>\n<p><strong><span>পোশাক পরিপাটি রাখতে ও সাজে স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 450,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/stylish-brooch-pin-1.webp",
-      "/assets/live/products/stylish-brooch-pin-2.webp",
-      "/assets/live/products/stylish-brooch-pin-3.webp",
-      "/assets/live/products/stylish-brooch-pin-4.webp",
-      "/assets/live/products/stylish-brooch-pin-5.webp"
+    description:
+      '<p><span>জামা বা শার্টের ফাঁকা অংশ নিয়ে অস্বস্তিতে পড়েন? 🌸</span></p>\n<p><strong><span>স্টাইলিশ ব্রোচ পিন</span></strong><span> ব্যবহার করে সেফটি পিন ছাড়াই পোশাকের ফাঁকা অংশ সুন্দরভাবে আটকে রাখুন। আকর্ষণীয় ডিজাইনের এই পিন পোশাক পরিপাটি রাখার পাশাপাশি আপনার সাজে যোগ করবে বাড়তি সৌন্দর্য।</span></p>\n<p><span>✅ সেফটি পিনের সুন্দর ও স্টাইলিশ বিকল্প</span><br><span>✅ জামা, শার্ট ও কার্ডিগানের ফাঁকা অংশ আটকাতে সহায়ক</span><br><span>✅ সেলাই ছাড়াই সহজে লাগানো ও খোলা যায়</span><br><span>✅ ফুল, বো, মুক্তা ও পাথরের আকর্ষণীয় ডিজাইন</span><br><span>✅ খুলে বারবার ব্যবহার করা যায়</span><br><span>✅ দৈনন্দিন ব্যবহার, পার্টি ও অনুষ্ঠানের জন্য উপযোগী</span></p>\n<p><strong><span>পোশাক পরিপাটি রাখতে ও সাজে স্টাইলিশ লুক আনতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 450,
+    compareAtPrice: 740,
+    stock: 50,
+    images: [
+      '/assets/live/products/stylish-brooch-pin-1.webp',
+      '/assets/live/products/stylish-brooch-pin-2.webp',
+      '/assets/live/products/stylish-brooch-pin-3.webp',
+      '/assets/live/products/stylish-brooch-pin-4.webp',
+      '/assets/live/products/stylish-brooch-pin-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "12 Pcs",
-          "20 Pcs",
-          "30 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['12 Pcs', '20 Pcs', '30 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
-        "price": 450,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '12 Pcs',
+        options: ['12 Pcs'],
+        price: 450,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
-        "price": 600,
-        "compareAtPrice": 740,
-        "stock": 50
+        title: '20 Pcs',
+        options: ['20 Pcs'],
+        price: 600,
+        compareAtPrice: 740,
+        stock: 50,
       },
       {
-        "title": "30 Pcs",
-        "options": [
-          "30 Pcs"
-        ],
-        "price": 750,
-        "compareAtPrice": 1110,
-        "stock": 50
-      }
-    ]
+        title: '30 Pcs',
+        options: ['30 Pcs'],
+        price: 750,
+        compareAtPrice: 1110,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10397384999167",
-    "name": "ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার",
-    "slug": "facial-cotton-thread-hair-remover",
-    "sku": "EHM-10397384999167",
-    "category": "personal-care",
-    "collections": [
+    ref: '10397384999167',
+    name: 'ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার',
+    slug: 'facial-cotton-thread-hair-remover',
+    sku: 'EHM-10397384999167',
+    category: 'personal-care',
+    collections: [
       {
-        "collection": "personal-care",
-        "position": 0
+        collection: 'personal-care',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 5
+        collection: 'trendy-items',
+        position: 5,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 0
-      }
+        collection: 'women-s-essentials',
+        position: 0,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Cotton Thread Hair Remover",
-      "Face Hair Removal Tool",
-      "Facial Hair Remover",
-      "Facial Hair Remover Bangladesh",
-      "Facial Threading Tool",
-      "ফেসিয়াল থ্রেড হেয়ার রিমুভার",
-      "ফেসিয়াল হেয়ার রিমুভার",
-      "মুখের লোম তোলার মেশিন",
-      "মুখের লোম দূর করার উপায়",
-      "মেয়েদের ফেসিয়াল হেয়ার রিমুভার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Cotton Thread Hair Remover',
+      'Face Hair Removal Tool',
+      'Facial Hair Remover',
+      'Facial Hair Remover Bangladesh',
+      'Facial Threading Tool',
+      'ফেসিয়াল থ্রেড হেয়ার রিমুভার',
+      'ফেসিয়াল হেয়ার রিমুভার',
+      'মুখের লোম তোলার মেশিন',
+      'মুখের লোম দূর করার উপায়',
+      'মেয়েদের ফেসিয়াল হেয়ার রিমুভার',
     ],
-    "description": "<p><span>মুখের অবাঞ্ছিত লোম দূর করতে বারবার পার্লারে যেতে হচ্ছে? 💖</span></p>\n<p><strong><span>ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার</span></strong><span> ব্যবহার করে ঘরে বসেই মুখের অবাঞ্ছিত লোম সহজে পরিষ্কার করুন। কটন থ্রেডের সাহায্যে লোম গোড়া থেকে তুলতে সহায়তা করে, ফলে ত্বক দেখায় আরও পরিষ্কার ও মসৃণ।</span></p>\n<p><span>✅ মুখের অবাঞ্ছিত লোম তুলতে সহায়ক</span><br><span>✅ কটন থ্রেডের মাধ্যমে লোম গোড়া থেকে তুলে আনে</span><br><span>✅ আপার লিপ, গাল ও চিবুকে ব্যবহারযোগ্য</span><br><span>✅ ওয়াক্স বা হেয়ার রিমুভাল ক্রিম ছাড়াই ব্যবহার করা যায়</span><br><span>✅ সহজে ব্যবহারযোগ্য ও বহনযোগ্য ডিজাইন</span><br><span>✅ ঘরে বসেই ফেসিয়াল হেয়ার রিমুভাল করা যায়</span></p>\n<p><strong><span>পার্লারে না গিয়ে ঘরে বসেই ফেসিয়াল হেয়ার রিমুভ করতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/facial-cotton-thread-hair-remover-1.webp",
-      "/assets/live/products/facial-cotton-thread-hair-remover-2.webp",
-      "/assets/live/products/facial-cotton-thread-hair-remover-3.webp",
-      "/assets/live/products/facial-cotton-thread-hair-remover-4.webp",
-      "/assets/live/products/facial-cotton-thread-hair-remover-5.webp"
+    description:
+      '<p><span>মুখের অবাঞ্ছিত লোম দূর করতে বারবার পার্লারে যেতে হচ্ছে? 💖</span></p>\n<p><strong><span>ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার</span></strong><span> ব্যবহার করে ঘরে বসেই মুখের অবাঞ্ছিত লোম সহজে পরিষ্কার করুন। কটন থ্রেডের সাহায্যে লোম গোড়া থেকে তুলতে সহায়তা করে, ফলে ত্বক দেখায় আরও পরিষ্কার ও মসৃণ।</span></p>\n<p><span>✅ মুখের অবাঞ্ছিত লোম তুলতে সহায়ক</span><br><span>✅ কটন থ্রেডের মাধ্যমে লোম গোড়া থেকে তুলে আনে</span><br><span>✅ আপার লিপ, গাল ও চিবুকে ব্যবহারযোগ্য</span><br><span>✅ ওয়াক্স বা হেয়ার রিমুভাল ক্রিম ছাড়াই ব্যবহার করা যায়</span><br><span>✅ সহজে ব্যবহারযোগ্য ও বহনযোগ্য ডিজাইন</span><br><span>✅ ঘরে বসেই ফেসিয়াল হেয়ার রিমুভাল করা যায়</span></p>\n<p><strong><span>পার্লারে না গিয়ে ঘরে বসেই ফেসিয়াল হেয়ার রিমুভ করতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 960,
+    stock: 50,
+    images: [
+      '/assets/live/products/facial-cotton-thread-hair-remover-1.webp',
+      '/assets/live/products/facial-cotton-thread-hair-remover-2.webp',
+      '/assets/live/products/facial-cotton-thread-hair-remover-3.webp',
+      '/assets/live/products/facial-cotton-thread-hair-remover-4.webp',
+      '/assets/live/products/facial-cotton-thread-hair-remover-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 480,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 880,
-        "compareAtPrice": 960,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 880,
+        compareAtPrice: 960,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 1200,
-        "compareAtPrice": 1440,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 1200,
+        compareAtPrice: 1440,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10396209578239",
-    "name": "কানের দুলের সাপোর্ট স্টিকার",
-    "slug": "earring-support-sticker",
-    "sku": "EHM-10396209578239",
-    "category": "personal-care",
-    "collections": [
+    ref: '10396209578239',
+    name: 'কানের দুলের সাপোর্ট স্টিকার',
+    slug: 'earring-support-sticker',
+    sku: 'EHM-10396209578239',
+    category: 'personal-care',
+    collections: [
       {
-        "collection": "personal-care",
-        "position": 1
+        collection: 'personal-care',
+        position: 1,
       },
       {
-        "collection": "trendy-items",
-        "position": 7
+        collection: 'trendy-items',
+        position: 7,
       },
       {
-        "collection": "women-s-essentials",
-        "position": 1
-      }
+        collection: 'women-s-essentials',
+        position: 1,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Ear Lobe Support Sticker",
-      "Earring Lobe Support Patch",
-      "Earring Support Sticker",
-      "Earring Support Sticker Bangladesh",
-      "Heavy Earring Support",
-      "ইয়াররিং সাপোর্ট স্টিকার",
-      "কানের দুলের সাপোর্ট",
-      "কানের দুলের সাপোর্ট স্টিকার",
-      "কানের লতির সাপোর্ট স্টিকার",
-      "ভারী কানের দুলের স্টিকার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Ear Lobe Support Sticker',
+      'Earring Lobe Support Patch',
+      'Earring Support Sticker',
+      'Earring Support Sticker Bangladesh',
+      'Heavy Earring Support',
+      'ইয়াররিং সাপোর্ট স্টিকার',
+      'কানের দুলের সাপোর্ট',
+      'কানের দুলের সাপোর্ট স্টিকার',
+      'কানের লতির সাপোর্ট স্টিকার',
+      'ভারী কানের দুলের স্টিকার',
     ],
-    "description": "<p><span>ভারী কানের দুল পরলে কানের লতিতে টান লাগে বা অস্বস্তি হয়? 💎</span></p>\n<p><strong><span>কানের দুলের সাপোর্ট স্টিকার</span></strong><span> ব্যবহার করে ভারী দুলের চাপ কমাতে সাহায্য করুন। কানের লতির পেছনে লাগানো এই স্বচ্ছ স্টিকার দুলকে বাড়তি সাপোর্ট দেয়, অথচ বাইরে থেকে সহজে বোঝা যায় না।</span></p>\n<p><span>✅ ভারী কানের দুলের চাপ কমাতে সহায়ক</span><br><span>✅ কানের লতিতে বাড়তি সাপোর্ট দেয়</span><br><span>✅ স্বচ্ছ ডিজাইন, বাইরে থেকে সহজে বোঝা যায় না</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য</span><br><span>✅ ঝুমকা, লম্বা ও ভারী কানের দুলের সঙ্গে ব্যবহারযোগ্য</span><br><span>✅ বিয়ে, পার্টি ও দৈনন্দিন সাজের জন্য উপযোগী</span></p>\n<p><strong><span>পছন্দের কানের দুল আরও স্বাচ্ছন্দ্যে পরতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/earring-support-sticker-1.webp",
-      "/assets/live/products/earring-support-sticker-2.webp",
-      "/assets/live/products/earring-support-sticker-3.webp"
+    description:
+      '<p><span>ভারী কানের দুল পরলে কানের লতিতে টান লাগে বা অস্বস্তি হয়? 💎</span></p>\n<p><strong><span>কানের দুলের সাপোর্ট স্টিকার</span></strong><span> ব্যবহার করে ভারী দুলের চাপ কমাতে সাহায্য করুন। কানের লতির পেছনে লাগানো এই স্বচ্ছ স্টিকার দুলকে বাড়তি সাপোর্ট দেয়, অথচ বাইরে থেকে সহজে বোঝা যায় না।</span></p>\n<p><span>✅ ভারী কানের দুলের চাপ কমাতে সহায়ক</span><br><span>✅ কানের লতিতে বাড়তি সাপোর্ট দেয়</span><br><span>✅ স্বচ্ছ ডিজাইন, বাইরে থেকে সহজে বোঝা যায় না</span><br><span>✅ হালকা ও সহজে ব্যবহারযোগ্য</span><br><span>✅ ঝুমকা, লম্বা ও ভারী কানের দুলের সঙ্গে ব্যবহারযোগ্য</span><br><span>✅ বিয়ে, পার্টি ও দৈনন্দিন সাজের জন্য উপযোগী</span></p>\n<p><strong><span>পছন্দের কানের দুল আরও স্বাচ্ছন্দ্যে পরতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: 700,
+    stock: 50,
+    images: [
+      '/assets/live/products/earring-support-sticker-1.webp',
+      '/assets/live/products/earring-support-sticker-2.webp',
+      '/assets/live/products/earring-support-sticker-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pack (100 Pcs)",
-          "2 Pack (200 Pcs)",
-          "3 Pack (300 Pcs)"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pack (100 Pcs)', '2 Pack (200 Pcs)', '3 Pack (300 Pcs)'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pack (100 Pcs)",
-        "options": [
-          "1 Pack (100 Pcs)"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pack (100 Pcs)',
+        options: ['1 Pack (100 Pcs)'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pack (200 Pcs)",
-        "options": [
-          "2 Pack (200 Pcs)"
-        ],
-        "price": 600,
-        "compareAtPrice": 700,
-        "stock": 50
+        title: '2 Pack (200 Pcs)',
+        options: ['2 Pack (200 Pcs)'],
+        price: 600,
+        compareAtPrice: 700,
+        stock: 50,
       },
       {
-        "title": "3 Pack (300 Pcs)",
-        "options": [
-          "3 Pack (300 Pcs)"
-        ],
-        "price": 780,
-        "compareAtPrice": 1050,
-        "stock": 50
-      }
-    ]
+        title: '3 Pack (300 Pcs)',
+        options: ['3 Pack (300 Pcs)'],
+        price: 780,
+        compareAtPrice: 1050,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10395660058879",
-    "name": "ফ্রিজ সিকিউর লক 3M গাম স্টিকারসহ",
-    "slug": "fridge-safety-lock",
-    "sku": "EHM-10395660058879",
-    "category": "home-improvement",
-    "collections": [
+    ref: '10395660058879',
+    name: 'ফ্রিজ সিকিউর লক 3M গাম স্টিকারসহ',
+    slug: 'fridge-safety-lock',
+    sku: 'EHM-10395660058879',
+    category: 'home-improvement',
+    collections: [
       {
-        "collection": "home-improvement",
-        "position": 1
+        collection: 'home-improvement',
+        position: 1,
       },
       {
-        "collection": "trendy-items",
-        "position": 1
-      }
+        collection: 'trendy-items',
+        position: 1,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Safety Fridge Lock",
-      "Cabinet Safety Lock",
-      "Fridge Lock",
-      "Fridge Lock Bangladesh",
-      "Refrigerator Door Lock",
-      "ক্যাবিনেট সেফটি লক",
-      "ফ্রিজ লক",
-      "ফ্রিজ সিকিউর লক",
-      "ফ্রিজের দরজার লক",
-      "বেবি সেফটি লক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Safety Fridge Lock',
+      'Cabinet Safety Lock',
+      'Fridge Lock',
+      'Fridge Lock Bangladesh',
+      'Refrigerator Door Lock',
+      'ক্যাবিনেট সেফটি লক',
+      'ফ্রিজ লক',
+      'ফ্রিজ সিকিউর লক',
+      'ফ্রিজের দরজার লক',
+      'বেবি সেফটি লক',
     ],
-    "description": "<p><span>ফ্রিজের দরজা বারবার খুলে যাচ্ছে? কিংবা ছোট বাচ্চা ফ্রিজ খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>ফ্রিজ সিকিউর লক</span></strong><span> ব্যবহার করে ফ্রিজ, ড্রয়ার ও ক্যাবিনেটের দরজা বন্ধ রাখতে সাহায্য করুন। শক্তিশালী গাম স্টিকার ও সহজ লকিং সিস্টেমের কারণে ড্রিল বা স্ক্রু ছাড়াই লাগানো যায়।</span></p>\n<p><span>✅ ফ্রিজের দরজা বন্ধ রাখতে সাহায্য করে</span><br><span>✅ বাচ্চাদের সহজে দরজা খোলা আটকাতে সহায়ক</span><br><span>✅ শক্তিশালী গাম স্টিকার, মজবুত গ্রিপ</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজ ইনস্টলেশন</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ ফ্রিজ, ক্যাবিনেট ও ড্রয়ারে ব্যবহারযোগ্য</span></p>\n<p><strong><span>ফ্রিজের বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/fridge-safety-lock-1.webp",
-      "/assets/live/products/fridge-safety-lock-2.webp"
+    description:
+      '<p><span>ফ্রিজের দরজা বারবার খুলে যাচ্ছে? কিংবা ছোট বাচ্চা ফ্রিজ খুলে ফেলছে? 🔒</span></p>\n<p><strong><span>ফ্রিজ সিকিউর লক</span></strong><span> ব্যবহার করে ফ্রিজ, ড্রয়ার ও ক্যাবিনেটের দরজা বন্ধ রাখতে সাহায্য করুন। শক্তিশালী গাম স্টিকার ও সহজ লকিং সিস্টেমের কারণে ড্রিল বা স্ক্রু ছাড়াই লাগানো যায়।</span></p>\n<p><span>✅ ফ্রিজের দরজা বন্ধ রাখতে সাহায্য করে</span><br><span>✅ বাচ্চাদের সহজে দরজা খোলা আটকাতে সহায়ক</span><br><span>✅ শক্তিশালী গাম স্টিকার, মজবুত গ্রিপ</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজ ইনস্টলেশন</span><br><span>✅ সহজে লক ও আনলক করা যায়</span><br><span>✅ ফ্রিজ, ক্যাবিনেট ও ড্রয়ারে ব্যবহারযোগ্য</span></p>\n<p><strong><span>ফ্রিজের বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: 700,
+    stock: 50,
+    images: [
+      '/assets/live/products/fridge-safety-lock-1.webp',
+      '/assets/live/products/fridge-safety-lock-2.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "2 Pcs",
-          "4 Pcs",
-          "6 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['2 Pcs', '4 Pcs', '6 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
-        "price": 500,
-        "compareAtPrice": 700,
-        "stock": 50
+        title: '4 Pcs',
+        options: ['4 Pcs'],
+        price: 500,
+        compareAtPrice: 700,
+        stock: 50,
       },
       {
-        "title": "6 Pcs",
-        "options": [
-          "6 Pcs"
-        ],
-        "price": 650,
-        "compareAtPrice": 1050,
-        "stock": 50
-      }
-    ]
+        title: '6 Pcs',
+        options: ['6 Pcs'],
+        price: 650,
+        compareAtPrice: 1050,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10395629322495",
-    "name": "স্কুল ও ভ্রমণের জন্য বাচ্চাদের ওয়াটার কাপ",
-    "slug": "kids-straw-water-cup",
-    "sku": "EHM-10395629322495",
-    "category": "baby-care",
-    "collections": [
+    ref: '10395629322495',
+    name: 'স্কুল ও ভ্রমণের জন্য বাচ্চাদের ওয়াটার কাপ',
+    slug: 'kids-straw-water-cup',
+    sku: 'EHM-10395629322495',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 4
+        collection: 'baby-care',
+        position: 4,
       },
       {
-        "collection": "trendy-items",
-        "position": 38
-      }
+        collection: 'trendy-items',
+        position: 38,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Straw Mug",
-      "Kids Straw Cup",
-      "Kids Water Bottle Bangladesh",
-      "Kids Water Cup",
-      "Leak Proof Kids Water Cup",
-      "বাচ্চাদের ওয়াটার কাপ",
-      "বাচ্চাদের পানির কাপ",
-      "বাচ্চাদের স্ট্র কাপ",
-      "বেবি ওয়াটার কাপ",
-      "স্কুলের পানির কাপ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Straw Mug',
+      'Kids Straw Cup',
+      'Kids Water Bottle Bangladesh',
+      'Kids Water Cup',
+      'Leak Proof Kids Water Cup',
+      'বাচ্চাদের ওয়াটার কাপ',
+      'বাচ্চাদের পানির কাপ',
+      'বাচ্চাদের স্ট্র কাপ',
+      'বেবি ওয়াটার কাপ',
+      'স্কুলের পানির কাপ',
     ],
-    "description": "<p><span>আপনার সোনামণির স্কুল বা ভ্রমণের জন্য খুঁজছেন সুন্দর ও ব্যবহারবান্ধব পানির কাপ? 🥤</span></p>\n<p><strong><span>বাচ্চাদের স্ট্র ওয়াটার কাপ</span></strong><span> দিয়ে পানি বা জুস পান করা হবে আরও সহজ ও আনন্দদায়ক। আকর্ষণীয় ডিজাইন, স্ট্র ও আরামদায়ক হ্যান্ডেল থাকায় বাচ্চারা সহজেই ব্যবহার করতে পারবে।</span></p>\n<p><span>✅ BPA-Free প্লাস্টিকের তৈরি</span><br><span>✅ লিক-প্রুফ ঢাকনা, পানি পড়ে যাওয়ার ঝুঁকি কমায়</span><br><span>✅ স্ট্রসহ ডিজাইন, সহজে পানি পান করা যায়</span><br><span>✅ আরামদায়ক হ্যান্ডেল, সহজে ধরে রাখা যায়</span><br><span>✅ বড় ক্যাপাসিটি ও আকর্ষণীয় রঙ</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ স্কুল, কিন্ডারগার্টেন ও ভ্রমণের জন্য উপযোগী</span></p>\n<p><strong><span>আপনার সোনামণির জন্য পছন্দের ওয়াটার কাপটি আজই অর্ডার করুন!</span></strong></p>",
-    "price": 990,
-    "compareAtPrice": 1150,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/kids-straw-water-cup-1.webp",
-      "/assets/live/products/kids-straw-water-cup-2.webp",
-      "/assets/live/products/kids-straw-water-cup-3.jpg",
-      "/assets/live/products/kids-straw-water-cup-4.webp",
-      "/assets/live/products/kids-straw-water-cup-5.webp",
-      "/assets/live/products/kids-straw-water-cup-6.webp"
+    description:
+      '<p><span>আপনার সোনামণির স্কুল বা ভ্রমণের জন্য খুঁজছেন সুন্দর ও ব্যবহারবান্ধব পানির কাপ? 🥤</span></p>\n<p><strong><span>বাচ্চাদের স্ট্র ওয়াটার কাপ</span></strong><span> দিয়ে পানি বা জুস পান করা হবে আরও সহজ ও আনন্দদায়ক। আকর্ষণীয় ডিজাইন, স্ট্র ও আরামদায়ক হ্যান্ডেল থাকায় বাচ্চারা সহজেই ব্যবহার করতে পারবে।</span></p>\n<p><span>✅ BPA-Free প্লাস্টিকের তৈরি</span><br><span>✅ লিক-প্রুফ ঢাকনা, পানি পড়ে যাওয়ার ঝুঁকি কমায়</span><br><span>✅ স্ট্রসহ ডিজাইন, সহজে পানি পান করা যায়</span><br><span>✅ আরামদায়ক হ্যান্ডেল, সহজে ধরে রাখা যায়</span><br><span>✅ বড় ক্যাপাসিটি ও আকর্ষণীয় রঙ</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ স্কুল, কিন্ডারগার্টেন ও ভ্রমণের জন্য উপযোগী</span></p>\n<p><strong><span>আপনার সোনামণির জন্য পছন্দের ওয়াটার কাপটি আজই অর্ডার করুন!</span></strong></p>',
+    price: 990,
+    compareAtPrice: 1150,
+    stock: 50,
+    images: [
+      '/assets/live/products/kids-straw-water-cup-1.webp',
+      '/assets/live/products/kids-straw-water-cup-2.webp',
+      '/assets/live/products/kids-straw-water-cup-3.jpg',
+      '/assets/live/products/kids-straw-water-cup-4.webp',
+      '/assets/live/products/kids-straw-water-cup-5.webp',
+      '/assets/live/products/kids-straw-water-cup-6.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Purple",
-          "Pink"
-        ]
-      }
+        name: 'Color',
+        values: ['Purple', 'Pink'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Purple",
-        "options": [
-          "Purple"
-        ],
-        "price": 990,
-        "compareAtPrice": 1150,
-        "stock": 50
+        title: 'Purple',
+        options: ['Purple'],
+        price: 990,
+        compareAtPrice: 1150,
+        stock: 50,
       },
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 990,
-        "compareAtPrice": 1150,
-        "stock": 50
-      }
-    ]
+        title: 'Pink',
+        options: ['Pink'],
+        price: 990,
+        compareAtPrice: 1150,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10395586756863",
-    "name": "বাচ্চাদের স্টেইনলেস স্টিল টিফিন বক্স",
-    "slug": "kids-stainless-steel-tiffin-box",
-    "sku": "EHM-10395586756863",
-    "category": "baby-care",
-    "collections": [
+    ref: '10395586756863',
+    name: 'বাচ্চাদের স্টেইনলেস স্টিল টিফিন বক্স',
+    slug: 'kids-stainless-steel-tiffin-box',
+    sku: 'EHM-10395586756863',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 5
+        collection: 'baby-care',
+        position: 5,
       },
       {
-        "collection": "trendy-items",
-        "position": 39
-      }
+        collection: 'trendy-items',
+        position: 39,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Food Bowl",
-      "Insulated Kids Lunch Box",
-      "Kids Lunch Box Bangladesh",
-      "Kids Tiffin Box",
-      "Stainless Steel Lunch Box",
-      "ইনসুলেটেড টিফিন বক্স",
-      "বাচ্চাদের টিফিন বক্স",
-      "বাচ্চাদের লাঞ্চ বক্স",
-      "বেবি ফুড বক্স",
-      "স্টেইনলেস স্টিল টিফিন বক্স"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Food Bowl',
+      'Insulated Kids Lunch Box',
+      'Kids Lunch Box Bangladesh',
+      'Kids Tiffin Box',
+      'Stainless Steel Lunch Box',
+      'ইনসুলেটেড টিফিন বক্স',
+      'বাচ্চাদের টিফিন বক্স',
+      'বাচ্চাদের লাঞ্চ বক্স',
+      'বেবি ফুড বক্স',
+      'স্টেইনলেস স্টিল টিফিন বক্স',
     ],
-    "description": "<p><span>আপনার সোনামণির খাবার রাখতে চান সুন্দর, মজবুত ও ব্যবহারবান্ধব একটি টিফিন বক্স? 🍱</span></p>\n<p><strong><span>স্টেইনলেস স্টিল বেবি টিফিন বক্স</span></strong><span> দিয়ে বাচ্চাদের খাবার সহজে সংরক্ষণ ও বহন করুন। ইনসুলেটেড ডিজাইন খাবারের তাপমাত্রা কিছু সময় ধরে রাখতে সাহায্য করে। স্কুল, ভ্রমণ কিংবা দৈনন্দিন ব্যবহারের জন্য দারুণ উপযোগী।</span></p>\n<p><span>✅ স্টেইনলেস স্টিলের তৈরি, মজবুত ও টেকসই</span><br><span>✅ ইনসুলেটেড ডিজাইন, খাবার গরম বা ঠান্ডা রাখতে সহায়ক</span><br><span>✅ হালকা ও সহজে বহনযোগ্য</span><br><span>✅ আকর্ষণীয় ও বাচ্চাদের পছন্দের ডিজাইন</span><br><span>✅ স্কুল, পিকনিক ও ভ্রমণে ব্যবহারযোগ্য</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির খাবারের জন্য আজই অর্ডার করুন!</span></strong></p>",
-    "price": 990,
-    "compareAtPrice": 1200,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/kids-stainless-steel-tiffin-box-1.webp",
-      "/assets/live/products/kids-stainless-steel-tiffin-box-2.webp",
-      "/assets/live/products/kids-stainless-steel-tiffin-box-3.webp",
-      "/assets/live/products/kids-stainless-steel-tiffin-box-4.webp"
+    description:
+      '<p><span>আপনার সোনামণির খাবার রাখতে চান সুন্দর, মজবুত ও ব্যবহারবান্ধব একটি টিফিন বক্স? 🍱</span></p>\n<p><strong><span>স্টেইনলেস স্টিল বেবি টিফিন বক্স</span></strong><span> দিয়ে বাচ্চাদের খাবার সহজে সংরক্ষণ ও বহন করুন। ইনসুলেটেড ডিজাইন খাবারের তাপমাত্রা কিছু সময় ধরে রাখতে সাহায্য করে। স্কুল, ভ্রমণ কিংবা দৈনন্দিন ব্যবহারের জন্য দারুণ উপযোগী।</span></p>\n<p><span>✅ স্টেইনলেস স্টিলের তৈরি, মজবুত ও টেকসই</span><br><span>✅ ইনসুলেটেড ডিজাইন, খাবার গরম বা ঠান্ডা রাখতে সহায়ক</span><br><span>✅ হালকা ও সহজে বহনযোগ্য</span><br><span>✅ আকর্ষণীয় ও বাচ্চাদের পছন্দের ডিজাইন</span><br><span>✅ স্কুল, পিকনিক ও ভ্রমণে ব্যবহারযোগ্য</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির খাবারের জন্য আজই অর্ডার করুন!</span></strong></p>',
+    price: 990,
+    compareAtPrice: 1200,
+    stock: 50,
+    images: [
+      '/assets/live/products/kids-stainless-steel-tiffin-box-1.webp',
+      '/assets/live/products/kids-stainless-steel-tiffin-box-2.webp',
+      '/assets/live/products/kids-stainless-steel-tiffin-box-3.webp',
+      '/assets/live/products/kids-stainless-steel-tiffin-box-4.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Yellow",
-          "Pink"
-        ]
-      }
+        name: 'Color',
+        values: ['Yellow', 'Pink'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
-        "price": 990,
-        "compareAtPrice": 1200,
-        "stock": 50
+        title: 'Yellow',
+        options: ['Yellow'],
+        price: 990,
+        compareAtPrice: 1200,
+        stock: 50,
       },
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 990,
-        "compareAtPrice": 1200,
-        "stock": 50
-      }
-    ]
+        title: 'Pink',
+        options: ['Pink'],
+        price: 990,
+        compareAtPrice: 1200,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10395519746303",
-    "name": "বাচ্চাদের বাইক রাইডিং সেফটি বেল্ট",
-    "slug": "baby-bike-riding-safety-belt",
-    "sku": "EHM-10395519746303",
-    "category": "baby-care",
-    "collections": [
+    ref: '10395519746303',
+    name: 'বাচ্চাদের বাইক রাইডিং সেফটি বেল্ট',
+    slug: 'baby-bike-riding-safety-belt',
+    sku: 'EHM-10395519746303',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 2
+        collection: 'baby-care',
+        position: 2,
       },
       {
-        "collection": "trendy-items",
-        "position": 16
-      }
+        collection: 'trendy-items',
+        position: 16,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Bike Riding Belt",
-      "Baby Riding Safety Belt",
-      "Baby Safety Belt Bangladesh",
-      "Child Bike Safety Belt",
-      "Kids Motorcycle Safety Belt",
-      "বাইক রাইডিং বেল্ট",
-      "বাচ্চাদের বাইক সেফটি বেল্ট",
-      "বাচ্চাদের মোটরসাইকেল বেল্ট",
-      "বেবি রাইডিং সেফটি বেল্ট",
-      "শিশুদের বাইক সেফটি বেল্ট"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Bike Riding Belt',
+      'Baby Riding Safety Belt',
+      'Baby Safety Belt Bangladesh',
+      'Child Bike Safety Belt',
+      'Kids Motorcycle Safety Belt',
+      'বাইক রাইডিং বেল্ট',
+      'বাচ্চাদের বাইক সেফটি বেল্ট',
+      'বাচ্চাদের মোটরসাইকেল বেল্ট',
+      'বেবি রাইডিং সেফটি বেল্ট',
+      'শিশুদের বাইক সেফটি বেল্ট',
     ],
-    "description": "<p><span>বাইক বা মোটরসাইকেলে বাচ্চাকে নিয়ে চলাফেরা করার সময় বাড়তি সতর্কতা চান? 🏍️👶</span></p>\n<p><strong><span>বেবি রাইডিং সেফটি বেল্ট</span></strong><span> শিশুকে চালকের শরীরের সঙ্গে ধরে রাখতে সাহায্য করে। মজবুত অক্সফোর্ড ফেব্রিক ও আরামদায়ক মেশ ডিজাইনে তৈরি এই বেল্টে রয়েছে অ্যাডজাস্টেবল স্ট্র্যাপ ও লকিং সিস্টেম।</span></p>\n<p><span>✅ মজবুত ও টেকসই Oxford Fabric</span><br><span>✅ নরম ও বাতাস চলাচলযোগ্য Mesh Fabric</span><br><span>✅ ৭ সেমি প্রশস্ত কাঁধের স্ট্র্যাপ</span><br><span>✅ অ্যাডজাস্টেবল বেল্ট, প্রয়োজনমতো সাইজ ঠিক করা যায়</span><br><span>✅ রিফ্লেক্টিভ স্ট্রিপ, রাতে দৃশ্যমানতা বাড়াতে সহায়ক</span><br><span>✅ সহজে পরা ও খোলার সুবিধা</span><br><span>✅ ১–১২ বছর বয়সী শিশুদের জন্য বাজারজাতকৃত</span></p>\n<p><strong><span>বাচ্চাকে নিয়ে চলাফেরার সময় বাড়তি সতর্কতার জন্য অর্ডার করুন!</span></strong></p>",
-    "price": 890,
-    "compareAtPrice": 1050,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-bike-riding-safety-belt-1.webp",
-      "/assets/live/products/baby-bike-riding-safety-belt-2.webp",
-      "/assets/live/products/baby-bike-riding-safety-belt-3.webp",
-      "/assets/live/products/baby-bike-riding-safety-belt-4.webp",
-      "/assets/live/products/baby-bike-riding-safety-belt-5.webp",
-      "/assets/live/products/baby-bike-riding-safety-belt-6.webp"
+    description:
+      '<p><span>বাইক বা মোটরসাইকেলে বাচ্চাকে নিয়ে চলাফেরা করার সময় বাড়তি সতর্কতা চান? 🏍️👶</span></p>\n<p><strong><span>বেবি রাইডিং সেফটি বেল্ট</span></strong><span> শিশুকে চালকের শরীরের সঙ্গে ধরে রাখতে সাহায্য করে। মজবুত অক্সফোর্ড ফেব্রিক ও আরামদায়ক মেশ ডিজাইনে তৈরি এই বেল্টে রয়েছে অ্যাডজাস্টেবল স্ট্র্যাপ ও লকিং সিস্টেম।</span></p>\n<p><span>✅ মজবুত ও টেকসই Oxford Fabric</span><br><span>✅ নরম ও বাতাস চলাচলযোগ্য Mesh Fabric</span><br><span>✅ ৭ সেমি প্রশস্ত কাঁধের স্ট্র্যাপ</span><br><span>✅ অ্যাডজাস্টেবল বেল্ট, প্রয়োজনমতো সাইজ ঠিক করা যায়</span><br><span>✅ রিফ্লেক্টিভ স্ট্রিপ, রাতে দৃশ্যমানতা বাড়াতে সহায়ক</span><br><span>✅ সহজে পরা ও খোলার সুবিধা</span><br><span>✅ ১–১২ বছর বয়সী শিশুদের জন্য বাজারজাতকৃত</span></p>\n<p><strong><span>বাচ্চাকে নিয়ে চলাফেরার সময় বাড়তি সতর্কতার জন্য অর্ডার করুন!</span></strong></p>',
+    price: 890,
+    compareAtPrice: 1050,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-bike-riding-safety-belt-1.webp',
+      '/assets/live/products/baby-bike-riding-safety-belt-2.webp',
+      '/assets/live/products/baby-bike-riding-safety-belt-3.webp',
+      '/assets/live/products/baby-bike-riding-safety-belt-4.webp',
+      '/assets/live/products/baby-bike-riding-safety-belt-5.webp',
+      '/assets/live/products/baby-bike-riding-safety-belt-6.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Light green",
-          "Pink",
-          "Yellow"
-        ]
-      }
+        name: 'Color',
+        values: ['Light green', 'Pink', 'Yellow'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Light green",
-        "options": [
-          "Light green"
-        ],
-        "price": 890,
-        "compareAtPrice": 1050,
-        "stock": 50
+        title: 'Light green',
+        options: ['Light green'],
+        price: 890,
+        compareAtPrice: 1050,
+        stock: 50,
       },
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 890,
-        "compareAtPrice": 1050,
-        "stock": 50
+        title: 'Pink',
+        options: ['Pink'],
+        price: 890,
+        compareAtPrice: 1050,
+        stock: 50,
       },
       {
-        "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
-        "price": 890,
-        "compareAtPrice": 1050,
-        "stock": 50
-      }
-    ]
+        title: 'Yellow',
+        options: ['Yellow'],
+        price: 890,
+        compareAtPrice: 1050,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10395420852479",
-    "name": "আইস জেলসহ আরামদায়ক ঘুমানোর আই মাস্ক",
-    "slug": "cooling-gel-sleeping-eye-mask",
-    "sku": "EHM-10395420852479",
-    "category": "personal-care",
-    "collections": [
+    ref: '10395420852479',
+    name: 'আইস জেলসহ আরামদায়ক ঘুমানোর আই মাস্ক',
+    slug: 'cooling-gel-sleeping-eye-mask',
+    sku: 'EHM-10395420852479',
+    category: 'personal-care',
+    collections: [
       {
-        "collection": "personal-care",
-        "position": 5
+        collection: 'personal-care',
+        position: 5,
       },
       {
-        "collection": "trendy-items",
-        "position": 28
-      }
+        collection: 'trendy-items',
+        position: 28,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Cooling Gel Eye Mask",
-      "Ice Gel Eye Mask",
-      "Sleeping Eye Mask",
-      "Sleeping Eye Mask Bangladesh",
-      "Soft Fabric Sleep Mask",
-      "আইস জেল আই মাস্ক",
-      "কুলিং আই মাস্ক",
-      "ঘুমানোর চোখের মাস্ক",
-      "চোখের আরামের মাস্ক",
-      "স্লিপিং আই মাস্ক"
+    brand: 'Ehans Mart',
+    tags: [
+      'Cooling Gel Eye Mask',
+      'Ice Gel Eye Mask',
+      'Sleeping Eye Mask',
+      'Sleeping Eye Mask Bangladesh',
+      'Soft Fabric Sleep Mask',
+      'আইস জেল আই মাস্ক',
+      'কুলিং আই মাস্ক',
+      'ঘুমানোর চোখের মাস্ক',
+      'চোখের আরামের মাস্ক',
+      'স্লিপিং আই মাস্ক',
     ],
-    "description": "<p><span>দীর্ঘক্ষণ মোবাইল বা কম্পিউটার ব্যবহারে চোখ ক্লান্ত হয়ে যাচ্ছে? 😴</span></p>\n<p><strong><span>আইস জেলসহ স্লিপিং আই মাস্ক</span></strong><span> ব্যবহার করে চোখকে দিন ঠান্ডা ও আরামদায়ক অনুভূতি। নরম ফেব্রিক ও কুলিং জেল প্যাডের এই মাস্ক ঘুমানোর সময় আলো আটকাতে এবং ক্লান্ত চোখকে আরাম দিতে সাহায্য করে।</span></p>\n<p><span>✅ আইস জেল প্যাড, চোখে ঠান্ডা অনুভূতি দেয়</span><br><span>✅ নরম ও আরামদায়ক সফট ফেব্রিক</span><br><span>✅ চোখের ক্লান্তি ও অস্বস্তি কমাতে সহায়ক</span><br><span>✅ অ্যাডজাস্টেবল ইলাস্টিক বেল্ট, সহজে ফিট করা যায়</span><br><span>✅ ঘুমানোর সময় আলো আটকাতে সাহায্য করে</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span></p>\n<p><strong><span>চোখের আরাম ও শান্তিপূর্ণ ঘুমের জন্য আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/cooling-gel-sleeping-eye-mask-1.webp",
-      "/assets/live/products/cooling-gel-sleeping-eye-mask-2.webp",
-      "/assets/live/products/cooling-gel-sleeping-eye-mask-3.webp",
-      "/assets/live/products/cooling-gel-sleeping-eye-mask-4.webp",
-      "/assets/live/products/cooling-gel-sleeping-eye-mask-5.webp"
+    description:
+      '<p><span>দীর্ঘক্ষণ মোবাইল বা কম্পিউটার ব্যবহারে চোখ ক্লান্ত হয়ে যাচ্ছে? 😴</span></p>\n<p><strong><span>আইস জেলসহ স্লিপিং আই মাস্ক</span></strong><span> ব্যবহার করে চোখকে দিন ঠান্ডা ও আরামদায়ক অনুভূতি। নরম ফেব্রিক ও কুলিং জেল প্যাডের এই মাস্ক ঘুমানোর সময় আলো আটকাতে এবং ক্লান্ত চোখকে আরাম দিতে সাহায্য করে।</span></p>\n<p><span>✅ আইস জেল প্যাড, চোখে ঠান্ডা অনুভূতি দেয়</span><br><span>✅ নরম ও আরামদায়ক সফট ফেব্রিক</span><br><span>✅ চোখের ক্লান্তি ও অস্বস্তি কমাতে সহায়ক</span><br><span>✅ অ্যাডজাস্টেবল ইলাস্টিক বেল্ট, সহজে ফিট করা যায়</span><br><span>✅ ঘুমানোর সময় আলো আটকাতে সাহায্য করে</span><br><span>✅ সহজে পরিষ্কার করা যায় ও বারবার ব্যবহারযোগ্য</span></p>\n<p><strong><span>চোখের আরাম ও শান্তিপূর্ণ ঘুমের জন্য আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: null,
+    stock: 50,
+    images: [
+      '/assets/live/products/cooling-gel-sleeping-eye-mask-1.webp',
+      '/assets/live/products/cooling-gel-sleeping-eye-mask-2.webp',
+      '/assets/live/products/cooling-gel-sleeping-eye-mask-3.webp',
+      '/assets/live/products/cooling-gel-sleeping-eye-mask-4.webp',
+      '/assets/live/products/cooling-gel-sleeping-eye-mask-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 650,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 650,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 900,
-        "compareAtPrice": null,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 900,
+        compareAtPrice: null,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10392312316159",
-    "name": "বাচ্চাদের খাবার খাওয়ার ফুল হাতা সেফটি এপ্রোন",
-    "slug": "waterproof-full-sleeve-baby-apron",
-    "sku": "EHM-10392312316159",
-    "category": "baby-care",
-    "collections": [
+    ref: '10392312316159',
+    name: 'বাচ্চাদের খাবার খাওয়ার ফুল হাতা সেফটি এপ্রোন',
+    slug: 'waterproof-full-sleeve-baby-apron',
+    sku: 'EHM-10392312316159',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 6
+        collection: 'baby-care',
+        position: 6,
       },
       {
-        "collection": "trendy-items",
-        "position": 40
-      }
+        collection: 'trendy-items',
+        position: 40,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Apron Bangladesh",
-      "Baby Feeding Apron",
-      "Full Sleeve Baby Apron",
-      "Long Sleeve Baby Bib",
-      "Waterproof Baby Bib",
-      "ওয়াটারপ্রুফ বেবি এপ্রন",
-      "ফুল হাতা বেবি এপ্রন",
-      "বাচ্চাদের খাবার এপ্রন",
-      "বাচ্চাদের ফুল হাতা বিব",
-      "বেবি ফিডিং এপ্রন"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Apron Bangladesh',
+      'Baby Feeding Apron',
+      'Full Sleeve Baby Apron',
+      'Long Sleeve Baby Bib',
+      'Waterproof Baby Bib',
+      'ওয়াটারপ্রুফ বেবি এপ্রন',
+      'ফুল হাতা বেবি এপ্রন',
+      'বাচ্চাদের খাবার এপ্রন',
+      'বাচ্চাদের ফুল হাতা বিব',
+      'বেবি ফিডিং এপ্রন',
     ],
-    "description": "<p><span>আপনার সোনামণি কি খাবার খাওয়ার সময় জামাকাপড় নোংরা করে ফেলে? 👶</span></p>\n<p><strong><span>ওয়াটারপ্রুফ ফুল হাতা বেবি এপ্রন</span></strong><span> ব্যবহার করে খাবার খাওয়ার সময় বাচ্চাদের জামাকাপড় পরিষ্কার রাখতে সাহায্য করুন। আরামদায়ক এই এপ্রনে রয়েছে বিশেষ ফুড পকেট, যা পড়ে যাওয়া খাবার ধরে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ ম্যাটেরিয়াল, জামাকাপড় নোংরা হওয়া কমায়</span><br><span>✅ ফুল হাতা ডিজাইন, হাত ও পোশাক ঢেকে রাখে</span><br><span>✅ হালকা ও মেশ ফ্যাব্রিক, গরমেও আরামদায়ক</span><br><span>✅ বিশেষ ফুড পকেট, পড়ে যাওয়া খাবার ধরে রাখে</span><br><span>✅ সহজে ধোয়া যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ খাওয়ানো, আঁকাআঁকি ও খেলাধুলার সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির জামাকাপড় পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 550,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/waterproof-full-sleeve-baby-apron-1.webp",
-      "/assets/live/products/waterproof-full-sleeve-baby-apron-2.webp"
+    description:
+      '<p><span>আপনার সোনামণি কি খাবার খাওয়ার সময় জামাকাপড় নোংরা করে ফেলে? 👶</span></p>\n<p><strong><span>ওয়াটারপ্রুফ ফুল হাতা বেবি এপ্রন</span></strong><span> ব্যবহার করে খাবার খাওয়ার সময় বাচ্চাদের জামাকাপড় পরিষ্কার রাখতে সাহায্য করুন। আরামদায়ক এই এপ্রনে রয়েছে বিশেষ ফুড পকেট, যা পড়ে যাওয়া খাবার ধরে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ ম্যাটেরিয়াল, জামাকাপড় নোংরা হওয়া কমায়</span><br><span>✅ ফুল হাতা ডিজাইন, হাত ও পোশাক ঢেকে রাখে</span><br><span>✅ হালকা ও মেশ ফ্যাব্রিক, গরমেও আরামদায়ক</span><br><span>✅ বিশেষ ফুড পকেট, পড়ে যাওয়া খাবার ধরে রাখে</span><br><span>✅ সহজে ধোয়া যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ খাওয়ানো, আঁকাআঁকি ও খেলাধুলার সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির জামাকাপড় পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 550,
+    compareAtPrice: null,
+    stock: 50,
+    images: [
+      '/assets/live/products/waterproof-full-sleeve-baby-apron-1.webp',
+      '/assets/live/products/waterproof-full-sleeve-baby-apron-2.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "White",
-          "Light green"
-        ]
+        name: 'Color',
+        values: ['White', 'Light green'],
       },
       {
-        "name": "Size",
-        "values": [
-          "0-2 Years Baby",
-          "3-4 Years Baby",
-          "5-6 Years Baby"
-        ]
-      }
+        name: 'Size',
+        values: ['0-2 Years Baby', '3-4 Years Baby', '5-6 Years Baby'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "White / 0-2 Years Baby",
-        "options": [
-          "White",
-          "0-2 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'White / 0-2 Years Baby',
+        options: ['White', '0-2 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "White / 3-4 Years Baby",
-        "options": [
-          "White",
-          "3-4 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'White / 3-4 Years Baby',
+        options: ['White', '3-4 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "White / 5-6 Years Baby",
-        "options": [
-          "White",
-          "5-6 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'White / 5-6 Years Baby',
+        options: ['White', '5-6 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "Light green / 0-2 Years Baby",
-        "options": [
-          "Light green",
-          "0-2 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'Light green / 0-2 Years Baby',
+        options: ['Light green', '0-2 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "Light green / 3-4 Years Baby",
-        "options": [
-          "Light green",
-          "3-4 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'Light green / 3-4 Years Baby',
+        options: ['Light green', '3-4 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "Light green / 5-6 Years Baby",
-        "options": [
-          "Light green",
-          "5-6 Years Baby"
-        ],
-        "price": 550,
-        "compareAtPrice": null,
-        "stock": 50
-      }
-    ]
+        title: 'Light green / 5-6 Years Baby',
+        options: ['Light green', '5-6 Years Baby'],
+        price: 550,
+        compareAtPrice: null,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10392292950271",
-    "name": "বাচ্চাদের কিউট ও স্টাইলিশ বেবি ক্যাপ",
-    "slug": "cute-stylish-baby-cap",
-    "sku": "EHM-10392292950271",
-    "category": "baby-care",
-    "collections": [
+    ref: '10392292950271',
+    name: 'বাচ্চাদের কিউট ও স্টাইলিশ বেবি ক্যাপ',
+    slug: 'cute-stylish-baby-cap',
+    sku: 'EHM-10392292950271',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 1
+        collection: 'baby-care',
+        position: 1,
       },
       {
-        "collection": "trendy-items",
-        "position": 12
-      }
+        collection: 'trendy-items',
+        position: 12,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Cap Bangladesh",
-      "Cute Baby Cap",
-      "Kids Cute Hat",
-      "Kids Fashion Cap",
-      "Stylish Baby Hat",
-      "কিউট বেবি ক্যাপ",
-      "বাচ্চাদের ক্যাপ",
-      "বাচ্চাদের স্টাইলিশ ক্যাপ",
-      "বেবি ফ্যাশন ক্যাপ",
-      "শিশুদের টুপি"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Cap Bangladesh',
+      'Cute Baby Cap',
+      'Kids Cute Hat',
+      'Kids Fashion Cap',
+      'Stylish Baby Hat',
+      'কিউট বেবি ক্যাপ',
+      'বাচ্চাদের ক্যাপ',
+      'বাচ্চাদের স্টাইলিশ ক্যাপ',
+      'বেবি ফ্যাশন ক্যাপ',
+      'শিশুদের টুপি',
     ],
-    "description": "<p><span>আপনার সোনামণির সাজে যোগ করুন আরও কিউট ও স্টাইলিশ লুক! 🥰</span></p>\n<p><strong><span>কিউট বেবি ক্যাপ</span></strong><span> বাচ্চাদের দৈনন্দিন সাজ, ঘোরাঘুরি কিংবা বিশেষ অনুষ্ঠানের জন্য সুন্দর একটি ফ্যাশন অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় ও কিউট ডিজাইন</span><br><span>✅ বাচ্চাদের সাজে স্টাইলিশ লুক যোগ করে</span><br><span>✅ দৈনন্দিন ব্যবহার ও বাইরে ঘোরার জন্য উপযোগী</span><br><span>✅ বিভিন্ন পোশাকের সঙ্গে সহজে মানিয়ে যায়</span><br><span>✅ সুন্দর ফটোশুট ও বিশেষ অনুষ্ঠানে ব্যবহারযোগ্য</span><br><span>✅ দুটি আকর্ষণীয় কালারে পাওয়া যাচ্ছে</span></p>\n<p><strong><span>আপনার সোনামণির জন্য পছন্দের বেবি ক্যাপটি আজই অর্ডার করুন!</span></strong></p>",
-    "price": 600,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/cute-stylish-baby-cap-1.jpg",
-      "/assets/live/products/cute-stylish-baby-cap-2.webp",
-      "/assets/live/products/cute-stylish-baby-cap-3.webp",
-      "/assets/live/products/cute-stylish-baby-cap-4.webp"
+    description:
+      '<p><span>আপনার সোনামণির সাজে যোগ করুন আরও কিউট ও স্টাইলিশ লুক! 🥰</span></p>\n<p><strong><span>কিউট বেবি ক্যাপ</span></strong><span> বাচ্চাদের দৈনন্দিন সাজ, ঘোরাঘুরি কিংবা বিশেষ অনুষ্ঠানের জন্য সুন্দর একটি ফ্যাশন অ্যাক্সেসরি।</span></p>\n<p><span>✅ আকর্ষণীয় ও কিউট ডিজাইন</span><br><span>✅ বাচ্চাদের সাজে স্টাইলিশ লুক যোগ করে</span><br><span>✅ দৈনন্দিন ব্যবহার ও বাইরে ঘোরার জন্য উপযোগী</span><br><span>✅ বিভিন্ন পোশাকের সঙ্গে সহজে মানিয়ে যায়</span><br><span>✅ সুন্দর ফটোশুট ও বিশেষ অনুষ্ঠানে ব্যবহারযোগ্য</span><br><span>✅ দুটি আকর্ষণীয় কালারে পাওয়া যাচ্ছে</span></p>\n<p><strong><span>আপনার সোনামণির জন্য পছন্দের বেবি ক্যাপটি আজই অর্ডার করুন!</span></strong></p>',
+    price: 600,
+    compareAtPrice: null,
+    stock: 50,
+    images: [
+      '/assets/live/products/cute-stylish-baby-cap-1.jpg',
+      '/assets/live/products/cute-stylish-baby-cap-2.webp',
+      '/assets/live/products/cute-stylish-baby-cap-3.webp',
+      '/assets/live/products/cute-stylish-baby-cap-4.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Blue",
-          "Pink",
-          "Khaki"
-        ]
-      }
+        name: 'Color',
+        values: ['Blue', 'Pink', 'Khaki'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Blue",
-        "options": [
-          "Blue"
-        ],
-        "price": 600,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'Blue',
+        options: ['Blue'],
+        price: 600,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 600,
-        "compareAtPrice": null,
-        "stock": 50
+        title: 'Pink',
+        options: ['Pink'],
+        price: 600,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "Khaki",
-        "options": [
-          "Khaki"
-        ],
-        "price": 600,
-        "compareAtPrice": null,
-        "stock": 50
-      }
-    ]
+        title: 'Khaki',
+        options: ['Khaki'],
+        price: 600,
+        compareAtPrice: null,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10392232329471",
-    "name": "বাচ্চাদের কোলে নেওয়ার আরামদায়ক বেবি ক্যারিয়ার ব্যাগ",
-    "slug": "baby-carrier-bag-sling-carrier",
-    "sku": "EHM-10392232329471",
-    "category": "baby-care",
-    "collections": [
+    ref: '10392232329471',
+    name: 'বাচ্চাদের কোলে নেওয়ার আরামদায়ক বেবি ক্যারিয়ার ব্যাগ',
+    slug: 'baby-carrier-bag-sling-carrier',
+    sku: 'EHM-10392232329471',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 7
+        collection: 'baby-care',
+        position: 7,
       },
       {
-        "collection": "trendy-items",
-        "position": 41
-      }
+        collection: 'trendy-items',
+        position: 41,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Carrier Bag",
-      "Baby Carrier Bangladesh",
-      "Baby Carrying Bag",
-      "Baby Sling Carrier",
-      "Newborn Baby Carrier",
-      "বাচ্চা কোলে নেওয়ার ব্যাগ",
-      "বাচ্চাদের ক্যারিয়ার ব্যাগ",
-      "বেবি ক্যারিয়ার ব্যাগ",
-      "বেবি স্লিং ক্যারিয়ার",
-      "শিশু বহন করার ব্যাগ"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Carrier Bag',
+      'Baby Carrier Bangladesh',
+      'Baby Carrying Bag',
+      'Baby Sling Carrier',
+      'Newborn Baby Carrier',
+      'বাচ্চা কোলে নেওয়ার ব্যাগ',
+      'বাচ্চাদের ক্যারিয়ার ব্যাগ',
+      'বেবি ক্যারিয়ার ব্যাগ',
+      'বেবি স্লিং ক্যারিয়ার',
+      'শিশু বহন করার ব্যাগ',
     ],
-    "description": "<p><span>বাচ্চাকে দীর্ঘক্ষণ কোলে রাখতে গিয়ে হাত ও কাঁধে কষ্ট হচ্ছে? 👶</span></p>\n<p><strong><span>মাল্টি-ফাংশনাল বেবি ক্যারিয়ার ব্যাগ</span></strong><span> ব্যবহার করে আপনার সোনামণিকে সহজে ও আরামদায়কভাবে বহন করুন। হালকা ও বাতাস চলাচলযোগ্য ডিজাইনের এই ক্যারিয়ার ঘরে, বাইরে কিংবা ভ্রমণের সময় ব্যবহার করা যায়।</span></p>\n<p><span>✅ আরামদায়ক ডিজাইন, বাচ্চাকে কোলে রাখতে সুবিধা</span><br><span>✅ হালকা ও বাতাস চলাচলযোগ্য ফেব্রিক</span><br><span>✅ মাল্টি-ফাংশনাল ডিজাইন, বিভিন্নভাবে ব্যবহারযোগ্য</span><br><span>✅ সহজে বহন ও ব্যবহার করা যায়</span><br><span>✅ সব ঋতুতে ব্যবহার উপযোগী</span><br><span>✅ ঘরে, বাইরে ও ভ্রমণের সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণিকে আরামে কোলে রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 750,
-    "compareAtPrice": 900,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-carrier-bag-sling-carrier-1.webp",
-      "/assets/live/products/baby-carrier-bag-sling-carrier-2.webp",
-      "/assets/live/products/baby-carrier-bag-sling-carrier-3.webp"
+    description:
+      '<p><span>বাচ্চাকে দীর্ঘক্ষণ কোলে রাখতে গিয়ে হাত ও কাঁধে কষ্ট হচ্ছে? 👶</span></p>\n<p><strong><span>মাল্টি-ফাংশনাল বেবি ক্যারিয়ার ব্যাগ</span></strong><span> ব্যবহার করে আপনার সোনামণিকে সহজে ও আরামদায়কভাবে বহন করুন। হালকা ও বাতাস চলাচলযোগ্য ডিজাইনের এই ক্যারিয়ার ঘরে, বাইরে কিংবা ভ্রমণের সময় ব্যবহার করা যায়।</span></p>\n<p><span>✅ আরামদায়ক ডিজাইন, বাচ্চাকে কোলে রাখতে সুবিধা</span><br><span>✅ হালকা ও বাতাস চলাচলযোগ্য ফেব্রিক</span><br><span>✅ মাল্টি-ফাংশনাল ডিজাইন, বিভিন্নভাবে ব্যবহারযোগ্য</span><br><span>✅ সহজে বহন ও ব্যবহার করা যায়</span><br><span>✅ সব ঋতুতে ব্যবহার উপযোগী</span><br><span>✅ ঘরে, বাইরে ও ভ্রমণের সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণিকে আরামে কোলে রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 750,
+    compareAtPrice: 900,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-carrier-bag-sling-carrier-1.webp',
+      '/assets/live/products/baby-carrier-bag-sling-carrier-2.webp',
+      '/assets/live/products/baby-carrier-bag-sling-carrier-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Green",
-          "Pink"
-        ]
-      }
+        name: 'Color',
+        values: ['Green', 'Pink'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Green",
-        "options": [
-          "Green"
-        ],
-        "price": 750,
-        "compareAtPrice": 900,
-        "stock": 50
+        title: 'Green',
+        options: ['Green'],
+        price: 750,
+        compareAtPrice: 900,
+        stock: 50,
       },
       {
-        "title": "Pink",
-        "options": [
-          "Pink"
-        ],
-        "price": 750,
-        "compareAtPrice": 900,
-        "stock": 50
-      }
-    ]
+        title: 'Pink',
+        options: ['Pink'],
+        price: 750,
+        compareAtPrice: 900,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10392199561471",
-    "name": "লক সিস্টেম চাবি সহ বাচ্চাদের অ্যান্টি-লস্ট বেল্ট",
-    "slug": "baby-anti-lost-safety-belt",
-    "sku": "EHM-10392199561471",
-    "category": "baby-care",
-    "collections": [
+    ref: '10392199561471',
+    name: 'লক সিস্টেম চাবি সহ বাচ্চাদের অ্যান্টি-লস্ট বেল্ট',
+    slug: 'baby-anti-lost-safety-belt',
+    sku: 'EHM-10392199561471',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 0
+        collection: 'baby-care',
+        position: 0,
       },
       {
-        "collection": "trendy-items",
-        "position": 4
-      }
+        collection: 'trendy-items',
+        position: 4,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Anti Lost Hand Belt",
-      "Baby Anti Lost Belt",
-      "Baby Safety Belt Bangladesh",
-      "Child Anti Lost Wristband",
-      "Kids Safety Wrist Belt",
-      "অ্যান্টি লস্ট সেফটি বেল্ট",
-      "বাচ্চাদের অ্যান্টি লস্ট বেল্ট",
-      "বাচ্চাদের সেফটি বেল্ট",
-      "বাচ্চাদের হাতের সেফটি বেল্ট",
-      "শিশু সুরক্ষা বেল্ট"
+    brand: 'Ehans Mart',
+    tags: [
+      'Anti Lost Hand Belt',
+      'Baby Anti Lost Belt',
+      'Baby Safety Belt Bangladesh',
+      'Child Anti Lost Wristband',
+      'Kids Safety Wrist Belt',
+      'অ্যান্টি লস্ট সেফটি বেল্ট',
+      'বাচ্চাদের অ্যান্টি লস্ট বেল্ট',
+      'বাচ্চাদের সেফটি বেল্ট',
+      'বাচ্চাদের হাতের সেফটি বেল্ট',
+      'শিশু সুরক্ষা বেল্ট',
     ],
-    "description": "<p><span>ভিড়ের মধ্যে বাচ্চা হারিয়ে যাওয়ার ভয়? 👶</span></p>\n<p><strong><span>অ্যান্টি লস্ট সেফটি বেল্ট</span></strong><span> ব্যবহার করে শপিংমল, পার্ক, মেলা কিংবা ভ্রমণের সময় আপনার সোনামণিকে নিজের কাছাকাছি রাখুন। চাবিসহ সিকিউর লক সিস্টেম ও মজবুত ডিজাইনের এই বেল্ট শিশুর নিরাপত্তায় বাড়তি সহায়তা করে।</span></p>\n<p><span>✅ চাবিসহ সিকিউর লক সিস্টেম</span><br><span>✅ ২ মিটার লম্বা, শিশুর চলাফেরায় সুবিধা</span><br><span>✅ মজবুত স্টিল ওয়্যার, সহজে ছিঁড়ে যাওয়ার ঝুঁকি কম</span><br><span>✅ ৩৬০° ঘূর্ণনযোগ্য ডিজাইন, জড়িয়ে যাওয়ার ঝুঁকি কমায়</span><br><span>✅ নরম ও আরামদায়ক হাতের বেল্ট</span><br><span>✅ শপিংমল, পার্ক, মেলা ও ভ্রমণে ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণিকে ভিড়ের মধ্যে কাছাকাছি রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 780,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-anti-lost-safety-belt-1.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-2.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-3.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-4.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-5.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-6.jpg",
-      "/assets/live/products/baby-anti-lost-safety-belt-7.webp",
-      "/assets/live/products/baby-anti-lost-safety-belt-8.jpg"
+    description:
+      '<p><span>ভিড়ের মধ্যে বাচ্চা হারিয়ে যাওয়ার ভয়? 👶</span></p>\n<p><strong><span>অ্যান্টি লস্ট সেফটি বেল্ট</span></strong><span> ব্যবহার করে শপিংমল, পার্ক, মেলা কিংবা ভ্রমণের সময় আপনার সোনামণিকে নিজের কাছাকাছি রাখুন। চাবিসহ সিকিউর লক সিস্টেম ও মজবুত ডিজাইনের এই বেল্ট শিশুর নিরাপত্তায় বাড়তি সহায়তা করে।</span></p>\n<p><span>✅ চাবিসহ সিকিউর লক সিস্টেম</span><br><span>✅ ২ মিটার লম্বা, শিশুর চলাফেরায় সুবিধা</span><br><span>✅ মজবুত স্টিল ওয়্যার, সহজে ছিঁড়ে যাওয়ার ঝুঁকি কম</span><br><span>✅ ৩৬০° ঘূর্ণনযোগ্য ডিজাইন, জড়িয়ে যাওয়ার ঝুঁকি কমায়</span><br><span>✅ নরম ও আরামদায়ক হাতের বেল্ট</span><br><span>✅ শপিংমল, পার্ক, মেলা ও ভ্রমণে ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণিকে ভিড়ের মধ্যে কাছাকাছি রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 780,
+    compareAtPrice: 1560,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-anti-lost-safety-belt-1.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-2.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-3.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-4.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-5.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-6.jpg',
+      '/assets/live/products/baby-anti-lost-safety-belt-7.webp',
+      '/assets/live/products/baby-anti-lost-safety-belt-8.jpg',
     ],
-    "options": [
+    options: [
       {
-        "name": "Select Belt Package",
-        "values": [
-          "1 Pcs - Blue Color",
-          "1 Pcs - Pink Color",
-          "2 Pcs - Blue & Pink Color"
-        ]
-      }
+        name: 'Select Belt Package',
+        values: ['1 Pcs - Blue Color', '1 Pcs - Pink Color', '2 Pcs - Blue & Pink Color'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs - Blue Color",
-        "options": [
-          "1 Pcs - Blue Color"
-        ],
-        "price": 780,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs - Blue Color',
+        options: ['1 Pcs - Blue Color'],
+        price: 780,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "1 Pcs - Pink Color",
-        "options": [
-          "1 Pcs - Pink Color"
-        ],
-        "price": 780,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs - Pink Color',
+        options: ['1 Pcs - Pink Color'],
+        price: 780,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs - Blue & Pink Color",
-        "options": [
-          "2 Pcs - Blue & Pink Color"
-        ],
-        "price": 1500,
-        "compareAtPrice": 1560,
-        "stock": 50
-      }
-    ]
+        title: '2 Pcs - Blue & Pink Color',
+        options: ['2 Pcs - Blue & Pink Color'],
+        price: 1500,
+        compareAtPrice: 1560,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10392148279551",
-    "name": "বাচ্চাদের ওয়াটারপ্রুফ হাফ হাতা বেবি এপ্রন",
-    "slug": "waterproof-baby-feeding-apron",
-    "sku": "EHM-10392148279551",
-    "category": "baby-care",
-    "collections": [
+    ref: '10392148279551',
+    name: 'বাচ্চাদের ওয়াটারপ্রুফ হাফ হাতা বেবি এপ্রন',
+    slug: 'waterproof-baby-feeding-apron',
+    sku: 'EHM-10392148279551',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 8
+        collection: 'baby-care',
+        position: 8,
       },
       {
-        "collection": "trendy-items",
-        "position": 42
-      }
+        collection: 'trendy-items',
+        position: 42,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Apron Bangladesh",
-      "Baby Bib with Food Pocket",
-      "Baby Feeding Apron",
-      "Baby Feeding Bib",
-      "Waterproof Baby Bib",
-      "ওয়াটারপ্রুফ বেবি এপ্রন",
-      "বাচ্চাদের খাবার এপ্রন",
-      "বাচ্চাদের খাবার বিব",
-      "বেবি এপ্রন",
-      "বেবি ফিডিং বিব"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Apron Bangladesh',
+      'Baby Bib with Food Pocket',
+      'Baby Feeding Apron',
+      'Baby Feeding Bib',
+      'Waterproof Baby Bib',
+      'ওয়াটারপ্রুফ বেবি এপ্রন',
+      'বাচ্চাদের খাবার এপ্রন',
+      'বাচ্চাদের খাবার বিব',
+      'বেবি এপ্রন',
+      'বেবি ফিডিং বিব',
     ],
-    "description": "<p><span>আপনার সোনামণি কি খাবার খাওয়ার সময় জামাকাপড় নোংরা করে ফেলে? 👶</span></p>\n<p><strong><span>ওয়াটারপ্রুফ বেবি এপ্রন</span></strong><span> ব্যবহার করে খাবার খাওয়ার সময় বাচ্চাদের জামাকাপড় পরিষ্কার রাখতে সাহায্য করুন। হালকা ও আরামদায়ক এই এপ্রনে রয়েছে বিশেষ ফুড পকেট, যা পড়ে যাওয়া খাবার ধরে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ ম্যাটেরিয়াল, জামাকাপড় নোংরা হওয়া কমায়</span><br><span>✅ হালকা ও মেশ ফ্যাব্রিক, গরমেও আরামদায়ক</span><br><span>✅ বিশেষ ফুড পকেট, পড়ে যাওয়া খাবার ধরে রাখে</span><br><span>✅ সহজে ধোয়া যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ খাওয়ানো, আঁকাআঁকি ও খেলাধুলার সময় ব্যবহারযোগ্য</span><br><span>✅ বাচ্চাদের জন্য আরামদায়ক ও ব্যবহারবান্ধব ডিজাইন</span></p>\n<p><strong><span>আপনার সোনামণির জামাকাপড় পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>",
-    "price": 480,
-    "compareAtPrice": 550,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/waterproof-baby-feeding-apron-1.webp",
-      "/assets/live/products/waterproof-baby-feeding-apron-2.webp",
-      "/assets/live/products/waterproof-baby-feeding-apron-3.webp",
-      "/assets/live/products/waterproof-baby-feeding-apron-4.webp"
+    description:
+      '<p><span>আপনার সোনামণি কি খাবার খাওয়ার সময় জামাকাপড় নোংরা করে ফেলে? 👶</span></p>\n<p><strong><span>ওয়াটারপ্রুফ বেবি এপ্রন</span></strong><span> ব্যবহার করে খাবার খাওয়ার সময় বাচ্চাদের জামাকাপড় পরিষ্কার রাখতে সাহায্য করুন। হালকা ও আরামদায়ক এই এপ্রনে রয়েছে বিশেষ ফুড পকেট, যা পড়ে যাওয়া খাবার ধরে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ ওয়াটারপ্রুফ ম্যাটেরিয়াল, জামাকাপড় নোংরা হওয়া কমায়</span><br><span>✅ হালকা ও মেশ ফ্যাব্রিক, গরমেও আরামদায়ক</span><br><span>✅ বিশেষ ফুড পকেট, পড়ে যাওয়া খাবার ধরে রাখে</span><br><span>✅ সহজে ধোয়া যায় ও বারবার ব্যবহারযোগ্য</span><br><span>✅ খাওয়ানো, আঁকাআঁকি ও খেলাধুলার সময় ব্যবহারযোগ্য</span><br><span>✅ বাচ্চাদের জন্য আরামদায়ক ও ব্যবহারবান্ধব ডিজাইন</span></p>\n<p><strong><span>আপনার সোনামণির জামাকাপড় পরিষ্কার রাখতে আজই অর্ডার করুন!</span></strong></p>',
+    price: 480,
+    compareAtPrice: 550,
+    stock: 50,
+    images: [
+      '/assets/live/products/waterproof-baby-feeding-apron-1.webp',
+      '/assets/live/products/waterproof-baby-feeding-apron-2.webp',
+      '/assets/live/products/waterproof-baby-feeding-apron-3.webp',
+      '/assets/live/products/waterproof-baby-feeding-apron-4.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Color",
-        "values": [
-          "Blue",
-          "Yellow"
-        ]
+        name: 'Color',
+        values: ['Blue', 'Yellow'],
       },
       {
-        "name": "Size",
-        "values": [
-          "0-2 Years Baby",
-          "3-4 Years Baby",
-          "5-6 Years Baby"
-        ]
-      }
+        name: 'Size',
+        values: ['0-2 Years Baby', '3-4 Years Baby', '5-6 Years Baby'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "Blue / 0-2 Years Baby",
-        "options": [
-          "Blue",
-          "0-2 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
+        title: 'Blue / 0-2 Years Baby',
+        options: ['Blue', '0-2 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
       },
       {
-        "title": "Blue / 3-4 Years Baby",
-        "options": [
-          "Blue",
-          "3-4 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
+        title: 'Blue / 3-4 Years Baby',
+        options: ['Blue', '3-4 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
       },
       {
-        "title": "Blue / 5-6 Years Baby",
-        "options": [
-          "Blue",
-          "5-6 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
+        title: 'Blue / 5-6 Years Baby',
+        options: ['Blue', '5-6 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
       },
       {
-        "title": "Yellow / 0-2 Years Baby",
-        "options": [
-          "Yellow",
-          "0-2 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
+        title: 'Yellow / 0-2 Years Baby',
+        options: ['Yellow', '0-2 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
       },
       {
-        "title": "Yellow / 3-4 Years Baby",
-        "options": [
-          "Yellow",
-          "3-4 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
+        title: 'Yellow / 3-4 Years Baby',
+        options: ['Yellow', '3-4 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
       },
       {
-        "title": "Yellow / 5-6 Years Baby",
-        "options": [
-          "Yellow",
-          "5-6 Years Baby"
-        ],
-        "price": 480,
-        "compareAtPrice": 550,
-        "stock": 50
-      }
-    ]
+        title: 'Yellow / 5-6 Years Baby',
+        options: ['Yellow', '5-6 Years Baby'],
+        price: 480,
+        compareAtPrice: 550,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10391896719615",
-    "name": "বাচ্চাদের মাথার সুরক্ষায় বেবি সেফটি হেলমেট",
-    "slug": "baby-safety-helmet-head-protector",
-    "sku": "EHM-10391896719615",
-    "category": "baby-care",
-    "collections": [
+    ref: '10391896719615',
+    name: 'বাচ্চাদের মাথার সুরক্ষায় বেবি সেফটি হেলমেট',
+    slug: 'baby-safety-helmet-head-protector',
+    sku: 'EHM-10391896719615',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 9
+        collection: 'baby-care',
+        position: 9,
       },
       {
-        "collection": "trendy-items",
-        "position": 43
-      }
+        collection: 'trendy-items',
+        position: 43,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Head Protection Helmet",
-      "Baby Head Protector",
-      "Baby Safety Helmet",
-      "Baby Safety Helmet Bangladesh",
-      "Toddler Safety Helmet",
-      "বাচ্চাদের মাথার হেলমেট",
-      "বাচ্চাদের সেফটি হেলমেট",
-      "বেবি সেফটি হেলমেট",
-      "বেবি হেড প্রটেক্টর",
-      "শিশুর মাথার সুরক্ষা হেলমেট"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Head Protection Helmet',
+      'Baby Head Protector',
+      'Baby Safety Helmet',
+      'Baby Safety Helmet Bangladesh',
+      'Toddler Safety Helmet',
+      'বাচ্চাদের মাথার হেলমেট',
+      'বাচ্চাদের সেফটি হেলমেট',
+      'বেবি সেফটি হেলমেট',
+      'বেবি হেড প্রটেক্টর',
+      'শিশুর মাথার সুরক্ষা হেলমেট',
     ],
-    "description": "<p><span>আপনার সোনামণি কি হাঁটতে শিখছে বা খেলতে গিয়ে বারবার পড়ে যাচ্ছে? 👶</span></p>\n<p><strong><span>বেবি সেফটি হেলমেট</span></strong><span> ব্যবহার করে পড়ে যাওয়ার সময় শিশুর মাথায় আঘাত লাগার ঝুঁকি কমাতে সাহায্য করুন। নরম ও আরামদায়ক ডিজাইনের এই হেড প্রটেক্টর শিশুর দৈনন্দিন চলাফেরা ও খেলাধুলার সময় বাড়তি সুরক্ষা দিতে সহায়ক।</span></p>\n<p><span>✅ পড়ে যাওয়ার সময় মাথায় আঘাতের প্রভাব কমাতে সহায়ক</span><br><span>✅ নরম ও আরামদায়ক ডিজাইন</span><br><span>✅ বাতাস চলাচলের সুবিধা, মাথায় অস্বস্তি কম হয়</span><br><span>✅ হালকা ও সহজে পরানো যায়</span><br><span>✅ সহজে পরিষ্কার করা যায়</span><br><span>✅ হাঁটতে শেখা ও খেলাধুলার সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির মাথার বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-safety-helmet-head-protector-1.webp",
-      "/assets/live/products/baby-safety-helmet-head-protector-2.webp",
-      "/assets/live/products/baby-safety-helmet-head-protector-3.webp"
+    description:
+      '<p><span>আপনার সোনামণি কি হাঁটতে শিখছে বা খেলতে গিয়ে বারবার পড়ে যাচ্ছে? 👶</span></p>\n<p><strong><span>বেবি সেফটি হেলমেট</span></strong><span> ব্যবহার করে পড়ে যাওয়ার সময় শিশুর মাথায় আঘাত লাগার ঝুঁকি কমাতে সাহায্য করুন। নরম ও আরামদায়ক ডিজাইনের এই হেড প্রটেক্টর শিশুর দৈনন্দিন চলাফেরা ও খেলাধুলার সময় বাড়তি সুরক্ষা দিতে সহায়ক।</span></p>\n<p><span>✅ পড়ে যাওয়ার সময় মাথায় আঘাতের প্রভাব কমাতে সহায়ক</span><br><span>✅ নরম ও আরামদায়ক ডিজাইন</span><br><span>✅ বাতাস চলাচলের সুবিধা, মাথায় অস্বস্তি কম হয়</span><br><span>✅ হালকা ও সহজে পরানো যায়</span><br><span>✅ সহজে পরিষ্কার করা যায়</span><br><span>✅ হাঁটতে শেখা ও খেলাধুলার সময় ব্যবহারযোগ্য</span></p>\n<p><strong><span>আপনার সোনামণির মাথার বাড়তি সুরক্ষায় আজই অর্ডার করুন!</span></strong></p>',
+    price: 350,
+    compareAtPrice: 700,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-safety-helmet-head-protector-1.webp',
+      '/assets/live/products/baby-safety-helmet-head-protector-2.webp',
+      '/assets/live/products/baby-safety-helmet-head-protector-3.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pcs', '2 Pcs', '3 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pcs',
+        options: ['1 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
-        "price": 600,
-        "compareAtPrice": 700,
-        "stock": 50
+        title: '2 Pcs',
+        options: ['2 Pcs'],
+        price: 600,
+        compareAtPrice: 700,
+        stock: 50,
       },
       {
-        "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
-        "price": 800,
-        "compareAtPrice": 1050,
-        "stock": 50
-      }
-    ]
+        title: '3 Pcs',
+        options: ['3 Pcs'],
+        price: 800,
+        compareAtPrice: 1050,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10391791993087",
-    "name": "বাচ্চাদের সেফটি টেবিল কর্নার গার্ড",
-    "slug": "baby-safety-table-corner-guard",
-    "sku": "EHM-10391791993087",
-    "category": "baby-care",
-    "collections": [
+    ref: '10391791993087',
+    name: 'বাচ্চাদের সেফটি টেবিল কর্নার গার্ড',
+    slug: 'baby-safety-table-corner-guard',
+    sku: 'EHM-10391791993087',
+    category: 'baby-care',
+    collections: [
       {
-        "collection": "baby-care",
-        "position": 3
+        collection: 'baby-care',
+        position: 3,
       },
       {
-        "collection": "trendy-items",
-        "position": 29
-      }
+        collection: 'trendy-items',
+        position: 29,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Corner Protector",
-      "Baby Safety Corner Guard",
-      "Furniture Corner Guard",
-      "Table Corner Guard Bangladesh",
-      "Table Corner Protector",
-      "টেবিল কর্নার গার্ড",
-      "টেবিল কর্নার সেফটি কভার",
-      "ফার্নিচার কর্নার প্রটেক্টর",
-      "বাচ্চাদের কর্নার গার্ড",
-      "বেবি সেফটি কর্নার গার্ড"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Corner Protector',
+      'Baby Safety Corner Guard',
+      'Furniture Corner Guard',
+      'Table Corner Guard Bangladesh',
+      'Table Corner Protector',
+      'টেবিল কর্নার গার্ড',
+      'টেবিল কর্নার সেফটি কভার',
+      'ফার্নিচার কর্নার প্রটেক্টর',
+      'বাচ্চাদের কর্নার গার্ড',
+      'বেবি সেফটি কর্নার গার্ড',
     ],
-    "description": "<p><span>ঘরে ছোট বাচ্চা থাকলে টেবিল বা ফার্নিচারের ধারালো কোণ থেকে আঘাত লাগার ভয়? 👶</span></p>\n<p><strong><span>টেবিল কর্নার সেফটি গার্ড</span></strong><span> ব্যবহার করে বাচ্চাদের অনাকাঙ্ক্ষিত আঘাতের ঝুঁকি কমাতে সাহায্য করুন। নরম স্পঞ্জের তৈরি এই কর্নার কভার টেবিল, খাট ও অন্যান্য ফার্নিচারের ধারালো কোণ ঢেকে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ নরম স্পঞ্জ, আঘাতের প্রভাব কমাতে সহায়ক</span><br><span>✅ এল-শেপড ডিজাইন, কোণায় সহজে লাগানো যায়</span><br><span>✅ গাম স্টিকারসহ, আলাদা আঠার প্রয়োজন নেই</span><br><span>✅ টেবিল, খাট ও অন্যান্য ফার্নিচারে ব্যবহারযোগ্য</span><br><span>✅ সাদা রঙ, ফার্নিচারের সঙ্গে সহজে মানিয়ে যায়</span><br></p>\n<p><strong><span>আপনার সোনামণির নিরাপত্তায় আজই অর্ডার করুন!</span></strong></p>",
-    "price": 390,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-safety-table-corner-guard-1.webp",
-      "/assets/live/products/baby-safety-table-corner-guard-2.webp",
-      "/assets/live/products/baby-safety-table-corner-guard-3.webp",
-      "/assets/live/products/baby-safety-table-corner-guard-4.webp",
-      "/assets/live/products/baby-safety-table-corner-guard-5.webp"
+    description:
+      '<p><span>ঘরে ছোট বাচ্চা থাকলে টেবিল বা ফার্নিচারের ধারালো কোণ থেকে আঘাত লাগার ভয়? 👶</span></p>\n<p><strong><span>টেবিল কর্নার সেফটি গার্ড</span></strong><span> ব্যবহার করে বাচ্চাদের অনাকাঙ্ক্ষিত আঘাতের ঝুঁকি কমাতে সাহায্য করুন। নরম স্পঞ্জের তৈরি এই কর্নার কভার টেবিল, খাট ও অন্যান্য ফার্নিচারের ধারালো কোণ ঢেকে রাখতে সাহায্য করে।</span></p>\n<p><span>✅ নরম স্পঞ্জ, আঘাতের প্রভাব কমাতে সহায়ক</span><br><span>✅ এল-শেপড ডিজাইন, কোণায় সহজে লাগানো যায়</span><br><span>✅ গাম স্টিকারসহ, আলাদা আঠার প্রয়োজন নেই</span><br><span>✅ টেবিল, খাট ও অন্যান্য ফার্নিচারে ব্যবহারযোগ্য</span><br><span>✅ সাদা রঙ, ফার্নিচারের সঙ্গে সহজে মানিয়ে যায়</span><br></p>\n<p><strong><span>আপনার সোনামণির নিরাপত্তায় আজই অর্ডার করুন!</span></strong></p>',
+    price: 390,
+    compareAtPrice: 780,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-safety-table-corner-guard-1.webp',
+      '/assets/live/products/baby-safety-table-corner-guard-2.webp',
+      '/assets/live/products/baby-safety-table-corner-guard-3.webp',
+      '/assets/live/products/baby-safety-table-corner-guard-4.webp',
+      '/assets/live/products/baby-safety-table-corner-guard-5.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ]
-      }
+        name: 'Quantity',
+        values: ['1 Pack (10 Pcs)', '2 Pack (20 Pcs)', '3 Pack (30 Pcs)'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
-        "price": 390,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '1 Pack (10 Pcs)',
+        options: ['1 Pack (10 Pcs)'],
+        price: 390,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
-        "price": 700,
-        "compareAtPrice": 780,
-        "stock": 50
+        title: '2 Pack (20 Pcs)',
+        options: ['2 Pack (20 Pcs)'],
+        price: 700,
+        compareAtPrice: 780,
+        stock: 50,
       },
       {
-        "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
-        "price": 850,
-        "compareAtPrice": 1170,
-        "stock": 50
-      }
-    ]
+        title: '3 Pack (30 Pcs)',
+        options: ['3 Pack (30 Pcs)'],
+        price: 850,
+        compareAtPrice: 1170,
+        stock: 50,
+      },
+    ],
   },
   {
-    "ref": "10391146594559",
-    "name": "বাচ্চাদের সুরক্ষায় ইলেকট্রিক সকেট সেফটি কভার",
-    "slug": "baby-safety-socket-cover",
-    "sku": "EHM-10391146594559",
-    "category": "trendy-items",
-    "collections": [
+    ref: '10391146594559',
+    name: 'বাচ্চাদের সুরক্ষায় ইলেকট্রিক সকেট সেফটি কভার',
+    slug: 'baby-safety-socket-cover',
+    sku: 'EHM-10391146594559',
+    category: 'trendy-items',
+    collections: [
       {
-        "collection": "trendy-items",
-        "position": 44
-      }
+        collection: 'trendy-items',
+        position: 44,
+      },
     ],
-    "brand": "Ehans Mart",
-    "tags": [
-      "Baby Proof Socket Cover",
-      "Baby Safety Socket Cover",
-      "Child Safety Socket Plug",
-      "Electrical Socket Safety Cover",
-      "Socket Cover Bangladesh",
-      "ইলেকট্রিক সকেট কভার",
-      "বাচ্চাদের সকেট কভার",
-      "বেবি সেফটি সকেট কভার",
-      "শিশু সুরক্ষা সকেট কভার",
-      "সেফটি সকেট কভার"
+    brand: 'Ehans Mart',
+    tags: [
+      'Baby Proof Socket Cover',
+      'Baby Safety Socket Cover',
+      'Child Safety Socket Plug',
+      'Electrical Socket Safety Cover',
+      'Socket Cover Bangladesh',
+      'ইলেকট্রিক সকেট কভার',
+      'বাচ্চাদের সকেট কভার',
+      'বেবি সেফটি সকেট কভার',
+      'শিশু সুরক্ষা সকেট কভার',
+      'সেফটি সকেট কভার',
     ],
-    "description": "<p><span>ঘরে ছোট বাচ্চা থাকলে ইলেকট্রিক সকেট নিয়ে দুশ্চিন্তা? 👶</span></p>\n<p>সেফটি সকেট কভার<span> ব্যবহার করে বাচ্চাদের <strong>অনাকাঙ্ক্ষিত বৈদ্যুতিক শকের ঝুঁকি কমাতে সাহায্য করুন।</strong> এটি সকেটের খোলা ছিদ্র ঢেকে রাখে এবং ছোট বাচ্চাদের পক্ষে সহজে খুলে ফেলা কঠিন।</span></p>\n<p><span>✅ বাচ্চাদের বৈদ্যুতিক দুর্ঘটনার ঝুঁকি কমাতে সহায়ক</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়</span><br><span>✅ মজবুত ও টেকসই ডিজাইন</span><br><span>✅ আকর্ষণীয় মাল্টিকালার সকেট কভার</span><br><span>✅ উপযুক্ত ২-পিন ও ৩-পিন সকেটে ব্যবহারযোগ্য</span></p>\n<p>আপনার সোনামণির নিরাপত্তায় আজই অর্ডার করুন!</p>",
-    "price": 350,
-    "compareAtPrice": null,
-    "stock": 50,
-    "images": [
-      "/assets/live/products/baby-safety-socket-cover-1.webp",
-      "/assets/live/products/baby-safety-socket-cover-2.webp",
-      "/assets/live/products/baby-safety-socket-cover-3.webp",
-      "/assets/live/products/baby-safety-socket-cover-4.webp",
-      "/assets/live/products/baby-safety-socket-cover-5.webp",
-      "/assets/live/products/baby-safety-socket-cover-6.webp"
+    description:
+      '<p><span>ঘরে ছোট বাচ্চা থাকলে ইলেকট্রিক সকেট নিয়ে দুশ্চিন্তা? 👶</span></p>\n<p>সেফটি সকেট কভার<span> ব্যবহার করে বাচ্চাদের <strong>অনাকাঙ্ক্ষিত বৈদ্যুতিক শকের ঝুঁকি কমাতে সাহায্য করুন।</strong> এটি সকেটের খোলা ছিদ্র ঢেকে রাখে এবং ছোট বাচ্চাদের পক্ষে সহজে খুলে ফেলা কঠিন।</span></p>\n<p><span>✅ বাচ্চাদের বৈদ্যুতিক দুর্ঘটনার ঝুঁকি কমাতে সহায়ক</span><br><span>✅ ড্রিল বা স্ক্রু ছাড়াই সহজে লাগানো যায়</span><br><span>✅ মজবুত ও টেকসই ডিজাইন</span><br><span>✅ আকর্ষণীয় মাল্টিকালার সকেট কভার</span><br><span>✅ উপযুক্ত ২-পিন ও ৩-পিন সকেটে ব্যবহারযোগ্য</span></p>\n<p>আপনার সোনামণির নিরাপত্তায় আজই অর্ডার করুন!</p>',
+    price: 350,
+    compareAtPrice: 580,
+    stock: 50,
+    images: [
+      '/assets/live/products/baby-safety-socket-cover-1.webp',
+      '/assets/live/products/baby-safety-socket-cover-2.webp',
+      '/assets/live/products/baby-safety-socket-cover-3.webp',
+      '/assets/live/products/baby-safety-socket-cover-4.webp',
+      '/assets/live/products/baby-safety-socket-cover-5.webp',
+      '/assets/live/products/baby-safety-socket-cover-6.webp',
     ],
-    "options": [
+    options: [
       {
-        "name": "Quantity",
-        "values": [
-          "12 Pcs",
-          "20 Pcs",
-          "30 Pcs"
-        ]
-      }
+        name: 'Quantity',
+        values: ['12 Pcs', '20 Pcs', '30 Pcs'],
+      },
     ],
-    "variants": [
+    variants: [
       {
-        "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
-        "price": 350,
-        "compareAtPrice": null,
-        "stock": 50
+        title: '12 Pcs',
+        options: ['12 Pcs'],
+        price: 350,
+        compareAtPrice: null,
+        stock: 50,
       },
       {
-        "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
-        "price": 480,
-        "compareAtPrice": 580,
-        "stock": 50
+        title: '20 Pcs',
+        options: ['20 Pcs'],
+        price: 480,
+        compareAtPrice: 580,
+        stock: 50,
       },
       {
-        "title": "30 Pcs",
-        "options": [
-          "30 Pcs"
-        ],
-        "price": 600,
-        "compareAtPrice": 870,
-        "stock": 50
-      }
-    ]
-  }
+        title: '30 Pcs',
+        options: ['30 Pcs'],
+        price: 600,
+        compareAtPrice: 870,
+        stock: 50,
+      },
+    ],
+  },
 ];

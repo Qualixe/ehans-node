@@ -28,7 +28,7 @@ export class CatalogController {
 
   @Get('home')
   @Header('Cache-Control', PUBLIC_CACHE)
-  @ApiOperation({ summary: 'Home page catalog: categories and product sliders' })
+  @ApiOperation({ summary: 'Home page catalog: category row, Trending Items grid, best sellers' })
   @ApiOkResponse({ description: 'HomeCatalog' })
   home(): Promise<HomeCatalog> {
     return this.catalog.home();

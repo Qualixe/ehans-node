@@ -1,5 +1,7 @@
 /** Shimmer placeholders shaped like the template sections (shown while data streams in). */
 
+import { HOME_GRID_TITLE } from '@ehans/shared';
+
 const Block = ({ className = '', style }: { className?: string; style?: React.CSSProperties }) => (
   <span className={`skeleton ${className}`} style={style} aria-hidden="true" />
 );
@@ -17,24 +19,7 @@ export function CardSkeleton() {
   );
 }
 
-/** Heading + one row of product cards (home / product page sliders). */
-export function CardSliderSkeleton({ count = 5 }: { count?: number }) {
-  return (
-    <section className="explore-slider-section" aria-busy="true" aria-label="Loading products">
-      <div className="container">
-        <div className="card-slider-section-heading">
-          <Block className="skeleton-title" style={{ width: 220, marginBottom: 0 }} />
-        </div>
-        <div className="skeleton-row">
-          {Array.from({ length: count }, (_, i) => (
-            <CardSkeleton key={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
+/** Home category row (live `.category-section`, no heading). */
 export function CategoryRowSkeleton() {
   return (
     <div className="category-section" aria-busy="true" aria-label="Loading categories">
@@ -64,12 +49,30 @@ export function CategoryRowSkeleton() {
   );
 }
 
-export function HomeSlidersSkeleton() {
+/** Home "Trending Items" grid while loading (live theme `.card-skeleton` cards). */
+export function TrendingGridSkeleton() {
   return (
-    <>
-      <CardSliderSkeleton />
-      <CardSliderSkeleton />
-    </>
+    <section className="product-card-grid" aria-busy="true" aria-label="Loading products">
+      <div className="container">
+        <div className="card-slider-section-heading">
+          <h2 className="title">{HOME_GRID_TITLE}</h2>
+        </div>
+        <ul className="product-card-grid__items list-unstyled" role="list">
+          {Array.from({ length: 10 }, (_, i) => (
+            <li key={i} className="product-card-grid__item product-card-grid__item--skeleton">
+              <div className="card-skeleton">
+                <div className="card-skeleton__block card-skeleton__image"></div>
+                <div className="card-skeleton__content">
+                  <div className="card-skeleton__block card-skeleton__line"></div>
+                  <div className="card-skeleton__block card-skeleton__line card-skeleton__line--short"></div>
+                  <div className="card-skeleton__block card-skeleton__button"></div>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 

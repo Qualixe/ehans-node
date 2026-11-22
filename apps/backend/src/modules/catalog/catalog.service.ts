@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { HOME_GRID_COLLECTION, HOME_GRID_PAGE_SIZE, HOME_GRID_TITLE } from '@ehans/shared';
 import type {
   CategoryNode,
   HomeCatalog,
@@ -17,10 +18,12 @@ import {
 } from './catalog.mapper.js';
 import type { ListProductsQueryDto } from './dto/list-products.query.js';
 
-const HOME_SLIDER_SIZE = 8;
+const POPULAR_SIZE = 8;
 const RELATED_SIZE = 8;
 
 const ORDER_BY: Record<string, Prisma.ProductOrderByWithRelationInput[]> = {
+  // `manual` without a category falls back to the featured order
+  manual: [{ isFeatured: 'desc' }, { soldCount: 'desc' }, { createdAt: 'desc' }],
   featured: [{ isFeatured: 'desc' }, { soldCount: 'desc' }, { createdAt: 'desc' }],
   newest: [{ createdAt: 'desc' }],
   'price-asc': [{ price: 'asc' }],
@@ -45,9 +48,10 @@ export class CatalogService {
         },
       },
     });
-    const counts = await this.prisma.product.groupBy({
+    const ids = categories.flatMap((c) => [c.id, ...c.children.map((ch) => ch.id)]);
+    const counts = await this.prisma.productCategory.groupBy({
       by: ['categoryId'],
-      where: { isActive: true },
+      where: { categoryId: { in: ids }, product: { isActive: true } },
       _count: { _all: true },
     });
     const countBy = new Map(counts.map((c) => [c.categoryId, c._count._all]));
@@ -57,51 +61,55 @@ export class CatalogService {
       name: c.name,
       image: c.image,
       description: c.description,
+      // own members; a group without its own members counts its children's
       productCount:
-        (countBy.get(c.id) ?? 0) + c.children.reduce((n, ch) => n + (countBy.get(ch.id) ?? 0), 0),
+        countBy.get(c.id) ?? c.children.reduce((n, ch) => n + (countBy.get(ch.id) ?? 0), 0),
       children: c.children,
     }));
   }
 
   async home(): Promise<HomeCatalog> {
-    const [categories, sliderCategories, popular] = await Promise.all([
-      this.prisma.category.findMany({
-        where: { parentId: null, showInMenu: true },
-        orderBy: [{ position: 'asc' }, { name: 'asc' }],
-        select: categorySummarySelect,
-      }),
+    const [categories, popular, trending] = await Promise.all([
       this.prisma.category.findMany({
         where: { homePosition: { not: null } },
         orderBy: { homePosition: 'asc' },
-        select: { ...categorySummarySelect, homeTitle: true, children: { select: { id: true } } },
+        select: categorySummarySelect,
       }),
       this.prisma.product.findMany({
         where: { isActive: true },
         orderBy: ORDER_BY['best-selling'],
-        take: HOME_SLIDER_SIZE,
+        take: POPULAR_SIZE,
         include: productCardInclude,
+      }),
+      this.listProducts({
+        category: HOME_GRID_COLLECTION,
+        sort: 'manual',
+        pageSize: HOME_GRID_PAGE_SIZE,
+      }).catch((error: unknown) => {
+        if (error instanceof NotFoundException) return null;
+        throw error;
       }),
     ]);
 
-    const sliders = await Promise.all(
-      sliderCategories.map(async (c) => {
-        const products = await this.prisma.product.findMany({
-          where: { isActive: true, categoryId: { in: [c.id, ...c.children.map((ch) => ch.id)] } },
-          orderBy: ORDER_BY.featured,
-          take: HOME_SLIDER_SIZE,
-          include: productCardInclude,
-        });
-        return {
-          title: c.homeTitle ?? c.name,
-          category: { id: c.id, slug: c.slug, name: c.name, image: c.image },
-          products: products.map(toProductCard),
-        };
-      }),
-    );
+    const gridCategory = trending
+      ? await this.prisma.category.findUnique({
+          where: { slug: HOME_GRID_COLLECTION },
+          select: categorySummarySelect,
+        })
+      : null;
 
     return {
       categories,
-      sliders: sliders.filter((s) => s.products.length > 0),
+      trending:
+        trending && gridCategory
+          ? {
+              title: HOME_GRID_TITLE,
+              category: gridCategory,
+              items: trending.items,
+              total: trending.total,
+              pageSize: trending.pageSize,
+            }
+          : null,
       popular: popular.map(toProductCard),
     };
   }
@@ -109,7 +117,7 @@ export class CatalogService {
   async listProducts(query: ListProductsQueryDto): Promise<ProductListResponse> {
     const page = query.page ?? 1;
     const pageSize = query.pageSize ?? 24;
-    const base = await this.baseWhere(query);
+    const { where: base, categoryId } = await this.baseFilter(query);
     const where: Prisma.ProductWhereInput = {
       ...base,
       ...(query.minPrice !== undefined || query.maxPrice !== undefined
@@ -117,15 +125,34 @@ export class CatalogService {
         : {}),
     };
 
+    const skip = (page - 1) * pageSize;
+    const manualCategoryId = query.sort === 'manual' ? categoryId : undefined;
+    const pageItems = manualCategoryId
+      ? // collection order: page through the collection's own memberships by position
+        this.prisma.productCategory
+          .findMany({
+            where: { categoryId: manualCategoryId, product: where },
+            orderBy: [{ position: 'asc' }, { productId: 'asc' }],
+            skip,
+            take: pageSize,
+            include: { product: { include: productCardInclude } },
+          })
+          .then((rows) => rows.map((r) => r.product))
+      : this.prisma.product.findMany({
+          where,
+          orderBy: ORDER_BY[query.sort ?? 'featured'],
+          skip,
+          take: pageSize,
+          include: productCardInclude,
+        });
+
     const [total, items, range] = await Promise.all([
-      this.prisma.product.count({ where }),
-      this.prisma.product.findMany({
-        where,
-        orderBy: ORDER_BY[query.sort ?? 'featured'],
-        skip: (page - 1) * pageSize,
-        take: pageSize,
-        include: productCardInclude,
-      }),
+      manualCategoryId
+        ? this.prisma.productCategory.count({
+            where: { categoryId: manualCategoryId, product: where },
+          })
+        : this.prisma.product.count({ where }),
+      pageItems,
       // price range ignores the price filter so the slider bounds stay stable
       this.prisma.product.aggregate({ where: base, _min: { price: true }, _max: { price: true } }),
     ]);
@@ -141,7 +168,7 @@ export class CatalogService {
   }
 
   async search(q: string, limit = 8): Promise<ProductCard[]> {
-    const where = await this.baseWhere({ q });
+    const { where } = await this.baseFilter({ q });
     const items = await this.prisma.product.findMany({
       where,
       orderBy: ORDER_BY['best-selling'],
@@ -168,10 +195,11 @@ export class CatalogService {
   }
 
   /** Filters shared by list, search and the price-range aggregate. */
-  private async baseWhere(
+  private async baseFilter(
     query: Pick<ListProductsQueryDto, 'category' | 'q' | 'inStock'>,
-  ): Promise<Prisma.ProductWhereInput> {
+  ): Promise<{ where: Prisma.ProductWhereInput; categoryId?: string }> {
     const and: Prisma.ProductWhereInput[] = [{ isActive: true }];
+    let categoryId: string | undefined;
 
     if (query.category) {
       const category = await this.prisma.category.findUnique({
@@ -179,7 +207,13 @@ export class CatalogService {
         select: { id: true, children: { select: { id: true } } },
       });
       if (!category) throw new NotFoundException('Category not found');
-      and.push({ categoryId: { in: [category.id, ...category.children.map((c) => c.id)] } });
+      categoryId = category.id;
+      // collection membership (a group collection also lists its children's members)
+      and.push({
+        collections: {
+          some: { categoryId: { in: [category.id, ...category.children.map((c) => c.id)] } },
+        },
+      });
     }
 
     const words = (query.q ?? '').trim().toLowerCase().split(/\s+/).filter(Boolean).slice(0, 6);
@@ -195,6 +229,6 @@ export class CatalogService {
     }
 
     if (query.inStock) and.push({ stock: { gt: 0 } });
-    return { AND: and };
+    return { where: { AND: and }, categoryId };
   }
 }

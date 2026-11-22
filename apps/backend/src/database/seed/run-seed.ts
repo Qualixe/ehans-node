@@ -6,11 +6,15 @@
  *
  *   pnpm db:seed
  *
+ * Also creates the /admin store owner when SEED_ADMIN_EMAIL and SEED_ADMIN_PASSWORD are set.
+ *
  * Refuses to run when NODE_ENV=production unless SEED_ALLOW_PRODUCTION=true.
  */
+import { HOME_GRID_COLLECTION } from '@ehans/shared';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '../../generated/prisma/client.js';
 import { loadLocalEnvFile } from '../../config/load-env-file.js';
+import { upsertOwner } from '../admin-account.js';
 import { seedBundles, seedCategories, seedProducts } from './catalog.seed-data.js';
 
 async function main(): Promise<void> {
@@ -69,7 +73,7 @@ async function main(): Promise<void> {
         soldCount: 0,
         ratingAverage: null,
         ratingCount: 0,
-        isFeatured: p.collections.some((m) => m.collection === 'trendy-items'),
+        isFeatured: p.collections.some((m) => m.collection === HOME_GRID_COLLECTION),
         isActive: true,
       };
       const product = await prisma.product.upsert({
@@ -79,12 +83,14 @@ async function main(): Promise<void> {
       });
       productIds.set(p.ref, product.id);
 
-      // memberships: every live collection + the primary category
+      // memberships: every live collection + the primary category (never the home grid
+      // collection, which only holds what the live store put in it)
+      const addPrimary =
+        p.category !== HOME_GRID_COLLECTION &&
+        !p.collections.some((m) => m.collection === p.category);
       const memberships = [
         ...p.collections,
-        ...(p.collections.some((m) => m.collection === p.category)
-          ? []
-          : [{ collection: p.category, position: 9999 }]),
+        ...(addPrimary ? [{ collection: p.category, position: 9999 }] : []),
       ].filter((m) => categoryIds.has(m.collection));
 
       await prisma.$transaction([
@@ -177,6 +183,18 @@ async function main(): Promise<void> {
         })),
       ];
       await prisma.productRelation.createMany({ data: rows, skipDuplicates: true });
+    }
+
+    // 5) admin owner for /admin (dev only; production uses the admin:create command)
+    if (process.env.SEED_ADMIN_EMAIL && process.env.SEED_ADMIN_PASSWORD) {
+      const owner = await upsertOwner(prisma, {
+        email: process.env.SEED_ADMIN_EMAIL,
+        name: process.env.SEED_ADMIN_NAME ?? 'Store owner',
+        password: process.env.SEED_ADMIN_PASSWORD,
+      });
+      process.stdout.write(`Admin owner ${owner.created ? 'created' : 'updated'}\n`);
+    } else {
+      process.stdout.write('No SEED_ADMIN_EMAIL/SEED_ADMIN_PASSWORD set: skipped the admin owner\n');
     }
 
     const [categories, products] = await Promise.all([

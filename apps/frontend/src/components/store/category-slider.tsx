@@ -1,6 +1,7 @@
 import type { CategorySummary } from '@ehans/shared';
 import Link from 'next/link';
 import { collectionUrl } from '@/lib/format';
+import { RevealMedia } from './reveal-media';
 import { Slider, type SliderOptions } from './slider';
 
 const CATEGORY_OPTIONS: SliderOptions = {
@@ -48,7 +49,7 @@ export function CategorySlider({
                     href={collectionUrl(c.slug)}
                     className={`category-item${activeSlug === c.slug ? ' active' : ''}`}
                   >
-                    <div className="img">{c.image ? <img src={c.image} alt={c.name} /> : null}</div>
+                    <RevealMedia className="img" src={c.image} width={320} height={320} />
                     <div className="content">
                       <p className="title">{c.name}</p>
                     </div>

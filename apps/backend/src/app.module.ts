@@ -5,7 +5,10 @@ import { AllExceptionsFilter } from './common/filters/all-exceptions.filter.js';
 import { RequestContextMiddleware } from './common/middleware/request-context.middleware.js';
 import { validateEnv } from './config/env.schema.js';
 import { HealthModule } from './health/health.module.js';
+import { AuthModule } from './modules/auth/auth.module.js';
 import { CatalogModule } from './modules/catalog/catalog.module.js';
+import { DashboardModule } from './modules/dashboard/dashboard.module.js';
+import { OrdersModule } from './modules/orders/orders.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 
 @Module({
@@ -21,6 +24,9 @@ import { PrismaModule } from './prisma/prisma.module.js';
     HealthModule,
     // Feature modules (src/modules/*)
     CatalogModule,
+    AuthModule,
+    OrdersModule,
+    DashboardModule,
   ],
   providers: [
     { provide: APP_FILTER, useClass: AllExceptionsFilter },

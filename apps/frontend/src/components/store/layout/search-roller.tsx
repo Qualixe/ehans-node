@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { SEARCH_WORDS } from '@/lib/store-nav';
 
-const WORDS = ['smart phone', 'home decoration', 'gadgets'];
+const WORDS = SEARCH_WORDS;
 
 /** Rotating placeholder words in the header search button (template "search roller"). */
 export function SearchRoller() {

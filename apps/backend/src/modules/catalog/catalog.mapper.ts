@@ -43,7 +43,8 @@ export type ProductDetailRecord = Prisma.ProductGetPayload<{
 
 export function discountPercent(price: number, compareAtPrice: number | null): number | null {
   if (!compareAtPrice || compareAtPrice <= price) return null;
-  return Math.round(((compareAtPrice - price) / compareAtPrice) * 100);
+  // rounded down, like the live theme (240/360 off → -66%)
+  return Math.floor(((compareAtPrice - price) / compareAtPrice) * 100);
 }
 
 const image = (

@@ -89,6 +89,8 @@ model Product {
   /// Collection memberships (many-to-many, like Shopify collections). `categoryId` is the
   /// primary category (breadcrumbs); listings filter by membership.
   collections ProductCategory[]
+  orderItems  OrderItem[]
+  reviews     Review[]
 
   @@index([isActive, categoryId, price])
   @@index([isActive, isFeatured])
@@ -150,8 +152,9 @@ model ProductVariant {
   createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  product Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
-  image   ProductImage? @relation(fields: [imageId], references: [id], onDelete: SetNull)
+  product    Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  image      ProductImage? @relation(fields: [imageId], references: [id], onDelete: SetNull)
+  orderItems OrderItem[]
 
   @@index([productId, position])
   @@index([sku])
@@ -214,4 +217,173 @@ model ProductRelation {
   @@unique([productId, relatedProductId, type])
   @@index([relatedProductId])
   @@map("product_relations")
+}
+
+/// Product reviews from the storefront; shown only after an admin approves them.
+model Review {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  productId  String   @map("product_id") @db.Uuid
+  name       String
+  email      String?
+  rating     Int      @db.SmallInt
+  body       String
+  isApproved Boolean  @default(false) @map("is_approved")
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, isApproved])
+  @@index([isApproved, createdAt])
+  @@map("reviews")
+}
+
+// =============================================================================
+// Auth module (apps/backend/src/modules/auth) — admin users and their sessions.
+// Same model as glowy: the store owner has every permission; staff get a map of
+// { section: "view" | "manage" } (see AdminSection in @ehans/shared).
+// =============================================================================
+
+enum UserRole {
+  OWNER
+  STAFF
+
+  @@map("user_role")
+}
+
+model User {
+  id           String    @id @default(uuid(7)) @db.Uuid
+  name         String
+  email        String?   @unique
+  phone        String?   @unique @db.VarChar(20)
+  passwordHash String    @map("password_hash")
+  isAdmin      Boolean   @default(false) @map("is_admin")
+  role         UserRole?
+  /// { "orders": "manage", "products": "view", ... } — ignored for the owner.
+  permissions  Json?
+  lastLoginAt  DateTime? @map("last_login_at") @db.Timestamptz(3)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  sessions Session[]
+  orders   Order[]
+
+  @@map("users")
+}
+
+/// Admin sign-in sessions. Only a SHA-256 hash of the session token is stored.
+model Session {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  tokenHash  String   @unique @map("token_hash") @db.Char(64)
+  ipAddress  String?  @map("ip_address") @db.VarChar(45)
+  userAgent  String?  @map("user_agent") @db.VarChar(500)
+  expiresAt  DateTime @map("expires_at") @db.Timestamptz(3)
+  lastUsedAt DateTime @default(now()) @map("last_used_at") @db.Timestamptz(3)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+// =============================================================================
+// Orders (glowy's orders schema). Written by checkout / POS / admin (next slices);
+// read by the admin dashboard now.
+// =============================================================================
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  RETURNED
+
+  @@map("order_status")
+}
+
+/// Marketing channel that brought the customer (first touch), or POS.
+enum OrderChannel {
+  ORGANIC
+  SOCIAL
+  DIRECT
+  REFERRAL
+  POS
+
+  @@map("order_channel")
+}
+
+model Order {
+  id               String       @id @default(uuid(7)) @db.Uuid
+  number           String       @unique @db.VarChar(40)
+  userId           String?      @map("user_id") @db.Uuid
+  status           OrderStatus  @default(PENDING)
+  customerName     String       @map("customer_name")
+  /// "walk-in" for anonymous POS sales.
+  phone            String       @db.VarChar(30)
+  email            String?
+  address          String       @db.VarChar(500)
+  city             String
+  shippingZone     String       @map("shipping_zone")
+  note             String?
+  adminNote        String?      @map("admin_note")
+  paymentMethod    String       @default("cod") @map("payment_method") @db.VarChar(30)
+  paymentStatus    String?      @map("payment_status") @db.VarChar(20)
+  paymentId        String?      @unique @map("payment_id") @db.VarChar(80)
+  paymentAccount   String?      @map("payment_account") @db.VarChar(20)
+  paymentReference String?      @map("payment_reference") @db.VarChar(40)
+  channel          OrderChannel @default(DIRECT)
+  ipAddress        String?      @map("ip_address") @db.VarChar(45)
+  courier          String?
+  trackingNumber   String?      @map("tracking_number")
+  courierService   String?      @map("courier_service")
+  consignmentId    String?      @map("consignment_id")
+  courierStatus    String?      @map("courier_status")
+  courierFee       Int?         @map("courier_fee")
+  codAmount        Int?         @map("cod_amount")
+  courierSentAt    DateTime?    @map("courier_sent_at") @db.Timestamptz(3)
+  courierSyncedAt  DateTime?    @map("courier_synced_at") @db.Timestamptz(3)
+  couponCode       String?      @map("coupon_code")
+  subtotal         Int
+  discount         Int          @default(0)
+  shippingFee      Int          @default(0) @map("shipping_fee")
+  total            Int
+  createdAt        DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime     @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user  User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  items OrderItem[]
+
+  @@index([phone])
+  @@index([status, createdAt])
+  @@index([createdAt])
+  @@index([courierService, consignmentId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  orderId      String   @map("order_id") @db.Uuid
+  productId    String?  @map("product_id") @db.Uuid
+  variantId    String?  @map("variant_id") @db.Uuid
+  productName  String   @map("product_name")
+  /// Variant title at the time of the order ("size" in glowy).
+  variantTitle String?  @map("variant_title")
+  unitPrice    Int      @map("unit_price")
+  quantity     Int
+  lineTotal    Int      @map("line_total")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  order   Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  variant ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
 }

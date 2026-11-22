@@ -110,12 +110,7 @@ export interface HomeCatalog {
 
 /** `manual` = the collection's own order (requires `category`). */
 export type ProductSort =
-  | 'manual'
-  | 'featured'
-  | 'newest'
-  | 'price-asc'
-  | 'price-desc'
-  | 'best-selling';
+  'manual' | 'featured' | 'newest' | 'price-asc' | 'price-desc' | 'best-selling';
 
 export interface ProductListResponse {
   items: ProductCard[];
