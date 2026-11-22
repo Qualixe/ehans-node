@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+	<title>Ehans Mart</title>
+	<rect width="64" height="64" rx="14" fill="#1d201e" />
+	<path d="M9 15h20v7.5H17v6.75h10v7.5H17v6.75h12V51H9z" fill="#ffffff" />
+	<path d="M33 51V15h8.4l3.6 13.4L48.6 15H57v36h-7.2V31.2L46.6 43h-3.2l-3.2-11.8V51z" fill="#ed2024" />
+</svg>

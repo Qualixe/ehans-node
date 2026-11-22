@@ -1,0 +1,29 @@
+# Local development only: PostgreSQL 17 for apps running natively (`pnpm dev`).
+#   pnpm db:up      # start (waits until healthy)
+#   pnpm db:down    # stop (data persists in the named volume)
+#
+# Bound to 127.0.0.1 so the database is never reachable from your network.
+# Credentials are for local use only and match apps/backend/.env.example.
+
+name: ehans-dev
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ehans
+      POSTGRES_PASSWORD: ehans_dev_password
+      POSTGRES_DB: ehans_dev
+    ports:
+      - '127.0.0.1:${DEV_POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ehans -d ehans_dev']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_dev_data:

@@ -1,0 +1,34 @@
+{
+  "name": "ehans-node",
+  "version": "0.1.0",
+  "private": true,
+  "description": "eCommerce modular monolith: Next.js frontend + NestJS backend in a pnpm workspace.",
+  "packageManager": "pnpm@12.9.1",
+  "engines": {
+    "node": ">=24.0.0 <25",
+    "pnpm": ">=12.9.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @ehans/shared build && pnpm --parallel --filter @ehans/shared --filter @ehans/backend --filter @ehans/frontend dev",
+    "dev:backend": "pnpm --filter @ehans/shared build && pnpm --filter @ehans/backend dev",
+    "dev:frontend": "pnpm --filter @ehans/shared build && pnpm --filter @ehans/frontend dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm --filter @ehans/shared build && pnpm -r typecheck",
+    "test": "pnpm --filter @ehans/shared build && pnpm -r test",
+    "test:e2e": "pnpm --filter @ehans/shared build && pnpm --filter @ehans/backend test:e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d --wait",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
+    "db:generate": "pnpm --filter @ehans/backend prisma:generate",
+    "db:migrate": "pnpm --filter @ehans/backend prisma:migrate:dev",
+    "db:status": "pnpm --filter @ehans/backend prisma:migrate:status",
+    "db:studio": "pnpm --filter @ehans/backend prisma:studio",
+    "db:seed": "pnpm --filter @ehans/shared build && pnpm --filter @ehans/backend db:seed"
+  },
+  "devDependencies": {
+    "prettier": "3.10.1",
+    "typescript": "6.0.3"
+  }
+}

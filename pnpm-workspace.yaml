@@ -1,0 +1,15 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm blocks dependency lifecycle scripts unless explicitly allowed.
+# Only allow what is actually required; everything else stays disabled.
+allowBuilds:
+  # Prisma downloads its migration/schema engine during install.
+  '@prisma/engines': true
+  prisma: true
+  # Not needed: funding banner, install telemetry, optional native rebuilds.
+  '@nestjs/core': false
+  '@scarf/scarf': false
+  sharp: false
+  unrs-resolver: false

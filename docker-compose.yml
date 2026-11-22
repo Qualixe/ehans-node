@@ -1,0 +1,137 @@
+# Production stack: PostgreSQL 17 + NestJS backend + Next.js frontend.
+#
+#   cp .env.example .env && chmod 600 .env     # fill in real values (never commit .env)
+#   docker compose build
+#   docker compose --profile tools run --rm migrate   # apply DB migrations
+#   docker compose up -d
+#
+# Network exposure:
+#   - postgres: NO published ports; reachable only from the internal `db` network.
+#   - backend/frontend: published on 127.0.0.1 only; host Nginx terminates TLS and proxies.
+# See docs/deployment.md.
+
+name: ehans
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: '10m'
+    max-file: '5'
+
+x-hardening: &hardening
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER is required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB is required}
+      POSTGRES_INITDB_ARGS: '--auth-host=scram-sha-256'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    shm_size: 256mb
+    stop_grace_period: 60s
+    logging: *default-logging
+    security_opt:
+      - no-new-privileges:true
+
+  # One-off migration runner: `docker compose --profile tools run --rm migrate`
+  migrate:
+    profiles: ['tools']
+    build:
+      context: .
+      dockerfile: infrastructure/docker/backend.Dockerfile
+      target: migrator
+    image: ehans-migrator:${APP_VERSION:-latest}
+    restart: 'no'
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - db
+    logging: *default-logging
+    <<: *hardening
+
+  backend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/backend.Dockerfile
+      target: runtime
+      args:
+        APP_VERSION: ${APP_VERSION:-0.0.0-dev}
+    image: ehans-backend:${APP_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
+      CORS_ORIGINS: ${CORS_ORIGINS:?CORS_ORIGINS is required}
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+      COOKIE_DOMAIN: ${COOKIE_DOMAIN:-}
+      SWAGGER_ENABLED: ${SWAGGER_ENABLED:-false}
+      LOG_LEVEL: ${LOG_LEVEL:-log}
+      LOG_FORMAT: json
+    ports:
+      - '127.0.0.1:${BACKEND_HOST_PORT:-4000}:4000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - db
+      - web
+    read_only: true
+    tmpfs:
+      - /tmp
+    stop_grace_period: 30s
+    logging: *default-logging
+    <<: *hardening
+
+  frontend:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/frontend.Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:?NEXT_PUBLIC_API_URL is required}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:?NEXT_PUBLIC_SITE_URL is required}
+        APP_VERSION: ${APP_VERSION:-0.0.0-dev}
+    image: ehans-frontend:${APP_VERSION:-latest}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      API_INTERNAL_URL: http://backend:4000/api/v1
+    ports:
+      - '127.0.0.1:${FRONTEND_HOST_PORT:-3000}:3000'
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - web
+    stop_grace_period: 30s
+    logging: *default-logging
+    <<: *hardening
+
+networks:
+  web:
+  db:
+    # No route to the outside world; only backend/migrate can reach postgres.
+    internal: true
+
+volumes:
+  postgres_data:
