@@ -1,0 +1,221 @@
+[
+  {
+    "id": "cat-lifestyle-outdoor",
+    "slug": "lifestyle-outdoor",
+    "name": "Lifestyle & Outdoor",
+    "image": "/assets/live/collections/lifestyle-outdoor.webp",
+    "description": null,
+    "productCount": 3,
+    "children": [
+      {
+        "id": "cat-lifestyle",
+        "slug": "lifestyle",
+        "name": "Lifestyle",
+        "image": "/assets/live/collections/lifestyle.webp"
+      },
+      {
+        "id": "cat-pet-accessories",
+        "slug": "pet-accessories",
+        "name": "Pet Accessories",
+        "image": "/assets/live/collections/pet-accessories.webp"
+      },
+      {
+        "id": "cat-garden-outdoor",
+        "slug": "garden-outdoor",
+        "name": "Garden & Outdoor",
+        "image": "/assets/live/collections/garden-outdoor.webp"
+      }
+    ]
+  },
+  {
+    "id": "cat-tools-hardware",
+    "slug": "tools-hardware",
+    "name": "Tools & Hardware",
+    "image": "/assets/live/collections/tools-hardware.webp",
+    "description": null,
+    "productCount": 5,
+    "children": []
+  },
+  {
+    "id": "cat-fashion-accessories",
+    "slug": "fashion-accessories",
+    "name": "Fashion & Accessories",
+    "image": "/assets/live/collections/fashion-accessories.webp",
+    "description": null,
+    "productCount": 14,
+    "children": [
+      {
+        "id": "cat-man-s-essentials",
+        "slug": "man-s-essentials",
+        "name": "Man’s Essentials",
+        "image": "/assets/live/collections/man-s-essentials.webp"
+      },
+      {
+        "id": "cat-jewelry",
+        "slug": "jewelry",
+        "name": "Jewelry",
+        "image": "/assets/live/collections/jewelry.webp"
+      },
+      {
+        "id": "cat-fashion",
+        "slug": "fashion",
+        "name": "Fashion",
+        "image": "/assets/live/collections/fashion.webp"
+      },
+      {
+        "id": "cat-travel-accessories",
+        "slug": "travel-accessories",
+        "name": "Travel Accessories",
+        "image": "/assets/live/collections/travel-accessories.webp"
+      },
+      {
+        "id": "cat-women-s-essentials",
+        "slug": "women-s-essentials",
+        "name": "Women’s Essentials",
+        "image": "/assets/live/collections/women-s-essentials.webp"
+      }
+    ]
+  },
+  {
+    "id": "cat-baby-mother",
+    "slug": "baby-mother",
+    "name": "Baby & Mother",
+    "image": "/assets/live/collections/baby-mother.webp",
+    "description": null,
+    "productCount": 1,
+    "children": [
+      {
+        "id": "cat-mother-care",
+        "slug": "mother-care",
+        "name": "Mother Care",
+        "image": "/assets/live/collections/mother-care.webp"
+      },
+      {
+        "id": "cat-school-essentials",
+        "slug": "school-essentials",
+        "name": "School Essentials",
+        "image": "/assets/live/collections/school-essentials.webp"
+      },
+      {
+        "id": "cat-kids-fashion",
+        "slug": "kids-fashion",
+        "name": "Kids' Fashion",
+        "image": "/assets/live/collections/kids-fashion.webp"
+      },
+      {
+        "id": "cat-baby-safety",
+        "slug": "baby-safety",
+        "name": "Baby Safety",
+        "image": "/assets/live/collections/baby-safety.webp"
+      },
+      {
+        "id": "cat-baby-care",
+        "slug": "baby-care",
+        "name": "Baby & Kids",
+        "image": "/assets/live/collections/baby-care.webp"
+      }
+    ]
+  },
+  {
+    "id": "cat-beauty-personal-care",
+    "slug": "beauty-personal-care",
+    "name": "Beauty & Personal Care",
+    "image": "/assets/live/collections/beauty-personal-care.webp",
+    "description": null,
+    "productCount": 13,
+    "children": [
+      {
+        "id": "cat-personal-care",
+        "slug": "personal-care",
+        "name": "Personal Care",
+        "image": "/assets/live/collections/personal-care.webp"
+      },
+      {
+        "id": "cat-health-wellness",
+        "slug": "health-wellness",
+        "name": "Health & Wellness",
+        "image": "/assets/live/collections/health-wellness.webp"
+      },
+      {
+        "id": "cat-hair-accessories",
+        "slug": "hair-accessories",
+        "name": "Hair Accessories",
+        "image": "/assets/live/collections/hair-accessories.webp"
+      },
+      {
+        "id": "cat-beauty-tools",
+        "slug": "beauty-tools",
+        "name": "Beauty Tools",
+        "image": "/assets/live/collections/beauty-tools.webp"
+      }
+    ]
+  },
+  {
+    "id": "cat-home-living",
+    "slug": "home-living",
+    "name": "Home & Living",
+    "image": "/assets/live/collections/home-living.webp",
+    "description": null,
+    "productCount": 10,
+    "children": [
+      {
+        "id": "cat-home-organization",
+        "slug": "home-organization",
+        "name": "Home Organization",
+        "image": "/assets/live/collections/home-organization.webp"
+      },
+      {
+        "id": "cat-home-improvement",
+        "slug": "home-improvement",
+        "name": "Home Improvement",
+        "image": "/assets/live/collections/home-improvement.webp"
+      },
+      {
+        "id": "cat-cleaning-supplies",
+        "slug": "cleaning-supplies",
+        "name": "Cleaning Supplies",
+        "image": "/assets/live/collections/cleaning-supplies.webp"
+      },
+      {
+        "id": "cat-bathroom-essentials",
+        "slug": "bathroom-essentials",
+        "name": "Bathroom Essentials",
+        "image": "/assets/live/collections/bathroom-essentials.webp"
+      },
+      {
+        "id": "cat-home-decor",
+        "slug": "home-decor",
+        "name": "Home Decor",
+        "image": "/assets/live/collections/home-decor.webp"
+      }
+    ]
+  },
+  {
+    "id": "cat-kitchen-dining",
+    "slug": "kitchen-dining",
+    "name": "Kitchen & Dining",
+    "image": "/assets/live/collections/kitchen-dining.webp",
+    "description": null,
+    "productCount": 8,
+    "children": [
+      {
+        "id": "cat-kitchen-tools",
+        "slug": "kitchen-tools",
+        "name": "Kitchen Tools",
+        "image": "/assets/live/collections/kitchen-tools.webp"
+      },
+      {
+        "id": "cat-kitchen-safety",
+        "slug": "kitchen-safety",
+        "name": "Kitchen Safety",
+        "image": "/assets/live/collections/kitchen-safety.webp"
+      },
+      {
+        "id": "cat-kitchen-cleaning",
+        "slug": "kitchen-cleaning",
+        "name": "Kitchen Cleaning",
+        "image": "/assets/live/collections/kitchen-cleaning.webp"
+      }
+    ]
+  }
+]

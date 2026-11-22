@@ -1,0 +1,885 @@
+{
+  "categories": [
+    {
+      "id": "cat-personal-care",
+      "slug": "personal-care",
+      "name": "Personal Care",
+      "image": "/assets/live/collections/personal-care.webp"
+    },
+    {
+      "id": "cat-mother-care",
+      "slug": "mother-care",
+      "name": "Mother Care",
+      "image": "/assets/live/collections/mother-care.webp"
+    },
+    {
+      "id": "cat-man-s-essentials",
+      "slug": "man-s-essentials",
+      "name": "Man’s Essentials",
+      "image": "/assets/live/collections/man-s-essentials.webp"
+    },
+    {
+      "id": "cat-lifestyle-outdoor",
+      "slug": "lifestyle-outdoor",
+      "name": "Lifestyle & Outdoor",
+      "image": "/assets/live/collections/lifestyle-outdoor.webp"
+    },
+    {
+      "id": "cat-lifestyle",
+      "slug": "lifestyle",
+      "name": "Lifestyle",
+      "image": "/assets/live/collections/lifestyle.webp"
+    },
+    {
+      "id": "cat-kitchen-tools",
+      "slug": "kitchen-tools",
+      "name": "Kitchen Tools",
+      "image": "/assets/live/collections/kitchen-tools.webp"
+    },
+    {
+      "id": "cat-kitchen-safety",
+      "slug": "kitchen-safety",
+      "name": "Kitchen Safety",
+      "image": "/assets/live/collections/kitchen-safety.webp"
+    },
+    {
+      "id": "cat-school-essentials",
+      "slug": "school-essentials",
+      "name": "School Essentials",
+      "image": "/assets/live/collections/school-essentials.webp"
+    },
+    {
+      "id": "cat-tools-hardware",
+      "slug": "tools-hardware",
+      "name": "Tools & Hardware",
+      "image": "/assets/live/collections/tools-hardware.webp"
+    },
+    {
+      "id": "cat-kitchen-cleaning",
+      "slug": "kitchen-cleaning",
+      "name": "Kitchen Cleaning",
+      "image": "/assets/live/collections/kitchen-cleaning.webp"
+    },
+    {
+      "id": "cat-kids-fashion",
+      "slug": "kids-fashion",
+      "name": "Kids' Fashion",
+      "image": "/assets/live/collections/kids-fashion.webp"
+    },
+    {
+      "id": "cat-jewelry",
+      "slug": "jewelry",
+      "name": "Jewelry",
+      "image": "/assets/live/collections/jewelry.webp"
+    },
+    {
+      "id": "cat-home-organization",
+      "slug": "home-organization",
+      "name": "Home Organization",
+      "image": "/assets/live/collections/home-organization.webp"
+    },
+    {
+      "id": "cat-pet-accessories",
+      "slug": "pet-accessories",
+      "name": "Pet Accessories",
+      "image": "/assets/live/collections/pet-accessories.webp"
+    },
+    {
+      "id": "cat-home-improvement",
+      "slug": "home-improvement",
+      "name": "Home Improvement",
+      "image": "/assets/live/collections/home-improvement.webp"
+    },
+    {
+      "id": "cat-health-wellness",
+      "slug": "health-wellness",
+      "name": "Health & Wellness",
+      "image": "/assets/live/collections/health-wellness.webp"
+    },
+    {
+      "id": "cat-hair-accessories",
+      "slug": "hair-accessories",
+      "name": "Hair Accessories",
+      "image": "/assets/live/collections/hair-accessories.webp"
+    },
+    {
+      "id": "cat-garden-outdoor",
+      "slug": "garden-outdoor",
+      "name": "Garden & Outdoor",
+      "image": "/assets/live/collections/garden-outdoor.webp"
+    },
+    {
+      "id": "cat-fashion-accessories",
+      "slug": "fashion-accessories",
+      "name": "Fashion & Accessories",
+      "image": "/assets/live/collections/fashion-accessories.webp"
+    },
+    {
+      "id": "cat-fashion",
+      "slug": "fashion",
+      "name": "Fashion",
+      "image": "/assets/live/collections/fashion.webp"
+    },
+    {
+      "id": "cat-cleaning-supplies",
+      "slug": "cleaning-supplies",
+      "name": "Cleaning Supplies",
+      "image": "/assets/live/collections/cleaning-supplies.webp"
+    },
+    {
+      "id": "cat-beauty-tools",
+      "slug": "beauty-tools",
+      "name": "Beauty Tools",
+      "image": "/assets/live/collections/beauty-tools.webp"
+    },
+    {
+      "id": "cat-bathroom-essentials",
+      "slug": "bathroom-essentials",
+      "name": "Bathroom Essentials",
+      "image": "/assets/live/collections/bathroom-essentials.webp"
+    },
+    {
+      "id": "cat-baby-safety",
+      "slug": "baby-safety",
+      "name": "Baby Safety",
+      "image": "/assets/live/collections/baby-safety.webp"
+    },
+    {
+      "id": "cat-baby-mother",
+      "slug": "baby-mother",
+      "name": "Baby & Mother",
+      "image": "/assets/live/collections/baby-mother.webp"
+    }
+  ],
+  "trending": {
+    "title": "Trending Items",
+    "category": {
+      "id": "cat-trendy-items",
+      "slug": "trendy-items",
+      "name": "Trendy Items",
+      "image": null
+    },
+    "items": [
+      {
+        "id": "prod-10401802191103",
+        "slug": "nano-magic-eraser-wall-stain-remover",
+        "name": "দেয়ালের দাগ পরিষ্কারের ন্যানো ম্যাজিক ইরেজার",
+        "price": 350,
+        "compareAtPrice": 700,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/nano-magic-eraser-wall-stain-remover-1.webp",
+          "alt": "দেয়ালের দাগ পরিষ্কারের ন্যানো ম্যাজিক ইরেজার"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/nano-magic-eraser-wall-stain-remover-2.webp",
+          "alt": "দেয়ালের দাগ পরিষ্কারের ন্যানো ম্যাজিক ইরেজার"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-cleaning-supplies",
+          "slug": "cleaning-supplies",
+          "name": "Cleaning Supplies",
+          "image": "/assets/live/collections/cleaning-supplies.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10395660058879",
+        "slug": "fridge-safety-lock",
+        "name": "ফ্রিজ সিকিউর লক 3M গাম স্টিকারসহ",
+        "price": 350,
+        "compareAtPrice": 700,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/fridge-safety-lock-1.webp",
+          "alt": "ফ্রিজ সিকিউর লক 3M গাম স্টিকারসহ"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/fridge-safety-lock-2.webp",
+          "alt": "ফ্রিজ সিকিউর লক 3M গাম স্টিকারসহ"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-home-improvement",
+          "slug": "home-improvement",
+          "name": "Home Improvement",
+          "image": "/assets/live/collections/home-improvement.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10402099691775",
+        "slug": "premium-mouse-trap",
+        "name": "ইঁদুর ধরার প্রিমিয়াম মাউস ট্র্যাপ",
+        "price": 480,
+        "compareAtPrice": 800,
+        "discountPercent": 40,
+        "image": {
+          "url": "/assets/live/products/premium-mouse-trap-1.webp",
+          "alt": "ইঁদুর ধরার প্রিমিয়াম মাউস ট্র্যাপ"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/premium-mouse-trap-2.webp",
+          "alt": "ইঁদুর ধরার প্রিমিয়াম মাউস ট্র্যাপ"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-cleaning-supplies",
+          "slug": "cleaning-supplies",
+          "name": "Cleaning Supplies",
+          "image": "/assets/live/collections/cleaning-supplies.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10404113252607",
+        "slug": "door-bottom-sealing-strip",
+        "name": "ডোর ফোম - বাতাস ও পোকামাকড় প্রতিরোধক",
+        "price": 120,
+        "compareAtPrice": 360,
+        "discountPercent": 66,
+        "image": {
+          "url": "/assets/live/products/door-bottom-sealing-strip-1.webp",
+          "alt": "ডোর ফোম - বাতাস ও পোকামাকড় প্রতিরোধক"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/door-bottom-sealing-strip-2.webp",
+          "alt": "ডোর ফোম - বাতাস ও পোকামাকড় প্রতিরোধক"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-home-decor",
+          "slug": "home-decor",
+          "name": "Home Decor",
+          "image": "/assets/live/collections/home-decor.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10392199561471",
+        "slug": "baby-anti-lost-safety-belt",
+        "name": "লক সিস্টেম চাবি সহ বাচ্চাদের অ্যান্টি-লস্ট বেল্ট",
+        "price": 780,
+        "compareAtPrice": 1560,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/baby-anti-lost-safety-belt-1.webp",
+          "alt": "লক সিস্টেম চাবি সহ বাচ্চাদের অ্যান্টি-লস্ট বেল্ট"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/baby-anti-lost-safety-belt-2.webp",
+          "alt": "লক সিস্টেম চাবি সহ বাচ্চাদের অ্যান্টি-লস্ট বেল্ট"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-baby-care",
+          "slug": "baby-care",
+          "name": "Baby & Kids",
+          "image": "/assets/live/collections/baby-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10397384999167",
+        "slug": "facial-cotton-thread-hair-remover",
+        "name": "ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার",
+        "price": 480,
+        "compareAtPrice": 960,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/facial-cotton-thread-hair-remover-1.webp",
+          "alt": "ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/facial-cotton-thread-hair-remover-2.webp",
+          "alt": "ফেসিয়াল কটন থ্রেড হেয়ার রিমুভার"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-personal-care",
+          "slug": "personal-care",
+          "name": "Personal Care",
+          "image": "/assets/live/collections/personal-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10398618419455",
+        "slug": "lily-flower-princess-bow-hair-clip",
+        "name": "লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ",
+        "price": 550,
+        "compareAtPrice": 620,
+        "discountPercent": 11,
+        "image": {
+          "url": "/assets/live/products/lily-flower-princess-bow-hair-clip-1.webp",
+          "alt": "লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/lily-flower-princess-bow-hair-clip-2.webp",
+          "alt": "লিলি ফুল প্রিন্সেস বো হেয়ার ক্লিপ"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-hair-accessories",
+          "slug": "hair-accessories",
+          "name": "Hair Accessories",
+          "image": "/assets/live/collections/hair-accessories.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10396209578239",
+        "slug": "earring-support-sticker",
+        "name": "কানের দুলের সাপোর্ট স্টিকার",
+        "price": 350,
+        "compareAtPrice": 700,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/earring-support-sticker-1.webp",
+          "alt": "কানের দুলের সাপোর্ট স্টিকার"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/earring-support-sticker-2.webp",
+          "alt": "কানের দুলের সাপোর্ট স্টিকার"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-personal-care",
+          "slug": "personal-care",
+          "name": "Personal Care",
+          "image": "/assets/live/collections/personal-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10397609984255",
+        "slug": "kitchen-face-protection-mask",
+        "name": "কিচেন ফেস প্রোটেকশন মাস্ক",
+        "price": 480,
+        "compareAtPrice": 960,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/kitchen-face-protection-mask-1.webp",
+          "alt": "কিচেন ফেস প্রোটেকশন মাস্ক"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/kitchen-face-protection-mask-2.webp",
+          "alt": "কিচেন ফেস প্রোটেকশন মাস্ক"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-personal-care",
+          "slug": "personal-care",
+          "name": "Personal Care",
+          "image": "/assets/live/collections/personal-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10404017471743",
+        "slug": "beeswax-furniture-polish",
+        "name": "ফার্নিচার চকচকে করার বি-ওয়াক্স পলিশ",
+        "price": 480,
+        "compareAtPrice": 800,
+        "discountPercent": 40,
+        "image": {
+          "url": "/assets/live/products/beeswax-furniture-polish-1.webp",
+          "alt": "ফার্নিচার চকচকে করার বি-ওয়াক্স পলিশ"
+        },
+        "hoverImage": null,
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-cleaning-supplies",
+          "slug": "cleaning-supplies",
+          "name": "Cleaning Supplies",
+          "image": "/assets/live/collections/cleaning-supplies.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10398748377343",
+        "slug": "adjustable-plant-watering-spike",
+        "name": "গাছের যত্নে অ্যাডজাস্টেবল ওয়াটারিং স্পাইক",
+        "price": 480,
+        "compareAtPrice": 960,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/adjustable-plant-watering-spike-1.webp",
+          "alt": "গাছের যত্নে অ্যাডজাস্টেবল ওয়াটারিং স্পাইক"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/adjustable-plant-watering-spike-2.webp",
+          "alt": "গাছের যত্নে অ্যাডজাস্টেবল ওয়াটারিং স্পাইক"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-garden-outdoor",
+          "slug": "garden-outdoor",
+          "name": "Garden & Outdoor",
+          "image": "/assets/live/collections/garden-outdoor.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10404308123903",
+        "slug": "automatic-door-closer",
+        "name": "অটোমেটিক দরজা বন্ধ করার ডোর ক্লোজার",
+        "price": 480,
+        "compareAtPrice": 1440,
+        "discountPercent": 66,
+        "image": {
+          "url": "/assets/live/products/automatic-door-closer-1.webp",
+          "alt": "অটোমেটিক দরজা বন্ধ করার ডোর ক্লোজার"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/automatic-door-closer-2.webp",
+          "alt": "অটোমেটিক দরজা বন্ধ করার ডোর ক্লোজার"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-home-improvement",
+          "slug": "home-improvement",
+          "name": "Home Improvement",
+          "image": "/assets/live/collections/home-improvement.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10392292950271",
+        "slug": "cute-stylish-baby-cap",
+        "name": "বাচ্চাদের কিউট ও স্টাইলিশ বেবি ক্যাপ",
+        "price": 600,
+        "compareAtPrice": null,
+        "discountPercent": null,
+        "image": {
+          "url": "/assets/live/products/cute-stylish-baby-cap-1.jpg",
+          "alt": "বাচ্চাদের কিউট ও স্টাইলিশ বেবি ক্যাপ"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/cute-stylish-baby-cap-2.webp",
+          "alt": "বাচ্চাদের কিউট ও স্টাইলিশ বেবি ক্যাপ"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-baby-care",
+          "slug": "baby-care",
+          "name": "Baby & Kids",
+          "image": "/assets/live/collections/baby-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10405604983039",
+        "slug": "regular-kitchen-apron",
+        "name": "রেগুলার কিচেন এপ্রোন",
+        "price": 320,
+        "compareAtPrice": 480,
+        "discountPercent": 33,
+        "image": {
+          "url": "/assets/live/products/regular-kitchen-apron-1.webp",
+          "alt": "রেগুলার কিচেন এপ্রোন"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/regular-kitchen-apron-2.webp",
+          "alt": "রেগুলার কিচেন এপ্রোন"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-kitchen-safety",
+          "slug": "kitchen-safety",
+          "name": "Kitchen Safety",
+          "image": "/assets/live/collections/kitchen-safety.webp"
+        },
+        "hasVariants": false
+      },
+      {
+        "id": "prod-10398493278463",
+        "slug": "crystal-butterfly-tassel-hairpin",
+        "name": "ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন",
+        "price": 600,
+        "compareAtPrice": 750,
+        "discountPercent": 20,
+        "image": {
+          "url": "/assets/live/products/crystal-butterfly-tassel-hairpin-1.webp",
+          "alt": "ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/crystal-butterfly-tassel-hairpin-2.webp",
+          "alt": "ক্রিস্টাল বাটারফ্লাই ট্যাসেল হেয়ারপিন"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-hair-accessories",
+          "slug": "hair-accessories",
+          "name": "Hair Accessories",
+          "image": "/assets/live/collections/hair-accessories.webp"
+        },
+        "hasVariants": false
+      },
+      {
+        "id": "prod-10404478091519",
+        "slug": "waterproof-kitchen-dishwashing-gloves",
+        "name": "ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস",
+        "price": 290,
+        "compareAtPrice": 580,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/waterproof-kitchen-dishwashing-gloves-1.webp",
+          "alt": "ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/waterproof-kitchen-dishwashing-gloves-2.webp",
+          "alt": "ওয়াটারপ্রুফ কিচেন ডিশ ওয়াশিং গ্লাভস"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-kitchen-cleaning",
+          "slug": "kitchen-cleaning",
+          "name": "Kitchen Cleaning",
+          "image": "/assets/live/collections/kitchen-cleaning.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10395519746303",
+        "slug": "baby-bike-riding-safety-belt",
+        "name": "বাচ্চাদের বাইক রাইডিং সেফটি বেল্ট",
+        "price": 890,
+        "compareAtPrice": 1050,
+        "discountPercent": 15,
+        "image": {
+          "url": "/assets/live/products/baby-bike-riding-safety-belt-1.webp",
+          "alt": "বাচ্চাদের বাইক রাইডিং সেফটি বেল্ট"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/baby-bike-riding-safety-belt-2.webp",
+          "alt": "বাচ্চাদের বাইক রাইডিং সেফটি বেল্ট"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-baby-care",
+          "slug": "baby-care",
+          "name": "Baby & Kids",
+          "image": "/assets/live/collections/baby-care.webp"
+        },
+        "hasVariants": true
+      },
+      {
+        "id": "prod-10400773308671",
+        "slug": "garden-pruning-shears",
+        "name": "গাছের ডালপালা কাটিং টুল",
+        "price": 280,
+        "compareAtPrice": 450,
+        "discountPercent": 37,
+        "image": {
+          "url": "/assets/live/products/garden-pruning-shears-1.webp",
+          "alt": "গাছের ডালপালা কাটিং টুল"
+        },
+        "hoverImage": null,
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-garden-outdoor",
+          "slug": "garden-outdoor",
+          "name": "Garden & Outdoor",
+          "image": "/assets/live/collections/garden-outdoor.webp"
+        },
+        "hasVariants": false
+      },
+      {
+        "id": "prod-10398706663679",
+        "slug": "red-tulip-bow-hair-clip",
+        "name": "লাল টিউলিপ বো হেয়ার ক্লিপ",
+        "price": 600,
+        "compareAtPrice": 650,
+        "discountPercent": 7,
+        "image": {
+          "url": "/assets/live/products/red-tulip-bow-hair-clip-1.webp",
+          "alt": "লাল টিউলিপ বো হেয়ার ক্লিপ"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/red-tulip-bow-hair-clip-2.webp",
+          "alt": "লাল টিউলিপ বো হেয়ার ক্লিপ"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-hair-accessories",
+          "slug": "hair-accessories",
+          "name": "Hair Accessories",
+          "image": "/assets/live/collections/hair-accessories.webp"
+        },
+        "hasVariants": false
+      },
+      {
+        "id": "prod-10397941858559",
+        "slug": "hair-oil-applicator-comb",
+        "name": "হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি",
+        "price": 380,
+        "compareAtPrice": 760,
+        "discountPercent": 50,
+        "image": {
+          "url": "/assets/live/products/hair-oil-applicator-comb-1.webp",
+          "alt": "হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি"
+        },
+        "hoverImage": {
+          "url": "/assets/live/products/hair-oil-applicator-comb-2.webp",
+          "alt": "হেয়ার অয়েল অ্যাপ্লিকেটর চিরুনি"
+        },
+        "ratingAverage": null,
+        "ratingCount": 0,
+        "inStock": true,
+        "category": {
+          "id": "cat-personal-care",
+          "slug": "personal-care",
+          "name": "Personal Care",
+          "image": "/assets/live/collections/personal-care.webp"
+        },
+        "hasVariants": true
+      }
+    ],
+    "total": 45,
+    "pageSize": 20
+  },
+  "popular": [
+    {
+      "id": "prod-10422107308287",
+      "slug": "ইঁদুর-ধরার-মাউস-ট্র্যাপ",
+      "name": "ইঁদুর ধরার মাউস ট্র্যাপ",
+      "price": 190,
+      "compareAtPrice": null,
+      "discountPercent": null,
+      "image": {
+        "url": "/assets/live/products/ইঁদুর-ধরার-মাউস-ট্র্যাপ-1.webp",
+        "alt": "ইঁদুর ধরার মাউস ট্র্যাপ"
+      },
+      "hoverImage": null,
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-trendy-items",
+        "slug": "trendy-items",
+        "name": "Trendy Items",
+        "image": null
+      },
+      "hasVariants": false
+    },
+    {
+      "id": "prod-10405975064831",
+      "slug": "grey-hair-cover-up-comb",
+      "name": "সাদা চুল ঢাকার হেয়ার কালার চিরুনি",
+      "price": 450,
+      "compareAtPrice": null,
+      "discountPercent": null,
+      "image": {
+        "url": "/assets/live/products/grey-hair-cover-up-comb-1.jpg",
+        "alt": "সাদা চুল ঢাকার হেয়ার কালার চিরুনি"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/grey-hair-cover-up-comb-2.jpg",
+        "alt": "সাদা চুল ঢাকার হেয়ার কালার চিরুনি"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-man-s-essentials",
+        "slug": "man-s-essentials",
+        "name": "Man’s Essentials",
+        "image": "/assets/live/collections/man-s-essentials.webp"
+      },
+      "hasVariants": false
+    },
+    {
+      "id": "prod-10405955469567",
+      "slug": "silicone-nipple-shield",
+      "name": "মায়েদের জন্য সফট সিলিকন নিপল শিল্ড",
+      "price": 450,
+      "compareAtPrice": 900,
+      "discountPercent": 50,
+      "image": {
+        "url": "/assets/live/products/silicone-nipple-shield-1.webp",
+        "alt": "মায়েদের জন্য সফট সিলিকন নিপল শিল্ড"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/silicone-nipple-shield-2.webp",
+        "alt": "মায়েদের জন্য সফট সিলিকন নিপল শিল্ড"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-health-wellness",
+        "slug": "health-wellness",
+        "name": "Health & Wellness",
+        "image": "/assets/live/collections/health-wellness.webp"
+      },
+      "hasVariants": true
+    },
+    {
+      "id": "prod-10405704368383",
+      "slug": "adjustable-drawer-storage-divider",
+      "name": "ড্রয়ার গুছানোর অ্যাডজাস্টেবল স্টোরেজ পার্টিশন",
+      "price": 480,
+      "compareAtPrice": 960,
+      "discountPercent": 50,
+      "image": {
+        "url": "/assets/live/products/adjustable-drawer-storage-divider-1.webp",
+        "alt": "ড্রয়ার গুছানোর অ্যাডজাস্টেবল স্টোরেজ পার্টিশন"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/adjustable-drawer-storage-divider-2.webp",
+        "alt": "ড্রয়ার গুছানোর অ্যাডজাস্টেবল স্টোরেজ পার্টিশন"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-home-decor",
+        "slug": "home-decor",
+        "name": "Home Decor",
+        "image": "/assets/live/collections/home-decor.webp"
+      },
+      "hasVariants": true
+    },
+    {
+      "id": "prod-10405657903359",
+      "slug": "kitchen-foam-cleaner-spray",
+      "name": "কিচেনের তেল ও দাগ পরিষ্কারের ফোম স্প্রে",
+      "price": 520,
+      "compareAtPrice": 1040,
+      "discountPercent": 50,
+      "image": {
+        "url": "/assets/live/products/kitchen-foam-cleaner-spray-1.webp",
+        "alt": "কিচেনের তেল ও দাগ পরিষ্কারের ফোম স্প্রে"
+      },
+      "hoverImage": null,
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-cleaning-supplies",
+        "slug": "cleaning-supplies",
+        "name": "Cleaning Supplies",
+        "image": "/assets/live/collections/cleaning-supplies.webp"
+      },
+      "hasVariants": true
+    },
+    {
+      "id": "prod-10405633818879",
+      "slug": "2-in-1-smart-oil-dispenser",
+      "name": "2-in-1 স্মার্ট অয়েল ডিসপেনসার বোতল",
+      "price": 450,
+      "compareAtPrice": 900,
+      "discountPercent": 50,
+      "image": {
+        "url": "/assets/live/products/2-in-1-smart-oil-dispenser-1.webp",
+        "alt": "2-in-1 স্মার্ট অয়েল ডিসপেনসার বোতল"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/2-in-1-smart-oil-dispenser-2.jpg",
+        "alt": "2-in-1 স্মার্ট অয়েল ডিসপেনসার বোতল"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-kitchen-tools",
+        "slug": "kitchen-tools",
+        "name": "Kitchen Tools",
+        "image": "/assets/live/collections/kitchen-tools.webp"
+      },
+      "hasVariants": true
+    },
+    {
+      "id": "prod-10405604983039",
+      "slug": "regular-kitchen-apron",
+      "name": "রেগুলার কিচেন এপ্রোন",
+      "price": 320,
+      "compareAtPrice": 480,
+      "discountPercent": 33,
+      "image": {
+        "url": "/assets/live/products/regular-kitchen-apron-1.webp",
+        "alt": "রেগুলার কিচেন এপ্রোন"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/regular-kitchen-apron-2.webp",
+        "alt": "রেগুলার কিচেন এপ্রোন"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-kitchen-safety",
+        "slug": "kitchen-safety",
+        "name": "Kitchen Safety",
+        "image": "/assets/live/collections/kitchen-safety.webp"
+      },
+      "hasVariants": false
+    },
+    {
+      "id": "prod-10405579423999",
+      "slug": "handbag-organizer-hanger",
+      "name": "ব্যাগ অর্গানাইজার হাংগ্যার",
+      "price": 480,
+      "compareAtPrice": 960,
+      "discountPercent": 50,
+      "image": {
+        "url": "/assets/live/products/handbag-organizer-hanger-1.jpg",
+        "alt": "ব্যাগ অর্গানাইজার হাংগ্যার"
+      },
+      "hoverImage": {
+        "url": "/assets/live/products/handbag-organizer-hanger-2.webp",
+        "alt": "ব্যাগ অর্গানাইজার হাংগ্যার"
+      },
+      "ratingAverage": null,
+      "ratingCount": 0,
+      "inStock": true,
+      "category": {
+        "id": "cat-home-improvement",
+        "slug": "home-improvement",
+        "name": "Home Improvement",
+        "image": "/assets/live/collections/home-improvement.webp"
+      },
+      "hasVariants": true
+    }
+  ]
+}
