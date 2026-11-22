@@ -90,19 +90,32 @@ export interface ProductDetail extends ProductCard {
   breadcrumbs: CategorySummary[];
 }
 
-export interface HomeSlider {
+/** The home page "Trending Items" grid: the first page of a collection in manual order. */
+export interface HomeProductGrid {
   title: string;
   category: CategorySummary;
-  products: ProductCard[];
+  items: ProductCard[];
+  total: number;
+  pageSize: number;
 }
 
 export interface HomeCatalog {
+  /** Home category row, in home order. */
   categories: CategorySummary[];
-  sliders: HomeSlider[];
+  /** Null when the grid collection does not exist. */
+  trending: HomeProductGrid | null;
+  /** Best sellers (404 page, product page "popular"). */
   popular: ProductCard[];
 }
 
-export type ProductSort = 'featured' | 'newest' | 'price-asc' | 'price-desc' | 'best-selling';
+/** `manual` = the collection's own order (requires `category`). */
+export type ProductSort =
+  | 'manual'
+  | 'featured'
+  | 'newest'
+  | 'price-asc'
+  | 'price-desc'
+  | 'best-selling';
 
 export interface ProductListResponse {
   items: ProductCard[];

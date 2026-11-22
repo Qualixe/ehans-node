@@ -1,7 +1,8 @@
 /**
- * Development seed: loads the ehans-mart template catalog (categories, products,
- * images, bundles, variants, cross-sells). Idempotent: upserts by slug/sku, and
- * rebuilds each seeded product's child rows.
+ * Development seed: loads the live ehansmart.com catalog snapshot (collections with their
+ * group parents, products, images, options/variants, collection memberships, bundles,
+ * cross-sells). Idempotent: upserts by slug/sku and rebuilds each seeded product's
+ * child rows. Earlier demo rows that are no longer in the seed are hidden, not deleted.
  *
  *   pnpm db:seed
  *
@@ -24,50 +25,33 @@ async function main(): Promise<void> {
 
   const prisma = new PrismaClient({ adapter: new PrismaPg({ connectionString }) });
   try {
+    // 1) categories (two passes: rows first, then group parents)
     const categoryIds = new Map<string, string>();
     for (const c of seedCategories) {
-      const parent = await prisma.category.upsert({
+      const fields = {
+        name: c.name,
+        description: c.description,
+        image: c.image,
+        position: c.position,
+        homePosition: c.homePosition,
+        homeTitle: null,
+        showInMenu: c.showInMenu,
+      };
+      const row = await prisma.category.upsert({
         where: { slug: c.slug },
-        create: {
-          slug: c.slug,
-          name: c.name,
-          image: c.image,
-          description: c.description,
-          position: c.position,
-          homePosition: c.homePosition,
-          homeTitle: c.homeTitle,
-        },
-        update: {
-          name: c.name,
-          image: c.image,
-          description: c.description,
-          position: c.position,
-          homePosition: c.homePosition,
-          homeTitle: c.homeTitle,
-        },
+        create: { slug: c.slug, ...fields },
+        update: fields,
       });
-      categoryIds.set(c.slug, parent.id);
-      // sub-categories reuse the parent's product photos (cycled) until real images are uploaded
-      const photos = seedProducts
-        .filter((p) => p.category === c.slug)
-        .map((p) => p.images[0])
-        .filter(Boolean);
-      for (const child of c.children) {
-        const image = photos.length ? photos[child.position % photos.length]! : c.image;
-        await prisma.category.upsert({
-          where: { slug: child.slug },
-          create: {
-            slug: child.slug,
-            name: child.name,
-            image,
-            position: child.position,
-            parentId: parent.id,
-          },
-          update: { name: child.name, image, position: child.position, parentId: parent.id },
-        });
-      }
+      categoryIds.set(c.slug, row.id);
+    }
+    for (const c of seedCategories) {
+      await prisma.category.update({
+        where: { id: categoryIds.get(c.slug)! },
+        data: { parentId: c.parent ? (categoryIds.get(c.parent) ?? null) : null },
+      });
     }
 
+    // 2) products and their child rows
     const productIds = new Map<string, string>();
     for (const p of seedProducts) {
       const categoryId = categoryIds.get(p.category);
@@ -76,17 +60,16 @@ async function main(): Promise<void> {
         name: p.name,
         slug: p.slug,
         categoryId,
-        brand: p.brand ?? null,
+        brand: p.brand,
         tags: p.tags,
-        description: p.description ?? null,
-        specifications: p.specifications ?? undefined,
+        description: p.description,
         price: p.price,
         compareAtPrice: p.compareAtPrice,
         stock: p.stock,
-        soldCount: p.soldCount,
-        ratingAverage: p.ratingAverage,
-        ratingCount: p.ratingCount,
-        isFeatured: p.isFeatured,
+        soldCount: 0,
+        ratingAverage: null,
+        ratingCount: 0,
+        isFeatured: p.collections.some((m) => m.collection === 'trendy-items'),
         isActive: true,
       };
       const product = await prisma.product.upsert({
@@ -96,11 +79,20 @@ async function main(): Promise<void> {
       });
       productIds.set(p.ref, product.id);
 
+      // memberships: every live collection + the primary category
+      const memberships = [
+        ...p.collections,
+        ...(p.collections.some((m) => m.collection === p.category)
+          ? []
+          : [{ collection: p.category, position: 9999 }]),
+      ].filter((m) => categoryIds.has(m.collection));
+
       await prisma.$transaction([
         prisma.productVariant.deleteMany({ where: { productId: product.id } }),
         prisma.productOption.deleteMany({ where: { productId: product.id } }),
         prisma.productImage.deleteMany({ where: { productId: product.id } }),
         prisma.productBundle.deleteMany({ where: { productId: product.id } }),
+        prisma.productCategory.deleteMany({ where: { productId: product.id } }),
         prisma.productImage.createMany({
           data: p.images.map((path, position) => ({
             productId: product.id,
@@ -113,7 +105,7 @@ async function main(): Promise<void> {
           data: seedBundles.map((b) => ({ ...b, productId: product.id })),
         }),
         prisma.productOption.createMany({
-          data: (p.options ?? []).map((o, i) => ({
+          data: p.options.map((o, i) => ({
             productId: product.id,
             name: o.name,
             values: o.values,
@@ -133,65 +125,67 @@ async function main(): Promise<void> {
             position: i + 1,
           })),
         }),
+        prisma.productCategory.createMany({
+          data: memberships.map((m) => ({
+            productId: product.id,
+            categoryId: categoryIds.get(m.collection)!,
+            position: m.position,
+          })),
+          skipDuplicates: true,
+        }),
       ]);
     }
 
-    // The seed is authoritative for dev data: earlier demo products/categories that are no
-    // longer in it are deactivated/hidden (not deleted, so nothing referencing them breaks).
+    // 3) hide earlier demo rows that are no longer part of the seed
     const hiddenProducts = await prisma.product.updateMany({
       where: { sku: { notIn: seedProducts.map((p) => p.sku) }, isActive: true },
       data: { isActive: false },
     });
-    const seededSlugs = seedCategories.flatMap((c) => [c.slug, ...c.children.map((ch) => ch.slug)]);
     const hiddenCategories = await prisma.category.updateMany({
       where: {
-        slug: { notIn: seededSlugs },
+        slug: { notIn: seedCategories.map((c) => c.slug) },
         OR: [{ showInMenu: true }, { homePosition: { not: null } }],
       },
       data: { showInMenu: false, homePosition: null },
     });
     if (hiddenProducts.count || hiddenCategories.count) {
-      process.stdout
-        .write(`Hid ${hiddenProducts.count} old products and ${hiddenCategories.count} old categories
-`);
+      process.stdout.write(
+        `Hid ${hiddenProducts.count} old products and ${hiddenCategories.count} old categories\n`,
+      );
     }
 
-    // Cross-sells. Products without explicit ones get same-category suggestions.
+    // 4) cross-sells: same primary category first, then others
     await prisma.productRelation.deleteMany({
       where: { productId: { in: [...productIds.values()] } },
     });
     for (const p of seedProducts) {
       const id = productIds.get(p.ref)!;
-      const sameCategory = seedProducts
-        .filter((o) => o.category === p.category && o.ref !== p.ref)
-        .map((o) => o.ref);
-      const others = seedProducts
-        .filter((o) => o.ref !== p.ref && !sameCategory.includes(o.ref))
-        .map((o) => o.ref);
-      const buyWith = p.buyWith ?? sameCategory.slice(0, 2);
-      const upsells = p.upsells ?? [...sameCategory.slice(2), ...others].slice(0, 3);
+      const same = seedProducts.filter((o) => o.category === p.category && o.ref !== p.ref);
+      const others = seedProducts.filter((o) => o.ref !== p.ref && o.category !== p.category);
       const rows = [
-        ...buyWith.map((ref, position) => ({
+        ...same.slice(0, 2).map((o, position) => ({
           productId: id,
-          relatedProductId: productIds.get(ref)!,
+          relatedProductId: productIds.get(o.ref)!,
           type: 'BUY_WITH' as const,
           position,
         })),
-        ...upsells.map((ref, position) => ({
+        ...[...same.slice(2), ...others].slice(0, 3).map((o, position) => ({
           productId: id,
-          relatedProductId: productIds.get(ref)!,
+          relatedProductId: productIds.get(o.ref)!,
           type: 'UPSELL' as const,
           position,
         })),
-      ].filter((r) => r.relatedProductId);
+      ];
       await prisma.productRelation.createMany({ data: rows, skipDuplicates: true });
     }
 
     const [categories, products] = await Promise.all([
-      prisma.category.count(),
-      prisma.product.count(),
+      prisma.category.count({ where: { showInMenu: true } }),
+      prisma.product.count({ where: { isActive: true } }),
     ]);
-    process.stdout.write(`Seed complete: ${categories} categories, ${products} products\n`);
+    process.stdout.write(
+      `Seed complete: ${categories} menu categories, ${products} active products\n`,
+    );
   } finally {
     await prisma.$disconnect();
   }

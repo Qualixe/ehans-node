@@ -40,9 +40,10 @@ model Category {
   createdAt       DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id], onDelete: SetNull)
-  children Category[] @relation("CategoryTree")
-  products Product[]
+  parent      Category?         @relation("CategoryTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children    Category[]        @relation("CategoryTree")
+  products    Product[]
+  memberships ProductCategory[]
 
   @@index([parentId, position])
   @@index([homePosition])
@@ -78,13 +79,16 @@ model Product {
   createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  category  Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  images    ProductImage[]
-  options   ProductOption[]
-  variants  ProductVariant[]
-  bundles   ProductBundle[]
-  relations ProductRelation[] @relation("ProductRelationSource")
-  relatedTo ProductRelation[] @relation("ProductRelationTarget")
+  category    Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images      ProductImage[]
+  options     ProductOption[]
+  variants    ProductVariant[]
+  bundles     ProductBundle[]
+  relations   ProductRelation[] @relation("ProductRelationSource")
+  relatedTo   ProductRelation[] @relation("ProductRelationTarget")
+  /// Collection memberships (many-to-many, like Shopify collections). `categoryId` is the
+  /// primary category (breadcrumbs); listings filter by membership.
+  collections ProductCategory[]
 
   @@index([isActive, categoryId, price])
   @@index([isActive, isFeatured])
@@ -152,6 +156,21 @@ model ProductVariant {
   @@index([productId, position])
   @@index([sku])
   @@map("product_variants")
+}
+
+/// Product ↔ collection membership with a manual sort position (collection order).
+model ProductCategory {
+  productId  String   @map("product_id") @db.Uuid
+  categoryId String   @map("category_id") @db.Uuid
+  position   Int      @default(0)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([productId, categoryId])
+  @@index([categoryId, position])
+  @@map("product_categories")
 }
 
 /// "Bundle & Save" tiers on the product page (buy N, save X%).
