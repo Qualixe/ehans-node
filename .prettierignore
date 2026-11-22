@@ -5,3 +5,8 @@ coverage
 pnpm-lock.yaml
 **/src/generated
 **/prisma/migrations
+
+# Design reference (its own git repo) and the template CSS copied from it: keep verbatim
+design/
+apps/frontend/src/styles/store/
+apps/frontend/public/

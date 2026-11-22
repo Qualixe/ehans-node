@@ -1,5 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import type { CategoryNode, HomeCatalog, ProductCard, ProductDetail, ProductListResponse } from '@ehans/shared';
+import type {
+  CategoryNode,
+  HomeCatalog,
+  ProductCard,
+  ProductDetail,
+  ProductListResponse,
+} from '@ehans/shared';
 import { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import {
@@ -32,7 +38,11 @@ export class CatalogService {
       where: { parentId: null, showInMenu: true },
       orderBy: [{ position: 'asc' }, { name: 'asc' }],
       include: {
-        children: { where: { showInMenu: true }, orderBy: { position: 'asc' }, select: categorySummarySelect },
+        children: {
+          where: { showInMenu: true },
+          orderBy: { position: 'asc' },
+          select: categorySummarySelect,
+        },
       },
     });
     const counts = await this.prisma.product.groupBy({
@@ -47,7 +57,8 @@ export class CatalogService {
       name: c.name,
       image: c.image,
       description: c.description,
-      productCount: (countBy.get(c.id) ?? 0) + c.children.reduce((n, ch) => n + (countBy.get(ch.id) ?? 0), 0),
+      productCount:
+        (countBy.get(c.id) ?? 0) + c.children.reduce((n, ch) => n + (countBy.get(ch.id) ?? 0), 0),
       children: c.children,
     }));
   }
@@ -88,7 +99,11 @@ export class CatalogService {
       }),
     );
 
-    return { categories, sliders: sliders.filter((s) => s.products.length > 0), popular: popular.map(toProductCard) };
+    return {
+      categories,
+      sliders: sliders.filter((s) => s.products.length > 0),
+      popular: popular.map(toProductCard),
+    };
   }
 
   async listProducts(query: ListProductsQueryDto): Promise<ProductListResponse> {
@@ -153,7 +168,9 @@ export class CatalogService {
   }
 
   /** Filters shared by list, search and the price-range aggregate. */
-  private async baseWhere(query: Pick<ListProductsQueryDto, 'category' | 'q' | 'inStock'>): Promise<Prisma.ProductWhereInput> {
+  private async baseWhere(
+    query: Pick<ListProductsQueryDto, 'category' | 'q' | 'inStock'>,
+  ): Promise<Prisma.ProductWhereInput> {
     const and: Prisma.ProductWhereInput[] = [{ isActive: true }];
 
     if (query.category) {

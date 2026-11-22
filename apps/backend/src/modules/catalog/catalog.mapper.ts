@@ -37,15 +37,19 @@ export const productDetailInclude = {
   },
 } satisfies Prisma.ProductInclude;
 
-export type ProductDetailRecord = Prisma.ProductGetPayload<{ include: typeof productDetailInclude }>;
+export type ProductDetailRecord = Prisma.ProductGetPayload<{
+  include: typeof productDetailInclude;
+}>;
 
 export function discountPercent(price: number, compareAtPrice: number | null): number | null {
   if (!compareAtPrice || compareAtPrice <= price) return null;
   return Math.round(((compareAtPrice - price) / compareAtPrice) * 100);
 }
 
-const image = (img: { path: string; alt: string | null } | undefined, fallbackAlt: string): ProductImageDto | null =>
-  img ? { url: img.path, alt: img.alt ?? fallbackAlt } : null;
+const image = (
+  img: { path: string; alt: string | null } | undefined,
+  fallbackAlt: string,
+): ProductImageDto | null => (img ? { url: img.path, alt: img.alt ?? fallbackAlt } : null);
 
 const toCategorySummary = (c: CategorySummary): CategorySummary => ({
   id: c.id,
@@ -75,7 +79,11 @@ export function toProductCard(p: ProductCardRecord): ProductCard {
 function specifications(value: Prisma.JsonValue | null): ProductSpecification[] {
   if (!Array.isArray(value)) return [];
   return value.flatMap((row) =>
-    row && typeof row === 'object' && !Array.isArray(row) && typeof row.label === 'string' && typeof row.value === 'string'
+    row &&
+    typeof row === 'object' &&
+    !Array.isArray(row) &&
+    typeof row.label === 'string' &&
+    typeof row.value === 'string'
       ? [{ label: row.label, value: row.value }]
       : [],
   );
@@ -83,7 +91,9 @@ function specifications(value: Prisma.JsonValue | null): ProductSpecification[] 
 
 function swatches(value: Prisma.JsonValue | null): Record<string, string> | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
-  return Object.fromEntries(Object.entries(value).filter((e): e is [string, string] => typeof e[1] === 'string'));
+  return Object.fromEntries(
+    Object.entries(value).filter((e): e is [string, string] => typeof e[1] === 'string'),
+  );
 }
 
 export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]): ProductDetail {
@@ -111,11 +121,18 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
     tags: p.tags,
     shortDescription: p.shortDescription,
     descriptionHtml: p.description,
-    specifications: [...specifications(p.specifications), { label: 'Category', value: p.category.name }],
+    specifications: [
+      ...specifications(p.specifications),
+      { label: 'Category', value: p.category.name },
+    ],
     images: p.images.map((img) => ({ url: img.path, alt: img.alt ?? p.name })),
     stock: p.stock,
     soldCount: p.soldCount,
-    options: p.options.map((o) => ({ name: o.name, values: o.values, swatches: swatches(o.swatches) })),
+    options: p.options.map((o) => ({
+      name: o.name,
+      values: o.values,
+      swatches: swatches(o.swatches),
+    })),
     variants: p.variants.map((v) => ({
       id: v.id,
       title: v.title,
@@ -129,6 +146,8 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
     buyWith: relationCards('BUY_WITH'),
     upsells: relationCards('UPSELL'),
     related,
-    breadcrumbs: [p.category.parent, p.category].filter((c): c is NonNullable<typeof c> => Boolean(c)).map(toCategorySummary),
+    breadcrumbs: [p.category.parent, p.category]
+      .filter((c): c is NonNullable<typeof c> => Boolean(c))
+      .map(toCategorySummary),
   };
 }

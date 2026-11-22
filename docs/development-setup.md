@@ -18,7 +18,8 @@ pnpm install                                   # all workspace packages
 cp apps/backend/.env.example apps/backend/.env
 cp apps/frontend/.env.example apps/frontend/.env.local
 pnpm db:up                                     # PostgreSQL 17 on 127.0.0.1:5432 (waits until healthy)
-pnpm db:migrate                                # apply migrations (none exist yet; generates client)
+pnpm db:migrate                                # apply migrations + generate Prisma Client
+pnpm db:seed                                   # demo catalog from the ehans-mart template
 pnpm dev                                       # shared (watch) + backend + frontend
 ```
 

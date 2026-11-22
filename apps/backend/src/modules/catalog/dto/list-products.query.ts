@@ -1,9 +1,25 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import type { ProductSort } from '@ehans/shared';
 import { Transform, Type } from 'class-transformer';
-import { IsBoolean, IsIn, IsInt, IsOptional, IsString, Matches, Max, MaxLength, Min } from 'class-validator';
+import {
+  IsBoolean,
+  IsIn,
+  IsInt,
+  IsOptional,
+  IsString,
+  Matches,
+  Max,
+  MaxLength,
+  Min,
+} from 'class-validator';
 
-export const PRODUCT_SORTS: ProductSort[] = ['featured', 'newest', 'price-asc', 'price-desc', 'best-selling'];
+export const PRODUCT_SORTS: ProductSort[] = [
+  'featured',
+  'newest',
+  'price-asc',
+  'price-desc',
+  'best-selling',
+];
 
 export class ListProductsQueryDto {
   @ApiPropertyOptional({ description: 'Category slug (includes its sub-categories)' })

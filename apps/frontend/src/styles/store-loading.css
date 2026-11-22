@@ -1,0 +1,212 @@
+/*
+ * Loading states for the storefront (not part of the ehans-mart template).
+ * Uses the template's colour tokens from styles/store/main.css.
+ * Loaded after styles/store/index.css.
+ */
+
+/* ---------- top route progress bar ---------- */
+.route-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.route-progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--brand-color, #ff5554);
+  box-shadow: 0 0 8px rgba(255, 85, 84, 0.6);
+  opacity: 0;
+  transition:
+    width 0.35s ease,
+    opacity 0.3s ease;
+}
+
+.route-progress.is-loading .route-progress-bar {
+  opacity: 1;
+  /* creeps towards 90% while the next page loads */
+  animation: route-progress-creep 8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+}
+
+.route-progress.is-done .route-progress-bar {
+  width: 100%;
+  opacity: 0;
+  transition:
+    width 0.2s ease,
+    opacity 0.35s ease 0.2s;
+}
+
+@keyframes route-progress-creep {
+  0% {
+    width: 0;
+  }
+  10% {
+    width: 35%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+/* ---------- skeleton shimmer ---------- */
+.skeleton {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--item-bg2, #f5f1f0);
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: skeleton-shimmer 1.3s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.skeleton-title {
+  height: 28px;
+  margin-bottom: 14px;
+}
+
+.skeleton-btn {
+  height: 52px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.skeleton-square {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+
+/* product page */
+.skeleton-product {
+  width: 100%;
+}
+
+/* Page skeletons fill the screen so the footer never shows above the fold and then jumps
+   away when the (taller) real content streams in. */
+.product-section[aria-busy='true'],
+.collection-category[aria-busy='true'] + .collection-section {
+  min-height: calc(100vh - var(--announce-h, 40px) - var(--header-h, 109px));
+}
+
+.skeleton-product .skeleton-gallery {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+/* main image fills the column next to the thumbnails, like .product-slider */
+.skeleton-product .skeleton-gallery > .skeleton-square {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+}
+
+.skeleton-product .skeleton-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.skeleton-product .skeleton-thumbs .skeleton {
+  width: 70px;
+  height: 70px;
+}
+
+/* cards (sliders, collection grid) */
+.skeleton-card {
+  background: var(--product-card-bg, #fff);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skeleton-card .skeleton-card-body {
+  padding: 12px;
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.skeleton-category-row {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.skeleton-category-row .skeleton-category {
+  flex: 0 0 150px;
+}
+
+@media (max-width: 1199px) {
+  .skeleton-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .skeleton-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .skeleton-product .skeleton-gallery {
+    flex-direction: column-reverse;
+  }
+
+  .skeleton-product .skeleton-thumbs {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .skeleton-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+
+  .skeleton-category-row .skeleton-category {
+    flex-basis: 86px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after,
+  .route-progress.is-loading .route-progress-bar {
+    animation: none;
+  }
+
+  .route-progress.is-loading .route-progress-bar {
+    width: 60%;
+  }
+}
+
+/* skeleton category tiles: .category-item shrinks to its content (the real <img> gives it width),
+   so the empty placeholder box is stretched to the slide width set by the template CSS */
+[aria-busy='true'] .category-item,
+[aria-busy='true'] .category-item .img {
+  width: 100%;
+}

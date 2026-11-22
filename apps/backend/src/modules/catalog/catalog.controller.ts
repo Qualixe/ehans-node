@@ -1,6 +1,12 @@
 import { Controller, Get, Header, Param, Query } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import type { CategoryNode, HomeCatalog, ProductCard, ProductDetail, ProductListResponse } from '@ehans/shared';
+import type {
+  CategoryNode,
+  HomeCatalog,
+  ProductCard,
+  ProductDetail,
+  ProductListResponse,
+} from '@ehans/shared';
 import { CatalogService } from './catalog.service.js';
 import { ListProductsQueryDto, SearchProductsQueryDto } from './dto/list-products.query.js';
 

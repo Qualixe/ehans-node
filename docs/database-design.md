@@ -2,9 +2,26 @@
 
 ## Current state
 
-PostgreSQL 17 with Prisma 7. **No business tables exist yet.** The schema
-(`apps/backend/prisma/schema.prisma`) contains only the generator and datasource. Each feature
-module adds its models together with a migration when it is implemented.
+PostgreSQL 17 with Prisma 7. Implemented: the **catalog** module (migration `…_catalog`).
+Each further module (orders, customers, content, accounting, … ported from glowy) adds its
+models together with a migration.
+
+### Catalog tables (module `apps/backend/src/modules/catalog`)
+
+Mirrors glowy's catalog so the admin port can reuse it, plus two tables the ehans-mart design needs.
+
+| Table               | Purpose                                                                                                                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `categories`        | Two-level tree (`parent_id`). `position` = menu/slider order; `home_position` + `home_title` = home page product sliders                                                                                           |
+| `products`          | Name, slug, sku, brand, `tags[]` (English search terms for Bangla names), HTML description, `specifications` JSON, `price`/`compare_at_price`, `stock`, `sold_count`, denormalized `rating_average`/`rating_count` |
+| `product_images`    | Ordered images (`position`); first = card image, second = card hover image                                                                                                                                         |
+| `product_options`   | Option name + values (e.g. Pack: 1 Pc / 2 Pcs / 3 Pcs), optional swatches                                                                                                                                          |
+| `product_variants`  | Up to 3 option values, own price/compare/stock/sku (glowy's variant model)                                                                                                                                         |
+| `product_bundles`   | "Bundle & Save" tiers: quantity, title, discount %, badge, free delivery, default tier                                                                                                                             |
+| `product_relations` | Merchandising links per product: `BUY_WITH` ("Buy it with") and `UPSELL` ("Complete your …")                                                                                                                       |
+
+Dev data: `pnpm db:seed` loads the template's 9 categories (+72 sub-categories) and 33 products
+(`apps/backend/src/database/seed`). It is idempotent and refuses to run with `NODE_ENV=production`.
 
 ## Prisma setup
 
@@ -56,18 +73,18 @@ together with the schema change.
 
 ## Conventions for future models
 
-| Topic        | Convention                                                                                                  |
-| ------------ | ----------------------------------------------------------------------------------------------------------- |
-| Table names  | `@@map("snake_case_plural")`, e.g. model `OrderItem` → `order_items`                                        |
-| Column names | camelCase in Prisma, `@map("snake_case")` in the DB                                                         |
-| Primary keys | `String @id @default(uuid(7)) @db.Uuid` (time-ordered UUIDv7, index-friendly, not guessable)                |
-| Timestamps   | `createdAt DateTime @default(now()) @db.Timestamptz(3)`, `updatedAt DateTime @updatedAt @db.Timestamptz(3)` |
-| Money        | **Never floats.** Integer minor units (`priceCents Int`) plus a `currency` code (ISO 4217)                  |
-| Soft delete  | Only where business-required (`deletedAt DateTime?`). Prefer status enums for orders                        |
-| Enums        | Prisma `enum` for closed sets (order status, payment status)                                                |
-| Foreign keys | Always explicit relations. Choose `onDelete` deliberately (`Restrict` for orders/payments)                  |
-| Indexes      | Index every foreign key and every column used in `WHERE` / `ORDER BY` on hot paths                          |
-| Snapshots    | Orders copy product name, price and tax at purchase time. Never read live prices for a past order           |
+| Topic        | Convention                                                                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Table names  | `@@map("snake_case_plural")`, e.g. model `OrderItem` → `order_items`                                                                               |
+| Column names | camelCase in Prisma, `@map("snake_case")` in the DB                                                                                                |
+| Primary keys | `String @id @default(uuid(7)) @db.Uuid` (time-ordered UUIDv7, index-friendly, not guessable)                                                       |
+| Timestamps   | `createdAt DateTime @default(now()) @db.Timestamptz(3)`, `updatedAt DateTime @updatedAt @db.Timestamptz(3)`                                        |
+| Money        | **Never floats.** Integer **taka** (BDT has no minor unit in practice; matches glowy). Add a currency column only if multi-currency is ever needed |
+| Soft delete  | Only where business-required (`deletedAt DateTime?`). Prefer status enums for orders                                                               |
+| Enums        | Prisma `enum` for closed sets (order status, payment status)                                                                                       |
+| Foreign keys | Always explicit relations. Choose `onDelete` deliberately (`Restrict` for orders/payments)                                                         |
+| Indexes      | Index every foreign key and every column used in `WHERE` / `ORDER BY` on hot paths                                                                 |
+| Snapshots    | Orders copy product name, price and tax at purchase time. Never read live prices for a past order                                                  |
 
 ## Planned domain (for orientation only, not implemented)
 

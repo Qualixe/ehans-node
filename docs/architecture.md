@@ -115,13 +115,42 @@ when it can't reach it. Point uptime monitors at `/health/ready`.
 
 ```
 apps/frontend/src
-├── app/                 # App Router: layout, page, api/health route
-├── components/ui/       # shadcn/ui components (added via CLI)
-├── lib/env.ts           # zod-validated public (build-time) and server (runtime) env
-├── lib/api-client.ts    # typed fetch wrapper; internal URL on the server, public URL in the browser
-├── lib/utils.ts         # cn() helper (clsx + tailwind-merge)
-└── instrumentation.ts   # validates server env once at startup
+├── app/
+│   ├── layout.tsx            # root document only (no styles)
+│   ├── not-found.tsx         # unmatched URLs → template 404 with store chrome
+│   ├── (store)/              # storefront: layout loads template CSS + chrome
+│   │   ├── page.tsx                       home
+│   │   ├── collections/[slug]?/page.tsx   collection + filters (?q= search)
+│   │   ├── products/[slug]/page.tsx       product page
+│   │   ├── cart, about, contact, faq, policies/[slug], blog, blog/[slug]
+│   │   └── not-found.tsx                  notFound() inside the store
+│   └── api/health/route.ts   # liveness probe
+├── components/store/         # ehans-mart template as React components
+│   ├── layout/               # announce bar, header (+search, menus), mobile menu, cart drawer, app menu, footer
+│   ├── home/ product/ collection/ pages/   # page sections; pages/* = generated static content + enhancer
+│   ├── providers/            # browser cart store, UI state (drawers/popups), add-to-cart feedback
+│   └── slider.tsx            # Swiper 11.1.4 wrapper (template options)
+├── components/ui/            # shadcn/ui (admin, later)
+├── styles/store/             # template CSS, verbatim (index.css = fixed load order)
+├── styles/admin.tailwind.css # Tailwind entry for the admin (only *.tailwind.css uses Tailwind)
+├── lib/catalog.ts            # 'use cache' catalog fetchers (runtime only, tagged for revalidation)
+├── lib/env.ts, api-client.ts, format.ts, store-config.ts, utils.ts
+└── instrumentation.ts        # validates server env once at startup
 ```
+
+**Storefront rendering.** Every store route is partially prerendered: the static template shell
+(announce bar, header, banners, footer) is built once; catalog data (menus, sliders, product,
+collection) streams in at request time from `'use cache'` fetchers called after `connection()`,
+so builds never call the API. Anything that reads the URL (`params`, `searchParams`,
+`usePathname()`) sits inside `<Suspense>`.
+
+**Design fidelity.** Markup reproduces `design/ehans-mart` class for class and the template CSS is
+used unchanged, so the pages render the same as the template (verified section-by-section against
+it). Template JavaScript behaviours are re-implemented in React (sliders, menus, search, cart
+drawer, quick view, bundles, buy-now popup, sticky bar, filters, FAQ/blog/policy scripts).
+
+**Cart.** Browser-side (localStorage key `ehans-mart-cart`, shared across tabs) until the
+checkout/orders module adds a server cart.
 
 - `NEXT_PUBLIC_*` values are inlined **at build time**, so changing them requires rebuilding the image.
 - Server-only values (`API_INTERNAL_URL`) are read **at runtime** (after `connection()` or another request-time API).

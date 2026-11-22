@@ -15,7 +15,9 @@ import { seedBundles, seedCategories, seedProducts } from './catalog.seed-data.j
 async function main(): Promise<void> {
   loadLocalEnvFile();
   if (process.env.NODE_ENV === 'production' && process.env.SEED_ALLOW_PRODUCTION !== 'true') {
-    throw new Error('Refusing to seed with NODE_ENV=production (set SEED_ALLOW_PRODUCTION=true to override).');
+    throw new Error(
+      'Refusing to seed with NODE_ENV=production (set SEED_ALLOW_PRODUCTION=true to override).',
+    );
   }
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) throw new Error('DATABASE_URL is not set');
@@ -45,11 +47,23 @@ async function main(): Promise<void> {
         },
       });
       categoryIds.set(c.slug, parent.id);
+      // sub-categories reuse the parent's product photos (cycled) until real images are uploaded
+      const photos = seedProducts
+        .filter((p) => p.category === c.slug)
+        .map((p) => p.images[0])
+        .filter(Boolean);
       for (const child of c.children) {
+        const image = photos.length ? photos[child.position % photos.length]! : c.image;
         await prisma.category.upsert({
           where: { slug: child.slug },
-          create: { slug: child.slug, name: child.name, position: child.position, parentId: parent.id },
-          update: { name: child.name, position: child.position, parentId: parent.id },
+          create: {
+            slug: child.slug,
+            name: child.name,
+            image,
+            position: child.position,
+            parentId: parent.id,
+          },
+          update: { name: child.name, image, position: child.position, parentId: parent.id },
         });
       }
     }
@@ -88,13 +102,23 @@ async function main(): Promise<void> {
         prisma.productImage.deleteMany({ where: { productId: product.id } }),
         prisma.productBundle.deleteMany({ where: { productId: product.id } }),
         prisma.productImage.createMany({
-          data: p.images.map((path, position) => ({ productId: product.id, path, alt: p.name, position })),
+          data: p.images.map((path, position) => ({
+            productId: product.id,
+            path,
+            alt: p.name,
+            position,
+          })),
         }),
         prisma.productBundle.createMany({
           data: seedBundles.map((b) => ({ ...b, productId: product.id })),
         }),
         prisma.productOption.createMany({
-          data: (p.options ?? []).map((o, i) => ({ productId: product.id, name: o.name, values: o.values, position: i + 1 })),
+          data: (p.options ?? []).map((o, i) => ({
+            productId: product.id,
+            name: o.name,
+            values: o.values,
+            position: i + 1,
+          })),
         }),
         prisma.productVariant.createMany({
           data: (p.variants ?? []).map((v, i) => ({
@@ -111,21 +135,40 @@ async function main(): Promise<void> {
     }
 
     // Cross-sells. Products without explicit ones get same-category suggestions.
-    await prisma.productRelation.deleteMany({ where: { productId: { in: [...productIds.values()] } } });
+    await prisma.productRelation.deleteMany({
+      where: { productId: { in: [...productIds.values()] } },
+    });
     for (const p of seedProducts) {
       const id = productIds.get(p.ref)!;
-      const sameCategory = seedProducts.filter((o) => o.category === p.category && o.ref !== p.ref).map((o) => o.ref);
-      const others = seedProducts.filter((o) => o.ref !== p.ref && !sameCategory.includes(o.ref)).map((o) => o.ref);
+      const sameCategory = seedProducts
+        .filter((o) => o.category === p.category && o.ref !== p.ref)
+        .map((o) => o.ref);
+      const others = seedProducts
+        .filter((o) => o.ref !== p.ref && !sameCategory.includes(o.ref))
+        .map((o) => o.ref);
       const buyWith = p.buyWith ?? sameCategory.slice(0, 2);
       const upsells = p.upsells ?? [...sameCategory.slice(2), ...others].slice(0, 3);
       const rows = [
-        ...buyWith.map((ref, position) => ({ productId: id, relatedProductId: productIds.get(ref)!, type: 'BUY_WITH' as const, position })),
-        ...upsells.map((ref, position) => ({ productId: id, relatedProductId: productIds.get(ref)!, type: 'UPSELL' as const, position })),
+        ...buyWith.map((ref, position) => ({
+          productId: id,
+          relatedProductId: productIds.get(ref)!,
+          type: 'BUY_WITH' as const,
+          position,
+        })),
+        ...upsells.map((ref, position) => ({
+          productId: id,
+          relatedProductId: productIds.get(ref)!,
+          type: 'UPSELL' as const,
+          position,
+        })),
       ].filter((r) => r.relatedProductId);
       await prisma.productRelation.createMany({ data: rows, skipDuplicates: true });
     }
 
-    const [categories, products] = await Promise.all([prisma.category.count(), prisma.product.count()]);
+    const [categories, products] = await Promise.all([
+      prisma.category.count(),
+      prisma.product.count(),
+    ]);
     process.stdout.write(`Seed complete: ${categories} categories, ${products} products\n`);
   } finally {
     await prisma.$disconnect();
@@ -133,6 +176,8 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
-  process.stderr.write(`${error instanceof Error ? (error.stack ?? error.message) : String(error)}\n`);
+  process.stderr.write(
+    `${error instanceof Error ? (error.stack ?? error.message) : String(error)}\n`,
+  );
   process.exit(1);
 });
