@@ -17,6 +17,8 @@ eCommerce **modular monolith** in a pnpm workspace:
 
 ## Current scope
 
+- **Dev data:** `pnpm db:seed` loads the live ehansmart.com catalog (25 collections, 36 products); home media
+  (hero, banners, logo, category/product images) are local copies in `public/assets/live` (`src/lib/home-media.ts`).
 - **Built:** catalog backend (categories, products, images, options/variants, bundles, cross-sells;
   public `GET /api/v1/catalog/*`), and the full storefront design (home, collections, product,
   cart, about, contact, FAQ, policies, blog, 404) with a browser cart (localStorage).

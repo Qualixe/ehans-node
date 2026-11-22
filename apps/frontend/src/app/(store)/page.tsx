@@ -44,6 +44,11 @@ async function HomeSliders() {
   );
 }
 
+async function HomeBanners() {
+  const home = await loadHome();
+  return <GridBannerSection categorySlugs={home?.categories.map((c) => c.slug) ?? []} />;
+}
+
 async function HomeReviews() {
   const home = await loadHome();
   return <CommunityReviews products={home?.popular.slice(0, 4) ?? []} />;
@@ -56,7 +61,9 @@ export default function HomePage() {
       <Suspense fallback={<CategoryRowSkeleton />}>
         <HomeCategories />
       </Suspense>
-      <GridBannerSection />
+      <Suspense fallback={<GridBannerSection />}>
+        <HomeBanners />
+      </Suspense>
       <Suspense fallback={<HomeSlidersSkeleton />}>
         <HomeSliders />
       </Suspense>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { STORE_LOGO } from '@/lib/home-media';
 import { type ReactNode, useRef, useState } from 'react';
 import { useCurrentYear, useMediaQuery } from '../hooks';
 
@@ -74,7 +75,7 @@ export function Footer({ shopLinks }: { shopLinks: ReactNode }) {
         <div className="footer-items">
           <div className="footer-brand">
             <Link href="/" className="footer-logo">
-              <img src="/assets/images/ehans-mart-logo.png" alt="Ehans Mart" loading="lazy" />
+              <img src={STORE_LOGO} alt="Ehans Mart" loading="lazy" />
             </Link>
             <p className="footer-brand-text">
               ইহান্স মার্ট - আপনার স্মার্ট অনলাইন শপিং পার্টনার। Quality products, honest prices and cash

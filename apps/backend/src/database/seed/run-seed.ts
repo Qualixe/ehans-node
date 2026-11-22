@@ -68,7 +68,7 @@ async function main(): Promise<void> {
       }
     }
 
-    const productIds = new Map<number, string>();
+    const productIds = new Map<string, string>();
     for (const p of seedProducts) {
       const categoryId = categoryIds.get(p.category);
       if (!categoryId) throw new Error(`Unknown category ${p.category} for ${p.sku}`);
@@ -121,17 +121,39 @@ async function main(): Promise<void> {
           })),
         }),
         prisma.productVariant.createMany({
-          data: (p.variants ?? []).map((v, i) => ({
+          data: p.variants.map((v, i) => ({
             productId: product.id,
             title: v.title,
-            option1: v.option1,
+            option1: v.options[0] ?? null,
+            option2: v.options[1] ?? null,
+            option3: v.options[2] ?? null,
             price: v.price,
             compareAtPrice: v.compareAtPrice,
-            stock: p.stock,
+            stock: v.stock,
             position: i + 1,
           })),
         }),
       ]);
+    }
+
+    // The seed is authoritative for dev data: earlier demo products/categories that are no
+    // longer in it are deactivated/hidden (not deleted, so nothing referencing them breaks).
+    const hiddenProducts = await prisma.product.updateMany({
+      where: { sku: { notIn: seedProducts.map((p) => p.sku) }, isActive: true },
+      data: { isActive: false },
+    });
+    const seededSlugs = seedCategories.flatMap((c) => [c.slug, ...c.children.map((ch) => ch.slug)]);
+    const hiddenCategories = await prisma.category.updateMany({
+      where: {
+        slug: { notIn: seededSlugs },
+        OR: [{ showInMenu: true }, { homePosition: { not: null } }],
+      },
+      data: { showInMenu: false, homePosition: null },
+    });
+    if (hiddenProducts.count || hiddenCategories.count) {
+      process.stdout
+        .write(`Hid ${hiddenProducts.count} old products and ${hiddenCategories.count} old categories
+`);
     }
 
     // Cross-sells. Products without explicit ones get same-category suggestions.

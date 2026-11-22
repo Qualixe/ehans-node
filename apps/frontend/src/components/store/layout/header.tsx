@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { STORE_LOGO } from '@/lib/home-media';
 import { usePathname, useRouter } from 'next/navigation';
 import { type ReactNode, useEffect, useRef } from 'react';
 import { useCart } from '../providers/cart-store';
@@ -115,7 +116,7 @@ export function Header({
             </button>
             <div className="navbar-logo">
               <Link href="/">
-                <img src="/assets/images/ehans-mart-logo.png" alt="ehans-mart-logo" />
+                <img src={STORE_LOGO} alt="ehans-mart-logo" />
               </Link>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { HOME_HERO_SLIDES } from '@/lib/home-media';
 import { Slider, type SliderOptions } from '../slider';
 
 const HERO_OPTIONS: SliderOptions = {
@@ -12,22 +13,15 @@ const HERO_OPTIONS: SliderOptions = {
   breakpoints: { 1: { spaceBetween: 0 }, 993: { spaceBetween: 16 } },
 };
 
-const SLIDES = [
-  {
-    desktop: '/assets/images/hero-slider-banner1.webp',
-    mobile: '/assets/images/hero-slider-banner1-mobile.webp',
-    alt: 'Ehans Mart - Bangladeshi fast-growing e-commerce brand',
-    heading: 'Bangladeshi fast-growing e-commerce brand',
-    href: '/collections',
-  },
-  {
-    desktop: '/assets/images/hero-slider-banner2.webp',
-    mobile: '/assets/images/hero-slider-banner2-mobile.webp',
-    alt: 'Shop smart, pay on delivery - Cash on delivery, easy return, fast delivery',
-    heading: 'Shop smart, pay on delivery',
-    href: '/collections',
-  },
-];
+// Live ehansmart.com hero (local copies, see lib/home-media.ts)
+const SLIDES = HOME_HERO_SLIDES.map((s) => ({
+  ...s,
+  // Shopify's "all products" collection is /collections here
+  href: s.href === '/collections/all' ? '/collections' : s.href,
+}));
+// loop/autoplay only make sense with more than one slide
+const OPTIONS: SliderOptions =
+  SLIDES.length > 1 ? HERO_OPTIONS : { ...HERO_OPTIONS, loop: false, autoplay: false };
 
 export function HeroSection() {
   return (
@@ -35,7 +29,7 @@ export function HeroSection() {
       <div className="container">
         <Slider
           className="swiper hero-slider"
-          options={HERO_OPTIONS}
+          options={OPTIONS}
           controls={
             <>
               <div className="swiper-pagination hero-pagination"></div>
