@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module.js';
 import { CatalogModule } from '../catalog/catalog.module.js';
+import { FraudModule } from '../fraud/fraud.module.js';
 import { CheckoutController } from './checkout.controller.js';
 import { CheckoutService } from './checkout.service.js';
 import { OrderStatsService } from './order-stats.service.js';
@@ -13,7 +14,7 @@ import { OrdersAdminService } from './orders-admin.service.js';
  * POS and couriers come next.
  */
 @Module({
-  imports: [AuthModule, CatalogModule],
+  imports: [AuthModule, CatalogModule, FraudModule],
   controllers: [CheckoutController, OrdersAdminController],
   providers: [OrderStatsService, CheckoutService, OrdersAdminService],
   exports: [OrderStatsService],

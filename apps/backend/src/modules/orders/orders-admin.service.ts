@@ -5,6 +5,7 @@ import {
   type AdminOrderFilters,
   type AdminOrderRow,
   type AdminOrdersPage,
+  type FraudCheckDto,
   type AdminOrderUpdate,
   ORDER_STATUSES,
   type OrderChannelName,
@@ -14,6 +15,7 @@ import {
 import { OrderChannel, OrderStatus, type Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { CatalogCheckoutService } from '../catalog/catalog-checkout.service.js';
+import { FraudService } from '../fraud/fraud.service.js';
 import { addDays, startOfDay, startOfMonth } from './dhaka-time.js';
 
 const toDb = (s: OrderStatusName) => s.toUpperCase() as OrderStatus;
@@ -84,6 +86,7 @@ export class OrdersAdminService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly catalog: CatalogCheckoutService,
+    private readonly fraud: FraudService,
   ) {}
 
   async list(filters: AdminOrderFilters, page: number, pageSize: number): Promise<AdminOrdersPage> {
@@ -98,7 +101,13 @@ export class OrdersAdminService {
         include: {
           items: {
             orderBy: { createdAt: 'asc' },
-            select: { productName: true, variantTitle: true, quantity: true },
+            select: {
+              productId: true,
+              productName: true,
+              variantTitle: true,
+              quantity: true,
+              lineTotal: true,
+            },
           },
         },
       }),
@@ -110,6 +119,12 @@ export class OrdersAdminService {
       number
     >;
     for (const c of counts) statusCounts[fromDb(c.status)] = c._count._all;
+    const [fraudChecks, images] = await Promise.all([
+      this.fraud.saved(rows.map((o) => o.phone)),
+      this.catalog.mainImages(
+        rows.flatMap((o) => o.items.map((i) => i.productId)).filter((id): id is string => !!id),
+      ),
+    ]);
 
     return {
       items: rows.map((o) => ({
@@ -119,6 +134,8 @@ export class OrdersAdminService {
           name: i.productName,
           variantTitle: i.variantTitle,
           quantity: i.quantity,
+          lineTotal: i.lineTotal,
+          image: i.productId ? (images.get(i.productId) ?? null) : null,
         })),
       })),
       page,
@@ -126,6 +143,8 @@ export class OrdersAdminService {
       total,
       totalPages: Math.max(1, Math.ceil(total / pageSize)),
       statusCounts,
+      fraudChecks,
+      fraudEnabled: this.fraud.enabled,
     };
   }
 
@@ -135,14 +154,14 @@ export class OrdersAdminService {
       include: { items: { orderBy: { createdAt: 'asc' } } },
     });
     if (!o) throw new NotFoundException('Order not found');
-    const [images, customerOrderCount, sameIpOrderCount] = await Promise.all([
+    const [images, customerOrderCount, sameIpOrderCount, fraudCheck] = await Promise.all([
       this.catalog.mainImages(o.items.map((i) => i.productId).filter((id): id is string => !!id)),
       this.prisma.order.count({ where: { phone: o.phone } }),
       o.ipAddress ? this.prisma.order.count({ where: { ipAddress: o.ipAddress } }) : 0,
+      this.fraud.savedOne(o.phone),
     ]);
     return {
       ...this.base(o),
-      address: o.address,
       shippingZone: o.shippingZone,
       paymentReference: o.paymentReference,
       paymentAccount: o.paymentAccount,
@@ -162,10 +181,22 @@ export class OrdersAdminService {
       })),
       customerOrderCount,
       sameIpOrderCount,
+      fraudCheck,
+      fraudEnabled: this.fraud.enabled,
     };
   }
 
-  /** Quick status change (list popup); returns the new label for the toast. */
+  /** glowy FraudCheckController: BD Courier history for the order's phone (cached unless fresh). */
+  async fraudCheck(number: string, fresh: boolean): Promise<FraudCheckDto> {
+    const order = await this.prisma.order.findUnique({
+      where: { number },
+      select: { phone: true },
+    });
+    if (!order) throw new NotFoundException('Order not found');
+    return this.fraud.check(order.phone, fresh);
+  }
+
+  /** Quick status change (list popup). */
   async setStatus(number: string, status: OrderStatusName): Promise<void> {
     await this.prisma.$transaction((tx) => this.transition(tx, number, status));
   }
@@ -273,6 +304,7 @@ export class OrdersAdminService {
     customerName: string;
     phone: string;
     email: string | null;
+    address: string;
     city: string;
     ipAddress: string | null;
     courier: string | null;
@@ -293,6 +325,7 @@ export class OrdersAdminService {
       customerName: o.customerName,
       phone: o.phone,
       email: o.email,
+      address: o.address,
       city: o.city,
       ipAddress: o.ipAddress,
       courier: o.courier,

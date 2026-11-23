@@ -11,6 +11,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ReadOnlyNotice } from '@/components/admin/feedback';
+import { FraudCheck } from '@/components/admin/fraud-check';
 import { AdminIcon } from '@/components/admin/icon';
 import { PageHeader, StatusBadge } from '@/components/admin/ui';
 import { ApiError } from '@/lib/api-client';
@@ -228,6 +229,17 @@ export default async function OrderPage({ params }: PageProps<'/admin/orders/[nu
               ) : null}
             </fieldset>
           </form>
+
+          <section className="admin-card p-6">
+            <h2 className="mb-3 font-bold text-fg">Fraud check</h2>
+            <FraudCheck
+              number={order.number}
+              check={order.fraudCheck}
+              enabled={order.fraudEnabled}
+              manage={manage}
+              open
+            />
+          </section>
 
           <section className="admin-card p-6">
             <h2 className="font-bold text-fg">Customer</h2>

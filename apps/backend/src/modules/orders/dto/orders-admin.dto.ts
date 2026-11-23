@@ -14,6 +14,7 @@ import {
   ArrayMaxSize,
   ArrayMinSize,
   IsArray,
+  IsBoolean,
   IsIn,
   IsInt,
   IsOptional,
@@ -126,6 +127,16 @@ export class UpdateOrderDto implements AdminOrderUpdate {
   @IsString()
   @MaxLength(2000)
   adminNote: string | null;
+}
+
+export class FraudCheckQueryDto {
+  @ApiPropertyOptional({
+    description: 'true = ask BD Courier again even if a recent result is saved',
+  })
+  @IsOptional()
+  @Transform(({ value }) => value === true || value === 'true' || value === '1')
+  @IsBoolean()
+  fresh?: boolean;
 }
 
 export class BulkOrderStatusDto {

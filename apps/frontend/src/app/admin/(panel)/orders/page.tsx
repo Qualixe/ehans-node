@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { AutoSubmitSelect } from '@/components/admin/auto-submit-select';
 import { ReadOnlyNotice } from '@/components/admin/feedback';
 import { AdminIcon } from '@/components/admin/icon';
+import { OrderStatusTabs } from '@/components/admin/order-status-tabs';
 import { OrdersTable } from '@/components/admin/orders-table';
 import { Pagination } from '@/components/admin/pagination';
 import { PageHeader } from '@/components/admin/ui';
@@ -40,6 +41,18 @@ const link = (query: Query, changes: Partial<Record<keyof Query, string | undefi
   }
   const qs = params.toString();
   return qs ? `/admin/orders?${qs}` : '/admin/orders';
+};
+
+/** Tab icons (names from components/admin/icon). */
+const STATUS_ICONS: Record<OrderStatusName | 'all', string> = {
+  all: 'bars',
+  pending: 'clock',
+  confirmed: 'check',
+  processing: 'settings',
+  shipped: 'truck',
+  delivered: 'box',
+  cancelled: 'x',
+  returned: 'refresh',
 };
 
 const tab = (active: boolean, activeClass = 'bg-ink-600 text-fg shadow') =>
@@ -76,34 +89,22 @@ export default async function OrdersPage({ searchParams }: PageProps<'/admin/ord
       {manage ? null : <ReadOnlyNotice />}
       <PageHeader
         title="Orders Management"
-        description="Monitor status, process shipping and add quick notes."
+        description="Monitor status, check customers for fraud, process shipping and add quick notes."
       />
 
       <div className="admin-card overflow-visible">
+        <OrderStatusTabs
+          tabs={[undefined, ...ORDER_STATUSES].map((s) => ({
+            key: s ?? 'all',
+            label: s ? s.charAt(0).toUpperCase() + s.slice(1) : 'All orders',
+            icon: STATUS_ICONS[s ?? 'all'],
+            count: s ? orders.statusCounts[s] : allCount,
+            href: link(query, { status: s }),
+            active: query.status === s,
+          }))}
+        />
         <div className="flex flex-col gap-4 border-b border-ink-600 p-4 xl:flex-row xl:items-start xl:justify-between">
           <div className="space-y-3">
-            <nav
-              className="inline-flex max-w-full gap-1 overflow-x-auto rounded-xl bg-ink-800 p-1 ring-1 ring-ink-600"
-              aria-label="Order status"
-            >
-              {[undefined, ...ORDER_STATUSES].map((s) => {
-                const active = query.status === s;
-                return (
-                  <Link
-                    key={s ?? 'all'}
-                    href={link(query, { status: s })}
-                    className={tab(active)}
-                    aria-current={active ? 'page' : undefined}
-                  >
-                    {s ? s.charAt(0).toUpperCase() + s.slice(1) : 'All'}{' '}
-                    <span className="ml-0.5 text-xs opacity-60">
-                      {s ? orders.statusCounts[s] : allCount}
-                    </span>
-                  </Link>
-                );
-              })}
-            </nav>
-
             <div className="flex flex-wrap items-center gap-2">
               <nav
                 className="inline-flex max-w-full gap-1 overflow-x-auto rounded-xl bg-ink-800 p-1 ring-1 ring-ink-600"
@@ -215,7 +216,12 @@ export default async function OrdersPage({ searchParams }: PageProps<'/admin/ord
           </form>
         </div>
 
-        <OrdersTable orders={orders.items} manage={manage} />
+        <OrdersTable
+          orders={orders.items}
+          manage={manage}
+          fraudChecks={orders.fraudChecks}
+          fraudEnabled={orders.fraudEnabled}
+        />
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-ink-600 px-4 py-3 text-sm text-slate-400">
           <form method="get" className="flex items-center gap-2">

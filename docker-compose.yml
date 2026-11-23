@@ -89,6 +89,9 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-log}
       LOG_FORMAT: json
       UPLOADS_DIR: /app/uploads
+      BDCOURIER_API_KEY: ${BDCOURIER_API_KEY:-}
+      BDCOURIER_ENDPOINT: ${BDCOURIER_ENDPOINT:-https://bdcourier.com/api/courier-check}
+      BDCOURIER_CACHE_HOURS: ${BDCOURIER_CACHE_HOURS:-24}
     volumes:
       # admin image uploads (products, categories); the rest of the filesystem is read-only
       - uploads:/app/uploads

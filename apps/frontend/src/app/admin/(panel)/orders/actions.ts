@@ -1,6 +1,6 @@
 'use server';
 
-import type { AdminBulkStatusResult, OrderStatusName } from '@ehans/shared';
+import type { AdminBulkStatusResult, FraudCheckDto, OrderStatusName } from '@ehans/shared';
 import { redirect } from 'next/navigation';
 import { flash } from '@/lib/admin/flash';
 import { errorMessages } from '@/lib/admin/form-errors';
@@ -90,4 +90,20 @@ export async function updateOrder(number: string, form: FormData): Promise<void>
     await flash(errorMessages(error)[0] ?? 'The order could not be updated.', 'error');
   }
   redirect(`/admin/orders/${number}`);
+}
+
+/** BD Courier delivery history for the order's phone (glowy FraudCheckController). */
+export async function runFraudCheck(
+  number: string,
+  fresh: boolean,
+): Promise<{ ok: true; check: FraudCheckDto } | { ok: false; error: string }> {
+  try {
+    const check = await adminApi<FraudCheckDto>(
+      `/orders/${number}/fraud-check${fresh ? '?fresh=true' : ''}`,
+      { method: 'POST' },
+    );
+    return { ok: true, check };
+  } catch (error) {
+    return { ok: false, error: errorMessages(error)[0] ?? 'The fraud check failed.' };
+  }
 }

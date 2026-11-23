@@ -2,6 +2,7 @@
 
 import {
   type AdminOrderRow,
+  type FraudCheckDto,
   ORDER_CHANNEL_INFO,
   ORDER_STATUSES,
   type OrderStatusName,
@@ -12,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, useTransition } from 'react';
 import { bulkOrderStatus, saveOrderNote, setOrderStatus } from '@/app/admin/(panel)/orders/actions';
 import { money, timeAgo } from '@/lib/admin/format';
+import { FraudCheck } from './fraud-check';
 import { AdminIcon } from './icon';
 import { STATUS_BADGES } from './ui';
 
@@ -27,7 +29,17 @@ const stamp = (iso: string) => {
 const PAYMENT: Record<string, string> = { cod: 'Cash on delivery', bkash: 'bKash' };
 
 /** glowy admin/orders/index table: bulk status, status popup, inline notes. */
-export function OrdersTable({ orders, manage }: { orders: AdminOrderRow[]; manage: boolean }) {
+export function OrdersTable({
+  orders,
+  manage,
+  fraudChecks,
+  fraudEnabled,
+}: {
+  orders: AdminOrderRow[];
+  manage: boolean;
+  fraudChecks: Record<string, FraudCheckDto>;
+  fraudEnabled: boolean;
+}) {
   const router = useRouter();
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [bulkStatus, setBulkStatus] = useState<OrderStatusName | ''>('');
@@ -113,6 +125,7 @@ export function OrdersTable({ orders, manage }: { orders: AdminOrderRow[]; manag
               <th>Customer info</th>
               <th>Product price &amp; name</th>
               <th>Status</th>
+              <th>Fraud check</th>
               <th>Order &amp; note</th>
             </tr>
           </thead>
@@ -263,6 +276,15 @@ export function OrdersTable({ orders, manage }: { orders: AdminOrderRow[]; manag
                       </ul>
                     </td>
 
+                    <td className="min-w-40 py-4">
+                      <FraudCheck
+                        number={o.number}
+                        check={fraudChecks[phone] ?? null}
+                        enabled={fraudEnabled}
+                        manage={manage}
+                      />
+                    </td>
+
                     <td className="min-w-60 py-4">
                       <p className="font-mono text-xs text-slate-300">{stamp(o.createdAt)}</p>
                       <Link
@@ -280,7 +302,7 @@ export function OrdersTable({ orders, manage }: { orders: AdminOrderRow[]; manag
               })
             ) : (
               <tr>
-                <td colSpan={manage ? 5 : 4} className="py-14 text-center text-slate-500">
+                <td colSpan={manage ? 6 : 5} className="py-14 text-center text-slate-500">
                   No orders match these filters.
                 </td>
               </tr>

@@ -396,3 +396,22 @@ model OrderItem {
   @@index([productId])
   @@map("order_items")
 }
+
+/// BD Courier delivery history per phone ("fraud check"), reused for BDCOURIER_CACHE_HOURS.
+model FraudCheck {
+  id               String   @id @default(uuid(7)) @db.Uuid
+  /// 01XXXXXXXXX
+  phone            String   @unique @db.VarChar(20)
+  totalParcels     Int      @default(0) @map("total_parcels")
+  successParcels   Int      @default(0) @map("success_parcels")
+  cancelledParcels Int      @default(0) @map("cancelled_parcels")
+  /// 0-100; null when the number has no parcels yet
+  successRatio     Int?     @map("success_ratio") @db.SmallInt
+  /// [{ name, total, success, cancelled }] per courier
+  couriers         Json?
+  checkedAt        DateTime @map("checked_at") @db.Timestamptz(3)
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("fraud_checks")
+}

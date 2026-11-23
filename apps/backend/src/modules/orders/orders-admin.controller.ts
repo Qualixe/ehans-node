@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Param,
   Patch,
+  Post,
   Put,
   Query,
 } from '@nestjs/common';
@@ -16,10 +17,16 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import type { AdminBulkStatusResult, AdminOrderDetail, AdminOrdersPage } from '@ehans/shared';
+import type {
+  AdminBulkStatusResult,
+  AdminOrderDetail,
+  AdminOrdersPage,
+  FraudCheckDto,
+} from '@ehans/shared';
 import { AdminOnly } from '../auth/admin.guard.js';
 import {
   BulkOrderStatusDto,
+  FraudCheckQueryDto,
   ListOrdersQueryDto,
   OrderNoteDto,
   OrderNumberDto,
@@ -73,6 +80,19 @@ export class OrdersAdminController {
   @ApiOperation({ summary: 'Quick status change (cancel/return puts the items back in stock)' })
   async status(@Param() { number }: OrderNumberDto, @Body() body: OrderStatusDto): Promise<void> {
     await this.orders.setStatus(number, body.status);
+  }
+
+  @Post(':number/fraud-check')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({
+    summary: "BD Courier delivery history for the order's phone (cached; ?fresh=true re-checks)",
+  })
+  @ApiOkResponse({ description: 'FraudCheckDto' })
+  fraudCheck(
+    @Param() { number }: OrderNumberDto,
+    @Query() { fresh }: FraudCheckQueryDto,
+  ): Promise<FraudCheckDto> {
+    return this.orders.fraudCheck(number, fresh ?? false);
   }
 
   @Patch(':number/note')

@@ -80,6 +80,9 @@ nano .env                     # set domains, CORS_ORIGINS, NEXT_PUBLIC_* etc.
 | `COOKIE_DOMAIN`         | no       | empty or `.example.com`                       | For future auth cookies                                                                  |
 | `SWAGGER_ENABLED`       | no       | `false`                                       | Only enable behind access control                                                        |
 | `LOG_LEVEL`             | no       | `log`                                         | `fatal`, `error`, `warn`, `log`, `debug`, `verbose`                                      |
+| `BDCOURIER_API_KEY`     | no       | from your bdcourier.com dashboard             | **Secret.** Enables the orders fraud check (courier delivery history per phone)          |
+| `BDCOURIER_ENDPOINT`    | no       | `https://bdcourier.com/api/courier-check`     | BD Courier API URL                                                                       |
+| `BDCOURIER_CACHE_HOURS` | no       | `24`                                          | Hours a phone's result is reused before calling the API again                            |
 | `NEXT_PUBLIC_API_URL`   | **yes**  | `https://api.example.com/api/v1`              | **Public**, baked in at build time. Rebuild the frontend after changing it               |
 | `NEXT_PUBLIC_SITE_URL`  | **yes**  | `https://example.com`                         | **Public**, baked in at build time                                                       |
 | `BACKEND_HOST_PORT`     | no       | `4000`                                        | Bound to 127.0.0.1. Must match the Nginx upstream                                        |

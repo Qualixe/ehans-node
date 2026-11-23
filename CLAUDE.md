@@ -37,7 +37,8 @@ eCommerce **modular monolith** in a pnpm workspace:
     menu entries open `/admin/modules/<slug>` ("coming soon").
   - Slice 2: Orders done (list with status/date/search/channel filters, status popup, bulk status, inline
     notes, order page with fulfilment form, printable invoice at `/admin/invoice/<number>`; cancel/return
-    restocks via `CatalogCheckoutService.release`). Next: POS, customers. Then couriers, bKash, accounting, etc.
+    restocks via `CatalogCheckoutService.release`; BD Courier fraud check in `modules/fraud`, results cached
+    per phone in `fraud_checks`, key in `BDCOURIER_API_KEY`). Next: POS, customers. Then couriers, bKash, accounting, etc.
 - Contact/newsletter forms validate and then say messaging is "launching soon". **Never fake a success screen** for an action that wasn't performed.
 
 ## Hard rules
