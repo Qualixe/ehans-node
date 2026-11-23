@@ -4,52 +4,6 @@
  * Loaded after styles/store/index.css.
  */
 
-/* ---------- top route progress bar ---------- */
-.route-progress {
-  position: fixed;
-  inset: 0 0 auto 0;
-  height: 3px;
-  z-index: 10000;
-  pointer-events: none;
-}
-
-.route-progress-bar {
-  height: 100%;
-  width: 0;
-  background: var(--brand-color, #ff5554);
-  box-shadow: 0 0 8px rgba(255, 85, 84, 0.6);
-  opacity: 0;
-  transition:
-    width 0.35s ease,
-    opacity 0.3s ease;
-}
-
-.route-progress.is-loading .route-progress-bar {
-  opacity: 1;
-  /* creeps towards 90% while the next page loads */
-  animation: route-progress-creep 8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-}
-
-.route-progress.is-done .route-progress-bar {
-  width: 100%;
-  opacity: 0;
-  transition:
-    width 0.2s ease,
-    opacity 0.35s ease 0.2s;
-}
-
-@keyframes route-progress-creep {
-  0% {
-    width: 0;
-  }
-  10% {
-    width: 35%;
-  }
-  100% {
-    width: 90%;
-  }
-}
-
 /* ---------- skeleton shimmer ---------- */
 .skeleton {
   position: relative;
@@ -194,13 +148,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton::after,
-  .route-progress.is-loading .route-progress-bar {
+  .skeleton::after {
     animation: none;
-  }
-
-  .route-progress.is-loading .route-progress-bar {
-    width: 60%;
   }
 }
 

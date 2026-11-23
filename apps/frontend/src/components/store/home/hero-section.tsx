@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { HOME_HERO_SLIDES } from '@/lib/home-media';
 import { Slider, type SliderOptions } from '../slider';
 
@@ -40,7 +41,7 @@ export function HeroSection() {
         >
           {SLIDES.map((s, i) => (
             <div key={s.desktop} className="swiper-slide">
-              <a href={s.href} className="slider-hero-item">
+              <Link href={s.href} className="slider-hero-item">
                 <img
                   src={s.desktop}
                   alt={s.alt}
@@ -57,7 +58,7 @@ export function HeroSection() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </Slider>
