@@ -4,6 +4,9 @@ import type { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 
 /** A priced line plus what the order needs to reserve stock and apply delivery rules. */
+/** What reserving or releasing stock needs from an order line. */
+export type StockLine = Pick<CheckoutLine, 'productId' | 'variantId' | 'name' | 'quantity'>;
+
 export interface ResolvedLine extends CheckoutLine {
   /** The bundle tier applied to this line gives free delivery. */
   freeDelivery: boolean;
@@ -27,6 +30,7 @@ export class CatalogCheckoutService {
         name: true,
         price: true,
         stock: true,
+        bundlesEnabled: true,
         images: { orderBy: { position: 'asc' }, take: 1, select: { path: true } },
         options: { select: { name: true }, orderBy: { position: 'asc' } },
         variants: {
@@ -86,7 +90,7 @@ export class CatalogCheckoutService {
 
       const unitPrice = variant?.price ?? product.price;
       // Bundle & Save: the biggest tier not above the quantity ("Buy 3, save 15%")
-      const tier = product.bundles
+      const tier = (product.bundlesEnabled ? product.bundles : [])
         .filter((b) => b.quantity <= item.quantity)
         .sort((a, b) => b.quantity - a.quantity)[0];
       const lineSubtotal = unitPrice * item.quantity;
@@ -124,7 +128,7 @@ export class CatalogCheckoutService {
    * stock-keeping unit; the product total and sold count move with it (glowy reserve()).
    * Throws when another order took the last units in the meantime.
    */
-  async reserve(tx: Prisma.TransactionClient, lines: ResolvedLine[]): Promise<void> {
+  async reserve(tx: Prisma.TransactionClient, lines: StockLine[]): Promise<void> {
     for (const line of lines) {
       if (line.variantId) {
         const v = await tx.productVariant.updateMany({
@@ -138,6 +142,26 @@ export class CatalogCheckoutService {
         data: { stock: { decrement: line.quantity }, soldCount: { increment: line.quantity } },
       });
       if (p.count === 0) throw outOfStock(line.name);
+    }
+  }
+
+  /**
+   * Puts a cancelled or returned order's units back in stock (glowy OrderService::transition).
+   * Lines whose product was deleted are skipped; the sold count never goes below zero.
+   */
+  async release(tx: Prisma.TransactionClient, lines: StockLine[]): Promise<void> {
+    for (const line of lines) {
+      if (line.variantId) {
+        await tx.productVariant.updateMany({
+          where: { id: line.variantId, productId: line.productId },
+          data: { stock: { increment: line.quantity } },
+        });
+      }
+      await tx.$executeRaw`
+        UPDATE products
+        SET stock = stock + ${line.quantity},
+            sold_count = GREATEST(sold_count - ${line.quantity}, 0)
+        WHERE id = ${line.productId}::uuid`;
     }
   }
 }

@@ -35,7 +35,9 @@ eCommerce **modular monolith** in a pnpm workspace:
     collapse), dashboard (on glowy's orders schema; zeros until orders exist), Products (list + add/edit
     with media, options/variants, collections), Categories, Inventory, Reviews, admin search. Unported
     menu entries open `/admin/modules/<slug>` ("coming soon").
-  - Slice 2: admin orders, POS, customers (storefront checkout is done). Then couriers, bKash, accounting, etc.
+  - Slice 2: Orders done (list with status/date/search/channel filters, status popup, bulk status, inline
+    notes, order page with fulfilment form, printable invoice at `/admin/invoice/<number>`; cancel/return
+    restocks via `CatalogCheckoutService.release`). Next: POS, customers. Then couriers, bKash, accounting, etc.
 - Contact/newsletter forms validate and then say messaging is "launching soon". **Never fake a success screen** for an action that wasn't performed.
 
 ## Hard rules

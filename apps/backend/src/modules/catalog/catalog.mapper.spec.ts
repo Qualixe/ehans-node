@@ -31,6 +31,8 @@ function cardRecord(overrides: Partial<ProductCardRecord> = {}): ProductCardReco
     isFeatured: true,
     buyWithTitle: null,
     upsellTitle: null,
+    bundlesEnabled: true,
+    variantPickerEnabled: true,
     isActive: true,
     metaTitle: null,
     metaDescription: null,
@@ -141,5 +143,109 @@ describe('catalog mapper', () => {
     expect(detail.buyWith.map((p) => p.slug)).toEqual(['gloves']);
     expect(detail.upsells.map((p) => p.slug)).toEqual(['gloves']);
     expect(detail.breadcrumbs.map((c) => c.slug)).toEqual(['home-kitchen']);
+  });
+
+  it('hides Bundle & Save when the admin switched it off', () => {
+    const base = cardRecord();
+    const related = cardRecord({ id: 'p2', slug: 'gloves', name: 'Gloves' });
+    const detail = toProductDetail(
+      {
+        ...base,
+        bundlesEnabled: false,
+        specifications: [{ label: 'Brand', value: 'Mintiml' }, { bogus: true }],
+        images: [{ id: 'i1', path: '/1.jpg', alt: null }],
+        category: { ...category, parent: null },
+        options: [],
+        variants: [],
+        bundles: [
+          {
+            id: 'b',
+            productId: 'p1',
+            quantity: 2,
+            title: 'Buy 2',
+            discountPercent: 10,
+            badge: null,
+            freeDelivery: false,
+            isDefault: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          },
+        ],
+        relations: [
+          {
+            id: 'r1',
+            productId: 'p1',
+            relatedProductId: 'p2',
+            type: 'BUY_WITH',
+            position: 0,
+            createdAt: new Date(),
+            relatedProduct: related,
+          },
+          {
+            id: 'r2',
+            productId: 'p1',
+            relatedProductId: 'p2',
+            type: 'UPSELL',
+            position: 0,
+            createdAt: new Date(),
+            relatedProduct: related,
+          },
+        ],
+      } as unknown as ProductDetailRecord,
+      [],
+    );
+    expect(detail.bundles).toEqual([]);
+  });
+});
+
+describe('variant dropdown switched off', () => {
+  const variant = (id: string, stock: number) => ({
+    id,
+    title: id,
+    price: 100,
+    compareAtPrice: null,
+    stock,
+    image: null,
+  });
+  const detailWith = (variantPickerEnabled: boolean) => {
+    const related = {
+      ...cardRecord({ id: 'p2', slug: 'gloves', name: 'Gloves', variantPickerEnabled }),
+      options: [{ id: 'o1' }],
+      variants: [variant('sold-out', 0), variant('small', 5), variant('large', 5)],
+    };
+    return toProductDetail(
+      {
+        ...cardRecord({ variantPickerEnabled }),
+        images: [],
+        category: { ...category, parent: null },
+        options: [],
+        variants: [],
+        bundles: [],
+        relations: [
+          {
+            id: 'r1',
+            productId: 'p1',
+            relatedProductId: 'p2',
+            type: 'BUY_WITH',
+            position: 0,
+            createdAt: new Date(),
+            relatedProduct: related,
+          },
+        ],
+      } as unknown as ProductDetailRecord,
+      [],
+    );
+  };
+
+  it('offers every variant of a cross-sell product when the dropdown is on', () => {
+    const detail = detailWith(true);
+    expect(detail.variantPickerEnabled).toBe(true);
+    expect(detail.buyWith[0]!.variants.map((v) => v.id)).toEqual(['sold-out', 'small', 'large']);
+  });
+
+  it('offers only the first in-stock variant when the dropdown is off', () => {
+    const detail = detailWith(false);
+    expect(detail.variantPickerEnabled).toBe(false);
+    expect(detail.buyWith[0]!.variants.map((v) => v.id)).toEqual(['small']);
   });
 });

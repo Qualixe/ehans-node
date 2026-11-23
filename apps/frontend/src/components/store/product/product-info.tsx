@@ -5,6 +5,7 @@ import { formatPrice } from '@/lib/format';
 import { STORE, whatsappOrderUrl } from '@/lib/store-config';
 import { addButtonProps, useAddToCart } from '../providers/use-add-to-cart';
 import type { CrossSellCard } from '@ehans/shared';
+import { LiveViewers } from './live-viewers';
 import { useProduct } from './product-context';
 
 /** Inline styles the live cash-on-delivery app puts on its "ORDER NOW" button. */
@@ -126,7 +127,6 @@ export function ProductInfo() {
     unit.inStock ? 'add to cart' : 'sold out',
     'btn product-add-to-cart-btn',
   );
-  const stockMax = Math.max(unit.stock + product.soldCount, unit.stock, 1);
   const rating = product.ratingAverage ?? 0;
 
   // cross-sell rows show the chosen variant's price, image and stock
@@ -180,33 +180,7 @@ export function ProductInfo() {
           ))}
         </div>
       </div>
-      <div className="product-happy-customer">
-        <div className="product-happy-customer-img">
-          <img src="/assets/videos/review-2.jpg" alt="customer" />{' '}
-          <img src="/assets/videos/review-3.jpg" alt="customer" />{' '}
-          <img src="/assets/videos/review-4.jpg" alt="customer" />
-        </div>
-        <p className="product-happy-customer-text">
-          <strong>Tanvir</strong>{' '}
-          <span className="icon">
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path
-                d="M10 1.5l2.2 1.6 2.7-.1.8 2.6 2.2 1.6-.9 2.6.9 2.6-2.2 1.6-.8 2.6-2.7-.1L10 18.5l-2.2-1.6-2.7.1-.8-2.6-2.2-1.6.9-2.6-.9-2.6 2.2-1.6.8-2.6 2.7.1L10 1.5Z"
-                fill="currentColor"
-              ></path>
-              <path
-                d="M6.8 10.2l2.1 2.1 4.3-4.4"
-                stroke="#fff"
-                strokeWidth="1.6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              ></path>
-            </svg>
-          </span>{' '}
-          and {80 + (product.soldCount % 50)} people watching
-        </p>
-      </div>
+      <LiveViewers seed={product.soldCount + product.name.length} />
       {product.ratingCount ? (
         <a href="#product-review" className="product-rattings">
           <span
@@ -230,31 +204,7 @@ export function ProductInfo() {
           </p>
         ) : null}
       </div>
-      <div className="product-stock">
-        <p className="product-stock-text">
-          <span className="product-stock-dot"></span>{' '}
-          {unit.inStock ? (
-            <>
-              Currently <span className="product-stock-count">{unit.stock}</span> items are in
-              stock!
-            </>
-          ) : (
-            <>Currently out of stock</>
-          )}
-        </p>
-        <div
-          className="product-stock-bar"
-          style={
-            {
-              '--stock': `${Math.min(100, (unit.stock / stockMax) * 100)}%`,
-            } as React.CSSProperties
-          }
-        >
-          <span></span>
-        </div>
-      </div>
-
-      {variant ? (
+      {variant && product.variantPickerEnabled ? (
         // the product's options (e.g. Quantity: 1 Pcs / 3 Pcs), as one compact picker
         <div className="product-variant-main">
           <span className="product-variant-main-label">
@@ -289,7 +239,8 @@ export function ProductInfo() {
           <h2 className="bundle-wrapper-title">Bundle & Save</h2>
           {product.bundles.map((b) => {
             const full = unit.price * b.quantity;
-            const total = Math.round(full * (1 - b.discountPercent / 100));
+            // same rule as checkout: the discount is rounded to whole taka, then taken off
+            const total = full - Math.round((full * b.discountPercent) / 100);
             const id = `${b.quantity}_bundle`;
             return (
               // the whole option is clickable: the theme pads the top of options with a badge

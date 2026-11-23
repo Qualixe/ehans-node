@@ -74,7 +74,7 @@ export function StatCard({
   );
 }
 
-const STATUS_BADGES: Record<OrderStatusName, string> = {
+export const STATUS_BADGES: Record<OrderStatusName, string> = {
   pending: 'bg-amber-500/10 text-amber-400 ring-amber-500/30',
   confirmed: 'bg-sky-500/10 text-sky-400 ring-sky-500/30',
   processing: 'bg-indigo-500/10 text-indigo-400 ring-indigo-500/30',

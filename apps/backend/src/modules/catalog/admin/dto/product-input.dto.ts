@@ -145,6 +145,14 @@ export class ProductInputDto implements AdminProductInput {
   @IsBoolean()
   isFeatured: boolean;
 
+  @ApiProperty({ description: 'Show the Bundle & Save tiers on the product page' })
+  @IsBoolean()
+  bundlesEnabled: boolean;
+
+  @ApiProperty({ description: 'Show the variant dropdown on the product page' })
+  @IsBoolean()
+  variantPickerEnabled: boolean;
+
   @IsOptional()
   @IsString()
   @MaxLength(255)

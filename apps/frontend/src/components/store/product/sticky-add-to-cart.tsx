@@ -79,7 +79,7 @@ export function StickyAddToCart() {
         <div className="sticky-add-to-cart-purchase">
           <div className="sticky-prduct-price">
             <p className="latest-price">
-              {formatPrice(Math.round(full * (1 - offer.discount / 100)))}
+              {formatPrice(full - Math.round((full * offer.discount) / 100))}
             </p>
             {offer.discount || compare ? (
               <p className="previous-price">{formatPrice(offer.discount ? full : compare)}</p>

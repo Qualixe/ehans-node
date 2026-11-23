@@ -61,6 +61,7 @@ export class ProductFormService {
         options: { orderBy: { position: 'asc' } },
         variants: { orderBy: { position: 'asc' } },
         collections: { select: { categoryId: true } },
+        bundles: { orderBy: { quantity: 'asc' } },
         relations: {
           orderBy: { position: 'asc' },
           select: {
@@ -103,6 +104,13 @@ export class ProductFormService {
       description: p.description,
       isActive: p.isActive,
       isFeatured: p.isFeatured,
+      bundlesEnabled: p.bundlesEnabled,
+      variantPickerEnabled: p.variantPickerEnabled,
+      bundleTiers: p.bundles.map((b) => ({
+        quantity: b.quantity,
+        discountPercent: b.discountPercent,
+        freeDelivery: b.freeDelivery,
+      })),
       metaTitle: p.metaTitle,
       metaDescription: p.metaDescription,
       buyWith: crossSells('BUY_WITH'),
@@ -232,6 +240,8 @@ export class ProductFormService {
       description: sanitizeHtml(input.description),
       isActive: input.isActive,
       isFeatured: input.isFeatured,
+      bundlesEnabled: input.bundlesEnabled,
+      variantPickerEnabled: input.variantPickerEnabled,
       metaTitle: blankToNull(input.metaTitle),
       metaDescription: blankToNull(input.metaDescription),
       buyWithTitle: blankToNull(input.buyWithTitle),

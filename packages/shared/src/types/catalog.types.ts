@@ -98,6 +98,8 @@ export interface ProductDetail extends ProductCard {
   soldCount: number;
   options: ProductOptionDto[];
   variants: ProductVariantDto[];
+  /** false: hide the variant dropdown and sell the default (first in-stock) variant. */
+  variantPickerEnabled: boolean;
   bundles: ProductBundleDto[];
   buyWith: CrossSellCard[];
   upsells: CrossSellCard[];

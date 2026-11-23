@@ -76,6 +76,10 @@ model Product {
   /// Product page cross-sell headings (null = the template defaults).
   buyWithTitle     String?  @map("buy_with_title") @db.VarChar(120)
   upsellTitle      String?  @map("upsell_title") @db.VarChar(120)
+  /// Show the Bundle & Save tiers (and apply their discounts) for this product.
+  bundlesEnabled   Boolean  @default(true) @map("bundles_enabled")
+  /// Show the variant dropdown; when off the product sells its default variant only.
+  variantPickerEnabled Boolean @default(true) @map("variant_picker_enabled")
   isActive         Boolean  @default(true) @map("is_active")
   metaTitle        String?  @map("meta_title")
   metaDescription  String?  @map("meta_description") @db.VarChar(320)

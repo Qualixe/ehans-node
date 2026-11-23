@@ -315,6 +315,10 @@ export interface AdminProductInput {
   description: string | null;
   isActive: boolean;
   isFeatured: boolean;
+  /** Show the product page "Bundle & Save" tiers (and apply their discounts). */
+  bundlesEnabled: boolean;
+  /** Show the variant dropdown (off: the default variant is sold, no choice). */
+  variantPickerEnabled: boolean;
   metaTitle: string | null;
   metaDescription: string | null;
   /** Existing image ids in display order (the first is the main image). */
@@ -352,6 +356,8 @@ export interface AdminProductDetail extends Omit<
   stock: number;
   images: { id: string; path: string }[];
   variants: (AdminVariantInput & { id: string })[];
+  /** The product's Bundle & Save tiers (shown in the admin; edited later). */
+  bundleTiers: { quantity: number; discountPercent: number; freeDelivery: boolean }[];
 }
 
 export interface AdminProductSuggestions {

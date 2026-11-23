@@ -110,6 +110,8 @@ export function QuickView() {
   const variants = detail?.variants ?? [];
   const options = detail?.options ?? [];
   const hasOptions = options.length > 0 && variants.length > 1;
+  // the admin can hide the dropdown: the preselected (first in-stock) variant is then sold
+  const showPicker = hasOptions && detail?.variantPickerEnabled !== false;
   const findVariant = (values: string[]) =>
     variants.find((v) => v.options.every((value, i) => value === values[i]));
   const selected = hasOptions ? findVariant(chosen) : variants[0];
@@ -256,7 +258,7 @@ export function QuickView() {
               {available ? 'In stock' : 'Sold out'}
             </p>
           </div>
-          <div className="quick-view-variant" hidden={!hasOptions}>
+          <div className="quick-view-variant" hidden={!showPicker}>
             <p className="quick-view-variant-label" hidden>
               <span className="name"></span>
               <span className="value" hidden>

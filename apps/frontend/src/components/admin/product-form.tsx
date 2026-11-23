@@ -81,6 +81,8 @@ export function ProductForm({
     description: product?.description ?? '',
     status: product ? (product.isActive ? 'active' : 'draft') : 'active',
     isFeatured: product?.isFeatured ?? false,
+    bundlesEnabled: product?.bundlesEnabled ?? true,
+    variantPickerEnabled: product?.variantPickerEnabled ?? true,
     metaTitle: product?.metaTitle ?? '',
     metaDescription: product?.metaDescription ?? '',
     buyWithTitle: product?.buyWithTitle ?? '',
@@ -131,6 +133,8 @@ export function ProductForm({
       description: f.description || null,
       isActive: f.status === 'active',
       isFeatured: f.isFeatured,
+      bundlesEnabled: f.bundlesEnabled,
+      variantPickerEnabled: f.variantPickerEnabled,
       metaTitle: f.metaTitle || null,
       metaDescription: f.metaDescription || null,
       imageOrder: media.existing.map((i) => i.id),
@@ -582,6 +586,53 @@ export function ProductForm({
                 />
                 Feature on the home page
               </label>
+            </section>
+            <section className="admin-card p-5">
+              <h2 className="mb-3 text-sm font-semibold text-fg">Variant dropdown</h2>
+              <label className="flex items-center gap-3 text-sm text-slate-200">
+                <input
+                  type="checkbox"
+                  className="size-4 accent-blue-600"
+                  checked={f.variantPickerEnabled}
+                  onChange={(e) => set('variantPickerEnabled', e.target.checked)}
+                />
+                Show the variant dropdown on the product page
+              </label>
+              <p className="mt-2 text-xs text-slate-500">
+                {f.variantPickerEnabled
+                  ? 'Shoppers choose a variant (e.g. Quantity: 1 Pcs / 2 Pcs).'
+                  : 'Hidden: shoppers get the first in-stock variant, with no choice.'}
+              </p>
+            </section>
+            <section className="admin-card p-5">
+              <h2 className="mb-3 text-sm font-semibold text-fg">Bundle &amp; Save</h2>
+              <label className="flex items-center gap-3 text-sm text-slate-200">
+                <input
+                  type="checkbox"
+                  className="size-4 accent-blue-600"
+                  checked={f.bundlesEnabled}
+                  onChange={(e) => set('bundlesEnabled', e.target.checked)}
+                />
+                Show Bundle &amp; Save on the product page
+              </label>
+              <p className="mt-2 text-xs text-slate-500">
+                {f.bundlesEnabled
+                  ? 'Shoppers pick a bundle and get its discount at checkout.'
+                  : 'Hidden: the product sells at its normal price, one at a time.'}
+              </p>
+              {product?.bundleTiers.length ? (
+                <ul className="mt-3 space-y-1 text-xs text-slate-400">
+                  {product.bundleTiers.map((t) => (
+                    <li key={t.quantity}>
+                      Buy {t.quantity}
+                      {t.discountPercent ? ` · save ${t.discountPercent}%` : ''}
+                      {t.freeDelivery ? ' · free delivery' : ''}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-3 text-xs text-slate-400">This product has no bundle tiers yet.</p>
+              )}
             </section>
             <section className="admin-card space-y-4 p-5">
               <h2 className="text-sm font-semibold text-fg">Product organization</h2>

@@ -84,7 +84,10 @@ export default async function SearchPage({ searchParams }: PageProps<'/admin/sea
               orders.map((o) => (
                 <li key={o.id} className="flex items-center gap-3 px-5 py-3">
                   <div className="min-w-0 flex-1">
-                    <Link href="/admin/modules/orders" className="admin-link font-mono text-sm">
+                    <Link
+                      href={`/admin/orders/${o.number}`}
+                      className="admin-link font-mono text-sm"
+                    >
                       {o.number}
                     </Link>
                     <p className="truncate text-xs text-slate-500">

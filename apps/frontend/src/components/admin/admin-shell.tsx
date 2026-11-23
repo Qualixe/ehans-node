@@ -389,7 +389,7 @@ function Topbar({
             {notifications.map((n) => (
               <li key={n.id}>
                 <Link
-                  href="/admin/modules/orders"
+                  href={`/admin/orders/${n.number}`}
                   className="flex items-start gap-3 px-4 py-3 hover:bg-ink-800"
                 >
                   <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-amber-500/10 text-amber-400">

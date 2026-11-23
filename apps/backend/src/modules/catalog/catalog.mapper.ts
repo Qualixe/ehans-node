@@ -122,7 +122,8 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
     category: p.category,
     options: p.options.slice(0, 1).map((o) => ({ id: o.id })),
   });
-  const bundles: ProductBundleDto[] = p.bundles.map((b) => ({
+  // the admin can switch Bundle & Save off per product: then the page shows no tiers
+  const bundles: ProductBundleDto[] = (p.bundlesEnabled ? p.bundles : []).map((b) => ({
     quantity: b.quantity,
     title: b.title,
     discountPercent: b.discountPercent,
@@ -135,11 +136,17 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
       .filter((r) => r.type === type)
       .map(({ relatedProduct: rp }) => {
         const card = toProductCard(rp);
+        // dropdown switched off: only the default (first in-stock) variant is offered
+        const offered = rp.variantPickerEnabled
+          ? rp.variants
+          : [rp.variants.find((v) => v.stock > 0) ?? rp.variants[0]].filter(
+              (v): v is (typeof rp.variants)[number] => Boolean(v),
+            );
         return {
           ...card,
           // variants only matter when the shopper has to choose one
           variants: card.hasVariants
-            ? rp.variants.map((v) => ({
+            ? offered.map((v) => ({
                 id: v.id,
                 title: v.title,
                 price: v.price,
@@ -180,6 +187,7 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
       stock: v.stock,
       imageUrl: v.image?.path ?? null,
     })),
+    variantPickerEnabled: p.variantPickerEnabled,
     bundles,
     buyWith: relationCards('BUY_WITH'),
     upsells: relationCards('UPSELL'),

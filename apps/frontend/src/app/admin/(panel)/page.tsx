@@ -167,7 +167,7 @@ export default async function DashboardPage({ searchParams }: PageProps<'/admin'
               <h2 className="text-lg font-bold text-fg">Recent Orders</h2>
               <p className="text-sm text-slate-400">Latest activity across all channels</p>
             </div>
-            <Link href="/admin/modules/orders" className="admin-link text-sm">
+            <Link href="/admin/orders" className="admin-link text-sm">
               View all
             </Link>
           </div>
@@ -187,7 +187,10 @@ export default async function DashboardPage({ searchParams }: PageProps<'/admin'
                   m.recentOrders.map((o) => (
                     <tr key={o.id}>
                       <td>
-                        <Link href="/admin/modules/orders" className="admin-link font-mono text-xs">
+                        <Link
+                          href={`/admin/orders/${o.number}`}
+                          className="admin-link font-mono text-xs"
+                        >
                           {o.number}
                         </Link>
                         <p className="text-xs text-slate-500">{timeAgo(o.createdAt)}</p>

@@ -31,7 +31,6 @@ export interface MenuItem {
 
 /** Modules on the menu that are not ported yet (slug → name). */
 export const COMING_SOON: Record<string, string> = {
-  orders: 'Orders',
   pos: 'POS',
   accounts: 'Accounts',
   customers: 'Customers',
@@ -75,17 +74,16 @@ export function buildMenu(counts: AdminNavigation['counts']): MenuItem[] {
       can: 'orders',
       icon: 'cart',
       color: 'text-emerald-400',
-      active: [soon('orders')],
+      active: ['/admin/orders', '/admin/invoice'],
       badge: counts.pendingOrders ? String(counts.pendingOrders) : null,
       badgeClass: 'bg-blue-500/15 text-blue-300 ring-blue-500/30',
-      children: children('orders', [
-        'All orders',
-        'Pending',
-        'Processing',
-        'Shipped',
-        'Delivered',
-        'Cancelled',
-      ]),
+      children: [
+        { label: 'All orders', href: '/admin/orders' },
+        ...['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'].map((label) => ({
+          label,
+          href: `/admin/orders?status=${label.toLowerCase()}`,
+        })),
+      ],
     },
     {
       label: 'POS',
@@ -284,7 +282,7 @@ export function isActive(item: Pick<MenuItem, 'active'>, pathname: string): bool
 export function adminHomePath(user: AdminUser): string {
   if (canView(user, 'analytics')) return '/admin';
   const sections: [AdminSection, string][] = [
-    ['orders', soon('orders')],
+    ['orders', '/admin/orders'],
     ['pos', soon('pos')],
     ['products', '/admin/products'],
     ['inventory', '/admin/inventory'],
