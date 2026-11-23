@@ -64,7 +64,7 @@ ENV NODE_ENV=production \
     APP_VERSION=${APP_VERSION}
 WORKDIR /app
 
-# Files stay root-owned (read-only for the app user); the app never writes to disk.
+# Files stay root-owned (read-only for the app user); the app only writes to /app/uploads.
 COPY --from=prod-deps /repo/node_modules ./node_modules
 COPY --from=prod-deps /repo/packages/shared/node_modules ./packages/shared/node_modules
 COPY --from=prod-deps /repo/apps/backend/node_modules ./apps/backend/node_modules
@@ -72,6 +72,10 @@ COPY --from=build /repo/packages/shared/package.json ./packages/shared/package.j
 COPY --from=build /repo/packages/shared/dist ./packages/shared/dist
 COPY --from=build /repo/apps/backend/package.json ./apps/backend/package.json
 COPY --from=build /repo/apps/backend/dist ./apps/backend/dist
+
+# Admin image uploads: the only writable path (a named volume in docker-compose.yml).
+# Created here so the volume starts out owned by the app user.
+RUN mkdir -p /app/uploads && chown node:node /app/uploads
 
 WORKDIR /app/apps/backend
 USER node

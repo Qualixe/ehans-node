@@ -1,274 +1,315 @@
 'use client';
 
-import { type FormEvent, useEffect, useRef, useState } from 'react';
-import { formatPrice } from '@/lib/format';
-import { STORE } from '@/lib/store-config';
+import { type CheckoutQuote, MAX_QUANTITY_PER_ITEM } from '@ehans/shared';
+import { useRouter } from 'next/navigation';
+import { type FormEvent, useEffect, useRef, useState, useTransition } from 'react';
+import { placeOrder, quoteCheckout } from '@/lib/checkout-actions';
+import { formatTaka } from '@/lib/format';
+import { DistrictPicker } from '../checkout/district-picker';
+import {
+  ORDER_FIELDS,
+  ORDER_RULES,
+  type OrderField,
+  confirmationUrl,
+  normalizePhone,
+} from '../checkout/order-form';
+import { QcIcon } from '../checkout/qc-icons';
 import { useProduct } from './product-context';
 
-const toEnglishDigits = (v: string) => v.replace(/[০-৯]/g, (d) => String('০১২৩৪৫৬৭৮৯'.indexOf(d)));
-const normalizePhone = (v: string) =>
-  toEnglishDigits(v)
-    .replace(/[\s-]/g, '')
-    .replace(/^\+?88/, '');
+type Values = Record<OrderField, string>;
 
-const RULES = {
-  phone: (v: string) => /^01[3-9]\d{8}$/.test(normalizePhone(v)),
-  address: (v: string) => v.trim().length >= 8,
-  name: (v: string) => v.trim().length >= 2,
+const MESSAGES: Record<OrderField, string> = {
+  name: 'Please enter your name.',
+  phone: 'Please enter a valid Bangladeshi mobile number (01XXXXXXXXX).',
+  district: 'Please choose your district.',
+  address: 'Please enter your full address (house, road, area, thana).',
 };
-type Field = keyof typeof RULES;
+
+/** glowy remembers the shopper's details for the next order (qc.customer). */
+const STORAGE_KEY = 'ehans-qc-customer';
+const EMPTY: Values = { name: '', phone: '', district: '', address: '' };
+
+function remembered(): Values {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY) ?? '{}') as Partial<Values>;
+    return {
+      ...EMPTY,
+      ...Object.fromEntries(
+        ORDER_FIELDS.filter((f) => typeof saved[f] === 'string').map((f) => [f, saved[f]]),
+      ),
+    };
+  } catch {
+    return EMPTY;
+  }
+}
 
 /**
- * Template "buy it now" quick-order popup (cash on delivery).
- * Order placement is wired when the checkout/orders module is ported from glowy;
- * until then submitting validates the form and asks the customer to call instead of
- * pretending the order was placed.
+ * "Buy it now": glowy's one-step cash-on-delivery popup (partials/quick-checkout), with the
+ * Ehans colours. Totals come from the API; the order is placed there too.
  */
 export function BuyNowPopup() {
-  const { product, bundleQty, offerFor, buyNowOpen, setBuyNowOpen } = useProduct();
-  const [quantity, setQuantity] = useState(bundleQty);
-  const [shipping, setShipping] = useState<number>(STORE.shippingOptions[0].value);
-  const [values, setValues] = useState<Record<Field | 'note', string>>({
-    phone: '',
-    address: '',
-    name: '',
-    note: '',
-  });
-  const [invalid, setInvalid] = useState<Set<Field>>(new Set());
-  const [notice, setNotice] = useState('');
-  const [wasOpen, setWasOpen] = useState(false);
-  const phoneRef = useRef<HTMLInputElement>(null);
-  const refs = {
-    phone: phoneRef,
-    address: useRef<HTMLInputElement>(null),
-    name: useRef<HTMLInputElement>(null),
-  };
+  const { product, variant, unit, bundleQty, buyNowOpen, setBuyNowOpen } = useProduct();
+  const router = useRouter();
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [values, setValues] = useState<Values>(EMPTY);
+  const [errors, setErrors] = useState<Partial<Record<OrderField, string>>>({});
+  const [alert, setAlert] = useState<string | null>(null);
+  const [quote, setQuote] = useState<CheckoutQuote | null>(null);
+  const [placing, startPlacing] = useTransition();
+  const [shown, setShown] = useState(false);
+  const quantity = Math.min(bundleQty, MAX_QUANTITY_PER_ITEM);
 
-  // opening starts from the selected bundle quantity
-  if (buyNowOpen !== wasOpen) {
-    setWasOpen(buyNowOpen);
-    if (buyNowOpen) {
-      setQuantity(bundleQty);
-      setNotice('');
-    }
-  }
-
+  // open/close the native modal dialog with the product page's state
   useEffect(() => {
-    document.body.classList.toggle('active', buyNowOpen);
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (buyNowOpen && !dialog.open) {
+      setValues((v) => (v === EMPTY ? remembered() : v));
+      setAlert(null);
+      dialog.showModal();
+      document.documentElement.classList.add('quick-checkout-open');
+      requestAnimationFrame(() => setShown(true));
+    } else if (!buyNowOpen && dialog.open) {
+      setShown(false);
+      dialog.close();
+    }
+    if (!buyNowOpen) document.documentElement.classList.remove('quick-checkout-open');
+  }, [buyNowOpen]);
+
+  // the exact total from the API whenever the product, variant, quantity or district changes
+  const items = [{ productId: product.id, variantId: variant?.id ?? null, quantity }];
+  const itemsKey = JSON.stringify(items);
+  useEffect(() => {
     if (!buyNowOpen) return;
-    const t = window.setTimeout(() => phoneRef.current?.focus(), 100);
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setBuyNowOpen(false);
-    document.addEventListener('keydown', onKey);
+    let cancelled = false;
+    const t = window.setTimeout(async () => {
+      const result = await quoteCheckout(JSON.parse(itemsKey), values.district || null);
+      if (cancelled) return;
+      if ('quote' in result) {
+        setQuote(result.quote);
+        setAlert(null);
+      } else {
+        setQuote(null);
+        setAlert(result.error);
+      }
+    }, 120);
     return () => {
+      cancelled = true;
       window.clearTimeout(t);
-      document.removeEventListener('keydown', onKey);
     };
-  }, [buyNowOpen, setBuyNowOpen]);
+  }, [buyNowOpen, itemsKey, values.district]);
 
-  const offer = offerFor(quantity);
-  const option =
-    STORE.shippingOptions.find((o) => o.value === shipping) ?? STORE.shippingOptions[0];
-  const subtotal = product.price * quantity;
-  const discount = subtotal * (offer.discount / 100);
-  const shippingCost = offer.freeDelivery ? 0 : option.value;
-  const total = subtotal - discount + shippingCost;
-  const offerText = [
-    offer.discount ? `Bundle offer · Save ${offer.discount}%` : '',
-    offer.freeDelivery ? 'Free Delivery 🚚' : '',
-  ]
-    .filter(Boolean)
-    .join(' + ');
-
-  const validate = (field: Field, value = values[field]) => {
-    const ok = RULES[field](value);
-    setInvalid((s) => {
-      const next = new Set(s);
-      if (ok) next.delete(field);
-      else next.add(field);
-      return next;
-    });
-    return ok;
+  const set = (field: OrderField, v: string) => {
+    setValues((s) => ({ ...s, [field]: v }));
+    if (errors[field] && ORDER_RULES[field](v)) {
+      setErrors((e) => ({ ...e, [field]: undefined }));
+    }
   };
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const bad = (Object.keys(RULES) as Field[]).filter((f) => !validate(f));
-    if (bad.length) {
-      refs[bad[0]!].current?.focus();
+    const found = Object.fromEntries(
+      ORDER_FIELDS.filter((f) => !ORDER_RULES[f](values[f])).map((f) => [f, MESSAGES[f]]),
+    ) as Partial<Record<OrderField, string>>;
+    setErrors(found);
+    const first = ORDER_FIELDS.find((f) => found[f]);
+    if (first) {
+      document.getElementById(`qc-${first}`)?.focus();
       return;
     }
-    setNotice(
-      `Online ordering is launching soon. Please call ${STORE.phone} or message us on WhatsApp to place this order.`,
-    );
+    setAlert(null);
+    startPlacing(async () => {
+      const result = await placeOrder({
+        mode: 'buy_now',
+        items,
+        customerName: values.name.trim(),
+        phone: normalizePhone(values.phone),
+        address: values.address.trim(),
+        district: values.district,
+      });
+      if ('errors' in result) {
+        setAlert(result.errors[0] ?? 'Something went wrong. Please try again.');
+        return;
+      }
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+      } catch {
+        // storage unavailable
+      }
+      router.push(confirmationUrl(result.order));
+      setBuyNowOpen(false);
+    });
   };
 
   const field = (
-    name: Field,
+    name: Exclude<OrderField, 'district'>,
+    icon: 'user' | 'phone' | 'home',
     label: string,
-    type: string,
-    placeholder: string,
-    error: string,
-    extra: object = {},
+    props: React.InputHTMLAttributes<HTMLInputElement>,
   ) => (
-    <div className={`buy-now-popup-field${invalid.has(name) ? ' invalid' : ''}`}>
-      <label htmlFor={`buy_now_${name}`}>{label}</label>
-      <input
-        ref={refs[name]}
-        type={type}
-        id={`buy_now_${name}`}
-        name={name}
-        placeholder={placeholder}
-        value={values[name]}
-        onChange={(e) => {
-          const v = e.target.value;
-          setValues((s) => ({ ...s, [name]: v }));
-          if (invalid.has(name)) validate(name, v);
-        }}
-        onBlur={() => values[name] && validate(name)}
-        {...extra}
-      />
-      <p className="buy-now-popup-error">{error}</p>
+    <div className={`qc-field${errors[name] ? ' has-error' : ''}`}>
+      <label htmlFor={`qc-${name}`} className="qc-visually-hidden">
+        {label}
+      </label>
+      <div className="qc-input">
+        <QcIcon name={icon} />
+        <input
+          id={`qc-${name}`}
+          name={name}
+          value={values[name]}
+          onChange={(e) => set(name, e.target.value)}
+          aria-invalid={errors[name] ? true : undefined}
+          required
+          {...props}
+        />
+      </div>
+      {errors[name] ? <p className="qc-error">{errors[name]}</p> : null}
     </div>
   );
 
-  const summary = (
-    <div className="buy-now-popup-summary">
-      <p>
-        <span>Subtotal</span>
-        <span>{formatPrice(subtotal)}</span>
-      </p>
-      <p>
-        <span>Discount</span>
-        <span>- {formatPrice(discount)}</span>
-      </p>
-      <p>
-        <span>Shipping ({option.label})</span>
-        <span>{shippingCost ? formatPrice(shippingCost) : 'Free'}</span>
-      </p>
-      <p className="total">
-        <span>Total</span>
-        <span>{formatPrice(total)}</span>
-      </p>
-    </div>
-  );
+  const line = quote?.lines[0];
 
   return (
-    <div className={`buy-now-popup${buyNowOpen ? ' active' : ''}`}>
-      <span className="buy-now-popup-close-window-btn" onClick={() => setBuyNowOpen(false)}></span>
-      <div className="buy-now-popup-inner">
-        <form className="buy-now-popup-form" noValidate onSubmit={onSubmit}>
-          <div className="buy-now-popup-top">
-            <p className="buy-now-popup-title">Please fill in the form to order</p>
-            <button
-              className="buy-now-popup-close-btn"
-              type="button"
-              aria-label="close popup"
-              onClick={() => setBuyNowOpen(false)}
-            >
-              <svg width="12" height="12" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path
-                  d="M3 15L15 3M15 15L3 3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div className="buy-now-popup-content">
-            <div className="buy-now-popup-card">
-              {field(
-                'phone',
-                'Phone*',
-                'tel',
-                '01XXXXXXXXX',
-                'Enter a valid 11-digit mobile number',
-                { inputMode: 'numeric' },
-              )}
-              {field(
-                'address',
-                'Address*',
-                'text',
-                'House, road, area, district',
-                'Please enter your full address',
-              )}
-              {field('name', 'Name*', 'text', 'Your name', 'Please enter your name')}
-            </div>
-            <div className="buy-now-popup-card buy-now-popup-product">
-              <div className="buy-now-popup-product-img">
-                {product.images[0] ? <img src={product.images[0].url} alt={product.name} /> : null}
-                <span className="buy-now-popup-qty-badge">{quantity}</span>
-              </div>
-              <div className="buy-now-popup-product-info">
-                <p className="buy-now-popup-product-title">{product.name}</p>
-                <p className="buy-now-popup-product-offer">{offerText}</p>
-                <div className="buy-now-popup-quantity">
-                  <button
-                    className="buy-now-popup-quantity-decrease"
-                    type="button"
-                    aria-label="decrease quantity"
-                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  >
-                    −
-                  </button>
-                  <span className="buy-now-popup-quantity-count">{quantity}</span>
-                  <button
-                    className="buy-now-popup-quantity-increase"
-                    type="button"
-                    aria-label="increase quantity"
-                    onClick={() => setQuantity((q) => Math.min(99, q + 1))}
-                  >
-                    +
-                  </button>
-                </div>
-              </div>
-              <p className="buy-now-popup-product-price">{formatPrice(subtotal - discount)}</p>
-            </div>
-            <div className="buy-now-popup-card">
-              <p className="buy-now-popup-card-title">Shipping Options</p>
-              {STORE.shippingOptions.map((o) => (
-                <label key={o.value} className="buy-now-popup-shipping">
-                  <input
-                    type="radio"
-                    name="shipping"
-                    value={o.value}
-                    checked={shipping === o.value}
-                    onChange={() => setShipping(o.value)}
-                  />
-                  <span>{o.label}</span>
-                  <strong>{formatPrice(o.value)}</strong>
-                </label>
-              ))}
-            </div>
-            {summary}
-            <div className="buy-now-popup-field">
-              <label htmlFor="buy_now_note">Order note (optional)</label>
-              <textarea
-                id="buy_now_note"
-                name="note"
-                rows={2}
-                placeholder="Anything we should know?"
-                value={values.note}
-                onChange={(e) => setValues((s) => ({ ...s, note: e.target.value }))}
+    <dialog
+      ref={dialogRef}
+      className={`quick-checkout${shown ? ' is-open' : ''}`}
+      aria-labelledby="quick-checkout-title"
+      onClose={() => setBuyNowOpen(false)}
+      onClick={(e) => {
+        // a click on the backdrop (the dialog element itself) closes it, like glowy
+        if (e.target === e.currentTarget) setBuyNowOpen(false);
+      }}
+    >
+      <form className="qc-form" noValidate onSubmit={onSubmit}>
+        <header className="qc-head">
+          <p className="qc-title" id="quick-checkout-title">
+            Order with cash on delivery
+          </p>
+          <button
+            type="button"
+            className="qc-close"
+            aria-label="Close"
+            onClick={() => setBuyNowOpen(false)}
+          >
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M3 15L15 3M15 15L3 3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
               />
-            </div>
+            </svg>
+          </button>
+        </header>
+
+        <div className="qc-body">
+          {alert ? (
+            <p className="qc-alert" role="alert">
+              {alert}
+            </p>
+          ) : null}
+
+          {field('name', 'user', 'Your name', {
+            type: 'text',
+            placeholder: 'Your full name',
+            autoComplete: 'name',
+            maxLength: 100,
+          })}
+          {field('phone', 'phone', 'Mobile number', {
+            type: 'tel',
+            placeholder: 'Mobile number (01XXXXXXXXX)',
+            autoComplete: 'tel',
+            inputMode: 'tel',
+            maxLength: 20,
+          })}
+          <div className={`qc-field${errors.district ? ' has-error' : ''}`}>
+            <DistrictPicker
+              id="qc-district"
+              value={values.district}
+              invalid={Boolean(errors.district)}
+              onChange={(key) => set('district', key)}
+            />
+            {errors.district ? <p className="qc-error">{errors.district}</p> : null}
           </div>
-          <div className="buy-now-popup-bottom">
-            {notice ? (
-              <p
-                className="buy-now-popup-error"
-                role="status"
-                style={{ display: 'block', marginBottom: 8 }}
-              >
-                {notice}
-              </p>
-            ) : null}
-            <button className="btn buy-now-popup-submit-btn" type="submit">
-              Order now - Cash on delivery
-            </button>
+          {field('address', 'home', 'Full address', {
+            type: 'text',
+            placeholder: 'Full address (house, road, area, thana)',
+            autoComplete: 'street-address',
+            maxLength: 500,
+          })}
+
+          <div className="qc-summary" aria-live="polite">
+            {quote && line ? (
+              <>
+                <ul className="qc-items">
+                  <li className="qc-item">
+                    <span className="qc-item-img">
+                      {(line.image ?? unit.image) ? (
+                        <img src={line.image ?? unit.image ?? ''} alt="" />
+                      ) : null}
+                      <span className="qc-item-qty" aria-label={`Quantity ${line.quantity}`}>
+                        {line.quantity}
+                      </span>
+                    </span>
+                    <span className="qc-item-name">
+                      {line.name}
+                      {line.variantTitle ? <small>{line.variantTitle}</small> : null}
+                    </span>
+                    <strong className="qc-item-total">{formatTaka(line.lineSubtotal)}</strong>
+                  </li>
+                </ul>
+                <dl className="qc-totals">
+                  <div>
+                    <dt>Subtotal</dt>
+                    <dd>{formatTaka(quote.subtotal)}</dd>
+                  </div>
+                  {quote.discount > 0 ? (
+                    <div className="qc-discount">
+                      <dt>Bundle discount ({line.discountPercent}%)</dt>
+                      <dd>−{formatTaka(quote.discount)}</dd>
+                    </div>
+                  ) : null}
+                  <div>
+                    <dt>Shipping</dt>
+                    <dd>
+                      {quote.freeShipping
+                        ? 'Free'
+                        : quote.zone
+                          ? formatTaka(quote.shipping)
+                          : 'Select district'}
+                    </dd>
+                  </div>
+                  <div className="qc-grand">
+                    <dt>Total</dt>
+                    <dd>{formatTaka(quote.total)}</dd>
+                  </div>
+                </dl>
+              </>
+            ) : alert ? null : (
+              <div className="qc-loading" aria-label="Loading your order">
+                <span></span>
+                <span></span>
+              </div>
+            )}
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+
+        <footer className="qc-foot">
+          <button
+            type="submit"
+            className="qc-submit"
+            disabled={placing || !quote}
+            aria-busy={placing}
+          >
+            <b className="qc-submit-label">
+              {placing
+                ? 'Placing your order…'
+                : `Place order${quote ? ` · ${formatTaka(quote.total)}` : ''}`}
+            </b>
+          </button>
+          <p className="qc-cod">Cash on delivery · Pay when you receive it</p>
+        </footer>
+      </form>
+    </dialog>
   );
 }

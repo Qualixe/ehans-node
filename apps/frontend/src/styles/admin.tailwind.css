@@ -10,35 +10,37 @@
 @source '../lib/admin';
 
 @theme {
-    /* Same typeface as the storefront headings (Figtree, public/assets/fonts). */
-    --font-sans: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Same typeface as the storefront headings (Figtree, public/assets/fonts). */
+  --font-sans:
+    'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-    /*
+  /*
      * Accent ("blue-*" utilities are the admin's accent slot): Ehans Mart brand #ff5554.
      * 600 is a touch deeper than the storefront colour so large admin screens don't glare;
      * 300/400 (text, links, icons) are softened for dark mode and become deep red in light mode.
      */
-    --color-blue-50: #fff2f2;
-    --color-blue-100: #ffe2e2;
-    --color-blue-200: #ffc9c9;
-    --color-blue-300: #ffa3a3;
-    --color-blue-400: #ff7372;
-    --color-blue-500: #ff5554;
-    --color-blue-600: #f03a39;
-    --color-blue-700: #cc2b2a;
-    --color-blue-800: #a82524;
-    --color-blue-900: #8b2423;
+  --color-blue-50: #fff2f2;
+  --color-blue-100: #ffe2e2;
+  --color-blue-200: #ffc9c9;
+  --color-blue-300: #ffa3a3;
+  --color-blue-400: #ff7372;
+  --color-blue-500: #ff5554;
+  --color-blue-600: #f03a39;
+  --color-blue-700: #cc2b2a;
+  --color-blue-800: #a82524;
+  --color-blue-900: #8b2423;
 
-    /* Surface scale ("ink") + primary text ("fg"). Values here are the DARK theme: warm charcoal. */
-    --color-ink-950: #0c0b0c;
-    --color-ink-900: #131213;
-    --color-ink-850: #171617;
-    --color-ink-800: #1d1b1c;
-    --color-ink-700: #262324;
-    --color-ink-600: #322e2f;
-    --color-ink-500: #45403f;
-    --color-fg: #ffffff;
+  /* Surface scale ("ink") + primary text ("fg"). Values here are the DARK theme: warm charcoal. */
+  --color-ink-950: #0c0b0c;
+  --color-ink-900: #131213;
+  --color-ink-850: #171617;
+  --color-ink-800: #1d1b1c;
+  --color-ink-700: #262324;
+  --color-ink-600: #322e2f;
+  --color-ink-500: #45403f;
+  --color-fg: #ffffff;
 }
 
 /*
@@ -47,569 +49,574 @@
  * every utility (text-slate-400, bg-ink-850, text-emerald-400 …) without touching markup.
  */
 :root:not(.dark) {
-    /* Warm off-white canvas with white cards, like the sign-in page. */
-    --color-ink-950: #f7f3f2;
-    --color-ink-900: #ffffff;
-    --color-ink-850: #ffffff;
-    --color-ink-800: #f6f1f0;
-    --color-ink-700: #efe8e6;
-    --color-ink-600: #e7dfdd;
-    --color-ink-500: #d5cbc8;
-    --color-fg: #1c1b1c;
+  /* Warm off-white canvas with white cards, like the sign-in page. */
+  --color-ink-950: #f7f3f2;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #ffffff;
+  --color-ink-800: #f6f1f0;
+  --color-ink-700: #efe8e6;
+  --color-ink-600: #e7dfdd;
+  --color-ink-500: #d5cbc8;
+  --color-fg: #1c1b1c;
 
-    /* Muted text gets darker so it stays readable on white (neutral, not blue-grey). */
-    --color-slate-100: #1c1b1c;
-    --color-slate-200: #2c2a2b;
-    --color-slate-300: #3f3c3d;
-    --color-slate-400: #67615f;
+  /* Muted text gets darker so it stays readable on white (neutral, not blue-grey). */
+  --color-slate-100: #1c1b1c;
+  --color-slate-200: #2c2a2b;
+  --color-slate-300: #3f3c3d;
+  --color-slate-400: #67615f;
 
-    /* Accent text/icon tints become deep crimson on light surfaces: readable, not neon. */
-    --color-blue-200: #8f1d1c;
-    --color-blue-300: #a32322;
-    --color-blue-400: #bf2a29;
-    --color-sky-300: #0369a1;
-    --color-sky-400: #0284c7;
-    --color-indigo-300: #4338ca;
-    --color-indigo-400: #4f46e5;
-    --color-violet-400: #7c3aed;
-    --color-emerald-300: #047857;
-    --color-emerald-400: #059669;
-    --color-amber-300: #b45309;
-    --color-amber-400: #d97706;
-    --color-rose-300: #be123c;
-    --color-rose-400: #e11d48;
-    --color-red-400: #dc2626;
-    --color-teal-400: #0d9488;
-    --color-cyan-400: #0891b2;
-    --color-orange-400: #ea580c;
-    --color-fuchsia-400: #c026d3;
-    --color-pink-400: #db2777;
-    --color-purple-400: #9333ea;
-    --color-yellow-400: #ca8a04;
+  /* Accent text/icon tints become deep crimson on light surfaces: readable, not neon. */
+  --color-blue-200: #8f1d1c;
+  --color-blue-300: #a32322;
+  --color-blue-400: #bf2a29;
+  --color-sky-300: #0369a1;
+  --color-sky-400: #0284c7;
+  --color-indigo-300: #4338ca;
+  --color-indigo-400: #4f46e5;
+  --color-violet-400: #7c3aed;
+  --color-emerald-300: #047857;
+  --color-emerald-400: #059669;
+  --color-amber-300: #b45309;
+  --color-amber-400: #d97706;
+  --color-rose-300: #be123c;
+  --color-rose-400: #e11d48;
+  --color-red-400: #dc2626;
+  --color-teal-400: #0d9488;
+  --color-cyan-400: #0891b2;
+  --color-orange-400: #ea580c;
+  --color-fuchsia-400: #c026d3;
+  --color-pink-400: #db2777;
+  --color-purple-400: #9333ea;
+  --color-yellow-400: #ca8a04;
 }
 
 @layer base {
-    html {
-        color-scheme: light;
-    }
+  html {
+    color-scheme: light;
+  }
 
-    html.dark {
-        color-scheme: dark;
-    }
+  html.dark {
+    color-scheme: dark;
+  }
 
-    body {
-        @apply bg-ink-950 font-sans text-slate-200 antialiased;
-    }
+  body {
+    @apply bg-ink-950 font-sans text-slate-200 antialiased;
+  }
 
-    [x-cloak],
-    [hidden] {
-        display: none !important;
-    }
+  [x-cloak],
+  [hidden] {
+    display: none !important;
+  }
 
-    input[type='number']::-webkit-inner-spin-button {
-        opacity: 0.4;
-    }
+  input[type='number']::-webkit-inner-spin-button {
+    opacity: 0.4;
+  }
 }
 
 @utility admin-btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 @layer components {
-    .admin-card {
-        @apply rounded-2xl border border-ink-600 bg-ink-850 shadow-[0_1px_2px_rgb(0_0_0/0.03),0_12px_32px_-18px_rgb(60_20_20/0.18)];
-    }
+  .admin-card {
+    @apply rounded-2xl border border-ink-600 bg-ink-850 shadow-[0_1px_2px_rgb(0_0_0/0.03),0_12px_32px_-18px_rgb(60_20_20/0.18)];
+  }
 
-    .admin-input {
-        @apply block w-full rounded-xl border border-ink-600 bg-ink-900 px-3.5 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-slate-300 focus:ring-[3px] focus:ring-slate-500/10 focus:outline-none disabled:opacity-50;
-    }
+  .admin-input {
+    @apply block w-full rounded-xl border border-ink-600 bg-ink-900 px-3.5 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-slate-300 focus:ring-[3px] focus:ring-slate-500/10 focus:outline-none disabled:opacity-50;
+  }
 
-    .admin-label {
-        @apply mb-1.5 block text-xs font-medium tracking-wide text-slate-400 uppercase;
-    }
+  .admin-label {
+    @apply mb-1.5 block text-xs font-medium tracking-wide text-slate-400 uppercase;
+  }
 
-    .admin-btn-primary {
-        @apply admin-btn bg-blue-600 text-white shadow-md shadow-blue-600/25 hover:bg-blue-700;
-    }
+  .admin-btn-primary {
+    @apply admin-btn bg-blue-600 text-white shadow-md shadow-blue-600/25 hover:bg-blue-700;
+  }
 
-    .admin-btn-secondary {
-        @apply admin-btn border border-ink-600 bg-ink-850 text-slate-200 hover:border-ink-500 hover:bg-ink-800;
-    }
+  .admin-btn-secondary {
+    @apply admin-btn border border-ink-600 bg-ink-850 text-slate-200 hover:border-ink-500 hover:bg-ink-800;
+  }
 
-    .admin-btn-danger {
-        @apply admin-btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20;
-    }
+  .admin-btn-danger {
+    @apply admin-btn border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20;
+  }
 
-    .admin-table {
-        @apply w-full text-left text-sm;
-    }
+  .admin-table {
+    @apply w-full text-left text-sm;
+  }
 
-    .admin-table thead th {
-        @apply border-b border-ink-600 px-4 py-3 text-xs font-semibold tracking-wide whitespace-nowrap text-slate-400 uppercase;
-    }
+  .admin-table thead th {
+    @apply border-b border-ink-600 px-4 py-3 text-xs font-semibold tracking-wide whitespace-nowrap text-slate-400 uppercase;
+  }
 
-    .admin-table tbody td {
-        @apply border-b border-ink-700 px-4 py-3 align-middle;
-    }
+  .admin-table tbody td {
+    @apply border-b border-ink-700 px-4 py-3 align-middle;
+  }
 
-    .admin-table tbody tr:last-child td {
-        @apply border-b-0;
-    }
+  .admin-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
 
-    .admin-table tbody tr {
-        @apply transition-colors hover:bg-ink-800/60;
-    }
+  .admin-table tbody tr {
+    @apply transition-colors hover:bg-ink-800/60;
+  }
 
-    .admin-link {
-        @apply font-medium text-blue-400 hover:text-blue-300 hover:underline;
-    }
+  .admin-link {
+    @apply font-medium text-blue-400 hover:text-blue-300 hover:underline;
+  }
 }
 
 /* Light theme: white cards need a soft shadow to separate from the page. */
 :root:not(.dark) .admin-card {
-    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.06);
+  box-shadow:
+    0 1px 2px rgb(15 23 42 / 0.04),
+    0 1px 3px rgb(15 23 42 / 0.06);
 }
 
 /* Theme toggle shows the icon for the theme you would switch TO. */
 .theme-icon-dark {
-    display: none;
+  display: none;
 }
 
 .dark .theme-icon-dark {
-    display: block;
+  display: block;
 }
 
 .dark .theme-icon-light {
-    display: none;
+  display: none;
 }
 
 /* Collapsed sidebar (desktop) */
 @media (min-width: 1024px) {
-    .sidebar-collapsed .admin-sidebar {
-        width: 5rem;
-    }
+  .sidebar-collapsed .admin-sidebar {
+    width: 5rem;
+  }
 
-    .sidebar-collapsed .admin-main {
-        padding-left: 5rem;
-    }
+  .sidebar-collapsed .admin-main {
+    padding-left: 5rem;
+  }
 
-    .sidebar-collapsed .sidebar-label,
-    .sidebar-collapsed .sidebar-badge,
-    .sidebar-collapsed .sidebar-chevron,
-    .sidebar-collapsed .sidebar-submenu {
-        display: none;
-    }
+  .sidebar-collapsed .sidebar-label,
+  .sidebar-collapsed .sidebar-badge,
+  .sidebar-collapsed .sidebar-chevron,
+  .sidebar-collapsed .sidebar-submenu {
+    display: none;
+  }
 
-    .sidebar-collapsed .sidebar-collapse-icon {
-        transform: rotate(180deg);
-    }
+  .sidebar-collapsed .sidebar-collapse-icon {
+    transform: rotate(180deg);
+  }
 }
 
 /* in-page navigation (tabs, filters, pagination): progress bar on top, fade the data while loading */
 main {
-    position: relative;
+  position: relative;
 }
 
 main::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: 20;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--color-blue-500), transparent);
-    background-size: 50% 100%;
-    opacity: 0;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-blue-500), transparent);
+  background-size: 50% 100%;
+  opacity: 0;
+  pointer-events: none;
 }
 
 main.is-loading::before {
-    opacity: 1;
-    animation: page-progress 0.9s linear infinite;
+  opacity: 1;
+  animation: page-progress 0.9s linear infinite;
 }
 
 main tbody,
 main [data-line-chart] {
-    transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 
 main.is-loading {
-    cursor: progress;
+  cursor: progress;
 }
 
 main.is-loading tbody,
 main.is-loading [data-line-chart] {
-    opacity: 0.45;
+  opacity: 0.45;
 }
 
 main.is-loading tbody {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 @keyframes page-progress {
-    from {
-        background-position: -100% 0;
-    }
+  from {
+    background-position: -100% 0;
+  }
 
-    to {
-        background-position: 200% 0;
-    }
+  to {
+    background-position: 200% 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    main.is-loading::before {
-        animation: none;
-        background: var(--color-blue-500);
-    }
+  main.is-loading::before {
+    animation: none;
+    background: var(--color-blue-500);
+  }
 }
 
 @media print {
-    .no-print,
-    [data-print-hide],
-    .print-exclude,
-    .admin-sidebar,
-    .admin-main > header {
-        display: none !important;
-    }
+  .no-print,
+  [data-print-hide],
+  .print-exclude,
+  .admin-sidebar,
+  .admin-main > header {
+    display: none !important;
+  }
 
-    .admin-main {
-        padding-left: 0 !important;
-    }
+  .admin-main {
+    padding-left: 0 !important;
+  }
 
-    body {
-        background: #fff;
-        color: #000;
-    }
+  body {
+    background: #fff;
+    color: #000;
+  }
 
-    .orders-table [data-status-open] {
-        padding: 0;
-        background: none;
-        box-shadow: none;
-    }
+  .orders-table [data-status-open] {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
 
-    .orders-table [data-status-open] svg,
-    .orders-table [data-purchase-dot] {
-        display: none;
-    }
+  .orders-table [data-status-open] svg,
+  .orders-table [data-purchase-dot] {
+    display: none;
+  }
 }
 
 /* ---------------------------------------------------------------- sign-in page (storefront look) */
 @font-face {
-    font-family: 'Figtree';
-    src: url('/assets/fonts/Figtree-Regular.ttf') format('truetype');
-    font-display: swap;
-    font-weight: 400;
+  font-family: 'Figtree';
+  src: url('/assets/fonts/Figtree-Regular.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('/assets/fonts/Figtree-Medium.ttf') format('truetype');
-    font-display: swap;
-    font-weight: 500;
+  font-family: 'Figtree';
+  src: url('/assets/fonts/Figtree-Medium.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('/assets/fonts/Figtree-SemiBold.ttf') format('truetype');
-    font-display: swap;
-    font-weight: 600;
+  font-family: 'Figtree';
+  src: url('/assets/fonts/Figtree-SemiBold.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 600;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('/assets/fonts/Figtree-Bold.ttf') format('truetype');
-    font-display: swap;
-    font-weight: 700;
+  font-family: 'Figtree';
+  src: url('/assets/fonts/Figtree-Bold.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Figtree';
-    src: url('/assets/fonts/Figtree-ExtraBold.ttf') format('truetype');
-    font-display: swap;
-    font-weight: 800 900;
+  font-family: 'Figtree';
+  src: url('/assets/fonts/Figtree-ExtraBold.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 800 900;
 }
 
 .auth-page {
-    --auth-brand: #ff5554;
-    --auth-text: #333333;
-    --auth-muted: #777777;
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-height: 100dvh;
-    overflow: hidden;
-    background: #f8f2f2;
-    color: var(--auth-text);
-    font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --auth-brand: #ff5554;
+  --auth-text: #333333;
+  --auth-muted: #777777;
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #f8f2f2;
+  color: var(--auth-text);
+  font-family: 'Figtree', ui-sans-serif, system-ui, sans-serif;
 }
 
 .auth-bg {
-    position: absolute;
-    inset: -40px;
+  position: absolute;
+  inset: -40px;
 }
 
 .auth-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(14px) saturate(1.05);
-    transform: scale(1.05);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(14px) saturate(1.05);
+  transform: scale(1.05);
 }
 
 .auth-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgb(248 242 242 / 45%);
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(248 242 242 / 45%);
 }
 
 .auth-panel {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    display: grid;
-    place-items: center;
-    padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
 }
 
 .auth-panel > div {
-    width: min(480px, 100%);
+  width: min(480px, 100%);
 }
 
 .auth-card {
-    width: 100%;
-    padding: 40px 40px 36px;
-    border: 1px solid rgb(255 255 255 / 70%);
-    border-radius: 18px;
-    background: rgb(255 255 255 / 92%);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 45%);
+  width: 100%;
+  padding: 40px 40px 36px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 18px;
+  background: rgb(255 255 255 / 92%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 30px 80px -30px rgb(0 0 0 / 45%);
 }
 
 .auth-logo {
-    display: block;
-    width: 150px;
-    margin: 0 auto 22px;
+  display: block;
+  width: 150px;
+  margin: 0 auto 22px;
 }
 
 .auth-logo img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .auth-title {
-    margin: 0;
-    text-align: center;
-    font-size: 26px;
-    font-weight: 600;
+  margin: 0;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .auth-subtitle {
-    margin: 4px 0 26px;
-    text-align: center;
-    font-size: 15px;
-    color: var(--auth-muted);
+  margin: 4px 0 26px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--auth-muted);
 }
 
 .auth-field + .auth-field {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .auth-field label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .auth-input {
-    position: relative;
+  position: relative;
 }
 
 .auth-input svg {
-    position: absolute;
-    top: 50%;
-    left: 14px;
-    width: 18px;
-    height: 18px;
-    color: #9ca3af;
-    transform: translateY(-50%);
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: #9ca3af;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .auth-input input {
-    width: 100%;
-    height: 50px;
-    padding: 0 14px 0 44px;
-    border: 1px solid #dcdde1;
-    border-radius: 10px;
-    background: #fff;
-    font: inherit;
-    font-size: 15px;
-    color: var(--auth-text);
-    transition: border-color .2s ease, box-shadow .2s ease;
+  width: 100%;
+  height: 50px;
+  padding: 0 14px 0 44px;
+  border: 1px solid #dcdde1;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+  color: var(--auth-text);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .auth-input input:focus {
-    border-color: var(--auth-text);
-    outline: none;
-    box-shadow: 0 0 0 3px rgb(51 51 51 / 10%);
+  border-color: var(--auth-text);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(51 51 51 / 10%);
 }
 
-.auth-input input[aria-invalid="true"] {
-    border-color: #dc2626;
+.auth-input input[aria-invalid='true'] {
+  border-color: #dc2626;
 }
 
 .auth-input .auth-toggle {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--auth-muted);
-    transform: translateY(-50%);
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--auth-muted);
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .auth-input .auth-toggle:hover {
-    background: #f3f4f6;
-    color: var(--auth-text);
+  background: #f3f4f6;
+  color: var(--auth-text);
 }
 
 .auth-error {
-    margin: 6px 0 0;
-    font-size: 13px;
-    color: #dc2626;
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #dc2626;
 }
 
 .auth-remember {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 18px 0 22px;
-    font-size: 14px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 22px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .auth-remember input {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--auth-brand);
+  width: 18px;
+  height: 18px;
+  accent-color: var(--auth-brand);
 }
 
 .auth-submit {
-    width: 100%;
-    height: 52px;
-    border: 2px solid var(--auth-brand);
-    border-radius: 50px;
-    background: var(--auth-brand);
-    font: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color .25s ease, color .25s ease;
+  width: 100%;
+  height: 52px;
+  border: 2px solid var(--auth-brand);
+  border-radius: 50px;
+  background: var(--auth-brand);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .auth-submit:hover {
-    background: #fff;
-    color: var(--auth-brand);
+  background: #fff;
+  color: var(--auth-brand);
 }
 
 .auth-back {
-    display: inline-flex;
-    padding: 6px 14px;
-    border-radius: 50px;
-    background: rgb(255 255 255 / 75%);
-    align-items: center;
-    gap: 6px;
-    margin-top: 22px;
-    font-size: 14px;
-    color: var(--auth-muted);
+  display: inline-flex;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: rgb(255 255 255 / 75%);
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--auth-muted);
 }
 
 .auth-back:hover {
-    color: var(--auth-brand);
+  color: var(--auth-brand);
 }
 
 @media (max-width: 480px) {
-    .auth-card {
-        padding: 28px 20px;
-    }
+  .auth-card {
+    padding: 28px 20px;
+  }
 }
 
 /* ---------------------------------------------------------------- rich-text description editor */
 .prose-admin:empty::before {
-    content: attr(data-placeholder);
-    color: var(--color-slate-500);
+  content: attr(data-placeholder);
+  color: var(--color-slate-500);
 }
 
 .prose-admin p,
 .prose-admin ul,
 .prose-admin ol,
 .prose-admin blockquote {
-    margin: 0 0 0.75rem;
+  margin: 0 0 0.75rem;
 }
 
 .prose-admin ul {
-    padding-left: 1.25rem;
-    list-style: disc;
+  padding-left: 1.25rem;
+  list-style: disc;
 }
 
 .prose-admin ol {
-    padding-left: 1.25rem;
-    list-style: decimal;
+  padding-left: 1.25rem;
+  list-style: decimal;
 }
 
 .prose-admin h2 {
-    margin: 0.75rem 0 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .prose-admin h3 {
-    margin: 0.75rem 0 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .prose-admin blockquote {
-    padding-left: 0.75rem;
-    border-left: 3px solid var(--color-slate-600);
-    color: var(--color-slate-400);
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-slate-600);
+  color: var(--color-slate-400);
 }
 
 .prose-admin h4 {
-    margin: 0.5rem 0;
-    font-weight: 700;
+  margin: 0.5rem 0;
+  font-weight: 700;
 }
 
 .prose-admin a {
-    color: var(--color-blue-400);
-    text-decoration: underline;
+  color: var(--color-blue-400);
+  text-decoration: underline;
 }
 
 .prose-admin blockquote {
-    padding-left: 0.75rem;
-    border-left: 3px solid var(--color-ink-500);
-    color: var(--color-slate-400);
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--color-ink-500);
+  color: var(--color-slate-400);
 }
 
 /* POS category chips: scrollable row without a visible scrollbar */
 .pos-chips {
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 .pos-chips::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-
 
 /* uploaded colour logo shown in white on dark/red backgrounds (Settings → Branding) */
 .brand-logo-invert {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }

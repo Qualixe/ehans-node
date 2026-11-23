@@ -11,5 +11,11 @@ export default defineConfig([
     files: ['src/components/store/**', 'src/app/(store)/**', 'src/app/not-found.tsx'],
     rules: { '@next/next/no-img-element': 'off' },
   },
+  {
+    // The admin ports glowy's Blade markup: product/category images are small thumbnails
+    // from the catalog's own paths, rendered as plain <img> like glowy does.
+    files: ['src/components/admin/**', 'src/app/admin/**'],
+    rules: { '@next/next/no-img-element': 'off' },
+  },
   globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
 ]);

@@ -1,5 +1,6 @@
 import type {
   CategorySummary,
+  CrossSellCard,
   ProductBundleDto,
   ProductCard,
   ProductDetail,
@@ -33,7 +34,24 @@ export const productDetailInclude = {
   relations: {
     orderBy: { position: 'asc' },
     where: { relatedProduct: { isActive: true } },
-    include: { relatedProduct: { include: productCardInclude } },
+    include: {
+      relatedProduct: {
+        include: {
+          ...productCardInclude,
+          variants: {
+            orderBy: { position: 'asc' },
+            select: {
+              id: true,
+              title: true,
+              price: true,
+              compareAtPrice: true,
+              stock: true,
+              image: { select: { path: true, alt: true } },
+            },
+          },
+        },
+      },
+    },
   },
 } satisfies Prisma.ProductInclude;
 
@@ -112,8 +130,27 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
     freeDelivery: b.freeDelivery,
     isDefault: b.isDefault,
   }));
-  const relationCards = (type: 'BUY_WITH' | 'UPSELL') =>
-    p.relations.filter((r) => r.type === type).map((r) => toProductCard(r.relatedProduct));
+  const relationCards = (type: 'BUY_WITH' | 'UPSELL'): CrossSellCard[] =>
+    p.relations
+      .filter((r) => r.type === type)
+      .map(({ relatedProduct: rp }) => {
+        const card = toProductCard(rp);
+        return {
+          ...card,
+          // variants only matter when the shopper has to choose one
+          variants: card.hasVariants
+            ? rp.variants.map((v) => ({
+                id: v.id,
+                title: v.title,
+                price: v.price,
+                compareAtPrice:
+                  v.compareAtPrice && v.compareAtPrice > v.price ? v.compareAtPrice : null,
+                inStock: v.stock > 0,
+                image: image(v.image ?? undefined, rp.name),
+              }))
+            : [],
+        };
+      });
 
   return {
     ...card,
@@ -146,6 +183,8 @@ export function toProductDetail(p: ProductDetailRecord, related: ProductCard[]):
     bundles,
     buyWith: relationCards('BUY_WITH'),
     upsells: relationCards('UPSELL'),
+    buyWithTitle: p.buyWithTitle,
+    upsellTitle: p.upsellTitle,
     related,
     breadcrumbs: [p.category.parent, p.category]
       .filter((c): c is NonNullable<typeof c> => Boolean(c))

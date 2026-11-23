@@ -29,6 +29,8 @@ function cardRecord(overrides: Partial<ProductCardRecord> = {}): ProductCardReco
     ratingAverage: new Prisma.Decimal(4.9),
     ratingCount: 66,
     isFeatured: true,
+    buyWithTitle: null,
+    upsellTitle: null,
     isActive: true,
     metaTitle: null,
     metaDescription: null,

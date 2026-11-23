@@ -1,3 +1,4 @@
+import path from 'node:path';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { API_PREFIX, REQUEST_ID_HEADER } from '@ehans/shared';
@@ -47,6 +48,16 @@ export function configureApp(app: NestExpressApplication, env: Env): void {
   });
 
   app.setGlobalPrefix(API_PREFIX);
+
+  // Admin image uploads: random, never-reused file names, so they can be cached for a year.
+  app.useStaticAssets(path.resolve(env.UPLOADS_DIR), {
+    prefix: `/${API_PREFIX}/uploads`,
+    index: false,
+    dotfiles: 'deny',
+    immutable: true,
+    maxAge: '365d',
+    fallthrough: true,
+  });
 
   if (env.SWAGGER_ENABLED) {
     const config = new DocumentBuilder()

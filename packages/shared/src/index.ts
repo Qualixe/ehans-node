@@ -4,3 +4,5 @@ export * from './types/api.types.js';
 export * from './types/health.types.js';
 export * from './types/catalog.types.js';
 export * from './types/admin.types.js';
+export * from './delivery.js';
+export * from './types/checkout.types.js';

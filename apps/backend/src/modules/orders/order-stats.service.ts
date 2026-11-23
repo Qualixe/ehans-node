@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   type AdminNavigation,
+  type AdminSearchResults,
   type DashboardMetrics,
   type DashboardRange,
   ORDER_CHANNEL_INFO,
@@ -157,7 +158,10 @@ export class OrderStatsService {
       _count: { _all: true },
     });
     const counts = new Map(rows.map((r) => [lower<OrderChannelName>(r.channel), r._count._all]));
-    const total = Math.max(1, rows.reduce((n, r) => n + r._count._all, 0));
+    const total = Math.max(
+      1,
+      rows.reduce((n, r) => n + r._count._all, 0),
+    );
     return ORDER_CHANNELS.map((channel) => ({
       channel,
       ...ORDER_CHANNEL_INFO[channel],
@@ -204,6 +208,36 @@ export class OrderStatsService {
       channel: lower<OrderChannelName>(o.channel),
       total: o.total,
       itemCount: o._count.items,
+      createdAt: o.createdAt.toISOString(),
+    }));
+  }
+
+  /** Topbar search: up to 20 orders by number, customer name, phone or email. */
+  async search(term: string): Promise<AdminSearchResults['orders']> {
+    const orders = await this.prisma.order.findMany({
+      where: {
+        OR: [
+          { number: { contains: term, mode: 'insensitive' } },
+          { customerName: { contains: term, mode: 'insensitive' } },
+          { phone: { contains: term } },
+          { email: { contains: term, mode: 'insensitive' } },
+        ],
+      },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+      select: {
+        id: true,
+        number: true,
+        customerName: true,
+        phone: true,
+        status: true,
+        total: true,
+        createdAt: true,
+      },
+    });
+    return orders.map((o) => ({
+      ...o,
+      status: lower<OrderStatusName>(o.status),
       createdAt: o.createdAt.toISOString(),
     }));
   }

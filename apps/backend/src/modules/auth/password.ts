@@ -37,5 +37,4 @@ export async function verifyPassword(password: string, stored: string): Promise<
 }
 
 /** Used when the email is unknown, so a failed login takes as long as a wrong password. */
-export const DUMMY_PASSWORD_HASH =
-  'scrypt$32768$8$1$AAAAAAAAAAAAAAAAAAAAAA$' + 'A'.repeat(86);
+export const DUMMY_PASSWORD_HASH = 'scrypt$32768$8$1$AAAAAAAAAAAAAAAAAAAAAA$' + 'A'.repeat(86);

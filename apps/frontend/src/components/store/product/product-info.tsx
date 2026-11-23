@@ -4,8 +4,7 @@ import { useRef, useState } from 'react';
 import { formatPrice } from '@/lib/format';
 import { STORE, whatsappOrderUrl } from '@/lib/store-config';
 import { addButtonProps, useAddToCart } from '../providers/use-add-to-cart';
-import { useStoreUi } from '../providers/store-ui';
-import { toCartItem } from '../product-card';
+import type { CrossSellCard } from '@ehans/shared';
 import { useProduct } from './product-context';
 
 /** Inline styles the live cash-on-delivery app puts on its "ORDER NOW" button. */
@@ -106,31 +105,67 @@ const MARQUEE = Array.from({ length: 6 });
 export function ProductInfo() {
   const {
     product,
+    variant,
+    setVariantId,
+    unit,
     bundleQty,
     setBundleQty,
     cartLine,
     buyWith,
     toggleBuyWith,
     clearBuyWith,
+    extraItems,
+    variantOf,
+    chooseVariant,
     setBuyNowOpen,
   } = useProduct();
-  const { openQuickView } = useStoreUi();
   const { state, add } = useAddToCart();
   const [tab, setTab] = useState<'description' | 'specification'>('description');
   const btn = addButtonProps(
     state,
-    product.inStock ? 'add to cart' : 'sold out',
+    unit.inStock ? 'add to cart' : 'sold out',
     'btn product-add-to-cart-btn',
   );
-  const stockMax = Math.max(product.stock + product.soldCount, product.stock, 1);
+  const stockMax = Math.max(unit.stock + product.soldCount, unit.stock, 1);
   const rating = product.ratingAverage ?? 0;
 
+  // cross-sell rows show the chosen variant's price, image and stock
+  const rowPrice = (p: CrossSellCard) => variantOf(p)?.price ?? p.price;
+  const rowImage = (p: CrossSellCard) => variantOf(p)?.image?.url ?? p.image?.url ?? null;
+  const rowInStock = (p: CrossSellCard) => variantOf(p)?.inStock ?? p.inStock;
+
+  /** Compact variant dropdown for a cross-sell product with options (ehans-additions.css). */
+  const variantSelect = (card: CrossSellCard) =>
+    card.variants.length > 1 ? (
+      <span className="product-variant-pick">
+        <select
+          aria-label={`Choose ${card.name}`}
+          value={variantOf(card)?.id ?? ''}
+          onChange={(e) => chooseVariant(card.id, e.target.value)}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {card.variants.map((v) => (
+            <option key={v.id} value={v.id} disabled={!v.inStock}>
+              {v.inStock ? v.title : `${v.title} (sold out)`}
+            </option>
+          ))}
+        </select>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    ) : null;
+
   const addMain = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!product.inStock) return;
-    const extras = product.buyWith
-      .filter((p) => buyWith.has(p.id))
-      .map((p) => ({ item: toCartItem(p) }));
-    add([{ item: cartLine(bundleQty), qty: bundleQty }, ...extras], { flyFrom: e.currentTarget });
+    if (!unit.inStock) return;
+    add([{ item: cartLine(bundleQty), qty: bundleQty }, ...extraItems.map((item) => ({ item }))], {
+      flyFrom: e.currentTarget,
+    });
     clearBuyWith();
   };
 
@@ -185,20 +220,22 @@ export function ProductInfo() {
       ) : null}
       <h1 className="product-title">{product.name}</h1>
       <div className="product-price-wrap">
-        {product.compareAtPrice && product.compareAtPrice > product.price ? (
-          <p className="previous-price">{formatPrice(product.compareAtPrice)}</p>
+        {unit.compareAtPrice && unit.compareAtPrice > unit.price ? (
+          <p className="previous-price">{formatPrice(unit.compareAtPrice)}</p>
         ) : null}
-        <p className="latest-price">{formatPrice(product.price)}</p>
-        {product.discountPercent ? (
-          <p className="product-price-save">- {product.discountPercent}%</p>
+        <p className="latest-price">{formatPrice(unit.price)}</p>
+        {unit.compareAtPrice && unit.compareAtPrice > unit.price ? (
+          <p className="product-price-save">
+            - {Math.floor(((unit.compareAtPrice - unit.price) / unit.compareAtPrice) * 100)}%
+          </p>
         ) : null}
       </div>
       <div className="product-stock">
         <p className="product-stock-text">
           <span className="product-stock-dot"></span>{' '}
-          {product.inStock ? (
+          {unit.inStock ? (
             <>
-              Currently <span className="product-stock-count">{product.stock}</span> items are in
+              Currently <span className="product-stock-count">{unit.stock}</span> items are in
               stock!
             </>
           ) : (
@@ -209,7 +246,7 @@ export function ProductInfo() {
           className="product-stock-bar"
           style={
             {
-              '--stock': `${Math.min(100, (product.stock / stockMax) * 100)}%`,
+              '--stock': `${Math.min(100, (unit.stock / stockMax) * 100)}%`,
             } as React.CSSProperties
           }
         >
@@ -217,15 +254,51 @@ export function ProductInfo() {
         </div>
       </div>
 
+      {variant ? (
+        // the product's options (e.g. Quantity: 1 Pcs / 3 Pcs), as one compact picker
+        <div className="product-variant-main">
+          <span className="product-variant-main-label">
+            {product.options.map((o) => o.name).join(' / ')}:
+          </span>{' '}
+          <span className="product-variant-pick">
+            <select
+              aria-label={`Choose ${product.options.map((o) => o.name.toLowerCase()).join(' / ')}`}
+              value={variant.id}
+              onChange={(e) => setVariantId(e.target.value)}
+            >
+              {product.variants.map((v) => (
+                <option key={v.id} value={v.id} disabled={v.stock <= 0}>
+                  {v.stock > 0 ? v.title : `${v.title} (sold out)`}
+                </option>
+              ))}
+            </select>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
+      ) : null}
+
       {product.bundles.length ? (
         <div className="bundle-wrapper">
           <h2 className="bundle-wrapper-title">Bundle & Save</h2>
           {product.bundles.map((b) => {
-            const full = product.price * b.quantity;
-            const total = full * (1 - b.discountPercent / 100);
+            const full = unit.price * b.quantity;
+            const total = Math.round(full * (1 - b.discountPercent / 100));
             const id = `${b.quantity}_bundle`;
             return (
-              <div key={b.quantity} className="bundle-item">
+              // the whole option is clickable: the theme pads the top of options with a badge
+              // (10px above the card), and clicks there would otherwise select nothing
+              <div
+                key={b.quantity}
+                className="bundle-item"
+                onClick={() => setBundleQty(b.quantity)}
+              >
                 {b.badge ? (
                   <>
                     <span className="bundle-badge">{b.badge}</span>{' '}
@@ -257,7 +330,7 @@ export function ProductInfo() {
                       <>
                         {' '}
                         <span className="bundle-single-price">
-                          {formatPrice(total / b.quantity)}/Pcs
+                          {formatPrice(Math.round(total / b.quantity))}/Pcs
                         </span>
                       </>
                     ) : null}
@@ -284,7 +357,7 @@ export function ProductInfo() {
           className={btn.className}
           type="button"
           aria-busy={btn['aria-busy']}
-          disabled={!product.inStock}
+          disabled={!unit.inStock}
           onClick={addMain}
         >
           {btn.children}
@@ -296,7 +369,7 @@ export function ProductInfo() {
             type="button"
             className="cod-buy-btn cod-animate-shake"
             style={COD_BUTTON_STYLE}
-            disabled={!product.inStock}
+            disabled={!unit.inStock}
             onClick={() => setBuyNowOpen(true)}
           >
             <span className="cod-buy-btn__content">
@@ -367,7 +440,7 @@ export function ProductInfo() {
 
       {product.buyWith.length ? (
         <div className="product-buy-with">
-          <h4 className="product-buy-with-title">Buy it with</h4>
+          <h4 className="product-buy-with-title">{product.buyWithTitle ?? 'Buy it with'}</h4>
           {product.buyWith.map((p) => (
             <label key={p.id} className="product-buy-with-item">
               <input
@@ -375,14 +448,17 @@ export function ProductInfo() {
                 className="product-buy-with-checkbox"
                 data-id={p.id}
                 checked={buyWith.has(p.id)}
-                disabled={!p.inStock}
+                disabled={!rowInStock(p)}
                 onChange={() => toggleBuyWith(p.id)}
               />
               <div className="product-buy-with-img">
-                {p.image ? <img src={p.image.url} alt={p.name} /> : null}
+                {rowImage(p) ? <img src={rowImage(p)!} alt={p.name} /> : null}
               </div>
-              <span className="product-buy-with-name">{p.name}</span>{' '}
-              <span className="product-buy-with-price">{formatPrice(p.price)}</span>
+              <span className="product-buy-with-name">
+                {p.name}
+                {variantSelect(p)}
+              </span>{' '}
+              <span className="product-buy-with-price">{formatPrice(rowPrice(p))}</span>
             </label>
           ))}
         </div>
@@ -391,24 +467,35 @@ export function ProductInfo() {
       {product.upsells.length ? (
         <div className="product-upsell">
           <h4 className="product-upsell-title-main">
-            Complete your {product.category.name.toLowerCase()}
+            {product.upsellTitle ?? `Complete your ${product.category.name.toLowerCase()}`}
           </h4>
           {product.upsells.map((p) => (
             <div key={p.id} className="product-upsell-item" data-id={p.id}>
               <div className="product-upsell-img">
-                {p.image ? <img src={p.image.url} alt={p.name} /> : null}
+                {rowImage(p) ? <img src={rowImage(p)!} alt={p.name} /> : null}
               </div>
               <div className="product-upsell-content">
                 <p className="product-upsell-title">{p.name}</p>
+                {variantSelect(p)}
                 <div className="product-upsell-bottom">
-                  <p className="product-upsell-price">{formatPrice(p.price)}</p>
+                  <p className="product-upsell-price">{formatPrice(rowPrice(p))}</p>
+                  {/* marks it (with the chosen variant) for the main "add to cart"; click again to unmark */}
                   <button
-                    className="btn product-upsell-btn quick-view-open"
+                    className={`btn product-upsell-btn${buyWith.has(p.id) ? ' added' : ''}`}
                     type="button"
-                    disabled={!p.inStock}
-                    onClick={(e) => openQuickView(p, e.currentTarget)}
+                    aria-pressed={buyWith.has(p.id)}
+                    disabled={!rowInStock(p)}
+                    onClick={() => toggleBuyWith(p.id)}
                   >
-                    add <span>+</span>
+                    {buyWith.has(p.id) ? (
+                      <>
+                        added <span>✓</span>
+                      </>
+                    ) : (
+                      <>
+                        add <span>+</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>

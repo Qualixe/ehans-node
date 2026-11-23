@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import {
   type AdminNavigation,
+  type AdminSearchResults,
   type AdminUser,
   type DashboardMetrics,
   type DashboardRange,
   canView,
 } from '@ehans/shared';
 import { STORE_SETTINGS } from '../../config/store-settings.js';
+import { ProductsAdminService } from '../catalog/admin/products-admin.service.js';
 import { CatalogStatsService } from '../catalog/catalog-stats.service.js';
 import { OrderStatsService } from '../orders/order-stats.service.js';
 
@@ -16,7 +18,19 @@ export class DashboardService {
   constructor(
     private readonly orders: OrderStatsService,
     private readonly catalog: CatalogStatsService,
+    private readonly products: ProductsAdminService,
   ) {}
+
+  /** glowy SearchController: products and orders, each only when the admin may open it. */
+  async search(admin: AdminUser, raw: string): Promise<AdminSearchResults> {
+    const term = raw.trim().slice(0, 100);
+    if (!term) return { term, products: [], orders: [] };
+    const [products, orders] = await Promise.all([
+      canView(admin, 'products') ? this.products.search(term) : [],
+      canView(admin, 'orders') ? this.orders.search(term) : [],
+    ]);
+    return { term, products, orders };
+  }
 
   async metrics(range: DashboardRange): Promise<DashboardMetrics> {
     const [orders, lowStock] = await Promise.all([

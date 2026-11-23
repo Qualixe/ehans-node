@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatPrice } from '@/lib/format';
 import { addButtonProps, useAddToCart } from '../providers/use-add-to-cart';
-import { toCartItem } from '../product-card';
 import { useProduct } from './product-context';
 
 /**
@@ -11,7 +10,8 @@ import { useProduct } from './product-context';
  * (template sticky-add-to-cart). Adds selected bundle × sticky quantity.
  */
 export function StickyAddToCart() {
-  const { product, bundleQty, offerFor, cartLine, buyWith, clearBuyWith } = useProduct();
+  const { product, variant, unit, bundleQty, offerFor, cartLine, extraItems, clearBuyWith } =
+    useProduct();
   const { state, add } = useAddToCart();
   const [visible, setVisible] = useState(false);
   const [qty, setQty] = useState('1');
@@ -56,8 +56,8 @@ export function StickyAddToCart() {
 
   const quantity = () => Math.min(99, Math.max(1, parseInt(qty, 10) || 1));
   const offer = offerFor(bundleQty);
-  const full = product.price * bundleQty;
-  const compare = (product.compareAtPrice ?? 0) * bundleQty;
+  const full = unit.price * bundleQty;
+  const compare = (unit.compareAtPrice ?? 0) * bundleQty;
   const bundle = product.bundles.find((b) => b.quantity === bundleQty);
   const btn = addButtonProps(state, 'add to cart', 'btn sticky-add-to-cart-btn');
 
@@ -68,15 +68,19 @@ export function StickyAddToCart() {
     >
       <div className="sticky-add-to-cart-inner">
         <div className="sticky-prduct-img">
-          {product.images[0] ? <img src={product.images[0].url} alt={product.name} /> : null}
+          {unit.image ? <img src={unit.image} alt={product.name} /> : null}
         </div>
         <div className="sticky-prduct-content">
           <p className="sticky-add-to-cart-title">{product.name}</p>
-          <p className="sticky-add-to-cart-variant">{bundle?.title ?? ''}</p>
+          <p className="sticky-add-to-cart-variant">
+            {[variant?.title, bundle?.title].filter(Boolean).join(' · ')}
+          </p>
         </div>
         <div className="sticky-add-to-cart-purchase">
           <div className="sticky-prduct-price">
-            <p className="latest-price">{formatPrice(full * (1 - offer.discount / 100))}</p>
+            <p className="latest-price">
+              {formatPrice(Math.round(full * (1 - offer.discount / 100)))}
+            </p>
             {offer.discount || compare ? (
               <p className="previous-price">{formatPrice(offer.discount ? full : compare)}</p>
             ) : null}
@@ -113,14 +117,17 @@ export function StickyAddToCart() {
             <button
               className={btn.className}
               type="button"
-              disabled={!product.inStock}
+              disabled={!unit.inStock}
               onClick={(e) => {
-                const extras = product.buyWith
-                  .filter((p) => buyWith.has(p.id))
-                  .map((p) => ({ item: toCartItem(p) }));
-                add([{ item: cartLine(bundleQty), qty: bundleQty * quantity() }, ...extras], {
-                  flyFrom: e.currentTarget,
-                });
+                add(
+                  [
+                    { item: cartLine(bundleQty), qty: bundleQty * quantity() },
+                    ...extraItems.map((item) => ({ item })),
+                  ],
+                  {
+                    flyFrom: e.currentTarget,
+                  },
+                );
                 clearBuyWith();
                 setQty('1');
               }}

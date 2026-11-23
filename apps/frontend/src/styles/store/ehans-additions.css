@@ -1,0 +1,213 @@
+/*
+ * ehans-node's own storefront styles: features the ehans-mart theme doesn't have.
+ * Everything else in this folder is copied verbatim from the live theme or the template.
+ */
+
+/* Variant picker in the product page "Buy it with" / "Complete your …" rows */
+.product-variant-pick {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 6px;
+}
+
+.product-variant-pick select {
+  width: auto;
+  max-width: 100%;
+  height: 28px;
+  padding: 0 26px 0 10px;
+  border: 1px solid var(--border-color2);
+  border-radius: 6px;
+  background-color: var(--white);
+  color: var(--black);
+  font-family: var(--paragraph-font);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 26px;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.product-variant-pick select:hover,
+.product-variant-pick select:focus-visible {
+  border-color: var(--product-accent);
+  outline: none;
+}
+
+.product-variant-pick svg {
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  width: 9px;
+  height: 9px;
+  color: var(--black);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Main product variant picker (above Bundle & Save) */
+.product-variant-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 4px;
+}
+
+.product-variant-main-label {
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.product-variant-main .product-variant-pick {
+  margin-top: 0;
+}
+
+.product-variant-main .product-variant-pick select {
+  height: 36px;
+  padding: 0 32px 0 12px;
+  font-size: 14px;
+}
+
+/* District picker in the Buy-now popup and checkout: same look as the popup's inputs */
+.buy-now-popup-field select {
+  padding: 11px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  background-color: var(--white);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.buy-now-popup-field select:focus {
+  border-color: var(--brand-color);
+  box-shadow: 0 0 0 3px #ff545426;
+}
+
+.buy-now-popup-field.invalid select {
+  border-color: #d62020;
+}
+
+/* Checkout + order confirmation: the template has no checkout page, so these pages reuse the
+   cart layout and the buy-now popup's cards; only the spacing below is new */
+.checkout-card { gap: 14px; padding: 20px; border: 1px solid var(--border-color2); border-radius: 8px; }
+.checkout-card .cart-summary-title { font-size: 18px; }
+.checkout-items { display: flex; flex-direction: column; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-color2); }
+.checkout-items:empty { display: none; }
+.checkout-alert { display: block; margin-top: 10px; font-size: 13px; }
+.checkout-alert a { text-decoration: underline; }
+.checkout-terms { margin-top: 12px; font-size: 12px; color: var(--muted); text-align: center; }
+.checkout-terms a { color: var(--black); text-decoration: underline; }
+.cart-summary-btn .btn:disabled { opacity: .6; cursor: not-allowed; }
+.buy-now-popup-shipping small { color: var(--muted); font-size: 12px; }
+.order-confirmation-head { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 32px; text-align: center; }
+.order-confirmation .cart-summary-item .price { text-align: right; text-transform: none; }
+
+/* ------------------------------------------------------------------------------------------------
+   Buy-now quick checkout: the glowy cash-on-delivery popup (resources/css/store/components.css,
+   .quick-checkout / .qc-* / .district-*), same layout, Ehans colours and fonts.
+   ------------------------------------------------------------------------------------------------ */
+.quick-checkout {
+    --qc-ink: var(--black);
+    --qc-line: #e6e6e6;
+    --qc-soft: #f6f5f3;
+    --qc-faint: #9b9b9b;
+    --qc-muted: #6f6f6f;
+    --qc-error: #d62020;
+    --qc-accent: var(--brand-color);
+    width: min(520px, calc(100% - 24px));
+    max-width: none;
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background: #fff;
+    color: var(--qc-ink);
+    font-family: var(--paragraph-font);
+    box-shadow: 0 30px 80px -20px rgb(0 0 0 / 45%);
+    opacity: 0;
+    transform: translateY(16px) scale(.98);
+    transition: opacity .22s ease, transform .22s cubic-bezier(.2, .65, .3, 1);
+}
+.quick-checkout.is-open { opacity: 1; transform: none; }
+.quick-checkout::backdrop { background: rgb(15 17 21 / 55%); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+html.quick-checkout-open { overflow: hidden; }
+.qc-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.qc-form { display: flex; flex-direction: column; max-height: calc(100dvh - 32px); }
+.qc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; border-bottom: 1px solid var(--qc-line); }
+.qc-title { margin: 0; font-family: var(--heading-font); font-size: 24px; font-weight: 600; line-height: 1.25; color: var(--qc-ink); }
+.qc-close { display: grid; flex: none; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--qc-soft); color: var(--qc-ink); transition: background-color .2s ease, transform .3s ease; }
+.qc-close:hover { background: var(--qc-line); transform: rotate(90deg); }
+.qc-body { display: grid; gap: 16px; padding: 20px 22px; overflow-y: auto; overscroll-behavior: contain; }
+.qc-input { position: relative; }
+.qc-input svg { position: absolute; top: 50%; left: 14px; width: 18px; height: 18px; color: var(--qc-faint); transform: translateY(-50%); pointer-events: none; }
+.qc-input input { width: 100%; height: 48px; padding: 0 14px 0 44px; border: 1px solid var(--qc-line); border-radius: 2px; background: #fff; font-size: 15px; color: var(--qc-ink); cursor: text; transition: border-color .2s ease, box-shadow .2s ease; }
+.qc-input input::placeholder { color: var(--qc-faint); }
+.qc-input input:focus { border-color: var(--qc-accent); outline: none; box-shadow: 0 0 0 3px #ff545426; }
+.qc-field.has-error .qc-input input { border-color: var(--qc-error); box-shadow: 0 0 0 3px rgb(214 32 32 / 10%); }
+.qc-error, .qc-alert { margin: 6px 0 0; font-size: 13px; color: var(--qc-error); }
+.qc-alert { margin: 0; padding: 10px 12px; border-radius: 2px; background: #fbf1f1; }
+.qc-summary { display: grid; gap: 14px; }
+.qc-items { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.qc-item { display: flex; align-items: center; gap: 12px; }
+.qc-item-img { position: relative; flex: none; width: 56px; height: 56px; border: 1px solid var(--qc-line); border-radius: 2px; background: var(--qc-soft); }
+.qc-item-img img { width: 100%; height: 100%; border-radius: 2px; object-fit: cover; }
+.qc-item-qty { position: absolute; top: -8px; right: -8px; display: grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 2px; background: var(--qc-ink); font-size: 12px; font-weight: 600; color: #fff; }
+.qc-item-name { flex: 1; min-width: 0; font-size: 14px; line-height: 1.35; }
+.qc-item-name small { display: block; color: var(--qc-muted); }
+.qc-item-total { font-size: 14px; font-weight: 700; white-space: nowrap; }
+.qc-totals { display: grid; gap: 8px; margin: 0; padding: 14px 16px; border-radius: 2px; background: var(--qc-soft); }
+.qc-totals div { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.qc-totals dt { color: var(--qc-muted); font-weight: 400; }
+.qc-totals dd { margin: 0; font-weight: 500; }
+.qc-totals .qc-discount dd { color: var(--product-green); }
+.qc-totals .qc-grand { padding-top: 8px; border-top: 1px dashed #dcdcdc; font-size: 16px; }
+.qc-totals .qc-grand dt, .qc-totals .qc-grand dd { color: var(--qc-ink); font-weight: 700; }
+.qc-loading { display: grid; gap: 10px; }
+.qc-loading span { height: 56px; border-radius: 2px; background: linear-gradient(90deg, var(--qc-soft) 25%, var(--qc-line) 50%, var(--qc-soft) 75%) 0 0 / 200% 100%; animation: qc-skeleton 1.2s linear infinite; }
+.qc-loading span + span { height: 110px; }
+@keyframes qc-skeleton { to { background-position: -200% 0; } }
+.qc-foot { padding: 14px 22px 18px; border-top: 1px solid var(--qc-line); }
+.qc-submit { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 52px; border: 1px solid var(--qc-accent); border-radius: 2px; background: var(--qc-accent); color: #fff; font-family: var(--heading-font); font-size: 16px; letter-spacing: .14em; text-transform: uppercase; transition: background-color .2s ease, border-color .2s ease; }
+.qc-submit:hover { border-color: var(--qc-ink); background: var(--qc-ink); }
+.qc-submit:disabled { opacity: .7; cursor: wait; }
+.qc-submit-label { font-weight: 700; }
+.qc-cod { margin: 8px 0 0; font-size: 12px; text-align: center; color: var(--qc-muted); }
+
+/* the glowy searchable district picker */
+.district-select { position: relative; }
+.district-select > svg { position: absolute; top: 24px; left: 14px; z-index: 1; width: 18px; height: 18px; color: var(--qc-faint, #9b9b9b); transform: translateY(-50%); pointer-events: none; }
+.district-trigger { position: relative; display: flex; align-items: center; width: 100%; height: 48px; padding: 0 40px 0 44px; border: 1px solid var(--qc-line, #e6e6e6); border-radius: 2px; background: #fff; font-size: 15px; color: var(--qc-ink, var(--black)); text-align: left; cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease; }
+.district-trigger > svg { position: absolute; right: 16px; color: #6b7280; transition: transform .2s ease; }
+.district-select.is-open .district-trigger, .district-trigger:focus-visible { border-color: var(--brand-color); outline: none; box-shadow: 0 0 0 3px #ff545426; }
+.district-select.is-open .district-trigger > svg { transform: rotate(180deg); }
+.district-select.is-invalid .district-trigger { border-color: #d62020; box-shadow: 0 0 0 3px rgb(214 32 32 / 10%); }
+.district-value { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.district-value small, .district-list small { color: var(--qc-muted, #6f6f6f); font-size: 13px; }
+.district-placeholder { color: var(--qc-faint, #9b9b9b); }
+.district-panel { position: absolute; top: calc(100% + 6px); right: 0; left: 0; z-index: 20; overflow: hidden; border: 1px solid var(--qc-line, #e6e6e6); border-radius: 2px; background: #fff; box-shadow: 0 18px 40px -16px rgb(0 0 0 / 30%); }
+.district-search { padding: 8px; border-bottom: 1px solid #f0f0f2; }
+.district-search input { width: 100%; height: 40px; padding: 0 12px; border: 1px solid var(--qc-line, #e6e6e6); border-radius: 2px; background: var(--qc-soft, #f6f5f3); font-size: 15px; cursor: text; }
+.district-search input:focus { border-color: var(--brand-color); outline: none; background: #fff; }
+.district-list { max-height: 240px; margin: 0; padding: 4px; overflow-y: auto; overscroll-behavior: contain; list-style: none; }
+.district-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 10px; border-radius: 2px; font-size: 15px; cursor: pointer; }
+.district-list li em { font-size: 13px; font-style: normal; color: var(--qc-muted, #6f6f6f); }
+.district-list li.is-active { background: var(--qc-soft, #f6f5f3); }
+.district-list li[aria-selected="true"] { color: var(--brand-color); font-weight: 500; }
+.district-empty { padding: 12px 14px; font-size: 14px; color: var(--qc-muted, #6f6f6f); }
+
+@media (max-width: 575px) {
+    .quick-checkout { width: 100%; max-height: 92dvh; margin: auto 0 0; border-radius: 18px 18px 0 0; transform: translateY(40px); }
+    .qc-form { max-height: 92dvh; }
+    .qc-head, .qc-body, .qc-foot { padding-inline: 16px; }
+    .qc-title { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .quick-checkout { transition: none; }
+    .qc-loading span { animation: none; }
+}

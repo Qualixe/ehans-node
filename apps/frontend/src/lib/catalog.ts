@@ -92,7 +92,14 @@ function getLocalProducts(params: ProductListParams): ProductListResponse {
   const lists = localProductLists as unknown as Record<string, ProductListResponse>;
   const list = lists[params.category ?? '__all__'] ?? lists['__all__'];
   if (!list) {
-    return { items: [], page: 1, pageSize: 24, total: 0, totalPages: 1, priceRange: { min: 0, max: 0 } };
+    return {
+      items: [],
+      page: 1,
+      pageSize: 24,
+      total: 0,
+      totalPages: 1,
+      priceRange: { min: 0, max: 0 },
+    };
   }
 
   let items = [...list.items] as ProductCard[];

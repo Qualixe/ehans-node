@@ -20,3 +20,8 @@ export function productUrl(slug: string): string {
 export function collectionUrl(slug?: string): string {
   return slug ? `/collections/${slug}` : '/collections';
 }
+
+/** "৳1,280": the quick-checkout popup's compact taka format (glowy's Money::format). */
+export function formatTaka(amount: number): string {
+  return `৳${Math.round(amount).toLocaleString('en-US')}`;
+}

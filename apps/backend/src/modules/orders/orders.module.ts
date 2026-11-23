@@ -1,12 +1,17 @@
 import { Module } from '@nestjs/common';
+import { CatalogModule } from '../catalog/catalog.module.js';
+import { CheckoutController } from './checkout.controller.js';
+import { CheckoutService } from './checkout.service.js';
 import { OrderStatsService } from './order-stats.service.js';
 
 /**
- * Orders (glowy's order model). This slice only reads them for the admin dashboard;
- * checkout, POS and the admin order screens come in the next slice.
+ * Orders (glowy's order model): storefront checkout (buy now + cart, cash on delivery) and the
+ * dashboard figures. Admin order screens, POS and couriers come next.
  */
 @Module({
-  providers: [OrderStatsService],
+  imports: [CatalogModule],
+  controllers: [CheckoutController],
+  providers: [OrderStatsService, CheckoutService],
   exports: [OrderStatsService],
 })
 export class OrdersModule {}

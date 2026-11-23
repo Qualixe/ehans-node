@@ -7,7 +7,7 @@ Guidance for AI coding assistants (and humans) working in this repository.
 eCommerce **modular monolith** in a pnpm workspace:
 
 - `apps/frontend`: Next.js 16 App Router, React 19. Storefront = ehans-mart template design
-  (template CSS, no Tailwind); admin (planned, at `/admin`) = Tailwind 4 + shadcn/ui
+  (template CSS, no Tailwind); admin at `/admin` = Tailwind 4 port of glowy's admin
 - `apps/backend`: NestJS 12 (ESM), Prisma 7, PostgreSQL 17
 - `packages/shared`: `@ehans/shared`, framework-agnostic zod schemas, types and constants
 - `design/ehans-mart`: the original static HTML template (its own git repo). **Reference only**,
@@ -24,11 +24,19 @@ eCommerce **modular monolith** in a pnpm workspace:
 - **Built:** catalog backend (categories, products, images, options/variants, bundles, cross-sells;
   public `GET /api/v1/catalog/*`), and the full storefront design (home, collections, product,
   cart, about, contact, FAQ, policies, blog, 404) with a browser cart (localStorage).
-- **Next, ported from the glowy Laravel app** (`C:\Users\hrido\Desktop\glowy`, reference only):
-  checkout + orders, then the `/admin` dashboard (same screens and behaviour as glowy's admin),
-  then couriers, bKash, accounting, etc. Port feature by feature; match glowy's behaviour.
-- Until checkout exists, order/contact/newsletter forms validate and then say ordering/messaging
-  is "launching soon". **Never fake a success screen** for an action that wasn't performed.
+- **Checkout (glowy port, cash on delivery):** Buy-now popup and `/checkout` (cart) place real orders via
+  `POST /api/v1/orders`; prices, bundle discounts and delivery (district → zone: ৳80 inside Dhaka, ৳130
+  outside, `@ehans/shared` `delivery.ts`) are computed by the API (`POST /checkout/quote`), never the browser.
+  Stock is reserved in the order transaction (`CatalogCheckoutService`). Confirmation: `/orders/<number>?t=<token>`
+  (secret link, 30 days).
+- **Admin (`/admin`), ported from the glowy Laravel app** (`C:\Users\hrido\Desktop\glowy`, reference only),
+  slice by slice, matching glowy's screens and behaviour:
+  - Slice 1 (done): sign-in + staff section permissions, glowy shell (sidebar, topbar, light/dark,
+    collapse), dashboard (on glowy's orders schema; zeros until orders exist), Products (list + add/edit
+    with media, options/variants, collections), Categories, Inventory, Reviews, admin search. Unported
+    menu entries open `/admin/modules/<slug>` ("coming soon").
+  - Slice 2: admin orders, POS, customers (storefront checkout is done). Then couriers, bKash, accounting, etc.
+- Contact/newsletter forms validate and then say messaging is "launching soon". **Never fake a success screen** for an action that wasn't performed.
 
 ## Hard rules
 
@@ -108,6 +116,8 @@ Run the full verification line before saying a change is done.
   class**; styling comes only from `src/styles/store/*.css` (verbatim copies of the live theme's CSS where it ships
   the file, otherwise the template's; `live-theme.css` holds the extra live rules; loaded in a fixed order by
   `index.css`). Don't add Tailwind or new CSS to store components; don't edit/format the copied CSS.
+  The one exception is `ehans-additions.css` (loaded last): small rules for ehans-only features the theme
+  lacks (e.g. the cross-sell variant picker). Keep it minimal and theme-consistent.
   If a design change is needed, change it in the template CSS and re-copy (only `../fonts/` URLs are rewritten).
 - Template behaviours (`design/ehans-mart/assets/js/script.js`) are re-implemented in React; keep the
   same classes/states (`active`, `loading`, `added`, `show`, body `active`) the CSS expects.
@@ -121,11 +131,29 @@ Run the full verification line before saying a change is done.
 - Listings filter by collection **membership** (`product_categories`); `sort=manual` = the collection's own order.
 - `<img>` is used on purpose in store components (template markup); the lint rule is disabled there.
 
-### Admin (`/admin`, planned) — Tailwind 4 + shadcn/ui
+### Admin (`/admin`): Tailwind 4 port of glowy's admin
 
-- Styles: `src/styles/admin.tailwind.css` (only `*.tailwind.css` files go through the Tailwind loader).
-- UI components: `pnpm dlx shadcn@latest add <component>` (in `apps/frontend`) → `src/components/ui`,
-  `cn()` from `@/lib/utils`. Port screens and behaviour from glowy's `resources/views/admin`.
+- Styles: `src/styles/admin.tailwind.css`, a port of glowy's `resources/css/admin.css` (ink/fg theme, light by
+  default, `html.dark`, `html.sidebar-collapsed`, `.admin-card`/`.admin-btn-*`/`.admin-table`, `.auth-*`).
+  Ehans accent `#ff5554` in the `blue-*` slot and Figtree instead of Jost; everything else stays glowy's.
+  Only `*.tailwind.css` files go through the Tailwind loader. Not shadcn: port glowy's markup and classes.
+- Screens: port `resources/views/admin/**` class for class into `src/app/admin/(panel)/**`; shared pieces
+  live in `src/components/admin` (icons, stat card, charts, shell) and `src/lib/admin` (menu, format).
+- Auth: the API issues an opaque session token (only its hash is stored in `sessions`); the sign-in server
+  action keeps it in the httpOnly cookie `ehans_admin` (path `/admin`). Admin data is fetched **server-side
+  only** with `adminApi()` (`src/lib/admin/session.ts`), never from the browser. Mutations are server
+  actions that call `adminApi()` again (it re-checks the session).
+- Permissions are glowy's: owner = everything; staff = `{ section: 'view' | 'manage' }` (`AdminSection` in
+  `@ehans/shared`). Backend routes use `@AdminOnly('<section>')` (GET needs view, writes need manage);
+  the menu hides what the admin can't open (`visibleMenu`). View-only staff see read-only screens.
+- Image uploads: the API stores them in `UPLOADS_DIR` (dev: `apps/backend/storage/uploads`, prod: the
+  `uploads` volume) as `/uploads/<folder>/<random>.<ext>`, served by the API at `/api/v1/uploads/*`
+  and proxied by the frontend route `app/uploads/[...path]`. Product descriptions are sanitized by the
+  API (`html-sanitizer.ts`, glowy's allowlist).
+- Every admin section folder has a `loading.tsx` (re-exporting the panel one): Cache Components needs
+  a Suspense boundary around each page's data reads.
+- The owner account: `pnpm db:seed` with `SEED_ADMIN_EMAIL`/`SEED_ADMIN_PASSWORD` (dev), or
+  `node dist/database/create-admin.js` (production, see docs/deployment.md).
 
 ## Database conventions
 

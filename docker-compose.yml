@@ -88,6 +88,10 @@ services:
       SWAGGER_ENABLED: ${SWAGGER_ENABLED:-false}
       LOG_LEVEL: ${LOG_LEVEL:-log}
       LOG_FORMAT: json
+      UPLOADS_DIR: /app/uploads
+    volumes:
+      # admin image uploads (products, categories); the rest of the filesystem is read-only
+      - uploads:/app/uploads
     ports:
       - '127.0.0.1:${BACKEND_HOST_PORT:-4000}:4000'
     depends_on:
@@ -135,3 +139,4 @@ networks:
 
 volumes:
   postgres_data:
+  uploads:

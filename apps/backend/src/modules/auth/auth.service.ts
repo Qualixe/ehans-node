@@ -69,8 +69,7 @@ export class AuthService {
 
     const token = randomBytes(32).toString('base64url');
     const expiresAt = new Date(
-      Date.now() +
-        (input.remember ? REMEMBER_DAYS * 24 * 3600_000 : SESSION_HOURS * 3600_000),
+      Date.now() + (input.remember ? REMEMBER_DAYS * 24 * 3600_000 : SESSION_HOURS * 3600_000),
     );
     const now = new Date();
     await this.prisma.$transaction([

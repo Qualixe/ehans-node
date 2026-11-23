@@ -112,7 +112,11 @@ export const ORDER_CHANNEL_INFO: Record<OrderChannelName, { label: string; color
 
 // ---------------------------------------------------------------- dashboard
 
-export const DASHBOARD_RANGES = { '7d': 'Last 7 days', '30d': 'Last 30 days', '1y': 'Last 12 months' } as const;
+export const DASHBOARD_RANGES = {
+  '7d': 'Last 7 days',
+  '30d': 'Last 30 days',
+  '1y': 'Last 12 months',
+} as const;
 export type DashboardRange = keyof typeof DASHBOARD_RANGES;
 
 export interface MetricChange {
@@ -129,7 +133,13 @@ export interface DashboardMetrics {
   customers: MetricChange & { newThisMonth: number };
   aov: MetricChange & { target: number };
   chart: { labels: string[]; gross: number[]; net: number[] };
-  channels: { channel: OrderChannelName; label: string; color: string; count: number; percent: number }[];
+  channels: {
+    channel: OrderChannelName;
+    label: string;
+    color: string;
+    count: number;
+    percent: number;
+  }[];
   topProducts: { name: string; quantity: number; revenue: number }[];
   recentOrders: {
     id: string;
@@ -153,5 +163,201 @@ export interface AdminNavigation {
     pendingComments: number;
     unreadMessages: number;
   };
-  notifications: { id: string; number: string; customerName: string; total: number; createdAt: string }[];
+  notifications: {
+    id: string;
+    number: string;
+    customerName: string;
+    total: number;
+    createdAt: string;
+  }[];
+}
+
+// ---------------------------------------------------------------- catalog admin
+
+export interface AdminCategory {
+  id: string;
+  parentId: string | null;
+  name: string;
+  slug: string;
+  image: string | null;
+  description: string | null;
+  position: number;
+  showInMenu: boolean;
+  homePosition: number | null;
+  homeTitle: string | null;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  /** Products in this collection (memberships). */
+  productCount: number;
+}
+
+/** Top-level departments with their sub-categories (admin Categories list). */
+export type AdminCategoryTree = (AdminCategory & { children: AdminCategory[] })[];
+
+/** One page of an admin list (Laravel's paginate()). */
+export interface AdminPage<T> {
+  items: T[];
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
+}
+
+export type ReviewStatusFilter = 'pending' | 'approved' | 'all';
+
+export interface AdminReview {
+  id: string;
+  product: { id: string; name: string; slug: string };
+  name: string;
+  email: string | null;
+  rating: number;
+  body: string;
+  isApproved: boolean;
+  createdAt: string;
+}
+
+export type StockFilter = 'low' | 'out';
+
+/** One stock line: a product variant, or a product without variants. */
+export interface InventoryRow {
+  kind: 'variant' | 'product';
+  id: string;
+  productId: string;
+  productName: string;
+  categoryName: string | null;
+  /** Variant title (null for a product without variants). */
+  variantTitle: string | null;
+  sku: string | null;
+  stock: number;
+  price: number;
+  image: string | null;
+}
+
+export interface InventoryPage extends AdminPage<InventoryRow> {
+  threshold: number;
+  summary: { units: number; value: number; low: number; out: number };
+}
+
+export interface StockAdjustment {
+  mode: 'set' | 'add';
+  quantity: number;
+}
+
+export type ProductStatusFilter = 'active' | 'draft';
+
+/** A row of the admin Products list. */
+export interface AdminProductRow {
+  id: string;
+  name: string;
+  slug: string;
+  sku: string;
+  brand: string | null;
+  categoryName: string | null;
+  price: number;
+  compareAtPrice: number | null;
+  stock: number;
+  variantCount: number;
+  soldCount: number;
+  isActive: boolean;
+  isFeatured: boolean;
+  image: string | null;
+}
+
+/** Topbar search results (glowy SearchController): only sections the admin may open. */
+export interface AdminSearchResults {
+  term: string;
+  products: AdminProductRow[];
+  orders: {
+    id: string;
+    number: string;
+    customerName: string;
+    phone: string;
+    status: OrderStatusName;
+    total: number;
+    createdAt: string;
+  }[];
+}
+
+/** One variant in the product form ("Default Title" holds a simple product's details). */
+export interface AdminVariantInput {
+  id?: string | null;
+  /** Option values in option order ([] for a product without options). */
+  options: string[];
+  price: number;
+  compareAtPrice: number | null;
+  costPerItem: number | null;
+  sku: string | null;
+  barcode: string | null;
+  stock: number;
+  weightGrams: number | null;
+  /** One of the product's existing images. */
+  imageId: string | null;
+}
+
+export interface AdminProductOption {
+  name: string;
+  values: string[];
+}
+
+/** Everything the product form edits (sent as JSON next to the uploaded images). */
+export interface AdminProductInput {
+  name: string;
+  slug: string | null;
+  sku: string | null;
+  categoryId: string;
+  /** Extra collections the product is listed in (the category is always one). */
+  collectionIds: string[];
+  brand: string | null;
+  productType: string | null;
+  tags: string[];
+  shortDescription: string | null;
+  /** Rich text; sanitized by the API. */
+  description: string | null;
+  isActive: boolean;
+  isFeatured: boolean;
+  metaTitle: string | null;
+  metaDescription: string | null;
+  /** Existing image ids in display order (the first is the main image). */
+  imageOrder: string[];
+  removeImages: string[];
+  options: AdminProductOption[];
+  variants: AdminVariantInput[];
+  /** Product page "Buy it with" checkboxes, in order. */
+  buyWithIds: string[];
+  /** Product page "Complete your …" list, in order. */
+  upsellIds: string[];
+  buyWithTitle: string | null;
+  upsellTitle: string | null;
+}
+
+/** A product picked as a cross-sell (shown in the product form). */
+export interface AdminCrossSellItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string | null;
+  isActive: boolean;
+}
+
+export interface AdminProductDetail extends Omit<
+  AdminProductInput,
+  'imageOrder' | 'removeImages' | 'variants' | 'buyWithIds' | 'upsellIds'
+> {
+  buyWith: AdminCrossSellItem[];
+  upsells: AdminCrossSellItem[];
+  id: string;
+  slug: string;
+  sku: string;
+  soldCount: number;
+  stock: number;
+  images: { id: string; path: string }[];
+  variants: (AdminVariantInput & { id: string })[];
+}
+
+export interface AdminProductSuggestions {
+  brands: string[];
+  types: string[];
+  tags: string[];
+  /** Suggested product code for a new product. */
+  nextSku: string;
 }

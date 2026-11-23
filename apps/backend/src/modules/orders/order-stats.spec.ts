@@ -1,4 +1,11 @@
-import { addDays, addMonths, bucketKey, bucketLabel, startOfDay, startOfMonth } from './dhaka-time.js';
+import {
+  addDays,
+  addMonths,
+  bucketKey,
+  bucketLabel,
+  startOfDay,
+  startOfMonth,
+} from './dhaka-time.js';
 import { percentChange } from './order-stats.service.js';
 
 describe('percentChange (glowy DashboardMetrics::change)', () => {

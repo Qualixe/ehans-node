@@ -108,13 +108,12 @@ export function CartDrawer() {
             <p className="cart-drawer-total-price">{formatPrice(total)}</p>
           </div>
           <div className="cart-drawer-checkout-btn-wrap">
-            {/* checkout module is the next phase; until then the cart page is the hand-off */}
             <button
               className="btn"
               type="button"
               onClick={() => {
                 closePanel();
-                router.push('/cart');
+                router.push('/checkout');
               }}
             >
               secure checkout

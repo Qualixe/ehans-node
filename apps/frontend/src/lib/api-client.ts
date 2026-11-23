@@ -24,7 +24,10 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise
   const url = `${getApiBaseUrl().replace(/\/$/, '')}/${path.replace(/^\//, '')}`;
   const headers = new Headers(init.headers);
   headers.set('Accept', 'application/json');
-  if (init.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
+  // JSON by default; FormData (file uploads) sets its own multipart boundary
+  if (init.body && !(init.body instanceof FormData) && !headers.has('Content-Type')) {
+    headers.set('Content-Type', 'application/json');
+  }
 
   const res = await fetch(url, { credentials: 'include', ...init, headers });
 

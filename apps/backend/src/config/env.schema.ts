@@ -52,6 +52,9 @@ export const envSchema = z
     TRUST_PROXY: z.coerce.number().int().min(0).max(10).default(0),
     COOKIE_DOMAIN: optional(z.string().min(1)),
 
+    /** Where admin image uploads are stored (a Docker volume in production). */
+    UPLOADS_DIR: z.string().min(1).default('storage/uploads'),
+
     APP_VERSION: z.string().min(1).default('0.0.0-dev'),
     SWAGGER_ENABLED: optional(z.stringbool()),
     LOG_LEVEL: z.enum(LOG_LEVELS).default('log'),

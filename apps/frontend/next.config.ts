@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   cacheComponents: true,
+
+  experimental: {
+    serverActions: {
+      // admin product saves carry up to 20 images of 4 MB (the API enforces the per-file limit)
+      bodySizeLimit: '90mb',
+    },
+  },
   partialPrefetching: true,
 
   turbopack: {

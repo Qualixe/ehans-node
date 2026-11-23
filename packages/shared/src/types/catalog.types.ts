@@ -40,6 +40,21 @@ export interface ProductCard {
   hasVariants: boolean;
 }
 
+/** A variant of a cross-sell product (picked in its row on the product page). */
+export interface CrossSellVariant {
+  id: string;
+  title: string;
+  price: number;
+  compareAtPrice: number | null;
+  inStock: boolean;
+  image: ProductImageDto | null;
+}
+
+/** "Buy it with" / "Complete your …" product: a card plus its variants (empty without options). */
+export interface CrossSellCard extends ProductCard {
+  variants: CrossSellVariant[];
+}
+
 export interface ProductOptionDto {
   name: string;
   values: string[];
@@ -84,8 +99,11 @@ export interface ProductDetail extends ProductCard {
   options: ProductOptionDto[];
   variants: ProductVariantDto[];
   bundles: ProductBundleDto[];
-  buyWith: ProductCard[];
-  upsells: ProductCard[];
+  buyWith: CrossSellCard[];
+  upsells: CrossSellCard[];
+  /** Admin-set headings for the two sections (null = template default). */
+  buyWithTitle: string | null;
+  upsellTitle: string | null;
   related: ProductCard[];
   breadcrumbs: CategorySummary[];
 }

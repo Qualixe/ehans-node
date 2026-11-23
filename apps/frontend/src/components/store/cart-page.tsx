@@ -179,18 +179,10 @@ export function CartPageView() {
               </div>
             </div>
             <div className="cart-summary-btn">
-              {/* checkout is the next module ported from glowy */}
-              <a
-                href="#"
-                className="btn primary-btn"
-                aria-label="go to checkout"
-                title="Checkout opens soon"
-                aria-disabled="true"
-                onClick={(e) => e.preventDefault()}
-              >
+              <Link href="/checkout" className="btn primary-btn" aria-label="go to checkout">
                 Proceed to checkout
                 <span></span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

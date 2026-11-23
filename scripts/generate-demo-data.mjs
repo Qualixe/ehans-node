@@ -10,7 +10,11 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { seedCategories, seedProducts, seedBundles } from '../apps/backend/dist/database/seed/catalog.seed-data.js';
+import {
+  seedCategories,
+  seedProducts,
+  seedBundles,
+} from '../apps/backend/dist/database/seed/catalog.seed-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outDir = resolve(__dirname, '../apps/frontend/src/data');
@@ -73,7 +77,9 @@ function toProductCard(p) {
     ratingAverage: null,
     ratingCount: 0,
     inStock: p.stock > 0,
-    category: cat ? catSummary(cat) : { id: 'cat-unknown', slug: p.category, name: p.category, image: null },
+    category: cat
+      ? catSummary(cat)
+      : { id: 'cat-unknown', slug: p.category, name: p.category, image: null },
     hasVariants: p.options.length > 0,
   };
 }
@@ -141,10 +147,7 @@ const categoryTree = seedCategories
       .sort((a, b) => a.position - b.position)
       .map(catSummary);
     const ownCount = productCountByCat.get(c.slug) ?? 0;
-    const childrenCount = children.reduce(
-      (n, ch) => n + (productCountByCat.get(ch.slug) ?? 0),
-      0,
-    );
+    const childrenCount = children.reduce((n, ch) => n + (productCountByCat.get(ch.slug) ?? 0), 0);
     return {
       ...catSummary(c),
       description: c.description,
@@ -164,7 +167,7 @@ const homeCategories = seedCategories
 
 const popular = seedProducts
   .slice()
-  .sort((a, b) => (b.stock - a.stock)) // "best-selling" proxy
+  .sort((a, b) => b.stock - a.stock) // "best-selling" proxy
   .slice(0, POPULAR_SIZE)
   .map(toProductCard);
 
@@ -216,10 +219,7 @@ for (const c of seedCategories) {
 for (const slug of allCats) {
   // Products in this category (by primary category or collection membership)
   const items = seedProducts
-    .filter(
-      (p) =>
-        p.category === slug || p.collections.some((m) => m.collection === slug),
-    )
+    .filter((p) => p.category === slug || p.collections.some((m) => m.collection === slug))
     .map(toProductCard);
 
   if (items.length === 0) continue;

@@ -36,3 +36,7 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+ehans-deploy.tgz
+
+# admin image uploads (dev)
+apps/backend/storage/

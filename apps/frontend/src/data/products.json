@@ -846,11 +846,7 @@
     "options": [
       {
         "name": "quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "4 Pcs"],
         "swatches": null
       }
     ],
@@ -858,9 +854,7 @@
       {
         "id": "var-10405955469567-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 450,
         "compareAtPrice": null,
         "stock": 50,
@@ -869,9 +863,7 @@
       {
         "id": "var-10405955469567-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 850,
         "compareAtPrice": 900,
         "stock": 50,
@@ -880,9 +872,7 @@
       {
         "id": "var-10405955469567-2",
         "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
+        "options": ["4 Pcs"],
         "price": 1600,
         "compareAtPrice": 1800,
         "stock": 50,
@@ -1286,11 +1276,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "6 Pcs",
-          "12 Pcs",
-          "18 Pcs"
-        ],
+        "values": ["6 Pcs", "12 Pcs", "18 Pcs"],
         "swatches": null
       }
     ],
@@ -1298,9 +1284,7 @@
       {
         "id": "var-10405704368383-0",
         "title": "6 Pcs",
-        "options": [
-          "6 Pcs"
-        ],
+        "options": ["6 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -1309,9 +1293,7 @@
       {
         "id": "var-10405704368383-1",
         "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
+        "options": ["12 Pcs"],
         "price": 850,
         "compareAtPrice": 960,
         "stock": 50,
@@ -1320,9 +1302,7 @@
       {
         "id": "var-10405704368383-2",
         "title": "18 Pcs",
-        "options": [
-          "18 Pcs"
-        ],
+        "options": ["18 Pcs"],
         "price": 1200,
         "compareAtPrice": 1440,
         "stock": 50,
@@ -1760,11 +1740,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -1772,9 +1748,7 @@
       {
         "id": "var-10405657903359-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 520,
         "compareAtPrice": null,
         "stock": 50,
@@ -1783,9 +1757,7 @@
       {
         "id": "var-10405657903359-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 950,
         "compareAtPrice": 1040,
         "stock": 50,
@@ -1794,9 +1766,7 @@
       {
         "id": "var-10405657903359-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1300,
         "compareAtPrice": 1560,
         "stock": 50,
@@ -2238,11 +2208,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -2250,9 +2216,7 @@
       {
         "id": "var-10405633818879-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 450,
         "compareAtPrice": null,
         "stock": 50,
@@ -2261,9 +2225,7 @@
       {
         "id": "var-10405633818879-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 850,
         "compareAtPrice": 900,
         "stock": 50,
@@ -2272,9 +2234,7 @@
       {
         "id": "var-10405633818879-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1200,
         "compareAtPrice": 1350,
         "stock": 50,
@@ -3074,11 +3034,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "5 Pcs",
-          "10 Pcs",
-          "20 Pcs"
-        ],
+        "values": ["5 Pcs", "10 Pcs", "20 Pcs"],
         "swatches": null
       }
     ],
@@ -3086,9 +3042,7 @@
       {
         "id": "var-10405579423999-0",
         "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
+        "options": ["5 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -3097,9 +3051,7 @@
       {
         "id": "var-10405579423999-1",
         "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
+        "options": ["10 Pcs"],
         "price": 850,
         "compareAtPrice": 960,
         "stock": 50,
@@ -3108,9 +3060,7 @@
       {
         "id": "var-10405579423999-2",
         "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
+        "options": ["20 Pcs"],
         "price": 1500,
         "compareAtPrice": 1920,
         "stock": 50,
@@ -3549,11 +3499,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pair (2 Pcs)",
-          "2 Pair (4 Pcs)",
-          "3 Pair (6 Pcs)"
-        ],
+        "values": ["1 Pair (2 Pcs)", "2 Pair (4 Pcs)", "3 Pair (6 Pcs)"],
         "swatches": null
       }
     ],
@@ -3561,9 +3507,7 @@
       {
         "id": "var-10404478091519-0",
         "title": "1 Pair (2 Pcs)",
-        "options": [
-          "1 Pair (2 Pcs)"
-        ],
+        "options": ["1 Pair (2 Pcs)"],
         "price": 290,
         "compareAtPrice": null,
         "stock": 50,
@@ -3572,9 +3516,7 @@
       {
         "id": "var-10404478091519-1",
         "title": "2 Pair (4 Pcs)",
-        "options": [
-          "2 Pair (4 Pcs)"
-        ],
+        "options": ["2 Pair (4 Pcs)"],
         "price": 550,
         "compareAtPrice": 580,
         "stock": 50,
@@ -3583,9 +3525,7 @@
       {
         "id": "var-10404478091519-2",
         "title": "3 Pair (6 Pcs)",
-        "options": [
-          "3 Pair (6 Pcs)"
-        ],
+        "options": ["3 Pair (6 Pcs)"],
         "price": 780,
         "compareAtPrice": 870,
         "stock": 50,
@@ -3997,11 +3937,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -4009,9 +3945,7 @@
       {
         "id": "var-10404431266047-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 990,
         "compareAtPrice": null,
         "stock": 50,
@@ -4020,9 +3954,7 @@
       {
         "id": "var-10404431266047-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 1850,
         "compareAtPrice": 1980,
         "stock": 50,
@@ -4031,9 +3963,7 @@
       {
         "id": "var-10404431266047-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 2600,
         "compareAtPrice": 2940,
         "stock": 50,
@@ -4498,11 +4428,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "3 Pcs",
-          "5 Pcs"
-        ],
+        "values": ["1 Pcs", "3 Pcs", "5 Pcs"],
         "swatches": null
       }
     ],
@@ -4510,9 +4436,7 @@
       {
         "id": "var-10404308123903-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -4521,9 +4445,7 @@
       {
         "id": "var-10404308123903-1",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1280,
         "compareAtPrice": 1440,
         "stock": 50,
@@ -4532,9 +4454,7 @@
       {
         "id": "var-10404308123903-2",
         "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
+        "options": ["5 Pcs"],
         "price": 1950,
         "compareAtPrice": 2400,
         "stock": 50,
@@ -4973,11 +4893,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -4985,9 +4901,7 @@
       {
         "id": "var-10404287774975-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 500,
         "compareAtPrice": null,
         "stock": 50,
@@ -4996,9 +4910,7 @@
       {
         "id": "var-10404287774975-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 950,
         "compareAtPrice": 1000,
         "stock": 50,
@@ -5007,9 +4919,7 @@
       {
         "id": "var-10404287774975-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1350,
         "compareAtPrice": 1500,
         "stock": 50,
@@ -5421,11 +5331,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "3 Pcs",
-          "5 Pcs"
-        ],
+        "values": ["1 Pcs", "3 Pcs", "5 Pcs"],
         "swatches": null
       }
     ],
@@ -5433,9 +5339,7 @@
       {
         "id": "var-10404113252607-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 120,
         "compareAtPrice": null,
         "stock": 50,
@@ -5444,9 +5348,7 @@
       {
         "id": "var-10404113252607-1",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 330,
         "compareAtPrice": 360,
         "stock": 50,
@@ -5455,9 +5357,7 @@
       {
         "id": "var-10404113252607-2",
         "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
+        "options": ["5 Pcs"],
         "price": 490,
         "compareAtPrice": 600,
         "stock": 50,
@@ -5895,11 +5795,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "3 Pcs",
-          "5 Pcs",
-          "10 Pcs"
-        ],
+        "values": ["3 Pcs", "5 Pcs", "10 Pcs"],
         "swatches": null
       }
     ],
@@ -5907,9 +5803,7 @@
       {
         "id": "var-10404017471743-0",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -5918,9 +5812,7 @@
       {
         "id": "var-10404017471743-1",
         "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
+        "options": ["5 Pcs"],
         "price": 750,
         "compareAtPrice": 800,
         "stock": 50,
@@ -5929,9 +5821,7 @@
       {
         "id": "var-10404017471743-2",
         "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
+        "options": ["10 Pcs"],
         "price": 1280,
         "compareAtPrice": null,
         "stock": 50,
@@ -6373,11 +6263,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "3 Pcs",
-          "5 Pcs",
-          "10 Pcs"
-        ],
+        "values": ["3 Pcs", "5 Pcs", "10 Pcs"],
         "swatches": null
       }
     ],
@@ -6385,9 +6271,7 @@
       {
         "id": "var-10402099691775-0",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -6396,9 +6280,7 @@
       {
         "id": "var-10402099691775-1",
         "title": "5 Pcs",
-        "options": [
-          "5 Pcs"
-        ],
+        "options": ["5 Pcs"],
         "price": 780,
         "compareAtPrice": 800,
         "stock": 50,
@@ -6407,9 +6289,7 @@
       {
         "id": "var-10402099691775-2",
         "title": "10 Pcs",
-        "options": [
-          "10 Pcs"
-        ],
+        "options": ["10 Pcs"],
         "price": 1450,
         "compareAtPrice": 1600,
         "stock": 50,
@@ -6857,11 +6737,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ],
+        "values": ["1 Pack (10 Pcs)", "2 Pack (20 Pcs)", "3 Pack (30 Pcs)"],
         "swatches": null
       }
     ],
@@ -6869,9 +6745,7 @@
       {
         "id": "var-10401802191103-0",
         "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
+        "options": ["1 Pack (10 Pcs)"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -6880,9 +6754,7 @@
       {
         "id": "var-10401802191103-1",
         "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
+        "options": ["2 Pack (20 Pcs)"],
         "price": 650,
         "compareAtPrice": 700,
         "stock": 50,
@@ -6891,9 +6763,7 @@
       {
         "id": "var-10401802191103-2",
         "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
+        "options": ["3 Pack (30 Pcs)"],
         "price": 900,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -7333,11 +7203,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -7345,9 +7211,7 @@
       {
         "id": "var-10400983679231-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 520,
         "compareAtPrice": null,
         "stock": 50,
@@ -7356,9 +7220,7 @@
       {
         "id": "var-10400983679231-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 980,
         "compareAtPrice": 1040,
         "stock": 50,
@@ -7367,9 +7229,7 @@
       {
         "id": "var-10400983679231-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1350,
         "compareAtPrice": 1560,
         "stock": 50,
@@ -8242,11 +8102,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "4 Pcs"],
         "swatches": null
       }
     ],
@@ -8254,9 +8110,7 @@
       {
         "id": "var-10400935379199-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -8265,9 +8119,7 @@
       {
         "id": "var-10400935379199-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 650,
         "compareAtPrice": null,
         "stock": 50,
@@ -8276,9 +8128,7 @@
       {
         "id": "var-10400935379199-2",
         "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
+        "options": ["4 Pcs"],
         "price": 1150,
         "compareAtPrice": null,
         "stock": 50,
@@ -8735,11 +8585,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "4 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "4 Pcs"],
         "swatches": null
       }
     ],
@@ -8747,9 +8593,7 @@
       {
         "id": "var-10400871940351-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -8758,9 +8602,7 @@
       {
         "id": "var-10400871940351-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 650,
         "compareAtPrice": 700,
         "stock": 50,
@@ -8769,9 +8611,7 @@
       {
         "id": "var-10400871940351-2",
         "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
+        "options": ["4 Pcs"],
         "price": 1150,
         "compareAtPrice": 1400,
         "stock": 50,
@@ -9626,11 +9466,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ],
+        "values": ["1 Pack (10 Pcs)", "2 Pack (20 Pcs)", "3 Pack (30 Pcs)"],
         "swatches": null
       }
     ],
@@ -9638,9 +9474,7 @@
       {
         "id": "var-10398748377343-0",
         "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
+        "options": ["1 Pack (10 Pcs)"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -9649,9 +9483,7 @@
       {
         "id": "var-10398748377343-1",
         "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
+        "options": ["2 Pack (20 Pcs)"],
         "price": 850,
         "compareAtPrice": 960,
         "stock": 50,
@@ -9660,9 +9492,7 @@
       {
         "id": "var-10398748377343-2",
         "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
+        "options": ["3 Pack (30 Pcs)"],
         "price": 1150,
         "compareAtPrice": 1440,
         "stock": 50,
@@ -10958,12 +10788,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Pink",
-          "Blue",
-          "Yellow",
-          "Purple"
-        ],
+        "values": ["Pink", "Blue", "Yellow", "Purple"],
         "swatches": null
       }
     ],
@@ -10971,9 +10796,7 @@
       {
         "id": "var-10398618419455-0",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 550,
         "compareAtPrice": 620,
         "stock": 50,
@@ -10982,9 +10805,7 @@
       {
         "id": "var-10398618419455-1",
         "title": "Blue",
-        "options": [
-          "Blue"
-        ],
+        "options": ["Blue"],
         "price": 550,
         "compareAtPrice": 620,
         "stock": 50,
@@ -10993,9 +10814,7 @@
       {
         "id": "var-10398618419455-2",
         "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
+        "options": ["Yellow"],
         "price": 550,
         "compareAtPrice": 620,
         "stock": 50,
@@ -11004,9 +10823,7 @@
       {
         "id": "var-10398618419455-3",
         "title": "Purple",
-        "options": [
-          "Purple"
-        ],
+        "options": ["Purple"],
         "price": 550,
         "compareAtPrice": 620,
         "stock": 50,
@@ -12328,11 +12145,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -12340,9 +12153,7 @@
       {
         "id": "var-10397941858559-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 380,
         "compareAtPrice": null,
         "stock": 50,
@@ -12351,9 +12162,7 @@
       {
         "id": "var-10397941858559-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 680,
         "compareAtPrice": 760,
         "stock": 50,
@@ -12362,9 +12171,7 @@
       {
         "id": "var-10397941858559-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 950,
         "compareAtPrice": 1140,
         "stock": 50,
@@ -12805,11 +12612,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -12817,9 +12620,7 @@
       {
         "id": "var-10397916070143-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 850,
         "compareAtPrice": null,
         "stock": 50,
@@ -12828,9 +12629,7 @@
       {
         "id": "var-10397916070143-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 1500,
         "compareAtPrice": 1700,
         "stock": 50,
@@ -12839,9 +12638,7 @@
       {
         "id": "var-10397916070143-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1980,
         "compareAtPrice": 2550,
         "stock": 50,
@@ -13237,11 +13034,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -13249,9 +13042,7 @@
       {
         "id": "var-10397609984255-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -13260,9 +13051,7 @@
       {
         "id": "var-10397609984255-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 900,
         "compareAtPrice": 960,
         "stock": 50,
@@ -13271,9 +13060,7 @@
       {
         "id": "var-10397609984255-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1280,
         "compareAtPrice": 1440,
         "stock": 50,
@@ -13733,11 +13520,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "12 Pcs",
-          "20 Pcs",
-          "30 Pcs"
-        ],
+        "values": ["12 Pcs", "20 Pcs", "30 Pcs"],
         "swatches": null
       }
     ],
@@ -13745,9 +13528,7 @@
       {
         "id": "var-10397509714175-0",
         "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
+        "options": ["12 Pcs"],
         "price": 450,
         "compareAtPrice": null,
         "stock": 50,
@@ -13756,9 +13537,7 @@
       {
         "id": "var-10397509714175-1",
         "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
+        "options": ["20 Pcs"],
         "price": 600,
         "compareAtPrice": 740,
         "stock": 50,
@@ -13767,9 +13546,7 @@
       {
         "id": "var-10397509714175-2",
         "title": "30 Pcs",
-        "options": [
-          "30 Pcs"
-        ],
+        "options": ["30 Pcs"],
         "price": 750,
         "compareAtPrice": 1110,
         "stock": 50,
@@ -14173,11 +13950,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -14185,9 +13958,7 @@
       {
         "id": "var-10397384999167-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 480,
         "compareAtPrice": null,
         "stock": 50,
@@ -14196,9 +13967,7 @@
       {
         "id": "var-10397384999167-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 880,
         "compareAtPrice": 960,
         "stock": 50,
@@ -14207,9 +13976,7 @@
       {
         "id": "var-10397384999167-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 1200,
         "compareAtPrice": 1440,
         "stock": 50,
@@ -14661,11 +14428,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pack (100 Pcs)",
-          "2 Pack (200 Pcs)",
-          "3 Pack (300 Pcs)"
-        ],
+        "values": ["1 Pack (100 Pcs)", "2 Pack (200 Pcs)", "3 Pack (300 Pcs)"],
         "swatches": null
       }
     ],
@@ -14673,9 +14436,7 @@
       {
         "id": "var-10396209578239-0",
         "title": "1 Pack (100 Pcs)",
-        "options": [
-          "1 Pack (100 Pcs)"
-        ],
+        "options": ["1 Pack (100 Pcs)"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -14684,9 +14445,7 @@
       {
         "id": "var-10396209578239-1",
         "title": "2 Pack (200 Pcs)",
-        "options": [
-          "2 Pack (200 Pcs)"
-        ],
+        "options": ["2 Pack (200 Pcs)"],
         "price": 600,
         "compareAtPrice": 700,
         "stock": 50,
@@ -14695,9 +14454,7 @@
       {
         "id": "var-10396209578239-2",
         "title": "3 Pack (300 Pcs)",
-        "options": [
-          "3 Pack (300 Pcs)"
-        ],
+        "options": ["3 Pack (300 Pcs)"],
         "price": 780,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -15145,11 +14902,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "2 Pcs",
-          "4 Pcs",
-          "6 Pcs"
-        ],
+        "values": ["2 Pcs", "4 Pcs", "6 Pcs"],
         "swatches": null
       }
     ],
@@ -15157,9 +14910,7 @@
       {
         "id": "var-10395660058879-0",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -15168,9 +14919,7 @@
       {
         "id": "var-10395660058879-1",
         "title": "4 Pcs",
-        "options": [
-          "4 Pcs"
-        ],
+        "options": ["4 Pcs"],
         "price": 500,
         "compareAtPrice": 700,
         "stock": 50,
@@ -15179,9 +14928,7 @@
       {
         "id": "var-10395660058879-2",
         "title": "6 Pcs",
-        "options": [
-          "6 Pcs"
-        ],
+        "options": ["6 Pcs"],
         "price": 650,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -15636,10 +15383,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Purple",
-          "Pink"
-        ],
+        "values": ["Purple", "Pink"],
         "swatches": null
       }
     ],
@@ -15647,9 +15391,7 @@
       {
         "id": "var-10395629322495-0",
         "title": "Purple",
-        "options": [
-          "Purple"
-        ],
+        "options": ["Purple"],
         "price": 990,
         "compareAtPrice": 1150,
         "stock": 50,
@@ -15658,9 +15400,7 @@
       {
         "id": "var-10395629322495-1",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 990,
         "compareAtPrice": 1150,
         "stock": 50,
@@ -16122,10 +15862,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Yellow",
-          "Pink"
-        ],
+        "values": ["Yellow", "Pink"],
         "swatches": null
       }
     ],
@@ -16133,9 +15870,7 @@
       {
         "id": "var-10395586756863-0",
         "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
+        "options": ["Yellow"],
         "price": 990,
         "compareAtPrice": 1200,
         "stock": 50,
@@ -16144,9 +15879,7 @@
       {
         "id": "var-10395586756863-1",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 990,
         "compareAtPrice": 1200,
         "stock": 50,
@@ -16616,11 +16349,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Light green",
-          "Pink",
-          "Yellow"
-        ],
+        "values": ["Light green", "Pink", "Yellow"],
         "swatches": null
       }
     ],
@@ -16628,9 +16357,7 @@
       {
         "id": "var-10395519746303-0",
         "title": "Light green",
-        "options": [
-          "Light green"
-        ],
+        "options": ["Light green"],
         "price": 890,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -16639,9 +16366,7 @@
       {
         "id": "var-10395519746303-1",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 890,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -16650,9 +16375,7 @@
       {
         "id": "var-10395519746303-2",
         "title": "Yellow",
-        "options": [
-          "Yellow"
-        ],
+        "options": ["Yellow"],
         "price": 890,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -17118,11 +16841,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -17130,9 +16849,7 @@
       {
         "id": "var-10395420852479-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -17141,9 +16858,7 @@
       {
         "id": "var-10395420852479-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 650,
         "compareAtPrice": null,
         "stock": 50,
@@ -17152,9 +16867,7 @@
       {
         "id": "var-10395420852479-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 900,
         "compareAtPrice": null,
         "stock": 50,
@@ -17602,19 +17315,12 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "White",
-          "Light green"
-        ],
+        "values": ["White", "Light green"],
         "swatches": null
       },
       {
         "name": "Size",
-        "values": [
-          "0-2 Years Baby",
-          "3-4 Years Baby",
-          "5-6 Years Baby"
-        ],
+        "values": ["0-2 Years Baby", "3-4 Years Baby", "5-6 Years Baby"],
         "swatches": null
       }
     ],
@@ -17622,10 +17328,7 @@
       {
         "id": "var-10392312316159-0",
         "title": "White / 0-2 Years Baby",
-        "options": [
-          "White",
-          "0-2 Years Baby"
-        ],
+        "options": ["White", "0-2 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -17634,10 +17337,7 @@
       {
         "id": "var-10392312316159-1",
         "title": "White / 3-4 Years Baby",
-        "options": [
-          "White",
-          "3-4 Years Baby"
-        ],
+        "options": ["White", "3-4 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -17646,10 +17346,7 @@
       {
         "id": "var-10392312316159-2",
         "title": "White / 5-6 Years Baby",
-        "options": [
-          "White",
-          "5-6 Years Baby"
-        ],
+        "options": ["White", "5-6 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -17658,10 +17355,7 @@
       {
         "id": "var-10392312316159-3",
         "title": "Light green / 0-2 Years Baby",
-        "options": [
-          "Light green",
-          "0-2 Years Baby"
-        ],
+        "options": ["Light green", "0-2 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -17670,10 +17364,7 @@
       {
         "id": "var-10392312316159-4",
         "title": "Light green / 3-4 Years Baby",
-        "options": [
-          "Light green",
-          "3-4 Years Baby"
-        ],
+        "options": ["Light green", "3-4 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -17682,10 +17373,7 @@
       {
         "id": "var-10392312316159-5",
         "title": "Light green / 5-6 Years Baby",
-        "options": [
-          "Light green",
-          "5-6 Years Baby"
-        ],
+        "options": ["Light green", "5-6 Years Baby"],
         "price": 550,
         "compareAtPrice": null,
         "stock": 50,
@@ -18147,11 +17835,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Blue",
-          "Pink",
-          "Khaki"
-        ],
+        "values": ["Blue", "Pink", "Khaki"],
         "swatches": null
       }
     ],
@@ -18159,9 +17843,7 @@
       {
         "id": "var-10392292950271-0",
         "title": "Blue",
-        "options": [
-          "Blue"
-        ],
+        "options": ["Blue"],
         "price": 600,
         "compareAtPrice": null,
         "stock": 50,
@@ -18170,9 +17852,7 @@
       {
         "id": "var-10392292950271-1",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 600,
         "compareAtPrice": null,
         "stock": 50,
@@ -18181,9 +17861,7 @@
       {
         "id": "var-10392292950271-2",
         "title": "Khaki",
-        "options": [
-          "Khaki"
-        ],
+        "options": ["Khaki"],
         "price": 600,
         "compareAtPrice": null,
         "stock": 50,
@@ -18641,10 +18319,7 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Green",
-          "Pink"
-        ],
+        "values": ["Green", "Pink"],
         "swatches": null
       }
     ],
@@ -18652,9 +18327,7 @@
       {
         "id": "var-10392232329471-0",
         "title": "Green",
-        "options": [
-          "Green"
-        ],
+        "options": ["Green"],
         "price": 750,
         "compareAtPrice": 900,
         "stock": 50,
@@ -18663,9 +18336,7 @@
       {
         "id": "var-10392232329471-1",
         "title": "Pink",
-        "options": [
-          "Pink"
-        ],
+        "options": ["Pink"],
         "price": 750,
         "compareAtPrice": 900,
         "stock": 50,
@@ -19143,11 +18814,7 @@
     "options": [
       {
         "name": "Select Belt Package",
-        "values": [
-          "1 Pcs - Blue Color",
-          "1 Pcs - Pink Color",
-          "2 Pcs - Blue & Pink Color"
-        ],
+        "values": ["1 Pcs - Blue Color", "1 Pcs - Pink Color", "2 Pcs - Blue & Pink Color"],
         "swatches": null
       }
     ],
@@ -19155,9 +18822,7 @@
       {
         "id": "var-10392199561471-0",
         "title": "1 Pcs - Blue Color",
-        "options": [
-          "1 Pcs - Blue Color"
-        ],
+        "options": ["1 Pcs - Blue Color"],
         "price": 780,
         "compareAtPrice": null,
         "stock": 50,
@@ -19166,9 +18831,7 @@
       {
         "id": "var-10392199561471-1",
         "title": "1 Pcs - Pink Color",
-        "options": [
-          "1 Pcs - Pink Color"
-        ],
+        "options": ["1 Pcs - Pink Color"],
         "price": 780,
         "compareAtPrice": null,
         "stock": 50,
@@ -19177,9 +18840,7 @@
       {
         "id": "var-10392199561471-2",
         "title": "2 Pcs - Blue & Pink Color",
-        "options": [
-          "2 Pcs - Blue & Pink Color"
-        ],
+        "options": ["2 Pcs - Blue & Pink Color"],
         "price": 1500,
         "compareAtPrice": 1560,
         "stock": 50,
@@ -19641,19 +19302,12 @@
     "options": [
       {
         "name": "Color",
-        "values": [
-          "Blue",
-          "Yellow"
-        ],
+        "values": ["Blue", "Yellow"],
         "swatches": null
       },
       {
         "name": "Size",
-        "values": [
-          "0-2 Years Baby",
-          "3-4 Years Baby",
-          "5-6 Years Baby"
-        ],
+        "values": ["0-2 Years Baby", "3-4 Years Baby", "5-6 Years Baby"],
         "swatches": null
       }
     ],
@@ -19661,10 +19315,7 @@
       {
         "id": "var-10392148279551-0",
         "title": "Blue / 0-2 Years Baby",
-        "options": [
-          "Blue",
-          "0-2 Years Baby"
-        ],
+        "options": ["Blue", "0-2 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -19673,10 +19324,7 @@
       {
         "id": "var-10392148279551-1",
         "title": "Blue / 3-4 Years Baby",
-        "options": [
-          "Blue",
-          "3-4 Years Baby"
-        ],
+        "options": ["Blue", "3-4 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -19685,10 +19333,7 @@
       {
         "id": "var-10392148279551-2",
         "title": "Blue / 5-6 Years Baby",
-        "options": [
-          "Blue",
-          "5-6 Years Baby"
-        ],
+        "options": ["Blue", "5-6 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -19697,10 +19342,7 @@
       {
         "id": "var-10392148279551-3",
         "title": "Yellow / 0-2 Years Baby",
-        "options": [
-          "Yellow",
-          "0-2 Years Baby"
-        ],
+        "options": ["Yellow", "0-2 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -19709,10 +19351,7 @@
       {
         "id": "var-10392148279551-4",
         "title": "Yellow / 3-4 Years Baby",
-        "options": [
-          "Yellow",
-          "3-4 Years Baby"
-        ],
+        "options": ["Yellow", "3-4 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -19721,10 +19360,7 @@
       {
         "id": "var-10392148279551-5",
         "title": "Yellow / 5-6 Years Baby",
-        "options": [
-          "Yellow",
-          "5-6 Years Baby"
-        ],
+        "options": ["Yellow", "5-6 Years Baby"],
         "price": 480,
         "compareAtPrice": 550,
         "stock": 50,
@@ -20182,11 +19818,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pcs",
-          "2 Pcs",
-          "3 Pcs"
-        ],
+        "values": ["1 Pcs", "2 Pcs", "3 Pcs"],
         "swatches": null
       }
     ],
@@ -20194,9 +19826,7 @@
       {
         "id": "var-10391896719615-0",
         "title": "1 Pcs",
-        "options": [
-          "1 Pcs"
-        ],
+        "options": ["1 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -20205,9 +19835,7 @@
       {
         "id": "var-10391896719615-1",
         "title": "2 Pcs",
-        "options": [
-          "2 Pcs"
-        ],
+        "options": ["2 Pcs"],
         "price": 600,
         "compareAtPrice": 700,
         "stock": 50,
@@ -20216,9 +19844,7 @@
       {
         "id": "var-10391896719615-2",
         "title": "3 Pcs",
-        "options": [
-          "3 Pcs"
-        ],
+        "options": ["3 Pcs"],
         "price": 800,
         "compareAtPrice": 1050,
         "stock": 50,
@@ -20684,11 +20310,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "1 Pack (10 Pcs)",
-          "2 Pack (20 Pcs)",
-          "3 Pack (30 Pcs)"
-        ],
+        "values": ["1 Pack (10 Pcs)", "2 Pack (20 Pcs)", "3 Pack (30 Pcs)"],
         "swatches": null
       }
     ],
@@ -20696,9 +20318,7 @@
       {
         "id": "var-10391791993087-0",
         "title": "1 Pack (10 Pcs)",
-        "options": [
-          "1 Pack (10 Pcs)"
-        ],
+        "options": ["1 Pack (10 Pcs)"],
         "price": 390,
         "compareAtPrice": null,
         "stock": 50,
@@ -20707,9 +20327,7 @@
       {
         "id": "var-10391791993087-1",
         "title": "2 Pack (20 Pcs)",
-        "options": [
-          "2 Pack (20 Pcs)"
-        ],
+        "options": ["2 Pack (20 Pcs)"],
         "price": 700,
         "compareAtPrice": 780,
         "stock": 50,
@@ -20718,9 +20336,7 @@
       {
         "id": "var-10391791993087-2",
         "title": "3 Pack (30 Pcs)",
-        "options": [
-          "3 Pack (30 Pcs)"
-        ],
+        "options": ["3 Pack (30 Pcs)"],
         "price": 850,
         "compareAtPrice": 1170,
         "stock": 50,
@@ -21190,11 +20806,7 @@
     "options": [
       {
         "name": "Quantity",
-        "values": [
-          "12 Pcs",
-          "20 Pcs",
-          "30 Pcs"
-        ],
+        "values": ["12 Pcs", "20 Pcs", "30 Pcs"],
         "swatches": null
       }
     ],
@@ -21202,9 +20814,7 @@
       {
         "id": "var-10391146594559-0",
         "title": "12 Pcs",
-        "options": [
-          "12 Pcs"
-        ],
+        "options": ["12 Pcs"],
         "price": 350,
         "compareAtPrice": null,
         "stock": 50,
@@ -21213,9 +20823,7 @@
       {
         "id": "var-10391146594559-1",
         "title": "20 Pcs",
-        "options": [
-          "20 Pcs"
-        ],
+        "options": ["20 Pcs"],
         "price": 480,
         "compareAtPrice": 580,
         "stock": 50,
@@ -21224,9 +20832,7 @@
       {
         "id": "var-10391146594559-2",
         "title": "30 Pcs",
-        "options": [
-          "30 Pcs"
-        ],
+        "options": ["30 Pcs"],
         "price": 600,
         "compareAtPrice": 870,
         "stock": 50,

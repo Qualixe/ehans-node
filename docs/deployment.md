@@ -4,6 +4,11 @@ Target: one VPS running Docker Compose (PostgreSQL, backend, frontend) behind **
 with Let's Encrypt certificates. Containers publish ports on `127.0.0.1` only. PostgreSQL
 publishes nothing.
 
+> **Running it on the office Ubuntu laptop instead** (next to eDealer, clothy and glowy, published
+> through the Cloudflare tunnel as `ehans.qualixe.com`): use the kit in
+> [`infrastructure/laptop/`](../infrastructure/laptop/README.md). Same images and stack, plus one
+> nginx container as the entry point on `127.0.0.1:8086`; no host Nginx or certificates needed.
+
 > `example.com` / `api.example.com` are placeholders. Replace them with your real domains in
 > `.env` and the Nginx site files. This guide never assumes a specific IP or credentials.
 
@@ -83,7 +88,9 @@ nano .env                     # set domains, CORS_ORIGINS, NEXT_PUBLIC_* etc.
 | `BACKUP_RETENTION_DAYS` | no       | `14`                                          | `0` disables pruning                                                                     |
 
 Set by Compose (not in `.env`): `DATABASE_URL` (built from the `POSTGRES_*` values),
-`NODE_ENV=production`, `LOG_FORMAT=json`, `API_INTERNAL_URL=http://backend:4000/api/v1`.
+`NODE_ENV=production`, `LOG_FORMAT=json`, `API_INTERNAL_URL=http://backend:4000/api/v1`,
+`UPLOADS_DIR=/app/uploads` (admin image uploads, kept in the `uploads` volume: the backend's
+only writable path).
 
 Secrets live **only** in this file on the server. They're injected as container environment
 variables at runtime. Nothing secret is passed as a build arg or copied into an image
@@ -106,6 +113,18 @@ curl -fsS http://127.0.0.1:4000/api/v1/health/ready
 curl -fsS http://127.0.0.1:3000/api/health
 docker compose ps
 ```
+
+Create the store owner account for the admin at `/admin` (once; run it again to reset the
+owner's password, which also signs out every session of that account). The password is asked
+for on the terminal, so it never lands in shell history or a file:
+
+```bash
+docker compose run --rm -it -e ADMIN_EMAIL=owner@example.com -e ADMIN_NAME="Store owner" \
+  backend node dist/database/create-admin.js
+```
+
+Staff accounts and their section permissions are managed by the owner in the admin
+(Settings → Staff & permissions, ported in a later slice).
 
 ## 4. Nginx and HTTPS (Let's Encrypt and Certbot)
 
@@ -182,6 +201,9 @@ ls -lh backups/
   backups older than `BACKUP_RETENTION_DAYS` (only files matching its own naming pattern).
 - **Schedule it** (crontab of `deploy`):
   `15 3 * * * cd /opt/ehans && ./infrastructure/scripts/backup-db.sh >> /home/deploy/ehans-backup.log 2>&1`
+- **Uploaded images** (products, categories added in the admin) live in the `ehans_uploads`
+  volume, not in the database dump. Back them up too, e.g.
+  `docker run --rm -v ehans_uploads:/u:ro -v "$PWD/backups":/b alpine tar czf /b/uploads_$(date +%F).tgz -C /u .`
 - **Ship backups off the server** (S3-compatible storage, another host). Encrypt them at rest
   (e.g. `age` or `gpg`) because they contain customer data.
 

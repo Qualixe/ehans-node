@@ -73,6 +73,9 @@ model Product {
   ratingAverage    Decimal? @map("rating_average") @db.Decimal(2, 1)
   ratingCount      Int      @default(0) @map("rating_count")
   isFeatured       Boolean  @default(false) @map("is_featured")
+  /// Product page cross-sell headings (null = the template defaults).
+  buyWithTitle     String?  @map("buy_with_title") @db.VarChar(120)
+  upsellTitle      String?  @map("upsell_title") @db.VarChar(120)
   isActive         Boolean  @default(true) @map("is_active")
   metaTitle        String?  @map("meta_title")
   metaDescription  String?  @map("meta_description") @db.VarChar(320)
@@ -348,6 +351,8 @@ model Order {
   courierSentAt    DateTime?    @map("courier_sent_at") @db.Timestamptz(3)
   courierSyncedAt  DateTime?    @map("courier_synced_at") @db.Timestamptz(3)
   couponCode       String?      @map("coupon_code")
+  /// Secret for the customer's confirmation link (/orders/<number>?t=<token>); null for POS/admin orders.
+  accessToken      String?      @unique @map("access_token") @db.VarChar(64)
   subtotal         Int
   discount         Int          @default(0)
   shippingFee      Int          @default(0) @map("shipping_fee")

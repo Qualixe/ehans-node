@@ -1,0 +1,49 @@
+# ehans on the Ubuntu laptop (https://ehans.qualixe.com through the Cloudflare tunnel),
+# next to eDealer, clothy (8081), glowy (8082), kiddo (8083), voltix (8084) and qchat (8085) without touching them.
+#
+#   docker compose -f docker-compose.yml -f infrastructure/laptop/compose.laptop.yaml up -d
+#
+# Overrides the production stack: backend and frontend publish no host ports; one nginx
+# container is the single entry point on 127.0.0.1:8086 (/api/v1 → API, everything else → Next.js).
+# Deploy with infrastructure/laptop/deploy-laptop.ps1 (see README.md next to this file).
+
+services:
+  backend:
+    ports: !reset []
+
+  frontend:
+    ports: !reset []
+
+  proxy:
+    # non-root nginx (listens on 8080), so it runs with the same hardening as the app containers
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:${EHANS_PORT:-8086}:8080'
+    volumes:
+      - ./infrastructure/laptop/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    tmpfs:
+      - /tmp
+    read_only: true
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    networks:
+      - web
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1:8080/api/health >/dev/null || exit 1']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '5'
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

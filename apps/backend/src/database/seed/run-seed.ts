@@ -194,7 +194,9 @@ async function main(): Promise<void> {
       });
       process.stdout.write(`Admin owner ${owner.created ? 'created' : 'updated'}\n`);
     } else {
-      process.stdout.write('No SEED_ADMIN_EMAIL/SEED_ADMIN_PASSWORD set: skipped the admin owner\n');
+      process.stdout.write(
+        'No SEED_ADMIN_EMAIL/SEED_ADMIN_PASSWORD set: skipped the admin owner\n',
+      );
     }
 
     const [categories, products] = await Promise.all([
