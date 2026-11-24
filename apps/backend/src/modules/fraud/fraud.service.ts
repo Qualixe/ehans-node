@@ -41,6 +41,16 @@ export class FraudService {
     return Object.fromEntries(rows.map((r) => [r.phone, toDto(r)]));
   }
 
+  /** Numbers looked up most recently (Fraud checker "Recent"). */
+  async recentPhones(limit = 6): Promise<string[]> {
+    const rows = await this.prisma.fraudCheck.findMany({
+      orderBy: { checkedAt: 'desc' },
+      take: limit,
+      select: { phone: true },
+    });
+    return rows.map((r) => r.phone);
+  }
+
   async savedOne(phone: string): Promise<FraudCheckDto | null> {
     const row = await this.prisma.fraudCheck.findUnique({
       where: { phone: normalizePhone(phone) },

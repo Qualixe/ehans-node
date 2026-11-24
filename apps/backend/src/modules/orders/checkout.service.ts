@@ -22,6 +22,10 @@ import { OrderChannel } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 import { LoginThrottle } from '../auth/login-throttle.js';
 import { CatalogCheckoutService, type ResolvedLine } from '../catalog/catalog-checkout.service.js';
+import { FraudService } from '../fraud/fraud.service.js';
+import { SettingsService } from '../settings/settings.service.js';
+import { IncompleteService } from './incomplete.service.js';
+import { OrderPanelService } from './order-panel.service.js';
 import { bucketKey } from './dhaka-time.js';
 
 /** Confirmation links work for 30 days (glowy: temporarySignedRoute addDays(30)). */
@@ -62,6 +66,10 @@ export class CheckoutService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly catalog: CatalogCheckoutService,
+    private readonly fraud: FraudService,
+    private readonly panel: OrderPanelService,
+    private readonly settings: SettingsService,
+    private readonly incomplete: IncompleteService,
   ) {}
 
   async quote(items: CheckoutItemInput[], district?: string | null): Promise<CheckoutQuote> {
@@ -76,7 +84,11 @@ export class CheckoutService {
     };
   }
 
-  async place(input: PlaceOrderRequest, ip: string | undefined): Promise<PlacedOrder> {
+  async place(
+    input: PlaceOrderRequest,
+    ip: string | undefined,
+    userId: string | null = null,
+  ): Promise<PlacedOrder> {
     if (STORE_SETTINGS.status !== 'live') {
       throw new BadRequestException([
         'Online ordering is paused right now. Please call us to order.',
@@ -92,6 +104,23 @@ export class CheckoutService {
     }
     this.throttle.hit(key);
 
+    // Fraud & security: most orders one number may place per day
+    const rules = await this.settings.security();
+    if (rules.maxPerDay > 0) {
+      const today = await this.prisma.order.count({
+        where: { phone: input.phone, createdAt: { gte: new Date(Date.now() - 24 * 3600_000) } },
+      });
+      if (today >= rules.maxPerDay) {
+        throw new BadRequestException([
+          "This number has reached today's order limit. Please call us to order.",
+        ]);
+      }
+    }
+
+    // the order panel's block list (phone or network)
+    if (await this.panel.isBlocked(input.phone, ip)) {
+      throw new BadRequestException(["We can't take this order online. Please call us to order."]);
+    }
     const district = districtByKey(input.district);
     if (!district) throw new BadRequestException(['Please choose your district.']);
     const lines = await this.catalog.resolve(input.items);
@@ -108,6 +137,7 @@ export class CheckoutService {
         data: {
           number,
           accessToken: token,
+          userId,
           customerName: input.customerName.trim(),
           phone: input.phone,
           address: input.address.trim(),
@@ -136,7 +166,26 @@ export class CheckoutService {
         select: { id: true, number: true },
       });
     });
+    // the shopper finished: their incomplete-checkout draft is recovered
+    await this.incomplete.recoveredBy(input.sessionKey, order.id).catch(() => undefined);
     this.logger.log('order placed', { orderId: order.id, mode: input.mode, total: totals.total });
+    // fraud check in the background: the admin list shows it without anyone pressing Check
+    if (this.fraud.enabled && rules.autoCheck) {
+      void this.fraud
+        .check(input.phone)
+        .then(async (check) => {
+          // Fraud & security: hold orders from customers with a low courier success rate
+          const below =
+            rules.autoHoldBelow > 0 &&
+            check.successRatio !== null &&
+            check.successRatio < rules.autoHoldBelow;
+          if (below)
+            await this.panel.autoHold(order.number, check.successRatio!, rules.autoHoldBelow);
+        })
+        .catch(() => {
+          this.logger.warn('automatic fraud check failed', { orderId: order.id });
+        });
+    }
     return { number: order.number, token };
   }
 

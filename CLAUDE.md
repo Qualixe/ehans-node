@@ -29,6 +29,11 @@ eCommerce **modular monolith** in a pnpm workspace:
   outside, `@ehans/shared` `delivery.ts`) are computed by the API (`POST /checkout/quote`), never the browser.
   Stock is reserved in the order transaction (`CatalogCheckoutService`). Confirmation: `/orders/<number>?t=<token>`
   (secret link, 30 days).
+- **Customer accounts (glowy "customer" guard):** `/account/login`, `/account/register` (mobile + password),
+  `/account` (my orders = orders placed while signed in), `/account/orders/<n>`, `/account/profile` (default address,
+  password). Customers are `users` with `isAdmin=false`; the API refuses customer tokens on admin routes and vice
+  versa (`CustomerGuard` / `AdminGuard`). Session token in the httpOnly cookie `ehans_customer` (path `/`); checkout
+  links orders to the signed-in customer and prefills from the profile. Staff reset passwords on the admin customer page.
 - **Admin (`/admin`), ported from the glowy Laravel app** (`C:\Users\hrido\Desktop\glowy`, reference only),
   slice by slice, matching glowy's screens and behaviour:
   - Slice 1 (done): sign-in + staff section permissions, glowy shell (sidebar, topbar, light/dark,
@@ -38,8 +43,33 @@ eCommerce **modular monolith** in a pnpm workspace:
   - Slice 2: Orders done (list with status/date/search/channel filters, status popup, bulk status, inline
     notes, order page with fulfilment form, printable invoice at `/admin/invoice/<number>`; cancel/return
     restocks via `CatalogCheckoutService.release`; BD Courier fraud check in `modules/fraud`, results cached
-    per phone in `fraud_checks`, key in `BDCOURIER_API_KEY`). Next: POS, customers. Then couriers, bKash, accounting, etc.
+    per phone in `fraud_checks`, key in `BDCOURIER_API_KEY`) and Customers (grouped by phone from orders,
+    `/admin/customers`; no storefront accounts yet) and POS (`/admin/pos`: in-store sales = delivered/POS channel,
+    phone sales = confirmed/direct; plain prices, no bundles, up to 100 per item). Next: bKash, accounting, etc.
+- **Order panel** (from the user's demo; replaces the glowy orders list and POS): 11 statuses (`ORDER_STATUSES`,
+  labels in `ORDER_STATUS_LABELS`; cancelled/returned/fake put stock back). `/admin/orders`: KPIs, status +
+  Duplicates + Blocked tabs, filters, confirm, notes with authors, "handled by" from `order_events`, edit/new order
+  popup, block list (also refused at checkout), duplicates = open orders with the same phone/IP within 72 h, invoices
+  and slips at `/admin/print`. `/admin/orders/incomplete`: storefront drafts saved once a valid phone is typed
+  (`incomplete_checkouts`, marked recovered when that browser orders). `/admin/pos` = Manual orders. Backend:
+  `OrderPanelService` (`/admin/order-panel/*`), `IncompleteService`, courier booking through `modules/couriers`
+  (Steadfast + Pathao merchant APIs, keys `STEADFAST_*` / `PATHAO_*`; only real consignments; bulk = Steadfast).
+  "Teams" are staff accounts (`orders.assigned_to_id`).
+- **Ops screens** (from the same demo; `OpsService`, `/admin/ops/*`, all on the `orders` section): `/admin/shipments`
+  (Courier & COD: parcels per courier, payouts = COD − courier fee − 1%, "Mark received" sets `orders.cod_settled_at`),
+  `/admin/block-list`, `/admin/fraud-checker` (any number via BD Courier + our orders), `/admin/security` (rules in
+  `app_settings` key `security` via `SettingsService`: auto-hold below N% → Follow up, max orders per number per day at
+  checkout, duplicate window, auto-check on/off; admin sign-ins in `admin_login_events`), `/admin/team` (from
+  `order_events` + notes, last 30 days).
 - Contact/newsletter forms validate and then say messaging is "launching soon". **Never fake a success screen** for an action that wasn't performed.
+
+- **Dashboard + Reports** (demo layout; `ReportsService`, `/admin/reports/dashboard` and `/admin/reports?tab&days`,
+  section `analytics`): `/admin` and `/admin/reports` (Daily P&L, Products, Districts, Sources, Couriers, Teams,
+  Status; 7/30/90/365 days; Copy CSV). Realised profit per order is `orderProfit()` (product cost = variant
+  `cost_per_item`, courier = booked fee else delivery fee, 1% COD, returns lose 1.5× the fee). Ads/expenses are
+  `null` ("not tracked") until Accounts exists; never fill them with sample numbers. Products missing a cost are
+  counted and flagged on both screens.
+- **Next (agreed order):** Discounts & coupons, Settings; then Finance (needs product cost); then Growth.
 
 ## Hard rules
 

@@ -8,6 +8,7 @@ import {
   ORDER_CHANNELS,
   type OrderChannelName,
   type OrderStatusName,
+  REVENUE_STATUSES as SHARED_REVENUE,
 } from '@ehans/shared';
 import { OrderStatus } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
@@ -24,13 +25,9 @@ import {
 export const WALK_IN_PHONE = 'walk-in';
 
 /** Statuses that count towards revenue (glowy: OrderStatus::revenueStatuses()). */
-export const REVENUE_STATUSES: OrderStatus[] = [
-  OrderStatus.PENDING,
-  OrderStatus.CONFIRMED,
-  OrderStatus.PROCESSING,
-  OrderStatus.SHIPPED,
-  OrderStatus.DELIVERED,
-];
+export const REVENUE_STATUSES: OrderStatus[] = SHARED_REVENUE.map(
+  (s) => s.toUpperCase() as OrderStatus,
+);
 
 const lower = <T extends string>(value: string) => value.toLowerCase() as T;
 

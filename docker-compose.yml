@@ -92,6 +92,14 @@ services:
       BDCOURIER_API_KEY: ${BDCOURIER_API_KEY:-}
       BDCOURIER_ENDPOINT: ${BDCOURIER_ENDPOINT:-https://bdcourier.com/api/courier-check}
       BDCOURIER_CACHE_HOURS: ${BDCOURIER_CACHE_HOURS:-24}
+      STEADFAST_API_KEY: ${STEADFAST_API_KEY:-}
+      STEADFAST_SECRET_KEY: ${STEADFAST_SECRET_KEY:-}
+      PATHAO_CLIENT_ID: ${PATHAO_CLIENT_ID:-}
+      PATHAO_CLIENT_SECRET: ${PATHAO_CLIENT_SECRET:-}
+      PATHAO_USERNAME: ${PATHAO_USERNAME:-}
+      PATHAO_PASSWORD: ${PATHAO_PASSWORD:-}
+      PATHAO_STORE_ID: ${PATHAO_STORE_ID:-}
+      PATHAO_SANDBOX: ${PATHAO_SANDBOX:-false}
     volumes:
       # admin image uploads (products, categories); the rest of the filesystem is read-only
       - uploads:/app/uploads

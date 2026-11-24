@@ -7,3 +7,7 @@ export * from './types/admin.types.js';
 export * from './delivery.js';
 export * from './types/checkout.types.js';
 export * from './types/admin-orders.types.js';
+export * from './types/account.types.js';
+export * from './types/order-panel.types.js';
+export * from './types/ops.types.js';
+export * from './types/reports.types.js';

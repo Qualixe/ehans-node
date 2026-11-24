@@ -3,6 +3,8 @@
 import { type CheckoutQuote, MAX_QUANTITY_PER_ITEM } from '@ehans/shared';
 import { useRouter } from 'next/navigation';
 import { type FormEvent, useEffect, useRef, useState, useTransition } from 'react';
+import { myCheckoutDetails } from '@/lib/account/actions';
+import { checkoutSessionKey, resetCheckoutSession, saveDraft } from '../checkout/incomplete';
 import { placeOrder, quoteCheckout } from '@/lib/checkout-actions';
 import { formatTaka } from '@/lib/format';
 import { DistrictPicker } from '../checkout/district-picker';
@@ -65,6 +67,16 @@ export function BuyNowPopup() {
     if (!dialog) return;
     if (buyNowOpen && !dialog.open) {
       setValues((v) => (v === EMPTY ? remembered() : v));
+      // signed in: fill whatever is still empty from the saved profile
+      void myCheckoutDetails().then((d) => {
+        if (!d) return;
+        setValues((v) => ({
+          name: v.name || d.name,
+          phone: v.phone || d.phone,
+          address: v.address || d.address,
+          district: v.district || d.district,
+        }));
+      });
       setAlert(null);
       dialog.showModal();
       document.documentElement.classList.add('quick-checkout-open');
@@ -78,6 +90,12 @@ export function BuyNowPopup() {
 
   // the exact total from the API whenever the product, variant, quantity or district changes
   const items = [{ productId: product.id, variantId: variant?.id ?? null, quantity }];
+
+  // a valid phone saves the draft for the order panel's "Incomplete orders"
+  useEffect(() => {
+    if (buyNowOpen) saveDraft({ ...values, items });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- items is rebuilt each render
+  }, [buyNowOpen, values, product.id, variant?.id, quantity]);
   const itemsKey = JSON.stringify(items);
   useEffect(() => {
     if (!buyNowOpen) return;
@@ -126,6 +144,7 @@ export function BuyNowPopup() {
         phone: normalizePhone(values.phone),
         address: values.address.trim(),
         district: values.district,
+        sessionKey: checkoutSessionKey() || null,
       });
       if ('errors' in result) {
         setAlert(result.errors[0] ?? 'Something went wrong. Please try again.');
@@ -136,6 +155,7 @@ export function BuyNowPopup() {
       } catch {
         // storage unavailable
       }
+      resetCheckoutSession();
       router.push(confirmationUrl(result.order));
       setBuyNowOpen(false);
     });

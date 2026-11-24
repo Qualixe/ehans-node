@@ -184,7 +184,7 @@ export function Header({
                 ></path>
               </svg>
             </button>{' '}
-            <a href="#" className="navbar-icon" aria-label="account">
+            <Link href="/account" className="navbar-icon" aria-label="account">
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path
                   d="M10 10.1A2.85 2.85 0 1 0 10 4.4a2.85 2.85 0 0 0 0 5.7Z"
@@ -198,7 +198,7 @@ export function Header({
                   strokeLinecap="round"
                 ></path>
               </svg>
-            </a>{' '}
+            </Link>{' '}
             <button
               className="navbar-icon cart-drawer-open"
               onClick={stop(openCart)}

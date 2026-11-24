@@ -3,9 +3,11 @@ import {
   canManage,
   ORDER_CHANNEL_INFO,
   ORDER_COURIERS,
+  ORDER_STATUS_LABELS,
   ORDER_STATUSES,
   SHIPPING_ZONES,
   type ShippingZone,
+  POS_PAYMENT_METHODS,
 } from '@ehans/shared';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -25,7 +27,7 @@ export async function generateMetadata({
   return { title: `Order ${(await params).number}` };
 }
 
-const PAYMENT: Record<string, string> = { cod: 'Cash on delivery', bkash: 'bKash' };
+const PAYMENT: Record<string, string> = POS_PAYMENT_METHODS;
 const label = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 /** "November 23, 2026 at 6:42 pm" in Dhaka (glowy 'F j, Y \a\t g:i a') */
 const placed = (iso: string) =>
@@ -43,8 +45,12 @@ const placed = (iso: string) =>
     .replace(/ (AM|PM)$/, (m) => m.toLowerCase());
 
 /** glowy admin/orders/show */
-export default async function OrderPage({ params }: PageProps<'/admin/orders/[number]'>) {
-  const { number } = await params;
+export default async function OrderPage({
+  params,
+  searchParams,
+}: PageProps<'/admin/orders/[number]'>) {
+  const [{ number }, sp] = await Promise.all([params, searchParams]);
+  const offerReceipt = sp.receipt === '1';
   if (!/^[A-Z]{2}\d{6}[A-Z0-9]{5}$/.test(number)) notFound();
   let order: AdminOrderDetail;
   const user = await getCurrentAdmin();
@@ -77,6 +83,20 @@ export default async function OrderPage({ params }: PageProps<'/admin/orders/[nu
           <AdminIcon name="printer" className="size-4" /> Invoice
         </a>
       </PageHeader>
+
+      {offerReceipt ? (
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-blue-500/30 bg-blue-500/10 px-4 py-3 text-sm text-blue-200">
+          <span>In-store sale completed. Print a receipt for the customer?</span>
+          <a
+            href={`/admin/invoice/${order.number}`}
+            target="_blank"
+            rel="noopener"
+            className="admin-btn-primary"
+          >
+            <AdminIcon name="printer" className="size-4" /> Print receipt
+          </a>
+        </div>
+      ) : null}
 
       <div className="grid gap-6 xl:grid-cols-12">
         <div className="space-y-6 xl:col-span-8">
@@ -168,7 +188,7 @@ export default async function OrderPage({ params }: PageProps<'/admin/orders/[nu
                 >
                   {ORDER_STATUSES.map((s) => (
                     <option key={s} value={s}>
-                      {label(s)}
+                      {ORDER_STATUS_LABELS[s]}
                     </option>
                   ))}
                 </select>
@@ -305,10 +325,10 @@ export default async function OrderPage({ params }: PageProps<'/admin/orders/[nu
               </div>
             </dl>
             <Link
-              href={`/admin/orders?q=${encodeURIComponent(order.phone)}`}
+              href={`/admin/customers/${encodeURIComponent(order.phone)}`}
               className="admin-btn-secondary mt-4 w-full"
             >
-              Orders from this customer ({order.customerOrderCount})
+              View customer ({order.customerOrderCount})
             </Link>
           </section>
         </div>

@@ -4,6 +4,8 @@ import { type CheckoutItemInput, type CheckoutQuote, SHIPPING_ZONES } from '@eha
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type FormEvent, useEffect, useState, useTransition } from 'react';
+import { myCheckoutDetails } from '@/lib/account/actions';
+import { checkoutSessionKey, resetCheckoutSession, saveDraft } from './incomplete';
 import { placeOrder, quoteCheckout } from '@/lib/checkout-actions';
 import { formatPrice } from '@/lib/format';
 import { useIsClient } from '../hooks';
@@ -60,6 +62,24 @@ export function CheckoutView() {
     .map((i) => ({ productId: i.productId!, variantId: i.variantId ?? null, quantity: i.qty }));
   const itemsKey = JSON.stringify(orderItems);
 
+  // signed in: start from the saved profile (fields the shopper already typed win)
+  useEffect(() => {
+    let cancelled = false;
+    void myCheckoutDetails().then((d) => {
+      if (!d || cancelled) return;
+      setValues((v) => ({
+        ...v,
+        name: v.name || d.name,
+        phone: v.phone || d.phone,
+        address: v.address || d.address,
+        district: v.district || d.district,
+      }));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     const list = JSON.parse(itemsKey) as CheckoutItemInput[];
     if (!list.length) return;
@@ -110,16 +130,23 @@ export function CheckoutView() {
         address: values.address.trim(),
         district: values.district,
         note: values.note.trim() || null,
+        sessionKey: checkoutSessionKey() || null,
       });
       if ('errors' in result) {
         setErrors(result.errors);
         return;
       }
       setPlaced(true);
+      resetCheckoutSession();
       router.push(confirmationUrl(result.order));
       clear();
     });
   };
+
+  // a valid phone saves the draft for the order panel's "Incomplete orders"
+  useEffect(() => {
+    if (!placed) saveDraft({ ...values, items: JSON.parse(itemsKey) as CheckoutItemInput[] });
+  }, [values, itemsKey, placed]);
 
   const set = (field: keyof Values, v: string) => {
     setValues((s) => ({ ...s, [field]: v }));

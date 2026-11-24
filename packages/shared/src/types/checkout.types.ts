@@ -57,6 +57,8 @@ export interface PlaceOrderRequest {
   address: string;
   district: string;
   note?: string | null;
+  /** The browser's incomplete-checkout draft, marked recovered by this order */
+  sessionKey?: string | null;
 }
 
 /** Where the customer goes after ordering: /orders/<number>?t=<token> (valid 30 days). */

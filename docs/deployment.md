@@ -83,6 +83,14 @@ nano .env                     # set domains, CORS_ORIGINS, NEXT_PUBLIC_* etc.
 | `BDCOURIER_API_KEY`     | no       | from your bdcourier.com dashboard             | **Secret.** Enables the orders fraud check (courier delivery history per phone)          |
 | `BDCOURIER_ENDPOINT`    | no       | `https://bdcourier.com/api/courier-check`     | BD Courier API URL                                                                       |
 | `BDCOURIER_CACHE_HOURS` | no       | `24`                                          | Hours a phone's result is reused before calling the API again                            |
+| `STEADFAST_API_KEY`     | no       | Steadfast merchant panel                      | **Secret.** With the secret key: book Steadfast parcels from the orders list             |
+| `STEADFAST_SECRET_KEY`  | no       | Steadfast merchant panel                      | **Secret.**                                                                              |
+| `PATHAO_CLIENT_ID`      | no       | Pathao merchant API credentials               | With the other PATHAO_* values: book Pathao parcels                                      |
+| `PATHAO_CLIENT_SECRET`  | no       | Pathao merchant API credentials               | **Secret.**                                                                              |
+| `PATHAO_USERNAME`       | no       | your Pathao merchant login email              |                                                                                          |
+| `PATHAO_PASSWORD`       | no       | your Pathao merchant password                 | **Secret.**                                                                              |
+| `PATHAO_STORE_ID`       | no       | `12345`                                       | The Pathao store parcels are sent from                                                   |
+| `PATHAO_SANDBOX`        | no       | `false`                                       | `true` uses Pathao's test server                                                         |
 | `NEXT_PUBLIC_API_URL`   | **yes**  | `https://api.example.com/api/v1`              | **Public**, baked in at build time. Rebuild the frontend after changing it               |
 | `NEXT_PUBLIC_SITE_URL`  | **yes**  | `https://example.com`                         | **Public**, baked in at build time                                                       |
 | `BACKEND_HOST_PORT`     | no       | `4000`                                        | Bound to 127.0.0.1. Must match the Nginx upstream                                        |

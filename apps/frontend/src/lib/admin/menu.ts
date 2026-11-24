@@ -31,9 +31,7 @@ export interface MenuItem {
 
 /** Modules on the menu that are not ported yet (slug → name). */
 export const COMING_SOON: Record<string, string> = {
-  pos: 'POS',
   accounts: 'Accounts',
-  customers: 'Customers',
   reports: 'Reports',
   'landing-pages': 'Landing Pages',
   content: 'Content',
@@ -70,28 +68,39 @@ export function buildMenu(counts: AdminNavigation['counts']): MenuItem[] {
       active: ['/admin'],
     },
     {
+      label: 'Reports',
+      icon: 'chart',
+      color: 'text-indigo-400',
+      can: 'analytics',
+      href: '/admin/reports',
+      active: ['/admin/reports'],
+    },
+    {
       label: 'Orders',
       can: 'orders',
       icon: 'cart',
       color: 'text-emerald-400',
-      active: ['/admin/orders', '/admin/invoice'],
+      active: ['/admin/orders', '/admin/invoice', '/admin/print'],
       badge: counts.pendingOrders ? String(counts.pendingOrders) : null,
       badgeClass: 'bg-blue-500/15 text-blue-300 ring-blue-500/30',
       children: [
         { label: 'All orders', href: '/admin/orders' },
-        ...['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'].map((label) => ({
-          label,
-          href: `/admin/orders?status=${label.toLowerCase()}`,
-        })),
+        { label: 'Incomplete orders', href: '/admin/orders/incomplete' },
+        { label: 'Pending', href: '/admin/orders?tab=pending' },
+        { label: 'Call not received', href: '/admin/orders?tab=no_answer' },
+        { label: 'Follow up', href: '/admin/orders?tab=follow_up' },
+        { label: 'Ready for delivery', href: '/admin/orders?tab=ready' },
+        { label: 'Shipped', href: '/admin/orders?tab=shipped' },
+        { label: 'Duplicates', href: '/admin/orders?tab=dup' },
       ],
     },
     {
-      label: 'POS',
+      label: 'POS · Manual order',
       can: 'pos',
       icon: 'monitor',
       color: 'text-fuchsia-400',
-      href: soon('pos'),
-      active: [soon('pos')],
+      href: '/admin/pos',
+      active: ['/admin/pos'],
     },
     {
       label: 'Accounts',
@@ -132,8 +141,11 @@ export function buildMenu(counts: AdminNavigation['counts']): MenuItem[] {
       can: 'customers',
       icon: 'users',
       color: 'text-cyan-400',
-      active: [soon('customers')],
-      children: children('customers', ['All customers', 'Top spenders']),
+      active: ['/admin/customers'],
+      children: [
+        { label: 'All customers', href: '/admin/customers' },
+        { label: 'Top spenders', href: '/admin/customers?sort=spent' },
+      ],
     },
     {
       label: 'Inventory',
@@ -145,16 +157,6 @@ export function buildMenu(counts: AdminNavigation['counts']): MenuItem[] {
         { label: 'Stock levels', href: '/admin/inventory' },
         { label: 'Low stock', href: '/admin/inventory?stock=low' },
         { label: 'Out of stock', href: '/admin/inventory?stock=out' },
-      ],
-    },
-    {
-      label: 'Reports',
-      icon: 'chart',
-      color: 'text-indigo-400',
-      active: [soon('reports')],
-      children: [
-        { label: 'Sales report', can: 'analytics', href: soon('reports') },
-        { label: 'Export orders (CSV)', can: 'orders', href: `${soon('reports')}?view=export` },
       ],
     },
     {
@@ -193,19 +195,42 @@ export function buildMenu(counts: AdminNavigation['counts']): MenuItem[] {
     },
     {
       label: 'Shipping & Delivery',
-      can: 'shipping',
       icon: 'truck',
       color: 'text-teal-400',
-      active: [soon('shipping')],
-      children: children('shipping', ['Shipments', 'Delivery zones & fees', 'Courier integration']),
+      active: ['/admin/shipments', soon('shipping')],
+      children: [
+        { label: 'Courier & COD', can: 'orders', href: '/admin/shipments' },
+        {
+          label: 'Delivery zones & fees',
+          can: 'shipping',
+          href: `${soon('shipping')}?view=delivery-zones-fees`,
+        },
+        {
+          label: 'Courier integration',
+          can: 'shipping',
+          href: `${soon('shipping')}?view=courier-integration`,
+        },
+      ],
     },
     {
       label: 'Fraud & Security',
       can: 'orders',
       icon: 'shield',
       color: 'text-red-400',
-      href: soon('fraud-security'),
-      active: [soon('fraud-security')],
+      active: ['/admin/fraud-checker', '/admin/block-list', '/admin/security'],
+      children: [
+        { label: 'Fraud checker', href: '/admin/fraud-checker' },
+        { label: 'Block list', href: '/admin/block-list' },
+        { label: 'Rules & logins', href: '/admin/security' },
+      ],
+    },
+    {
+      label: 'Team activity',
+      can: 'orders',
+      icon: 'users',
+      color: 'text-indigo-400',
+      href: '/admin/team',
+      active: ['/admin/team'],
     },
     {
       label: 'Auto Dialer',
@@ -283,10 +308,10 @@ export function adminHomePath(user: AdminUser): string {
   if (canView(user, 'analytics')) return '/admin';
   const sections: [AdminSection, string][] = [
     ['orders', '/admin/orders'],
-    ['pos', soon('pos')],
+    ['pos', '/admin/pos'],
     ['products', '/admin/products'],
     ['inventory', '/admin/inventory'],
-    ['customers', soon('customers')],
+    ['customers', '/admin/customers'],
     ['content', soon('content')],
     ['marketing', soon('marketing')],
     ['shipping', soon('shipping')],

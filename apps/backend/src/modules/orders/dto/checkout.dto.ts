@@ -112,6 +112,54 @@ export class PlaceOrderDto implements PlaceOrderRequest {
   @IsString()
   @MaxLength(500)
   note?: string | null;
+
+  @ApiPropertyOptional({ description: "This browser's incomplete-checkout draft" })
+  @IsOptional()
+  @Matches(/^[A-Za-z0-9_-]{16,64}$/)
+  sessionKey?: string | null;
+}
+
+/** Storefront: the shopper's half-filled Buy now / checkout form (order panel "Incomplete orders"). */
+export class IncompleteCaptureDto {
+  @ApiProperty()
+  @Matches(/^[A-Za-z0-9_-]{16,64}$/)
+  sessionKey: string;
+
+  @ApiProperty()
+  @IsString()
+  @MaxLength(20)
+  phone: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  name?: string | null;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(500)
+  address?: string | null;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  @MaxLength(40)
+  district?: string | null;
+
+  @ApiProperty({ type: [CheckoutItemDto] })
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(50)
+  @ValidateNested({ each: true })
+  @Type(() => CheckoutItemDto)
+  items: CheckoutItemDto[];
+
+  @ApiProperty({ example: 'Address' })
+  @IsString()
+  @MaxLength(40)
+  step: string;
 }
 
 export class OrderNumberParamDto {

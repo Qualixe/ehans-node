@@ -62,6 +62,7 @@ export class AuthService {
     const valid = await verifyPassword(input.password, user?.passwordHash ?? DUMMY_PASSWORD_HASH);
     if (!user || !valid || !user.isAdmin || !user.role) {
       this.throttle.hit(email);
+      await this.recordLogin(email, user?.id ?? null, false, input);
       this.logger.warn('admin login failed', { reason: user ? 'credentials' : 'unknown-email' });
       throw new UnauthorizedException('These credentials do not match our records.');
     }
@@ -86,6 +87,7 @@ export class AuthService {
       }),
       this.prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: now } }),
     ]);
+    await this.recordLogin(email, user.id, true, input);
     this.logger.log('admin signed in', { userId: user.id });
     return { token, expiresAt: expiresAt.toISOString(), user: toAdminUser(user) };
   }
@@ -111,6 +113,52 @@ export class AuthService {
         .catch(() => undefined);
     }
     return toAdminUser(user);
+  }
+
+  /** Staff sign-in history (Fraud & security). Never stores the password. */
+  private async recordLogin(
+    email: string,
+    userId: string | null,
+    success: boolean,
+    input: LoginInput,
+  ) {
+    await this.prisma.adminLoginEvent
+      .create({
+        data: {
+          email: email.slice(0, 254),
+          userId,
+          success,
+          ipAddress: input.ipAddress?.slice(0, 45) ?? null,
+          userAgent: input.userAgent?.slice(0, 500) ?? null,
+        },
+      })
+      .catch(() => undefined);
+  }
+
+  /** Latest sign-in attempts with the staff name when known. */
+  async loginHistory(limit = 20) {
+    const rows = await this.prisma.adminLoginEvent.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    });
+    const users = await this.prisma.user.findMany({
+      where: { id: { in: rows.map((r) => r.userId).filter((id): id is string => !!id) } },
+      select: { id: true, name: true },
+    });
+    return rows.map((r) => ({
+      email: r.email,
+      name: users.find((u) => u.id === r.userId)?.name ?? null,
+      success: r.success,
+      ipAddress: r.ipAddress,
+      userAgent: r.userAgent,
+      createdAt: r.createdAt.toISOString(),
+    }));
+  }
+
+  failedLoginsSince(since: Date): Promise<number> {
+    return this.prisma.adminLoginEvent.count({
+      where: { success: false, createdAt: { gte: since } },
+    });
   }
 
   async logout(token: string): Promise<void> {

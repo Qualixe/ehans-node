@@ -1,11 +1,25 @@
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
-import { type CheckoutItemInput, type CheckoutLine, MAX_QUANTITY_PER_ITEM } from '@ehans/shared';
+import {
+  type CheckoutItemInput,
+  type CheckoutLine,
+  MAX_QUANTITY_PER_ITEM,
+  type PosCatalog,
+} from '@ehans/shared';
 import type { Prisma } from '../../generated/prisma/client.js';
 import { PrismaService } from '../../prisma/prisma.service.js';
 
 /** A priced line plus what the order needs to reserve stock and apply delivery rules. */
 /** What reserving or releasing stock needs from an order line. */
 export type StockLine = Pick<CheckoutLine, 'productId' | 'variantId' | 'name' | 'quantity'>;
+
+export interface ProductFacts {
+  name: string;
+  category: string;
+  stock: number;
+  image: string | null;
+  defaultCost: number | null;
+  variantCost: Map<string, number | null>;
+}
 
 export interface ResolvedLine extends CheckoutLine {
   /** The bundle tier applied to this line gives free delivery. */
@@ -21,7 +35,23 @@ export interface ResolvedLine extends CheckoutLine {
 export class CatalogCheckoutService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async resolve(items: CheckoutItemInput[]): Promise<ResolvedLine[]> {
+  /**
+   * Prices the lines from the catalog. Storefront checkout applies Bundle & Save and the
+   * 10-per-item limit; POS sells at the plain price (glowy PosController) up to 100.
+   */
+  async resolve(
+    items: CheckoutItemInput[],
+    {
+      bundles = true,
+      maxQuantity = MAX_QUANTITY_PER_ITEM,
+      checkStock = true,
+    }: {
+      bundles?: boolean;
+      maxQuantity?: number;
+      /** false: staff editing an order (its own units go back first; reserve() checks later) */
+      checkStock?: boolean;
+    } = {},
+  ): Promise<ResolvedLine[]> {
     if (!items.length) throw new BadRequestException(['Your bag is empty.']);
     const products = await this.prisma.product.findMany({
       where: { id: { in: [...new Set(items.map((i) => i.productId))] }, isActive: true },
@@ -75,22 +105,22 @@ export class CatalogCheckoutService {
       // a product without options may still have its single "Default Title" variant (admin-made)
       if (!hasOptions && !variant && product.variants.length === 1) variant = product.variants[0];
 
-      if (item.quantity > MAX_QUANTITY_PER_ITEM) {
+      if (item.quantity > maxQuantity) {
         throw new BadRequestException([
-          `You can order at most ${MAX_QUANTITY_PER_ITEM} of “${product.name}” at a time.`,
+          `You can order at most ${maxQuantity} of “${product.name}” at a time.`,
         ]);
       }
       const available = variant ? variant.stock : product.stock;
-      if (available <= 0) {
+      if (checkStock && available <= 0) {
         throw new BadRequestException([`Sorry, “${product.name}” is out of stock.`]);
       }
-      if (item.quantity > available) {
+      if (checkStock && item.quantity > available) {
         throw new BadRequestException([`Only ${available} of “${product.name}” left in stock.`]);
       }
 
       const unitPrice = variant?.price ?? product.price;
       // Bundle & Save: the biggest tier not above the quantity ("Buy 3, save 15%")
-      const tier = (product.bundlesEnabled ? product.bundles : [])
+      const tier = (bundles && product.bundlesEnabled ? product.bundles : [])
         .filter((b) => b.quantity <= item.quantity)
         .sort((a, b) => b.quantity - a.quantity)[0];
       const lineSubtotal = unitPrice * item.quantity;
@@ -110,6 +140,87 @@ export class CatalogCheckoutService {
         freeDelivery: tier?.freeDelivery ?? false,
       };
     });
+  }
+
+  /**
+   * The POS product grid: every active product with its sellable variants (glowy
+   * PosController@index), plus the top-level categories as department chips.
+   */
+  async posCatalog(): Promise<PosCatalog> {
+    const [products, departments] = await Promise.all([
+      this.prisma.product.findMany({
+        where: { isActive: true },
+        orderBy: { name: 'asc' },
+        select: {
+          id: true,
+          name: true,
+          sku: true,
+          price: true,
+          compareAtPrice: true,
+          stock: true,
+          images: { orderBy: { position: 'asc' }, take: 1, select: { path: true } },
+          options: { select: { id: true } },
+          variants: {
+            orderBy: { position: 'asc' },
+            select: { id: true, title: true, price: true, stock: true },
+          },
+          category: { select: { id: true, parentId: true } },
+        },
+      }),
+      this.prisma.category.findMany({
+        where: { parentId: null },
+        orderBy: { position: 'asc' },
+        select: { id: true, name: true },
+      }),
+    ]);
+    return {
+      products: products.map((p) => ({
+        id: p.id,
+        name: p.name,
+        sku: p.sku,
+        price: p.price,
+        compareAtPrice: p.compareAtPrice && p.compareAtPrice > p.price ? p.compareAtPrice : null,
+        stock: p.stock,
+        image: p.images[0]?.path ?? null,
+        department: p.category.parentId ?? p.category.id,
+        // only products with options are sold by variant; single "Default Title" ones aren't
+        variants: p.options.length
+          ? p.variants.map((v) => ({ id: v.id, title: v.title, price: v.price, stock: v.stock }))
+          : [],
+      })),
+      departments,
+    };
+  }
+
+  /**
+   * What the reports need about sold products: name, main category, stock, image and the
+   * "cost per item" of each variant (a line without a variant uses the product's first one).
+   */
+  async reportFacts(productIds: string[]): Promise<Map<string, ProductFacts>> {
+    const rows = await this.prisma.product.findMany({
+      where: { id: { in: [...new Set(productIds)] } },
+      select: {
+        id: true,
+        name: true,
+        stock: true,
+        category: { select: { name: true } },
+        images: { orderBy: { position: 'asc' }, take: 1, select: { path: true } },
+        variants: { orderBy: { position: 'asc' }, select: { id: true, costPerItem: true } },
+      },
+    });
+    return new Map(
+      rows.map((p) => [
+        p.id,
+        {
+          name: p.name,
+          category: p.category.name,
+          stock: p.stock,
+          image: p.images[0]?.path ?? null,
+          defaultCost: p.variants[0]?.costPerItem ?? null,
+          variantCost: new Map(p.variants.map((v) => [v.id, v.costPerItem])),
+        },
+      ]),
+    );
   }
 
   /** Main image per product (order pages show it next to each line). */

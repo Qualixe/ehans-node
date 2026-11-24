@@ -51,40 +51,40 @@ model Category {
 }
 
 model Product {
-  id               String   @id @default(uuid(7)) @db.Uuid
-  categoryId       String   @map("category_id") @db.Uuid
-  name             String
-  slug             String   @unique
-  sku              String   @unique
-  brand            String?
-  productType      String?  @map("product_type")
+  id                   String   @id @default(uuid(7)) @db.Uuid
+  categoryId           String   @map("category_id") @db.Uuid
+  name                 String
+  slug                 String   @unique
+  sku                  String   @unique
+  brand                String?
+  productType          String?  @map("product_type")
   /// Search keywords (e.g. English terms for Bangla product names).
-  tags             String[] @default([])
-  shortDescription String?  @map("short_description") @db.VarChar(500)
+  tags                 String[] @default([])
+  shortDescription     String?  @map("short_description") @db.VarChar(500)
   /// Rich description (trusted HTML authored in the admin).
-  description      String?
+  description          String?
   /// [{ "label": "Brand", "value": "Mintiml" }, ...]
-  specifications   Json?
-  price            Int
-  compareAtPrice   Int?     @map("compare_at_price")
-  stock            Int      @default(0)
-  soldCount        Int      @default(0) @map("sold_count")
+  specifications       Json?
+  price                Int
+  compareAtPrice       Int?     @map("compare_at_price")
+  stock                Int      @default(0)
+  soldCount            Int      @default(0) @map("sold_count")
   /// Denormalized from approved reviews (kept in sync by the reviews module).
-  ratingAverage    Decimal? @map("rating_average") @db.Decimal(2, 1)
-  ratingCount      Int      @default(0) @map("rating_count")
-  isFeatured       Boolean  @default(false) @map("is_featured")
+  ratingAverage        Decimal? @map("rating_average") @db.Decimal(2, 1)
+  ratingCount          Int      @default(0) @map("rating_count")
+  isFeatured           Boolean  @default(false) @map("is_featured")
   /// Product page cross-sell headings (null = the template defaults).
-  buyWithTitle     String?  @map("buy_with_title") @db.VarChar(120)
-  upsellTitle      String?  @map("upsell_title") @db.VarChar(120)
+  buyWithTitle         String?  @map("buy_with_title") @db.VarChar(120)
+  upsellTitle          String?  @map("upsell_title") @db.VarChar(120)
   /// Show the Bundle & Save tiers (and apply their discounts) for this product.
-  bundlesEnabled   Boolean  @default(true) @map("bundles_enabled")
+  bundlesEnabled       Boolean  @default(true) @map("bundles_enabled")
   /// Show the variant dropdown; when off the product sells its default variant only.
-  variantPickerEnabled Boolean @default(true) @map("variant_picker_enabled")
-  isActive         Boolean  @default(true) @map("is_active")
-  metaTitle        String?  @map("meta_title")
-  metaDescription  String?  @map("meta_description") @db.VarChar(320)
-  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+  variantPickerEnabled Boolean  @default(true) @map("variant_picker_enabled")
+  isActive             Boolean  @default(true) @map("is_active")
+  metaTitle            String?  @map("meta_title")
+  metaDescription      String?  @map("meta_description") @db.VarChar(320)
+  createdAt            DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt            DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
 
   category    Category          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   images      ProductImage[]
@@ -263,6 +263,9 @@ model User {
   name         String
   email        String?   @unique
   phone        String?   @unique @db.VarChar(20)
+  /// Storefront customers: default delivery address + district key (filled into checkout).
+  address      String?   @db.VarChar(500)
+  district     String?   @db.VarChar(40)
   passwordHash String    @map("password_hash")
   isAdmin      Boolean   @default(false) @map("is_admin")
   role         UserRole?
@@ -274,6 +277,13 @@ model User {
 
   sessions Session[]
   orders   Order[]
+
+  assignedOrders   Order[]              @relation("OrderAssignee")
+  createdOrders    Order[]              @relation("OrderCreator")
+  orderNotes       OrderNote[]
+  orderEvents      OrderEvent[]
+  blockedContacts  BlockedContact[]
+  handledCheckouts IncompleteCheckout[]
 
   @@map("users")
 }
@@ -301,14 +311,24 @@ model Session {
 // read by the admin dashboard now.
 // =============================================================================
 
+/// Order panel statuses. Cancelled, Returned and Fake put the stock back.
 enum OrderStatus {
   PENDING
   CONFIRMED
-  PROCESSING
+  /// "Call not received"
+  NO_ANSWER
+  /// "Follow up"
+  FOLLOW_UP
+  /// "Ready for delivery" (packed)
+  READY
   SHIPPED
   DELIVERED
-  CANCELLED
+  /// "Partial delivery"
+  PARTIAL
   RETURNED
+  /// "Fake order"
+  FAKE
+  CANCELLED
 
   @@map("order_status")
 }
@@ -332,6 +352,8 @@ model Order {
   customerName     String       @map("customer_name")
   /// "walk-in" for anonymous POS sales.
   phone            String       @db.VarChar(30)
+  /// Second number to call (order panel "Alternative number").
+  altPhone         String?      @map("alt_phone") @db.VarChar(20)
   email            String?
   address          String       @db.VarChar(500)
   city             String
@@ -344,6 +366,15 @@ model Order {
   paymentAccount   String?      @map("payment_account") @db.VarChar(20)
   paymentReference String?      @map("payment_reference") @db.VarChar(40)
   channel          OrderChannel @default(DIRECT)
+  /// Where the order came from: Website, Landing page, Facebook, Google, Instagram, TikTok,
+  /// WhatsApp, Phone call, POS (order panel "source").
+  source           String       @default("Website") @db.VarChar(30)
+  /// Staff member handling the order (order panel "team"); null = unassigned.
+  assignedToId     String?      @map("assigned_to_id") @db.Uuid
+  /// Staff member who created it by hand (POS / phone / WhatsApp); null for web orders.
+  createdById      String?      @map("created_by_id") @db.Uuid
+  /// The incomplete checkout this order was recovered from.
+  recoveredFromId  String?      @unique @map("recovered_from_id") @db.Uuid
   ipAddress        String?      @map("ip_address") @db.VarChar(45)
   courier          String?
   trackingNumber   String?      @map("tracking_number")
@@ -354,20 +385,32 @@ model Order {
   codAmount        Int?         @map("cod_amount")
   courierSentAt    DateTime?    @map("courier_sent_at") @db.Timestamptz(3)
   courierSyncedAt  DateTime?    @map("courier_synced_at") @db.Timestamptz(3)
+  /// The courier paid this parcel's COD to us ("Mark received" on Courier & COD).
+  codSettledAt     DateTime?    @map("cod_settled_at") @db.Timestamptz(3)
   couponCode       String?      @map("coupon_code")
   /// Secret for the customer's confirmation link (/orders/<number>?t=<token>); null for POS/admin orders.
   accessToken      String?      @unique @map("access_token") @db.VarChar(64)
   subtotal         Int
   discount         Int          @default(0)
+  /// Paid in advance (bKash/Nagad); cash to collect = total - advance.
+  advance          Int          @default(0)
   shippingFee      Int          @default(0) @map("shipping_fee")
   total            Int
   createdAt        DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt        DateTime     @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  user  User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
-  items OrderItem[]
+  user          User?               @relation(fields: [userId], references: [id], onDelete: SetNull)
+  assignedTo    User?               @relation("OrderAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  createdBy     User?               @relation("OrderCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  recoveredFrom IncompleteCheckout? @relation(fields: [recoveredFromId], references: [id], onDelete: SetNull)
+  items         OrderItem[]
+  notes         OrderNote[]
+  events        OrderEvent[]
 
   @@index([phone])
+  @@index([ipAddress])
+  @@index([assignedToId])
+  @@index([source])
   @@index([status, createdAt])
   @@index([createdAt])
   @@index([courierService, consignmentId])
@@ -414,4 +457,108 @@ model FraudCheck {
   updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
 
   @@map("fraud_checks")
+}
+
+/// Staff notes on an order (order panel "Notes" column), newest last.
+model OrderNote {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  orderId    String   @map("order_id") @db.Uuid
+  authorId   String?  @map("author_id") @db.Uuid
+  /// Name at the time of writing (kept if the staff account is removed).
+  authorName String   @map("author_name") @db.VarChar(100)
+  body       String   @db.VarChar(2000)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  order  Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  author User? @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([orderId, createdAt])
+  @@map("order_notes")
+}
+
+/// Order activity ("Status changed to Confirmed by Rakib"), shown in the order's timeline.
+model OrderEvent {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  orderId   String   @map("order_id") @db.Uuid
+  actorId   String?  @map("actor_id") @db.Uuid
+  actorName String?  @map("actor_name") @db.VarChar(100)
+  /// "status" | "created" | "edited" | "courier" | "assigned" | ...
+  kind      String   @db.VarChar(30)
+  text      String   @db.VarChar(500)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  actor User? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([orderId, createdAt])
+  @@map("order_events")
+}
+
+/// Phone numbers and IPs that may not order (order panel "Blocked").
+model BlockedContact {
+  id          String   @id @default(uuid(7)) @db.Uuid
+  /// "phone" | "ip"
+  kind        String   @db.VarChar(10)
+  value       String   @db.VarChar(45)
+  reason      String?  @db.VarChar(300)
+  createdById String?  @map("created_by_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  createdBy User? @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@unique([kind, value])
+  @@map("blocked_contacts")
+}
+
+/// A checkout the shopper started (typed a valid phone) but did not finish ("Incomplete orders").
+model IncompleteCheckout {
+  id          String    @id @default(uuid(7)) @db.Uuid
+  /// Random id kept in the shopper's browser, so typing again updates the same row.
+  sessionKey  String    @unique @map("session_key") @db.VarChar(64)
+  phone       String    @db.VarChar(20)
+  name        String?   @db.VarChar(100)
+  address     String?   @db.VarChar(500)
+  district    String?   @db.VarChar(40)
+  /// [{ productId, variantId, name, variantTitle, quantity, unitPrice }]
+  items       Json
+  value       Int       @default(0)
+  /// Where they stopped, e.g. "Address", "District", "Place order"
+  step        String    @db.VarChar(40)
+  /// "new" (not contacted) | "called" | "recovered"
+  state       String    @default("new") @db.VarChar(20)
+  handledById String?   @map("handled_by_id") @db.Uuid
+  handledAt   DateTime? @map("handled_at") @db.Timestamptz(3)
+  ipAddress   String?   @map("ip_address") @db.VarChar(45)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  handledBy User?  @relation(fields: [handledById], references: [id], onDelete: SetNull)
+  order     Order?
+
+  @@index([state, createdAt])
+  @@index([phone])
+  @@map("incomplete_checkouts")
+}
+
+/// Store-wide settings edited in the admin (e.g. "security": order protection rules), as JSON per key.
+model AppSetting {
+  key       String   @id @db.VarChar(60)
+  value     Json
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("app_settings")
+}
+
+/// Staff sign-in attempts (Fraud & security "Login history"). No passwords are stored.
+model AdminLoginEvent {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  email     String   @db.VarChar(254)
+  userId    String?  @map("user_id") @db.Uuid
+  success   Boolean
+  ipAddress String?  @map("ip_address") @db.VarChar(45)
+  userAgent String?  @map("user_agent") @db.VarChar(500)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([createdAt])
+  @@map("admin_login_events")
 }

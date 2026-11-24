@@ -1,4 +1,4 @@
-import type { AdminOrderDetail } from '@ehans/shared';
+import { type AdminOrderDetail, POS_PAYMENT_METHODS } from '@ehans/shared';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -10,7 +10,7 @@ import { PrintButton } from './print-button';
 
 export const metadata: Metadata = { title: 'Invoice', robots: { index: false } };
 
-const PAYMENT: Record<string, string> = { cod: 'Cash on delivery', bkash: 'bKash' };
+const PAYMENT: Record<string, string> = POS_PAYMENT_METHODS;
 const label = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 // glowy admin/orders/invoice: a plain printable sheet, outside the admin shell

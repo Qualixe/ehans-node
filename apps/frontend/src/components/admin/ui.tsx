@@ -1,4 +1,4 @@
-import type { OrderStatusName } from '@ehans/shared';
+import { ORDER_STATUS_LABELS, type OrderStatusName } from '@ehans/shared';
 import type { ReactNode } from 'react';
 import { AdminIcon } from './icon';
 
@@ -75,13 +75,17 @@ export function StatCard({
 }
 
 export const STATUS_BADGES: Record<OrderStatusName, string> = {
-  pending: 'bg-amber-500/10 text-amber-400 ring-amber-500/30',
-  confirmed: 'bg-sky-500/10 text-sky-400 ring-sky-500/30',
-  processing: 'bg-indigo-500/10 text-indigo-400 ring-indigo-500/30',
-  shipped: 'bg-violet-500/10 text-violet-400 ring-violet-500/30',
-  delivered: 'bg-emerald-500/10 text-emerald-400 ring-emerald-500/30',
-  cancelled: 'bg-rose-500/10 text-rose-400 ring-rose-500/30',
+  pending: 'bg-sky-500/10 text-sky-400 ring-sky-500/30',
+  confirmed: 'bg-emerald-500/10 text-emerald-400 ring-emerald-500/30',
+  no_answer: 'bg-orange-500/10 text-orange-400 ring-orange-500/30',
+  follow_up: 'bg-amber-500/10 text-amber-400 ring-amber-500/30',
+  ready: 'bg-violet-500/10 text-violet-400 ring-violet-500/30',
+  shipped: 'bg-purple-500/10 text-purple-400 ring-purple-500/30',
+  delivered: 'bg-green-500/10 text-green-400 ring-green-500/30',
+  partial: 'bg-teal-500/10 text-teal-400 ring-teal-500/30',
   returned: 'bg-slate-500/10 text-slate-300 ring-slate-500/30',
+  fake: 'bg-rose-500/10 text-rose-400 ring-rose-500/40',
+  cancelled: 'bg-rose-500/10 text-rose-400 ring-rose-500/30',
 };
 
 /** glowy components/admin/status-badge (OrderStatus::badgeClasses) */
@@ -91,7 +95,7 @@ export function StatusBadge({ status }: { status: OrderStatusName }) {
       className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ${STATUS_BADGES[status]}`}
     >
       <span className="size-1.5 rounded-full bg-current"></span>
-      {status.charAt(0).toUpperCase() + status.slice(1)}
+      {ORDER_STATUS_LABELS[status]}
     </span>
   );
 }

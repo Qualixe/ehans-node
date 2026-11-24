@@ -1,7 +1,7 @@
 'use client';
 
 import { type FraudCheckDto, type FraudRisk, fraudRisk } from '@ehans/shared';
-import { useState, useTransition } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import { runFraudCheck } from '@/app/admin/(panel)/orders/actions';
 import { timeAgo } from '@/lib/admin/format';
 import { AdminIcon } from './icon';
@@ -20,6 +20,7 @@ export function FraudCheck({
   enabled,
   manage,
   open: startOpen = false,
+  ring = false,
 }: {
   number: string;
   check: FraudCheckDto | null;
@@ -27,6 +28,8 @@ export function FraudCheck({
   manage: boolean;
   /** Show the details straight away (the order page) instead of a dropdown. */
   open?: boolean;
+  /** The orders list's "Success Rate" cell: progress ring + Success / Order lines. */
+  ring?: boolean;
 }) {
   const [check, setCheck] = useState(initial);
   const [error, setError] = useState<string | null>(null);
@@ -40,6 +43,29 @@ export function FraudCheck({
       else setError(result.error);
     });
   };
+
+  // automatic: an order without a saved result is checked as soon as it's on screen
+  const autoRan = useRef(false);
+  useEffect(() => {
+    if (autoRan.current || initial || !enabled || !manage) return;
+    autoRan.current = true;
+    const t = window.setTimeout(() => run(false), 0);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once per order
+  }, []);
+
+  if (ring) {
+    return (
+      <SuccessRing
+        check={check}
+        pending={pending}
+        error={error}
+        enabled={enabled}
+        manage={manage}
+        onRecheck={() => run(true)}
+      />
+    );
+  }
 
   if (!check && !enabled) {
     return (
@@ -155,6 +181,149 @@ export function FraudCheck({
       </summary>
       <div className="absolute top-full left-0 z-30 mt-2 w-72 rounded-xl border border-ink-600 bg-ink-850 p-4 text-left shadow-2xl">
         {details}
+      </div>
+    </details>
+  );
+}
+
+const RING_COLOR: Record<FraudRisk, string> = {
+  safe: 'text-emerald-400',
+  watch: 'text-amber-400',
+  risky: 'text-rose-400',
+  new: 'text-sky-400',
+};
+
+/** "Success Rate" cell: a progress ring plus Success % and delivered/total, details on click. */
+function SuccessRing({
+  check,
+  pending,
+  error,
+  enabled,
+  manage,
+  onRecheck,
+}: {
+  check: FraudCheckDto | null;
+  pending: boolean;
+  error: string | null;
+  enabled: boolean;
+  manage: boolean;
+  onRecheck: () => void;
+}) {
+  if (!check) {
+    if (pending) {
+      return (
+        <span className="inline-flex items-center gap-2 text-xs text-slate-400">
+          <span className="size-9 animate-spin rounded-full border-[3px] border-ink-600 border-t-blue-500"></span>
+          Checking…
+        </span>
+      );
+    }
+    return (
+      <div className="text-xs text-slate-500">
+        {enabled ? (manage ? 'Not checked' : 'Not checked yet') : 'Not set up'}
+        {error ? <p className="mt-1 max-w-40 text-[11px] text-rose-400">{error}</p> : null}
+      </div>
+    );
+  }
+
+  const risk = fraudRisk(check);
+  const ratio = check.successRatio ?? 0;
+  const r = 15;
+  const circumference = 2 * Math.PI * r;
+
+  return (
+    <details className="group relative">
+      <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+        <svg
+          className={`size-10 shrink-0 -rotate-90 ${RING_COLOR[risk]}`}
+          viewBox="0 0 36 36"
+          aria-hidden="true"
+        >
+          <circle
+            cx="18"
+            cy="18"
+            r={r}
+            fill="none"
+            stroke="currentColor"
+            strokeOpacity=".15"
+            strokeWidth="3.5"
+          />
+          {risk === 'new' ? null : (
+            <circle
+              cx="18"
+              cy="18"
+              r={r}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeDasharray={`${(ratio / 100) * circumference} ${circumference}`}
+            />
+          )}
+        </svg>
+        <span className="text-xs leading-5 text-slate-400">
+          {risk === 'new' ? (
+            <span className={`font-semibold ${RING_COLOR.new}`}>New customer</span>
+          ) : (
+            <>
+              <span className="block">
+                Success: <span className={`font-semibold ${RING_COLOR[risk]}`}>{ratio}%</span>
+              </span>
+              <span className="block">
+                Order:{' '}
+                <span className={`font-semibold ${RING_COLOR[risk]}`}>
+                  {check.successParcels}/{check.totalParcels}
+                </span>
+              </span>
+              <span className="block">
+                Cancel:{' '}
+                <span className="font-semibold text-rose-400">{check.cancelledParcels}</span>
+              </span>
+            </>
+          )}
+        </span>
+      </summary>
+      <div className="absolute top-full right-0 z-30 mt-2 w-72 rounded-xl border border-ink-600 bg-ink-850 p-4 text-left shadow-2xl">
+        {check.couriers.length ? (
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="text-slate-500">
+                <th className="py-1 text-left font-medium">Courier</th>
+                <th className="text-right font-medium">Total</th>
+                <th className="text-right font-medium">OK</th>
+                <th className="text-right font-medium">Cancel</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-ink-700">
+              {check.couriers.map((row) => (
+                <tr key={row.name} className="text-slate-300">
+                  <td className="py-1.5">{row.name}</td>
+                  <td className="text-right">{row.total}</td>
+                  <td className="text-right text-emerald-400">{row.success}</td>
+                  <td className="text-right text-rose-400">{row.cancelled}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-xs text-slate-400">
+            No courier history for this number yet. Consider calling to confirm before shipping.
+          </p>
+        )}
+        <div className="mt-3 flex items-center justify-between border-t border-ink-700 pt-2 text-[11px] text-slate-500">
+          <span>Checked {timeAgo(check.checkedAt)}</span>
+          {manage && enabled ? (
+            <button
+              type="button"
+              className="admin-link disabled:opacity-60"
+              disabled={pending}
+              onClick={onRecheck}
+            >
+              {pending ? 'Checking…' : 'Re-check'}
+            </button>
+          ) : null}
+        </div>
+        {error ? <p className="mt-1 text-[11px] text-rose-400">{error}</p> : null}
       </div>
     </details>
   );

@@ -63,6 +63,17 @@ export const envSchema = z
     /** Results are reused per phone for this long, to save API credit. */
     BDCOURIER_CACHE_HOURS: z.coerce.number().int().min(0).max(720).default(24),
 
+    /** Courier booking (orders "Send to courier"). Empty = that courier shows as not set up. */
+    STEADFAST_API_KEY: optional(z.string().min(5)),
+    STEADFAST_SECRET_KEY: optional(z.string().min(5)),
+    PATHAO_CLIENT_ID: optional(z.string().min(1)),
+    PATHAO_CLIENT_SECRET: optional(z.string().min(5)),
+    PATHAO_USERNAME: optional(z.string().min(3)),
+    PATHAO_PASSWORD: optional(z.string().min(1)),
+    PATHAO_STORE_ID: optional(z.string().regex(/^\d+$/)),
+    /** true: Pathao's sandbox (test) server instead of the live one */
+    PATHAO_SANDBOX: optional(z.stringbool()),
+
     APP_VERSION: z.string().min(1).default('0.0.0-dev'),
     SWAGGER_ENABLED: optional(z.stringbool()),
     LOG_LEVEL: z.enum(LOG_LEVELS).default('log'),

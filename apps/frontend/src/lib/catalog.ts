@@ -77,13 +77,36 @@ export async function getProduct(slug: string): Promise<ProductDetail | null> {
   cacheLife('minutes');
   cacheTag('catalog', `product:${slug}`);
   try {
-    return await apiFetch<ProductDetail>(`/catalog/products/${encodeURIComponent(slug)}`);
+    return withDefaults(
+      await apiFetch<ProductDetail>(`/catalog/products/${encodeURIComponent(slug)}`),
+    );
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) return null;
     // Backend unreachable — fall back to demo data
     const details = localProducts as unknown as Record<string, ProductDetail>;
-    return details[slug] ?? null;
+    const local = details[slug];
+    return local ? withDefaults(local) : null;
   }
+}
+
+/**
+ * Fills fields added after the demo data (src/data/products.json) was generated, so a product
+ * from either source has the current shape (e.g. cross-sell cards always carry `variants`).
+ */
+function withDefaults(p: ProductDetail): ProductDetail {
+  const card = (c: ProductDetail['buyWith'][number]) => ({ ...c, variants: c.variants ?? [] });
+  return {
+    ...p,
+    options: p.options ?? [],
+    variants: p.variants ?? [],
+    variantPickerEnabled: p.variantPickerEnabled ?? true,
+    bundles: p.bundles ?? [],
+    buyWith: (p.buyWith ?? []).map(card),
+    upsells: (p.upsells ?? []).map(card),
+    buyWithTitle: p.buyWithTitle ?? null,
+    upsellTitle: p.upsellTitle ?? null,
+    related: p.related ?? [],
+  };
 }
 
 // ── Local demo data helpers ─────────────────────────────────────────────────

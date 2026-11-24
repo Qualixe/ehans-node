@@ -88,16 +88,52 @@ export function canManage(user: Pick<AdminUser, 'permissions'>, section: AdminSe
 
 // ---------------------------------------------------------------- orders (names shared with the UI)
 
+/** The order panel's statuses, in tab order. */
 export const ORDER_STATUSES = [
   'pending',
   'confirmed',
-  'processing',
+  'no_answer',
+  'follow_up',
+  'ready',
   'shipped',
   'delivered',
-  'cancelled',
+  'partial',
   'returned',
+  'fake',
+  'cancelled',
 ] as const;
 export type OrderStatusName = (typeof ORDER_STATUSES)[number];
+
+export const ORDER_STATUS_LABELS: Record<OrderStatusName, string> = {
+  pending: 'Pending',
+  confirmed: 'Confirmed',
+  no_answer: 'Call not received',
+  follow_up: 'Follow up',
+  ready: 'Ready for delivery',
+  shipped: 'Shipped',
+  delivered: 'Delivered',
+  partial: 'Partial delivery',
+  returned: 'Return',
+  fake: 'Fake order',
+  cancelled: 'Cancelled',
+};
+
+/** Still being worked on (duplicates are looked for among these). */
+export const OPEN_STATUSES: readonly OrderStatusName[] = [
+  'pending',
+  'confirmed',
+  'no_answer',
+  'follow_up',
+  'ready',
+];
+/** Waiting for the customer to confirm on the phone (the "Confirm" button shows). */
+export const TO_CONFIRM_STATUSES: readonly OrderStatusName[] = [
+  'pending',
+  'no_answer',
+  'follow_up',
+];
+/** Not a sale: left out of sales value and revenue, and their stock goes back. */
+export const NOT_SALE_STATUSES: readonly OrderStatusName[] = ['cancelled', 'returned', 'fake'];
 
 export const ORDER_CHANNELS = ['organic', 'social', 'direct', 'referral', 'pos'] as const;
 export type OrderChannelName = (typeof ORDER_CHANNELS)[number];

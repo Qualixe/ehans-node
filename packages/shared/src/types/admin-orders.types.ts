@@ -1,4 +1,11 @@
-import type { AdminPage, OrderChannelName, OrderStatusName } from './admin.types.js';
+import type { AdminCustomerAccount } from './account.types.js';
+import {
+  type AdminPage,
+  NOT_SALE_STATUSES,
+  ORDER_STATUSES,
+  type OrderChannelName,
+  type OrderStatusName,
+} from './admin.types.js';
 
 /** glowy Order::DATE_RANGES (the orders list's quick date filter). */
 export const ORDER_DATE_RANGES = {
@@ -12,8 +19,8 @@ export type OrderDateRange = keyof typeof ORDER_DATE_RANGES;
 
 export const ORDER_PAGE_SIZES = [20, 50, 100] as const;
 
-/** Statuses whose stock went back to inventory (glowy OrderStatus::releasesStock). */
-export const STOCK_RELEASING_STATUSES: readonly OrderStatusName[] = ['cancelled', 'returned'];
+/** Statuses whose stock went back to inventory: cancelled, returned, fake. */
+export const STOCK_RELEASING_STATUSES: readonly OrderStatusName[] = NOT_SALE_STATUSES;
 
 export interface AdminOrderFilters {
   status?: OrderStatusName;
@@ -147,4 +154,93 @@ export function fraudRisk(check: Pick<FraudCheckDto, 'totalParcels' | 'successRa
   if (check.successRatio >= 80) return 'safe';
   if (check.successRatio >= 50) return 'watch';
   return 'risky';
+}
+
+// ---------------------------------------------------------------- customers (glowy CustomerController)
+
+/** Statuses that count as revenue: every status but cancelled, returned and fake. */
+export const REVENUE_STATUSES: readonly OrderStatusName[] = ORDER_STATUSES.filter(
+  (s) => !NOT_SALE_STATUSES.includes(s),
+);
+
+export type CustomerSort = 'recent' | 'spent';
+
+/** A customer = everyone who ordered with one phone number. */
+export interface AdminCustomerRow {
+  phone: string;
+  name: string;
+  email: string | null;
+  city: string;
+  ordersCount: number;
+  /** Total of their non-cancelled, non-returned orders. */
+  spent: number;
+  firstOrderAt: string;
+  lastOrderAt: string;
+}
+
+export interface AdminCustomerDetail {
+  phone: string;
+  name: string;
+  email: string | null;
+  address: string;
+  city: string;
+  firstOrderAt: string;
+  stats: { orders: number; spent: number; aov: number; cancelled: number };
+  /** The storefront account registered with this number, if any. */
+  account: AdminCustomerAccount | null;
+  orders: {
+    number: string;
+    createdAt: string;
+    itemCount: number;
+    status: OrderStatusName;
+    total: number;
+  }[];
+}
+
+// ---------------------------------------------------------------- POS (glowy PosController)
+
+export interface PosProduct {
+  id: string;
+  name: string;
+  sku: string;
+  price: number;
+  /** Old price (shows the discount badge) */
+  compareAtPrice: number | null;
+  stock: number;
+  image: string | null;
+  /** Top-level category id (the department chips). */
+  department: string;
+  /** Sellable variants; empty for products without options. */
+  variants: { id: string; title: string; price: number; stock: number }[];
+}
+
+export interface PosCatalog {
+  products: PosProduct[];
+  departments: { id: string; name: string }[];
+}
+
+export type PosFulfilment = 'in_store' | 'delivery';
+export const POS_PAYMENT_METHODS = {
+  cash: 'Cash',
+  card: 'Card',
+  bkash: 'bKash',
+  cod: 'Cash on delivery',
+} as const;
+export type PosPaymentMethod = keyof typeof POS_PAYMENT_METHODS;
+export const POS_MAX_QUANTITY = 100;
+
+export interface PosOrderRequest {
+  fulfilment: PosFulfilment;
+  items: { productId: string; variantId?: string | null; quantity: number }[];
+  customerName?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  /** Delivery only */
+  address?: string | null;
+  /** Delivery only: district key (sets the zone and fee, like checkout) */
+  district?: string | null;
+  paymentMethod: PosPaymentMethod;
+  /** Whole taka off the subtotal */
+  discount?: number;
+  note?: string | null;
 }

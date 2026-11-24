@@ -5,7 +5,6 @@ import {
   HttpCode,
   HttpStatus,
   Param,
-  Patch,
   Post,
   Put,
   Query,
@@ -17,45 +16,17 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import type {
-  AdminBulkStatusResult,
-  AdminOrderDetail,
-  AdminOrdersPage,
-  FraudCheckDto,
-} from '@ehans/shared';
-import { AdminOnly } from '../auth/admin.guard.js';
-import {
-  BulkOrderStatusDto,
-  FraudCheckQueryDto,
-  ListOrdersQueryDto,
-  OrderNoteDto,
-  OrderNumberDto,
-  OrderStatusDto,
-  UpdateOrderDto,
-} from './dto/orders-admin.dto.js';
+import type { AdminOrderDetail, AdminUser, FraudCheckDto } from '@ehans/shared';
+import { AdminOnly, CurrentAdmin } from '../auth/admin.guard.js';
+import { FraudCheckQueryDto, OrderNumberDto, UpdateOrderDto } from './dto/orders-admin.dto.js';
 import { OrdersAdminService } from './orders-admin.service.js';
 
-/** glowy admin orders routes (section "orders": GET needs view, writes need manage). */
+/** The order page and fraud check (section "orders"); the list is the order panel. */
 @ApiTags('admin: orders')
 @AdminOnly('orders')
 @Controller('admin/orders')
 export class OrdersAdminController {
   constructor(private readonly orders: OrdersAdminService) {}
-
-  @Get()
-  @ApiOperation({ summary: 'Orders list: status / channel / search / date filters, newest first' })
-  @ApiOkResponse({ description: 'AdminOrdersPage' })
-  list(@Query() { page, perPage, ...filters }: ListOrdersQueryDto): Promise<AdminOrdersPage> {
-    return this.orders.list(filters, page ?? 1, perPage ?? 20);
-  }
-
-  // before :number so "bulk-status" isn't taken for an order number
-  @Patch('bulk-status')
-  @ApiOperation({ summary: 'Change the status of several orders (unreopenable ones are skipped)' })
-  @ApiOkResponse({ description: 'AdminBulkStatusResult' })
-  bulkStatus(@Body() body: BulkOrderStatusDto): Promise<AdminBulkStatusResult> {
-    return this.orders.bulkStatus(body.numbers, body.status);
-  }
 
   @Get(':number')
   @ApiOperation({ summary: 'One order with items, customer and fulfilment details' })
@@ -68,18 +39,13 @@ export class OrdersAdminController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiNoContentResponse()
   @ApiConflictResponse({ description: 'Reopening needs stock that is no longer there' })
-  @ApiOperation({ summary: 'Fulfilment form: status, courier, tracking number, internal note' })
-  async update(@Param() { number }: OrderNumberDto, @Body() body: UpdateOrderDto): Promise<void> {
-    await this.orders.update(number, body);
-  }
-
-  @Patch(':number/status')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiNoContentResponse()
-  @ApiConflictResponse({ description: 'Reopening needs stock that is no longer there' })
-  @ApiOperation({ summary: 'Quick status change (cancel/return puts the items back in stock)' })
-  async status(@Param() { number }: OrderNumberDto, @Body() body: OrderStatusDto): Promise<void> {
-    await this.orders.setStatus(number, body.status);
+  @ApiOperation({ summary: 'Fulfilment form: status, courier, tracking number, note' })
+  async update(
+    @Param() { number }: OrderNumberDto,
+    @Body() body: UpdateOrderDto,
+    @CurrentAdmin() admin: AdminUser,
+  ): Promise<void> {
+    await this.orders.update(number, body, admin);
   }
 
   @Post(':number/fraud-check')
@@ -93,13 +59,5 @@ export class OrdersAdminController {
     @Query() { fresh }: FraudCheckQueryDto,
   ): Promise<FraudCheckDto> {
     return this.orders.fraudCheck(number, fresh ?? false);
-  }
-
-  @Patch(':number/note')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @ApiNoContentResponse()
-  @ApiOperation({ summary: 'Internal note (only staff see it)' })
-  async note(@Param() { number }: OrderNumberDto, @Body() body: OrderNoteDto): Promise<void> {
-    await this.orders.setNote(number, body.adminNote ?? null);
   }
 }
